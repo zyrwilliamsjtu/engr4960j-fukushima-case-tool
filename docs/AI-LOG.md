@@ -52,3 +52,12 @@
   - `src/data/mock-state.js`（stateVersion 2.0）
   - `docs/DECISIONS.md` 追加 4 条
 - **备注**：截图由 PI 补入 `docs/ai-logs/`
+
+### 2026-10-11 — CONTRIBUTING 与 CONTRACT 冻结前修订
+
+- **本轮目标**：补齐协作规则；消化 4 项契约歧义（nameEn、ID 命名空间、isCore/focusReason、字段→存储映射）。
+- **提示词要点**：
+  - 追加 CONTRIBUTING 四节；修订 CONTRACT 与占位 id；不改原则库与业务逻辑。
+- **产出**：
+  - `CONTRIBUTING.md`、`docs/CONTRACT.md`、`src/data/fukushima.js`、`src/data/mock-state.js`、`docs/DECISIONS.md`
+- **备注**：截图由 PI 补入 `docs/ai-logs/`

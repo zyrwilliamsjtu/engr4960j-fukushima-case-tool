@@ -725,7 +725,7 @@
     ],
     timeline: [
       {
-        id: "tl-ph-1",
+        id: "tl-001",
         date: "【占位】",
         event: "【占位】此处待补",
         sourceId: "TODO(PI)",
@@ -735,34 +735,48 @@
     ],
     facts: [
       {
-        id: "f-ph-1",
+        id: "f-mat-001",
         text: "【占位】此处待补",
         categories: ["material"],
+        sourceId: "TODO(PI)",
+        note: ""
+      },
+      {
+        id: "f-ind-001",
+        text: "【占位】此处待补",
+        categories: ["individual"],
+        sourceId: "TODO(PI)",
+        note: ""
+      },
+      {
+        id: "f-org-001",
+        text: "【占位】此处待补",
+        categories: ["organization"],
         sourceId: "TODO(PI)",
         note: ""
       }
     ],
     valueWords: [
       {
-        id: "vw-1",
+        id: "vw-001",
         word: "责任",
         whyVague: "可指法律责任、道德责任或组织分工，需在本案中界定。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "vw-2",
+        id: "vw-002",
         word: "安全",
         whyVague: "可指人身、环境或系统可靠性，标准因语境而异。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "vw-3",
+        id: "vw-003",
         word: "合规",
         whyVague: "可指满足最低法规或更高行业规范，含义需澄清。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "vw-4",
+        id: "vw-004",
         word: "透明",
         whyVague: "可指信息公开程度或决策过程可见性，需具体化。",
         sourceId: "TODO(PI)"
@@ -771,70 +785,70 @@
     principles: principles,
     constraints: [
       {
-        id: "c-hint-1",
+        id: "rc-001",
         label: "深层文化规范",
         desc: "组织或行业长期形成的非成文规范，可能塑造决策默认选项。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "c-hint-2",
+        id: "rc-002",
         label: "组织压力",
         desc: "来自上级、绩效或团队期望的压力，不预设必然减责。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "c-hint-3",
+        id: "rc-003",
         label: "信息不对称",
         desc: "不同主体掌握信息范围与时机不同，需结合当时情境判断。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "c-hint-4",
+        id: "rc-004",
         label: "时间压力",
         desc: "紧急决策窗口内可选方案受限，须说明当时还有哪些可行选择。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "c-hint-5",
+        id: "rc-005",
         label: "职业风险",
         desc: "举报、抗命等可能带来职业后果，与责任判断是否减轻须分开论证。",
         sourceId: "TODO(PI)"
       }
     ],
     biasChecks: [
-      { id: "bc-1", label: "是否遗漏了某类事实？（按三分类检查）", jumpTo: 3 },
-      { id: "bc-2", label: "是否有概念仍然模糊？", jumpTo: 5 },
-      { id: "bc-3", label: "假设是否都写了依据？", jumpTo: 4 },
-      { id: "bc-4", label: "前后是否有矛盾？", jumpTo: 7 },
-      { id: "bc-5", label: "是否只站在了一个主体的视角？", jumpTo: 1 }
+      { id: "bc-001", label: "是否遗漏了某类事实？（按三分类检查）", jumpTo: 3 },
+      { id: "bc-002", label: "是否有概念仍然模糊？", jumpTo: 5 },
+      { id: "bc-003", label: "假设是否都写了依据？", jumpTo: 4 },
+      { id: "bc-004", label: "前后是否有矛盾？", jumpTo: 7 },
+      { id: "bc-005", label: "是否只站在了一个主体的视角？", jumpTo: 1 }
     ],
     reviewPrompts: [
       {
-        id: "rp-1",
+        id: "rp-001",
         label: "是否遗漏了某类事实？",
         jumpTo: 3,
         kind: "missing-facts"
       },
       {
-        id: "rp-2",
+        id: "rp-002",
         label: "是否有概念仍然模糊？",
         jumpTo: 5,
         kind: "vague-concept"
       },
       {
-        id: "rp-3",
+        id: "rp-003",
         label: "假设是否都写了依据？",
         jumpTo: 4,
         kind: "assumption-basis"
       },
       {
-        id: "rp-4",
+        id: "rp-004",
         label: "前后是否有矛盾？",
         jumpTo: 7,
         kind: "contradiction"
       },
       {
-        id: "rp-5",
+        id: "rp-005",
         label: "是否只站在了一个主体的视角？",
         jumpTo: 1,
         kind: "single-perspective"

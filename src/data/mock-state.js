@@ -1,6 +1,7 @@
 /**
  * 仅供界面开发调试的 mock 用户状态（stateVersion 2.0）。
  * 不代表任何真实福岛分析结论或事实；勿用于交付或演示正文。
+ * 本文件 ID 规则与 docs/CONTRACT.md 的「静态数据 ID」一致。
  */
 (function () {
   var itemsSnapshot1 = {
@@ -10,7 +11,7 @@
       step: 1,
       text: "【示例】某主体在决策 X 时是否应当优先考虑公众安全？",
       actors: ["【示例】角色甲"],
-      coreFocus: true,
+      isCore: true,
       focusReason: "【示例】覆盖安全与决策主线",
       createdAt: "2026-01-01T00:10:00.000Z",
       updatedAt: "2026-01-01T00:20:00.000Z"
@@ -21,7 +22,7 @@
       step: 1,
       text: "【示例】某机构是否应该公开某类信息？",
       actors: [],
-      coreFocus: true,
+      isCore: true,
       focusReason: "【示例】覆盖信息披露维度",
       createdAt: "2026-01-01T00:11:00.000Z",
       updatedAt: "2026-01-01T00:21:00.000Z"
@@ -65,7 +66,7 @@
     {
       id: "REL-0001",
       kind: "fact-supports-question",
-      from: "f-ph-1",
+      from: "f-mat-001",
       to: "Q-1-01",
       why: "【示例】该占位事实若成立，会影响对决策 X 的讨论。",
       createdAt: "2026-01-01T00:35:00.000Z"

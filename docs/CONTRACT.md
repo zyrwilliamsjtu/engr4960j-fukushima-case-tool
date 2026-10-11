@@ -9,30 +9,51 @@
 | 版本 | 说明 |
 |------|------|
 | v1.0 | 脚手架阶段，无正式契约文档 |
-| v2.0 | 本轮：对齐 PRODUCT v1.0 第九～十一节；`dataVersion` / `stateVersion` 均为 `2.0` |
+| v2.0 | 对齐 PRODUCT v1.0 第九～十一节；`dataVersion` / `stateVersion` 均为 `2.0` |
+| v2.0 冻结前修订 | 补 `nameEn`、统一 ID 规则、收编 `isCore`/`focusReason`、新增字段→存储映射表 |
 
 ---
 
 ## 1. 稳定 ID 规则
+
+### 用户创建的条目
 
 所有用户创建的条目**必须**有稳定 ID，格式 `类型前缀-步骤号-序号`：
 
 | 前缀 | 类型 | 示例 |
 |------|------|------|
 | `Q` | 伦理问题 | `Q-1-03` |
-| `XR` | 引用的事实（引用 `CASE_DATA.facts` 的 id） | `F-material-012` |
 | `M` | 缺失事实 | `M-3-02` |
 | `A` | 假设 | `A-4-01` |
 | `C` | 概念/术语澄清 | `C-5-02` |
 | `PA` | 原则应用 | `PA-6-01` |
 | `CF` | 原则冲突 | `CF-6-01` |
-| `RC` | 现实约束 | `RC-9-01` |
+| `RC` | 现实约束（用户条目） | `RC-9-01` |
 | `R` | 结论 | `R-8-01` |
 | `AV` | 避免措施 | `AV-10-01` |
 | `REL` | 关联记录 | `REL-0007` |
 | `SN` | 快照 | `SN-01` |
 
-**生命周期**：ID 一旦生成**不得复用**、**不得因删除条目而回收**；删除仅标记影响范围，不重用旧 ID。
+ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响范围，不重用旧 ID。
+
+### 静态数据 ID（由 PI 撰写，不得由界面层生成）
+
+| 前缀 | 对象 | 示例 |
+|---|---|---|
+| `src-` | 来源 | `src-textbook-appendix-I` |
+| `tl-` | 时间线事件 | `tl-001` |
+| `f-mat-` | 物质 / 技术类事实 | `f-mat-001` |
+| `f-ind-` | 个人类事实 | `f-ind-001` |
+| `f-org-` | 组织类事实 | `f-org-001` |
+| `p-basic-` / `p-org-` / `p-emp-` / `p-inv-` / `p-right-` | 原则（5 组） | `p-basic-1` |
+| `vw-` | 价值含义候选词 | `vw-001` |
+| `rc-` | 现实约束提示词 | `rc-001` |
+| `bc-` | 偏见自查项 | `bc-001` |
+| `rp-` | 复核提示项 | `rp-001` |
+
+**引用规则**：`relations[]` 的 `from` / `to`、各条目的 `basisRefs` /
+`appliesTo` 等字段，**一律直接写目标条目的 id 原文**，不另起命名空间、
+不加前缀转换。例如事实引用写 `f-mat-001`，不写 `XR-001`。
 
 ---
 
@@ -90,7 +111,7 @@
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 事实 id | `"f-ph-1"` |
+| `id` | `string` | 是 | 事实 id | `"f-mat-001"` |
 | `text` | `string` | 是 | 事实正文 | `"【占位】此处待补"` |
 | `categories` | `string[]` | 是 | 多标签分类 | `["material","individual"]` |
 | `sourceId` | `string` | 是 | 来源 id | `"TODO(PI)"` |
@@ -100,7 +121,7 @@
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 词条 id | `"vw-1"` |
+| `id` | `string` | 是 | 词条 id | `"vw-001"` |
 | `word` | `string` | 是 | 词 | `"责任"` |
 | `whyVague` | `string` | 是 | 为何需澄清 | `"可指法律责任或道德责任…"` |
 | `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
@@ -112,16 +133,15 @@
 | `id` | `string` | 是 | 原则 id | `"p-basic-1"` |
 | `group` | `string` | 是 | 分组 | `"basic"` / `"organization"` / `"employee"` / `"involvement"` / `"rights"` |
 | `name` | `string` | 是 | 中文短名 | `"公众安全"` |
+| `nameEn` | `string` | 是 | 原则的英文原文，便于对照教材 | `"keep members of the public safe ..."` |
 | `desc` | `string` | 是 | 中文简述 | `"使公众免受…"` |
 | `sourceId` | `string` | 是 | 来源 | `"src-textbook-appendix-I"` |
-
-> 实现文件 `fukushima.js` 中原则条目另含 `nameEn`（英文原文，供卡片双语展示）；逻辑层读取时不得忽略该字段。
 
 ### 2.8 `constraints[]`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 提示项 id | `"c-hint-1"` |
+| `id` | `string` | 是 | 提示项 id | `"rc-001"` |
 | `label` | `string` | 是 | 短标签 | `"深层文化规范"` |
 | `desc` | `string` | 是 | 说明（非结论） | `"…不预设必然减责。"` |
 | `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
@@ -130,7 +150,7 @@
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 项 id | `"bc-1"` |
+| `id` | `string` | 是 | 项 id | `"bc-001"` |
 | `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？…"` |
 | `jumpTo` | `number` | 是 | 跳转步骤号 | `3` |
 
@@ -138,7 +158,7 @@
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 项 id | `"rp-1"` |
+| `id` | `string` | 是 | 项 id | `"rp-001"` |
 | `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？"` |
 | `jumpTo` | `number` | 是 | 跳转步骤 | `3` |
 | `kind` | `string` | 是 | 类型 | `"missing-facts"` 等 |
@@ -348,6 +368,30 @@
 
 ---
 
+## 字段类型 → 存储位置映射
+
+`CASE_DATA.steps[].fields` **只描述输入界面长什么样**，不描述数据怎么存。
+存储一律以上文「用户状态」为准。二者对应关系如下：
+
+| field.type | 写入位置 | 说明 |
+|---|---|---|
+| `text` / `textarea` / `question` | `items[id]` 的对应字段 | 无独立条目的单值字段 |
+| `list` | `items[]` 多条 | 每个条目一个稳定 ID |
+| `bucketedFacts` | `items[]` 多条，带 `categories: []` | 支持多标签；缺失事实用 `M` 前缀 |
+| `assumption` | `items[]`（`A` 前缀），带 `basisRefs: []` | `basisRefs` 为空 → 标 🟡，不阻断 |
+| `clarify` | `items[]`（`C` 前缀），带 `others` / `mine` 两字段 | — |
+| `multiSelect` | `items[]`（`PA` 前缀）或 `items[id].selectedIds` | 原则选择用 `PA` |
+| `rankList` | `items[]`（`PA` 前缀）的 `order` 字段 | 允许并列 |
+| `checkList` | `items[id].checkedIds` | 不产生新条目 |
+| `review` | `items[id].review` 对象 | 含 `status` / `note` |
+| `conflict` | `conflicts[]` | 一条记录装四问 |
+| `relation` | `relations[]` | 必填 `why` 字段 |
+
+**第 2 步特例**：其 `fields` 描述的是「从第 1 步列表里勾选 2 条 + 写理由」这一交互，
+存储按下文 `isCore` / `focusReason` 处理。
+
+---
+
 ## 5. 用户状态（localStorage）
 
 建议存储键：`engr4960j.fukushima.v2`（实现时在 `src/logic/` 定稿；变更须升 `stateVersion`）。
@@ -386,13 +430,27 @@
 | `createdAt` | `string` | 是 | ISO 8601 | `"…"` |
 | `updatedAt` | `string` | 否 | ISO 8601 | `"…"` |
 
+#### item 的可选扩展字段
+
+第 2 步「聚焦」不另开顶层数组，而是在已有的 `Q` 类条目上打标：
+
+| 字段 | 类型 | 适用 | 含义 |
+|---|---|---|---|
+| `isCore` | boolean | `Q` | 是否被选为本次分析的核心问题（建议 2 条） |
+| `focusReason` | string | `Q` | 选它的理由 |
+
+规则：
+
+- 取消选中时，将 `isCore` 置为 `false`，**保留** `focusReason` 原文，不删除用户写过的字。
+- 第 8 步逐个核心问题写结论时，按 `items` 中 `isCore === true` 的顺序取。
+
 ### 5.3 `relations[]`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
 | `id` | `string` | 是 | `REL-` 前缀 | `"REL-0001"` |
 | `kind` | `string` | 是 | 关系类型 | `"fact-supports-question"` |
-| `from` | `string` | 是 | 源条目 id | `"f-ph-1"` |
+| `from` | `string` | 是 | 源条目 id | `"f-mat-001"` |
 | `to` | `string` | 是 | 目标条目 id | `"Q-1-01"` |
 | `why` | `string` | 是 | 为什么相关 | `"…"` |
 | `createdAt` | `string` | 是 | ISO 8601 | `"…"` |
@@ -484,12 +542,12 @@
   currentStep: 3,
   stepStatus: { 1: "checked", 2: "checked", 3: "draft", /* … */ },
   items: {
-    "Q-1-01": { id: "Q-1-01", type: "Q", step: 1, text: "【示例】…", coreFocus: true, focusReason: "…" },
+    "Q-1-01": { id: "Q-1-01", type: "Q", step: 1, text: "【示例】…", isCore: true, focusReason: "…" },
     "M-3-01": { id: "M-3-01", type: "M", step: 3, text: "【示例】尚缺…" },
     "PA-6-01": { id: "PA-6-01", type: "PA", step: 6, principleId: "p-basic-1", appliesTo: ["Q-1-01"] }
   },
   relations: [
-    { id: "REL-0001", kind: "fact-supports-question", from: "f-ph-1", to: "Q-1-01", why: "【示例】…" }
+    { id: "REL-0001", kind: "fact-supports-question", from: "f-mat-001", to: "Q-1-01", why: "【示例】…" }
   ],
   conflicts: [
     { id: "CF-6-01", questionId: "Q-1-01", principleA: "p-basic-1", principleB: "p-emp-1", /* 四问字段 */ }
@@ -502,8 +560,6 @@
   authorship: { notes: [], reservations: [] }
 }
 ```
-
-> mock 中 `Q` 条目的 `coreFocus` / `focusReason` 为第 2 步 UI 调试便利字段，正式持久化形状由 `dispatch` 定稿时写入 `items`/`relations`。
 
 ---
 
