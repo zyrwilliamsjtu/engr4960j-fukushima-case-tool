@@ -785,31 +785,31 @@
     principles: principles,
     constraints: [
       {
-        id: "rc-001",
+        id: "rch-001",
         label: "深层文化规范",
         desc: "组织或行业长期形成的非成文规范，可能塑造决策默认选项。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "rc-002",
+        id: "rch-002",
         label: "组织压力",
         desc: "来自上级、绩效或团队期望的压力，不预设必然减责。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "rc-003",
+        id: "rch-003",
         label: "信息不对称",
         desc: "不同主体掌握信息范围与时机不同，需结合当时情境判断。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "rc-004",
+        id: "rch-004",
         label: "时间压力",
         desc: "紧急决策窗口内可选方案受限，须说明当时还有哪些可行选择。",
         sourceId: "TODO(PI)"
       },
       {
-        id: "rc-005",
+        id: "rch-005",
         label: "职业风险",
         desc: "举报、抗命等可能带来职业后果，与责任判断是否减轻须分开论证。",
         sourceId: "TODO(PI)"
