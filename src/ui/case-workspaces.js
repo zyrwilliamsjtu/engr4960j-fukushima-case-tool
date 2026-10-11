@@ -187,14 +187,14 @@
       active = pack.meta.id;
       runtime = createRuntime(pack, active, { state: payload });
       metadataSaved = saveCatalog();
-      return { ok: true };
+      return { ok: true, compatMode: !!(runtime && runtime.isPreview) };
     }
     if (runtime.flush) runtime.flush();
     packs[pack.meta.id] = pack;
     active = pack.meta.id;
     runtime = createRuntime(pack, active, { state: result.state || payload });
     metadataSaved = saveCatalog();
-    return { ok: true };
+    return { ok: true, compatMode: !!(runtime && runtime.isPreview) };
   }
   window.FieldnotesCases = {
     getData: function () { return packs[active]; }, getRuntime: function () { return runtime; },
