@@ -170,6 +170,12 @@
 - **可见核对**：在用户原 IAB 标签页刷新并打开新资料工作区，未添加测试数据至用户的草稿。保留通用工作台标题与双语模式。
 - **证据**：frontend-qa-library-final/ 保留工作台、概念页、原文复核、引用、原则与手机代表图，frontend-qa-library-final-dist/ 保留交付原则图；所有作者输入均为明确标注的虚构 QA。此前已提交的证据全部保留。本轮图片为界面检查，不替代老师要求的真实 AI 聊天截图；真实对话须从本聊天保存。
 
+### 2026-10-11 — 对比外提与 E2E 硬失败
+
+- **提示词要点**：SKIP 判失败；对比/快照/导出入口外提；确认 import 走 AppLogic；真实 file input + DataTransfer。
+- **产出**：`src/ui/workbench.js`、`tools/e2e/selftest.js`、`tools/browser-smoke.py`、`docs/research/runtime-migration-spec.md` §8
+- **截图**：待 PI 补入
+
 ### 2026-10-11 — 导出/导入、修订对比与无头自测
 
 - **提示词要点**：堵 importProject 洞；JSON/MD 导出与四项导入校验；revision-compare 接界面；Node 往返测 + Edge headless selftest；交付物不含 SELFTEST。

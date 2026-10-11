@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT_HTML = ROOT / "dist" / "_selftest.html"
 DEFAULT_OUT_PNG = ROOT / "dist" / "_selftest.png"
 BUILD = ROOT / "tools" / "build.py"
+SELFTEST_JS = ROOT / "tools" / "e2e" / "selftest.js"
 
 
 def browser_candidates() -> list[Path]:
@@ -52,6 +53,19 @@ def file_url(path: Path) -> str:
     return "file:///" + quote(resolved.as_posix(), safe="/:")
 
 
+def read_allowed_skips() -> list[str]:
+    if not SELFTEST_JS.is_file():
+        return []
+    text = SELFTEST_JS.read_text(encoding="utf-8")
+    m = re.search(r"ALLOWED_SKIPS\s*=\s*\[(.*?)\]", text, re.S)
+    if not m:
+        return []
+    inner = m.group(1).strip()
+    if not inner:
+        return []
+    return re.findall(r"['\"]([^'\"]+)['\"]", inner)
+
+
 def main() -> int:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -65,6 +79,9 @@ def main() -> int:
     if not browser:
         print("SKIP: no Chromium browser found")
         return 0
+
+    allowed = read_allowed_skips()
+    print(f"ALLOWED_SKIPS: {allowed if allowed else '(empty)'}")
 
     print(f"Browser: {browser}")
 
@@ -104,9 +121,11 @@ def main() -> int:
     stdout = run.stdout or ""
     stderr = run.stderr or ""
 
-    summary_match = re.search(r"SUMMARY:\s*PASS=(\d+)\s*FAIL=(\d+)", stdout)
+    summary_match = re.search(
+        r"SUMMARY:\s*PASS=(\d+)\s*FAIL=(\d+)(?:\s*SKIP=(\d+))?", stdout
+    )
     for line in stdout.splitlines():
-        if line.startswith("FAIL:") or line.startswith("SKIP:"):
+        if line.startswith("PASS:") or line.startswith("FAIL:") or line.startswith("SKIP:"):
             print(line)
 
     console_fail = bool(re.search(r"Uncaught|ERROR:CONSOLE", stderr, re.I))
@@ -122,11 +141,13 @@ def main() -> int:
             print(f"  DOM[{i}]: {line[:200]}")
         return 1
 
-    pass_n, fail_n = int(summary_match.group(1)), int(summary_match.group(2))
+    pass_n = int(summary_match.group(1))
+    fail_n = int(summary_match.group(2))
+    skip_n = int(summary_match.group(3) or 0)
     print(summary_match.group(0))
     print(f"Screenshot: {DEFAULT_OUT_PNG.resolve()}")
 
-    if fail_n > 0 or console_fail:
+    if fail_n > 0 or skip_n > 0 or console_fail:
         return 1
     if pass_n == 0:
         return 1
