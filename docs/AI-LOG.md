@@ -70,6 +70,14 @@
 - **产出**：`src/logic/*.js`、`tools/smoke-test.js`
 - **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
 
+### 2026-10-11 — NAIIC / TEPCO 本地 PDF 抽取（阶段 2）
+
+- **提示词要点**：
+  - 只读 `ass1/refs/` 已有 PDF；新增 20–30 条逐字引用；官方分歧表；不改 fukushima.js。
+- **产出**：
+  - `docs/research/fukushima-facts-draft.md`（src-004/005，+24 条，分歧表，ev-006–009）
+- **截图**：待 PI 补入
+
 ### 2026-10-11 — IAEA 引文对抗式核验（阶段 1）
 
 - **提示词要点**：
