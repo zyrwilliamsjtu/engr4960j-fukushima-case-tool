@@ -23,7 +23,7 @@
 | 编号 | 日期 | 事件（中文一句话） | 来源 | 章节/页码 | 原文引用（逐字，英文） | 置信度 | 备注 |
 |---|---|---|---|---|---|---|---|
 | tl-001 | 2011-03-11 | 东日本大震灾（Great East Japan Earthquake）发生。 | src-001 | Executive Summary | The Great East Japan Earthquake occurred on 11 March 2011. | 高 |  |
-| tl-002 | 2011-03-11 | 地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。 | src-001 | Executive Summary | causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres. | 高 |  |
+| tl-002 | 2011-03-11 | 地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。 | src-001 | Executive Summary | causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres. | 中 | 核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011） |
 | tl-003 | 2011-03-11 14:46 JST | 主震发生于 JST 2011-03-11 14:46（星期五）。 | src-002 | §1.1.1 Main occurrences | The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan. | 高 |  |
 | tl-006 | 2011-03-11 及之后 | 1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。 | src-001 | Executive Summary | the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached. | 高 | 具体时刻未获取（Executive Summary 未给出分机组时刻链） |
 | tl-007 | 2011-03-11 及之后 | 1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。 | src-001 | Executive Summary | Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel. | 高 | Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取 |
@@ -43,15 +43,15 @@
 | f-mat-002 | 2011-03-11 海啸淹没厂内主、备电源与最终热阱等设备/结构，**六台机组**均受影响。 | src-002 | §1.1 Summary of the accident | They flooded the primary and backup power systems and equipment, as well as the ultimate heat sink systems and structures, of all six units on the site. | 高 | 并入原 tl-010 信息 |
 | f-mat-003 | 地震在 tsunami 之前已造成场外输电系统损坏。 | src-002 | §1.1 Summary of the accident | Compounding the off-site power loss that occurred before the tsunami due to the earthquake damage to the transmission system, the flooding caused the loss of on-site power sources (and/or on-site power distribution systems). | 高 |  |
 | f-mat-004 | 1–3 号机组因长时间失去电力与排热，燃料过热并熔化，RPV 最终 breach。 | src-002 | §1.1 Summary of the accident | The reactors of Units 1, 2 and 3 suffered damage as the fuel overheated and melted. The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units | 高 |  |
-| f-mat-005 | 1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。 | src-001 | Executive Summary | leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel. | 高 |  |
+| f-mat-005 | 1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。 | src-001 | Executive Summary | leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel. | 中 | 核验⚠️：引文为 Executive Summary **句中片段**（非独立完整句） |
 | f-mat-006 | 设计中的地震/海啸 hazard 主要依据日本历史地震记录与近期海啸证据评估。 | src-001 | NUCLEAR SAFETY CONSIDERATIONS — Vulnerability | The seismic hazard and tsunami waves considered in the original design were evaluated mainly on the basis of historical seismic records and evidence of recent tsunamis in Japan. | 高 | 非 Executive Summary 小节标题 |
-| f-mat-007 | 记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。 | src-001 | NUCLEAR SAFETY CONSIDERATIONS — Vulnerability | Both the recorded ground motions and the heights of the tsunami waves significantly exceeded the assumptions of hazards that had been made when the plant was originally designed. | 高 |  |
+| f-mat-007 | 记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。 | src-001 | NUCLEAR SAFETY CONSIDERATIONS — Vulnerability | Both the recorded ground motions and the heights of the tsunami waves significantly exceeded the assumptions of hazards that had been made when the plant was originally designed. | 中 | 核验⚠️：引文为定性表述，**未给出**具体 ground motion / 海啸数值 |
 | f-mat-009 | 2 号机组 containment venting 未成功，containment 失效并造成放射性释放。 | src-001 | NUCLEAR SAFETY CONSIDERATIONS — Fundamental safety functions | Containment venting for Unit 2 was not successful, and the containment failed, resulting in radioactive releases. | 高 |  |
 | f-mat-010 | 原始 EP 设计基准最高潮位对应海啸高度为 OP +3.122 m。 | src-002 | §1.2.5.6 Oceanography；Table 1.2–3 | This gave a design basis tsunami height of 3.122 m above the OP level. | 高 | OP = Onahama Port 潮位基准 |
-| f-mat-011 | 防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。 | src-002 | §1.1.2.5 Tsunami and station blackout | the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m [15]. However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant. | 高 | 设计值与遭遇值分列 |
+| f-mat-011 | 防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。 | src-002 | §1.1.2.5 Tsunami and station blackout | the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m [15]. However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant. | 中 | 核验⚠️：PDF 文本层在 “maximum” 与 “5.5 m” 之间插入脚注 12，引文作连续句；**15:36–15:37 为 3/11 海啸波，非氢爆** |
 | f-mat-012 | 2002 年 JSCE 方法重评海啸高度为 OP +5.7 m，并采取抬高泵位等对策。 | src-002 | Table 1.2–4 | Japan Society of Civil Engineers (JSCE) assessment method OP +5.7 m Raise elevation of pumps | 高 | 同表另有 Make buildings watertight |
 | f-mat-013 | 1966 年许可基准引用的观测海啸来自 1960 年智利地震海啸。 | src-002 | Table 1.2–4 | Establishment Permit OP +3.122 m (observed height resulting from Chilean tsunami in 1960) | 高 | Table 1.2–3 Remarks 亦有 24 May 1960 表述 |
-| f-mat-014 | Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。 | src-002 | §1.3.2；§1.1.3.3 | All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami | 高 | 精确到小时；分秒见 §1.3.2 叙事 |
+| f-mat-014 | Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。 | src-002 | §1.3.2；§1.1.3.3 | All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami | 中 | 核验⚠️：引文含 “…” **合并两节**，非 PDF 单一连续段落；15:42 为 Unit 1 SBO 宣布（§1.3.2） |
 | f-mat-015 | 2009 年 bathymetric 重评给出 OP +6.1 m（对策含抬高泵位）。 | src-002 | Table 1.2–4 | Latest bathymetric and tidal data on the basis of the JSCE assessment method OP +6.1 m Raise elevation of pumps | 高 | 与 f-mat-011 遭遇 run-up 14–15 m 对照；未写释放量 |
 
 ---
@@ -62,12 +62,12 @@
 |---|---|---|---|---|---|---|
 | f-ind-001 | 现场人员需在未按培训场景准备的情况下即兴应对，且常缺合适设备。 | src-001 | Foreword | They had to improvise a response in circumstances for which they had not been trained, often lacking appropriate equipment. | 高 |  |
 | f-ind-002 | 尽管运营商人员努力维持控制，1–3 号机组仍发生堆芯损伤。 | src-001 | Executive Summary | Despite the efforts of the operators at the Fukushima Daiichi nuclear power plant to maintain control, the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached. | 高 |  |
-| f-ind-003 | 氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。 | src-001 | Executive Summary | leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel. | 高 | 未给出具体人数 |
+| f-ind-003 | 氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。 | src-001 | Executive Summary | leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel. | 中 | 核验⚠️：句中片段引文；未给出具体人数 |
 | f-ind-004 | 地震、海啸后果及辐射水平升高使 on-site response 极其困难。 | src-001 | EMERGENCY PREPAREDNESS AND RESPONSE | The consequences of the earthquake and tsunami, and increased radiation levels, made the on-site response extremely difficult. | 高 |  |
 | f-ind-005 | 疏散因地震/tsunami 破坏及通信交通问题而存在困难。 | src-001 | EMERGENCY PREPAREDNESS AND RESPONSE — Protecting the public | There were difficulties in evacuation due to the damage caused by the earthquake and tsunami and the resulting communication and transportation problems. | 高 |  |
 | f-ind-006 | 事故造成现场工作人员与周边公众受到辐射照射。 | src-002 | §1.1 Summary of the accident | The radioactive releases resulted in radiological exposure of the workers at the site and the general public residing in the surrounding communities | 高 |  |
-| f-ind-007 | MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。 | src-002 | §1.2.6（人员响应段） | Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations. | 高 | 脚注 76 含 JMA 修订时刻 |
-| f-ind-008 | Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。 | src-002 | §1.3.2 Unit 1 sequence | The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded. | 高 |  |
+| f-ind-007 | MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。 | src-002 | §1.2.6（人员响应段） | Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations. | 中 | 核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段 |
+| f-ind-008 | Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。 | src-002 | §1.3.2 Unit 1 sequence | The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded. | 中 | 核验⚠️：PDF 连续文本为 `…that the operators manually stopped…`，非句首 `The operators` |
 | f-ind-009 | Site Superintendent 于 00:06 下令准备对 Unit 1（及 Unit 2）vent。 | src-002 | §1.3.2（2011-03-12） | At 00:06, the Site Superintendent ordered preparations for venting of Unit 1 (and Unit 2) and a notice was issued at 00:49 identifying an ‘abnormal rise in primary containment vessel pressure’ | 高 | 角色称谓保留英文 |
 | f-ind-010 | 运行人员因各类电源丧失时序不明，无法确知 IC 隔离阀位置。 | src-002 | §1.3.2 脚注 26 | The valve positions were not clear to the operators owing to the uncertain timing and sequence of each type of power loss that would determine the operation of isolation condenser status of isolation valves. | 高 | 信息不足的具体描述 |
 
@@ -101,7 +101,15 @@
 
 ### 逐字依据缺失条目
 
-- **（无）** 本轮保留条目与第 7 节 `ev-001`~`ev-004` 均已填入逐字英文，或已删除原无独立依据的重复项。
+- **（无 ❌）** 2026-10-11 对抗式核验：46 条引文均在归一化文本层找到对应内容；见 `docs/research/fukushima-facts-verification.md`。
+
+### 待 PI 复核（核验未通过 ❌）
+
+- **（无）**
+
+### 核验存疑（⚠️，已降置信度为「中」）
+
+- tl-002、f-mat-005、f-mat-007、f-mat-011、f-mat-014、f-ind-003、f-ind-007、f-ind-008（共 8 条；理由见各条备注与核验报告）
 
 ### 已排查但排除
 
@@ -140,6 +148,6 @@
 
 ## 检索记录（本轮）
 
-- **成功通道**：`www-pub.iaea.org` PDF 直链（src-001、src-002）；本轮自 `.pdf-cache/` 文本层逐字核对。
-- **失败通道**：`www.iaea.org` HTML（Cloudflare）；`naiic.go.jp`（403）。
+- **2026-10-11 引文核验**：仅只读 `.pdf-cache/dg.txt`、`tv1.txt`；产出 `docs/research/fukushima-facts-verification.md`（✅38 / ⚠️8 / ❌0）。
+- **NAIIC / TEPCO PDF**：路径 `E:\学习档案库-D\ENGR496\assignment\ass1\refs\` — **本轮 Agent 环境未检测到文件**，阶段 2 未执行，待 PI 确认路径。
 - **未写入 `src/data/fukushima.js`**：已确认本轮未修改该文件。

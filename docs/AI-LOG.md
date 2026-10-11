@@ -70,6 +70,17 @@
 - **产出**：`src/logic/*.js`、`tools/smoke-test.js`
 - **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
 
+### 2026-10-11 — IAEA 引文对抗式核验（阶段 1）
+
+- **提示词要点**：
+  - 仅本地 `.pdf-cache/`；禁止联网；46 条逐条核验；产出 verification.md；⚠️ 降置信度。
+- **产出**：
+  - `docs/research/fukushima-facts-verification.md`
+  - `docs/research/fukushima-facts-draft.md`（8 条 ⚠️）
+  - `.gitignore` 增加 `.pdf-cache/`、`*.pdf`
+- **截图**：待 PI 补入
+- **阶段 2**：`ass1/refs/` 下 NAIIC/TEPCO PDF 未检测到，未执行。
+
 ### 2026-10-11 — 事实草稿逐字引用与条目扩充
 
 - **提示词要点**：
