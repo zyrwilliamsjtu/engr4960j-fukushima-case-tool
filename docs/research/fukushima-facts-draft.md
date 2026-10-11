@@ -191,5 +191,5 @@
 ## 检索记录（本轮）
 
 - **阶段 1（2026-10-11）**：只读 `.pdf-cache/dg.txt`、`tv1.txt` → `fukushima-facts-verification.md`（✅38 / ⚠️8 / ❌0）。
-- **阶段 2（2026-10-11）**：只读 `ass1/refs/NAIIC_report_lo_res.pdf`、`120620e0106.pdf` 提取至 `.pdf-cache/naiic.txt`、`tepco0106.txt`（**未下载**）；新增事实/时间线 **24** 条（tl×5 / f-mat×5 / f-ind×5 / f-org×9）+ 评估 **4** 条（ev-006–009）；`120620e0101/0104/0105` 未使用。
+- **阶段 2（2026-10-11）**：只读 `E:\学习档案库-D\ENGR496\assignment\ass1\refs\` 下 5 份本地 PDF（含 NAIIC、TEPCO 120620e0106 等）；文本缓存于 `.pdf-cache/`（**未下载**）。`120620e0101/0104/0105` 本轮未使用。
 - **未写入 `src/data/fukushima.js`**：已确认本轮未修改该文件。

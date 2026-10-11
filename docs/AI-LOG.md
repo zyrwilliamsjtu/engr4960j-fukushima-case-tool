@@ -70,6 +70,14 @@
 - **产出**：`src/logic/*.js`、`tools/smoke-test.js`
 - **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
 
+### 2026-10-11 — 静态数据写入 fukushima.js（dataVersion 2.1）
+
+- **提示词要点**：
+  - 仅据 `fukushima-facts-draft.md` 写入 timeline/facts/assessments/sources；契约 2.1；`tools/check-data.js`。
+- **产出**：
+  - `src/data/fukushima.js`、`docs/CONTRACT.md`、`tools/check-data.js`、`src/data/mock-state.js`（注释与示例 relation）
+- **截图**：待 PI 补入
+
 ### 2026-10-11 — NAIIC / TEPCO 本地 PDF 抽取（阶段 2）
 
 - **提示词要点**：

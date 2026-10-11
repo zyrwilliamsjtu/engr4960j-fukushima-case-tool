@@ -1,4 +1,4 @@
-# 数据契约 v2.0
+# 数据契约 v2.1
 
 > 开发以本文件为准。  
 > 注：`docs/PRODUCT.md` 中的 XR 等旧 ID 写法为决策记录，已被本文件的「静态数据 ID」取代。
@@ -15,6 +15,7 @@
 | v2.0 | 对齐 PRODUCT v1.0 第九～十一节；`dataVersion` / `stateVersion` 均为 `2.0` |
 | v2.0 冻结前修订 | 补 `nameEn`、统一 ID 规则、收编 `isCore`/`focusReason`、新增字段→存储映射表 |
 | v2.0 | 运行时接口 validateStep 返回字段名由 locators 统一为 anchors（非持久化结构，未升 dataVersion） |
+| v2.1 | 新增可选字段 quote / locator / confidence / sources[].note，新增 assessments[]；dataVersion 2.0→2.1，stateVersion 不变（无用户数据结构变更，无需迁移） |
 
 ---
 
@@ -73,6 +74,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `sources` | `array` | 是 | 文献/来源目录 | 见 2.3 |
 | `timeline` | `array` | 是 | 事件时间线（L1） | 见 2.4 |
 | `facts` | `array` | 是 | 事实库（L1，可多标签） | 见 2.5 |
+| `assessments` | `array` | 是 | 评估性内容（官方判断/教训，非客观事实） | 见 2.5a |
 | `valueWords` | `array` | 是 | 第 5 步候选词 | 见 2.6 |
 | `principles` | `array` | 是 | 附录 I 原则库 | 见 2.7 |
 | `constraints` | `array` | 是 | 第 9 步预置提示词 | 见 2.8 |
@@ -86,7 +88,8 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 |--------|------|------|------|--------|
 | `id` | `string` | 是 | 案例 id | `"fukushima"` |
 | `title` | `string` | 是 | 界面标题 | `"福岛第一核电站事故"` |
-| `dataVersion` | `string` | 是 | 静态契约版本 | `"2.0"` |
+| `dataVersion` | `string` | 是 | 静态契约版本 | `"2.1"` |
+| `dataUpdatedAt` | `string` | 否 | 静态数据内容更新日期 | `"2026-10-11"` |
 | `builtAt` | `string` | 是 | 数据构建日期 | `"2026-10-11"` |
 
 ### 2.3 `sources[]`
@@ -99,6 +102,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `year` | `number` | 是 | 年份 | `2017` |
 | `url` | `string` | 否 | 链接 | `""` |
 | `accessedAt` | `string` | 否 | 访问日期 | `""` |
+| `note` | `string` | 否 | 备注（如仅书目元数据） | `"仅书目元数据，未取正文"` |
 
 ### 2.4 `timeline[]`
 
@@ -110,6 +114,10 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `sourceId` | `string` | 是 | 来源 id | `"TODO(PI)"` |
 | `infoKnownBy` | `array` | 否 | P2「站在当时」：当时知情主体 | `[]` |
 | `infoKnownWhen` | `string` | 否 | P2：信息何时被掌握 | `""` |
+| `quote` | `string` | 否 | 英文逐字原句 | `""` |
+| `locator` | `string` | 否 | 章节或页码 | `"§1.1"` |
+| `confidence` | `string` | 否 | 置信度 | `"high"` / `"medium"` / `"low"` |
+| `note` | `string` | 否 | 编辑/核验备注 | `""` |
 
 ### 2.5 `facts[]`
 
@@ -119,7 +127,22 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `text` | `string` | 是 | 事实正文 | `"【占位】此处待补"` |
 | `categories` | `string[]` | 是 | 多标签分类 | `["material","individual"]` |
 | `sourceId` | `string` | 是 | 来源 id | `"TODO(PI)"` |
-| `note` | `string` | 否 | 编辑备注 | `""` |
+| `note` | `string` | 否 | 编辑/核验备注 | `""` |
+| `quote` | `string` | 否 | 英文逐字原句 | `""` |
+| `locator` | `string` | 否 | 章节或页码 | `""` |
+| `confidence` | `string` | 否 | 置信度 | `"high"` / `"medium"` / `"low"` |
+
+### 2.5a `assessments[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 评估条目 id | `"ev-001"` |
+| `text` | `string` | 是 | 内容摘要（中文） | `"…"` |
+| `sourceId` | `string` | 是 | 来源 id | `"src-004"` |
+| `locator` | `string` | 否 | 章节或页码 | `"Foreword"` |
+| `quote` | `string` | 否 | 英文逐字原句 | `""` |
+| `appliesToSteps` | `number[]` | 是 | 建议展示步骤 | `[6, 7]` |
+| `note` | `string` | 否 | 归属/说明 | `"NAIIC"` |
 
 ### 2.6 `valueWords[]`
 
