@@ -4,7 +4,7 @@
   'use strict';
   function create(ctx) {
     var modal=ctx.modal, host=ctx.host, tab='facts', query='', category='all', source='', linkedOnly=false;
-    var selected={}, drafts={}, caseId=null, composing=false;
+    var selected={}, drafts={}, caseId=null, composing=false, page=0, pageSize=12, mobileReading=false, savedListScroll=0;
     function bi(zh,en){return ctx.locale()==='zh'?zh:en;}
     function e(v){return ctx.escape(v);}
     function t(k){return ctx.t(k);}
@@ -92,17 +92,17 @@
     }
     function refresh(focus) {
       var active=document.activeElement, id=active&&active.id, caret=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;
-      var listEl=host.querySelector('.library-results'), oldList=listEl?listEl.scrollTop:0, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
-      var listData=filtered();if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
+      var listEl=host.querySelector('.library-results'), oldList=listEl&&listEl.clientHeight?listEl.scrollTop:savedListScroll, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
+      var allData=filtered(), total=allData.length, pages=Math.max(1,Math.ceil(total/pageSize));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*pageSize,(page+1)*pageSize);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
       var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
-      host.innerHTML='<div class="library-shell"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">中文</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">EN</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+listData.length+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
-      var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');newList.scrollTop=oldList;newRead.scrollTop=focus==='select'?0:oldRead;
+      host.innerHTML='<div class="library-shell '+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">中文</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">EN</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div><div class="library-pagination">'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*pageSize+1:0)+'–'+Math.min((page+1)*pageSize,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
     function open(nextTab,id){
-      if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;}
-      if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;}
-      if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;}
+      if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
+      if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
+      if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;page=Math.max(0,Math.floor(filtered().findIndex(function(x){return x.id===id;})/pageSize));mobileReading=true;}
       if(modal.open)modal.close();modal.className='library-dialog';refresh();modal.showModal();host.querySelector('#library-search').focus({preventScroll:true});
     }
     host.addEventListener('click',function(event){var el=event.target.closest('[data-lib]');if(!el||el.disabled)return;event.preventDefault();var a=el.dataset.lib;
@@ -110,11 +110,13 @@
       if(a==='return'||a==='navigate'){modal.close();if(a==='navigate'||tab==='principles')ctx.navigate(a==='navigate'?Number(el.dataset.step):6);return;}
       if(a==='cite'){var form=host.querySelector('.library-relevance');form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});var input=form.querySelector('textarea,button');if(input)input.focus({preventScroll:true});return;}
       if(a==='language'){ctx.language(el.dataset.lang);refresh();return;}
-      if(a==='tab'){tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;refresh('select');return;}
-      if(a==='select'){selected[tab]=el.dataset.id;refresh('select');return;}
-      if(a==='category'){category=el.dataset.category;refresh('select');return;}
-      if(a==='clear'){query='';category='all';source='';linkedOnly=false;refresh('select');return;}
-      if(a==='source-facts'){tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;refresh('select');return;}
+      if(a==='tab'){tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='select'){selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
+      if(a==='back-list'){mobileReading=false;refresh();return;}
+      if(a==='page-prev'||a==='page-next'){page+=a==='page-next'?1:-1;refresh('select');return;}
+      if(a==='category'){category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='clear'){query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='source-facts'){tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(ctx.readonly())return;
       if(a==='unlink'){ctx.dispatch('UNLINK',{id:el.dataset.id});var d=drafts[selected.facts];if(d&&!d.dirty){d.why='';}refresh();return;}
       if(a==='principle'&&!chosen(el.dataset.id)){ctx.dispatch('ADD_ITEM',{type:'PA',step:6,fields:{principleId:el.dataset.id,appliesTo:[],order:items('PA').length+1}});refresh();ctx.toast(bi('已加入比较，在第六步解释适用理由。','Added. Explain its relevance in step 6.'));return;}
@@ -122,7 +124,7 @@
       if(a==='concept'){modal.close();ctx.dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});ctx.navigate(5);return;}
       if(a==='add-fact'){ctx.addFact();}
     });
-    function searchInput(){query=host.querySelector('#library-search').value;refresh('select');}
+    function searchInput(){query=host.querySelector('#library-search').value;page=0;mobileReading=false;refresh('select');}
     host.addEventListener('compositionstart',function(event){if(event.target.id==='library-search')composing=true;});
     host.addEventListener('compositionend',function(event){if(event.target.id==='library-search'){composing=false;searchInput();}});
     host.addEventListener('input',function(event){
@@ -130,8 +132,8 @@
       if(event.target.id==='library-why'){event.target.setCustomValidity('');var d=drafts[selected.facts];d.why=event.target.value;d.dirty=true;d.reasons[d.target]={why:d.why,dirty:true};host.querySelector('#library-draft-status').textContent=bi('未保存的引用理由','Unsaved reason');}
     });
     host.addEventListener('change',function(event){
-      if(event.target.dataset.libField==='source'){source=event.target.value;refresh('select');}
-      if(event.target.dataset.libField==='linked'){linkedOnly=event.target.checked;refresh('select');}
+      if(event.target.dataset.libField==='source'){source=event.target.value;page=0;mobileReading=false;refresh('select');}
+      if(event.target.dataset.libField==='linked'){linkedOnly=event.target.checked;page=0;mobileReading=false;refresh('select');}
       if(event.target.id==='library-target'){var d=drafts[selected.facts], rel=relations(selected.facts).find(function(r){return r.to===event.target.value;});var unassigned=!d.target&&d.dirty?d.why:'';d.reasons[d.target]={why:d.why,dirty:d.dirty};d.target=event.target.value;var prior=d.reasons[d.target];d.why=prior?prior.why:rel?rel.why:unassigned;d.dirty=prior?prior.dirty:!!unassigned;refresh();}
     });
     host.addEventListener('submit',function(event){var form=event.target;if(form.id!=='library-link-form')return;event.preventDefault();event.stopPropagation();if(ctx.readonly())return;

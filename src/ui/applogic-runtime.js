@@ -207,6 +207,16 @@
           });
           break;
         case "LINK":
+          // Updating an existing citation keeps its identity and snapshot history.
+          var linkState = store.getState();
+          var existingLink = linkState.relations.find(function (r) {
+            return r.from === p.from && r.to === p.to && r.kind === (p.kind || "fact-supports-question");
+          });
+          if (existingLink) {
+            existingLink.why = p.why || "";
+            loadState(store, linkState);
+            break;
+          }
           store.dispatch({
             type: "RELATION_ADD",
             payload: {

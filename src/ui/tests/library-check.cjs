@@ -19,7 +19,7 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   const tab=k=>page.locator('[data-lib="tab"][data-tab="'+k+'"]').click();
   const row=id=>page.locator('[data-lib="select"][data-id="'+id+'"]');
   await page.evaluate(()=>window.FIELDNOTES.getEngine().dispatch({type:'RESET'}));
-  await open();assert.equal(await page.locator('.library-fact').count(),50);
+  await open();assert.equal(await page.locator('.library-fact').count(),12);
   assert.equal(await page.locator('#library-link-form').count(),0);
   await page.locator('.library-relevance [data-lib="navigate"]').click();
   assert.equal((await get()).currentStep,1,'Empty analysis has a direct route to write a question.');
@@ -64,14 +64,14 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   await lib('unlink').click();assert.equal((await get()).relations.length,1);await lib('clear').click();
   await page.locator('#library-source').selectOption('src-004');
   const expected=await page.evaluate(()=>window.FieldnotesCases.getData().facts.filter(f=>f.sourceId==='src-004').length);
-  assert.equal(await page.locator('.library-fact').count(),expected);
+  assert.equal(await page.locator('.library-fact').count(),Math.min(12,expected));
   assert.ok(await page.locator('.source-review.pending').isVisible());
   assert.ok((await page.locator('.library-original').innerText()).length>25,'Unreviewed original is available without inventing verification.');
   if(shots){fs.mkdirSync(shots,{recursive:true});await page.screenshot({path:path.join(shots,'library-zh-source-review.jpg'),type:'jpeg',quality:85});}
   // Switch UI language without altering either the question or the reason.
   await page.locator('.library-header [data-lang="en"]').click();assert.equal((await get()).items[qs[0].id].text,qs[0].text);
   await tab('sources');await row('src-003').click();assert.ok((await page.locator('.library-source-caution').innerText()).includes('不得作为事实依据'));
-  await row('src-004').click();await lib('source-facts').click();assert.equal(await page.locator('.library-fact').count(),expected);
+  await row('src-004').click();await lib('source-facts').click();assert.equal(await page.locator('.library-fact').count(),Math.min(12,expected));
   assert.equal(await page.locator('#library-source').inputValue(),'src-004');
   await tab('principles');await lib('principle').click();
   await page.locator('.library-row').nth(1).click();await lib('principle').click();
@@ -97,7 +97,7 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
     await page.setViewportSize({width,height:900});
     for(const k of ['facts','principles','timeline','sources','glossary']){
      await tab(k);assert.ok(await page.locator('#modal-content').evaluate(el=>el.scrollWidth<=el.clientWidth),'Fits '+language+' '+k+' at '+width);
-     assert.ok(await page.locator('.library-reading').evaluate(el=>el.clientHeight>150),'Reading area is usable at '+width);
+     assert.ok(await page.locator('.library-browser').evaluate(el=>el.clientHeight>250),'List area is usable at '+width);
      assert.equal(await page.locator('#modal-content [id]').evaluateAll(els=>new Set(els.map(e=>e.id)).size),await page.locator('#modal-content [id]').count());
     }
    }

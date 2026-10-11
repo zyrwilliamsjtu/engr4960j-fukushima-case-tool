@@ -141,3 +141,18 @@ v4 保留完整中英文十步及弹窗截图；v5 与 v5-dist 各保留原文�
 验证新增 `node src/ui/tests/library-check.cjs`：真实离线 Chrome 检查中英搜索/IME、来源反查、逐问题暂存、空白理由拒绝、主动引用/更新/移除、连续原则选择、待复核备注、空白术语、依据筛选，以及中英文 5 标签 × 4 屏宽。`browser-check.cjs` 继续检查中英文十步与完整写作流程。两套检查在 preview 和 dist 均通过；数据 TEXT_DIFF=0、逻辑冒烟 8/8、适配器 7/7、状态/案例恢复及交付静态检查通过。
 
 浏览器检查默认只输出代表性截图，设置 `FIELDNOTES_QA_ALL=1` 可保存全部十步与弹窗。截图输出仍由 `FIELDNOTES_QA_DIR` 控制，请使用新目录避免覆盖。新 UI 证据在 `frontend-qa-library-final/`，dist 代表图在 `frontend-qa-library-final-dist/`；两张早期设计图另存于 `frontend-qa-library/` 和 `frontend-qa-library-v2/`。它们是页面 QA 图，不是 AI 对话截图。
+
+
+## 2026-10-11：初学者提示与资料选择改版
+
+资料用途：第 3 步选择事实并说明它与问题的关系；第 4 步用已选事实支撑假设、注明缺失信息；第 5 步核对术语来源并自己定义；第 6 步选择原则并解释适用性和冲突；第 7 步返回材料检查遗漏和反例。资料打开、阅读和提示轮换本身不会产生分析记录。
+
+`src/ui/guidance.js` 提供每步至少 3 条中英提示，第 1 步 4 条，总计 31 条。首击展开、后续轮换、可关闭；提示序号与开关仅存页面会话，不写入冻结状态。提示是小组教学文案，不是教材原句或具体案例答案。
+
+资料弹窗占可用视口 94%，桌面列表扩大到 43%，紧凑行显示摘要和核验标记，出处移到右侧阅读区。每页 12 条，搜索/类别/来源/已引用筛选覆盖整个库，筛选后回第一页。手机改为全高列表，点击后全高阅读，返回保留列表位置；引用理由暂存机制继续保留。1440、816、390px 宽 × 900px 高的检查均可显示至少 4 条完整条目。
+
+同步 main 的正式运行时、导入导出与修订对比后，修复两个交互回归：同一引用更新保留关联 ID，避免重复记录；正式 store 目前只允许内置 caseId，因此自建案例保留兼容运行时并继续测试隔离/跨电脑导入。旧 v2.0 预览存档没有 idSeq，导入允许省略，由正式 store 初始化；自建案例仍严格通过兼容层结构校验。未修改 src/logic 或资料包。
+
+验证：guidance-check.cjs 检查十步中英轮换、循环、提示不改状态、分页/全库搜索、移动分屏和溢出；browser-check.cjs 在 preview 与正式 dist 完整流程通过，library-check.cjs 在正式 dist 检查引用更新不重复、依据选择等。cases/runtime、logic smoke 8/8、adapter 7/7、export-import 5/5、数据 TEXT_DIFF=0、交付检查 13/13 均通过。原 Python browser-smoke 在本机使用共享 Chrome 配置启动时未取得 DOM；改用 Playwright 的隔离浏览器运行相同 tools/e2e/selftest.js，得到 PASS=20 FAIL=0 SKIP=0（未跳过检查）。
+
+页面 QA 图在 docs/ai-logs/frontend-qa-guided-hints-v3/ 与 frontend-qa-guided-delivery-v3/。这是界面验证图，不是课程要求的 AI 聊天截图。

@@ -68,11 +68,14 @@
         if (Object.prototype.hasOwnProperty.call(extraOptions, k)) opts[k] = extraOptions[k];
       }
     }
-    if (window.AppLogicRuntime && window.AppLogicRuntime.available && window.AppLogicRuntime.available()) {
+    // The formal store currently accepts only the built-in case identifier.
+    if (id === template.meta.id && window.AppLogicRuntime && window.AppLogicRuntime.available && window.AppLogicRuntime.available()) {
       var adapted = window.AppLogicRuntime.create(pack, opts);
       if (adapted) return adapted;
     }
-    return window.FrontendPreviewRuntime.create(pack, opts);
+    var compatible = window.FrontendPreviewRuntime.create(pack, opts);
+    compatible.isPreview = true;
+    return compatible;
   }
   var runtime = window.CASE_RUNTIME || createRuntime(packs[active], active);
   var metadataSaved = saveCatalog();
@@ -138,8 +141,8 @@
     if (!Array.isArray(payload.relations) || !Array.isArray(payload.conflicts) || !Array.isArray(payload.snapshots)) {
       return { ok: false, code: 'structure', message: '存档结构无效：relations / conflicts / snapshots 必须为数组。' };
     }
-    if (!payload.stepStatus || typeof payload.stepStatus !== 'object' || payload.idSeq === undefined) {
-      return { ok: false, code: 'structure', message: '存档结构无效：缺少 stepStatus 或 idSeq。' };
+    if (!payload.stepStatus || typeof payload.stepStatus !== 'object' || Array.isArray(payload.stepStatus) || (payload.idSeq !== undefined && (!payload.idSeq || typeof payload.idSeq !== 'object' || Array.isArray(payload.idSeq)))) {
+      return { ok: false, code: 'structure', message: '存档结构无效：stepStatus 或 idSeq 类型错误。' };
     }
     var ids = staticRefIds(pack);
     Object.keys(payload.items).forEach(function (id) { ids.add(id); });
@@ -179,7 +182,7 @@
     var result = candidate.importProject(payload);
     candidate.flush();
     if (!result.ok) {
-      if (!(window.AppLogicRuntime && window.AppLogicRuntime.available())) {
+      if (pack.meta.id !== template.meta.id || !(window.AppLogicRuntime && window.AppLogicRuntime.available())) {
         return { ok: false, code: 'preview', message: '预览运行时拒绝该存档（结构或字段不兼容）。' };
       }
       if (runtime.flush) runtime.flush();

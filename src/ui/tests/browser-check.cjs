@@ -18,7 +18,7 @@ let pageForCapture;
  page.on('request',r=>{if(/^https?:/.test(r.url()))external.push(r.url());});
  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML || 'preview.html')).href);
  await page.waitForSelector('.step-hero');
- const click=action=>page.locator('[data-action="'+action+'"]').first().click();
+ const click=async action=>{const scope=await page.locator('#modal').evaluate(el=>el.open)?'#modal ':'';await page.locator(scope+'[data-action="'+action+'"]').first().click();};
  const step=n=>page.locator('.sidebar .step-nav[data-step="'+n+'"]').click();
  const get=()=>page.evaluate(()=>window.FIELDNOTES.getEngine().getState());
  await page.evaluate(()=>window.FIELDNOTES.getEngine().dispatch({type:'RESET'}));
@@ -41,12 +41,12 @@ let pageForCapture;
  await step(3);
  assert.equal(await page.locator('.fact-card').count(),0,'Only deliberately selected evidence enters the writing canvas.');
  await page.locator('.evidence-intro [data-action="materials"]').click();
- assert.equal(await page.locator('.library-fact').count(),50,'Current data pack is available in the reading workspace.');
+ assert.equal(await page.locator('.library-fact').count(),12,'Current data pack is available in the reading workspace.');
  assert.ok((await page.locator('.library-locator').innerText()).includes('§1.1.2.2'));
  assert.ok(await page.locator('.library-original').count()>0,'Quotation is visible without an extra disclosure.');
  await capture({path:path.join(screenshots,'06-evidence-source.png'),fullPage:true});
  await page.locator('[data-lib="category"][data-category="individual"]').click();
- assert.equal(await page.locator('.library-fact').count(),15,'Category filters show only matching evidence.');
+ assert.equal(await page.locator('.library-fact').count(),12,'Category filters show only matching evidence.');
  await page.locator('.library-fact').first().click();
  await page.locator('#library-link-form select').selectOption(q);await page.locator('#library-link-form textarea').fill('Our written reason for selecting this test evidence.');
  await page.locator('#library-link-form button[type="submit"]').click();
@@ -83,7 +83,7 @@ let pageForCapture;
  await step(1);await page.locator('textarea[data-field="text"]').fill('Our revised test question?');
  await click('tools');
  const downloadEvent=page.waitForEvent('download');await click('download-json');const download=await downloadEvent;
- assert.equal(download.suggestedFilename(),'fukushima-project.json');
+ assert.match(download.suggestedFilename(),/^fukushima-analysis-\d{8}-\d{4}\.json$/);
  await page.evaluate(()=>window.FIELDNOTES.getEngine().flush());await page.reload();
  assert.ok(Object.values((await get()).items).some(x=>x.text==='Our revised test question?'),'Reload restores the draft.');
  // New cases keep their materials and drafts apart from the built-in case.
@@ -108,7 +108,7 @@ let pageForCapture;
  // Invalid import leaves the current working record intact.
  const before=JSON.stringify(await get());await click('tools');await click('import');
  await page.locator('#project-file').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{"stateVersion":"old"}')});
- await click('confirm');assert.equal(JSON.stringify(await get()),before);
+ await page.locator('#modal[open]').waitFor();assert.equal(JSON.stringify(await get()),before);await page.locator('#modal').evaluate(el=>el.close());
  // IME composition remains attached until compositionend.
  await page.locator('textarea[data-field="text"]').evaluate(el=>{
    el.dispatchEvent(new CompositionEvent('compositionstart',{bubbles:true}));
@@ -126,7 +126,7 @@ let pageForCapture;
  await page.locator('[data-lang="zh"]').click();await step(3);await page.locator('.top-actions [data-action="materials"]').click();
  for(const tab of ['facts','principles','timeline','sources','glossary']){
   await page.locator('[data-lib="tab"][data-tab="'+tab+'"]').click();
-  if(tab==='facts'){await page.locator('.library-row[data-id="f-mat-016"]').click();assert.ok(await page.locator('.source-review.pending').count()>0,'Unreviewed sources remain visibly distinguished.');}
+  if(tab==='facts'){await page.locator('#library-search').fill('f-mat-016');await page.locator('.library-row[data-id="f-mat-016"]').click();assert.ok(await page.locator('.source-review.pending').count()>0,'Unreviewed sources remain visibly distinguished.');}
   if(tab==='sources'){await page.locator('.library-row[data-id="src-003"]').click();assert.ok((await page.locator('.library-reading').innerText()).includes('不得作为事实依据'));}
   await page.evaluate(()=>document.getElementById('modal').scrollTop=0);
   await capture({path:path.join(screenshots,'drawer-'+tab+'.png')});

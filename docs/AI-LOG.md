@@ -187,3 +187,12 @@
 - **提示词要点**：PI 授权 4 处 patch；收紧 check-dist 为 FAIL；规格落地节；不删 preview。
 - **产出**：`index.html`、`src/ui/case-workspaces.js`、`tools/check-dist.py`、`docs/research/runtime-migration-spec.md`、`docs/DECISIONS.md`
 - **截图**：待 PI 补入
+
+
+### 2026-10-11 — 资料分页与十步轮换提示
+
+- 用户反馈：资料库多、一次看不到足够条目；初学者不知道如何写每一步，希望反复点击图标换提示；继续美化。
+- 迭代：全库搜索与每页 12 条分离，桌面列表加宽紧凑化，手机列表/详情分屏；十步新增 31 条中英文小组提示和示意问题，绝不自动填答案；暖纸色提示卡、青绿工具栏和阶段配色。
+- 同步协作 main 后发现并修复：重复引用更新新增了记录；自建案例被正式 store 的固定 caseId 覆盖；旧存档缺 idSeq 被拒绝。修复限于 UI 适配与案例管理层，保留同学的正式内置运行时、快照/修订对比和导入校验。
+- 验证：完整 preview/dist 写作流程、十步提示、库交互、案例隔离及旧存档、正式浏览器自测 20 项均通过；数据未更改。
+- 页面证据：frontend-qa-guided-v1/ 是早期迭代；frontend-qa-guided-hints-v3/、frontend-qa-guided-delivery-v3/ 是通过后的界面 QA。均不是 AI 对话截图，请小组另保存真实聊天截图。
