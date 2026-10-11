@@ -120,6 +120,25 @@ ok("5 markdown export contains disclaimer and 10 step sections", function () {
   }
 });
 
+ok("6 template export keeps user wording and marks missing chapters", function () {
+  require(path.join(root, "src/ui/template-export.js"));
+  var eng = freshEngine();
+  var question = "逐字片段甲：运营商是否向公众及时说明了风险？";
+  var assumption = "逐字片段乙：暂按公开时间晚于撤离命令来假设。";
+  eng.dispatch({ type: "ADD_ITEM", payload: { type: "Q", step: 1, fields: { text: question } } });
+  eng.dispatch({ type: "ADD_ITEM", payload: { type: "A", step: 4, fields: { text: assumption } } });
+  var md = global.TemplateExport.exportReport(eng.getState(), global.CASE_DATA);
+  assert.ok(md.indexOf(global.TemplateExport.DISCLAIMER) >= 0);
+  global.TemplateExport.CHAPTERS.forEach(function (title) {
+    assert.ok(md.indexOf("## " + title) >= 0, "missing chapter " + title);
+  });
+  assert.ok(md.indexOf(question) >= 0, "question rewritten or dropped");
+  assert.ok(md.indexOf(assumption) >= 0, "assumption rewritten or dropped");
+  assert.ok(md.indexOf("> ⚠️ 需人工补充（来自第 1 步：识别伦理问题）：") >= 0);
+  assert.ok(md.indexOf("> 本节属报告正文，须由小组成员独立撰写。") >= 0);
+  assert.strictEqual(md.indexOf("因此本组认为运营商应当立即公开全部信息。"), -1);
+});
+
 console.log("---");
 console.log("SUMMARY: PASS=" + pass + " FAIL=" + fail);
 process.exit(fail ? 1 : 0);
