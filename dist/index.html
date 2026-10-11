@@ -4976,59 +4976,107 @@ body {
 (function (root) {
   root.AppLogic = root.AppLogic || {};
 
-  var storage = root.AppLogic.createStorage({
-    key: "engr4960j.fukushima.v2"
+  function createInstance(options) {
+    options = options || {};
+    var storage = root.AppLogic.createStorage({
+      key: options.key || "engr4960j-scaffold"
+    });
+    var idGen = root.AppLogic.createIdGenerator(options.idGenOptions || {});
+    var store = root.AppLogic.createStore({ idGen: idGen, storage: storage });
+
+    var shouldLoad =
+      options.persistent !== false && options.loadPersisted !== false;
+    if (shouldLoad) {
+      var disk = storage.load();
+      if (disk.ok && disk.data) {
+        store.dispatch({ type: "STATE_LOAD", payload: { state: disk.data } });
+      }
+    }
+
+    var validateStepImpl = root.AppLogic.validateStep;
+
+    function getState() {
+      return store.getState();
+    }
+
+    function dispatch(action) {
+      return store.dispatch(action);
+    }
+
+    function subscribe(listener) {
+      return store.subscribe(listener);
+    }
+
+    function validateStep(stepId) {
+      return validateStepImpl(stepId, store.getState());
+    }
+
+    function createSnapshot(label) {
+      return store.createSnapshot(label);
+    }
+
+    function restoreSnapshot(id) {
+      return store.restoreSnapshot(id);
+    }
+
+    function exportProject() {
+      throw new Error("exportProject 未实现");
+    }
+
+    function importProject() {
+      throw new Error("importProject 未实现");
+    }
+
+    return {
+      storage: storage,
+      store: store,
+      getState: getState,
+      dispatch: dispatch,
+      subscribe: subscribe,
+      validateStep: validateStep,
+      createSnapshot: createSnapshot,
+      restoreSnapshot: restoreSnapshot,
+      exportProject: exportProject,
+      importProject: importProject
+    };
+  }
+
+  // 默认门面：独立键 + 不加载持久化，仅脚手架/测试用，避免与界面案例键互相覆盖。
+  var defaultInstance = createInstance({
+    key: "engr4960j-scaffold",
+    persistent: false,
+    loadPersisted: false
   });
-  var idGen = root.AppLogic.createIdGenerator({});
-  var store = root.AppLogic.createStore({ idGen: idGen, storage: storage });
 
-  function getState() {
-    return store.getState();
-  }
+  root.AppLogic.createInstance = createInstance;
 
-  function dispatch(action) {
-    return store.dispatch(action);
-  }
-
-  function subscribe(listener) {
-    return store.subscribe(listener);
-  }
-
-  var validateStepImpl = root.AppLogic.validateStep;
-
-  function validateStep(stepId) {
-    return validateStepImpl(stepId, store.getState());
-  }
-
-  function createSnapshot(label) {
-    return store.createSnapshot(label);
-  }
-
-  function restoreSnapshot(id) {
-    return store.restoreSnapshot(id);
-  }
-
-  // TODO: 未实现，见下一轮
-  function exportProject() {
-    throw new Error("exportProject 未实现");
-  }
-
-  // TODO: 未实现，见下一轮
-  function importProject() {
-    throw new Error("importProject 未实现");
-  }
-
-  root.AppLogic.storage = storage;
-  root.AppLogic.storageAvailable = storage.available;
-  root.AppLogic.getState = getState;
-  root.AppLogic.dispatch = dispatch;
-  root.AppLogic.subscribe = subscribe;
-  root.AppLogic.validateStep = validateStep;
-  root.AppLogic.createSnapshot = createSnapshot;
-  root.AppLogic.restoreSnapshot = restoreSnapshot;
-  root.AppLogic.exportProject = exportProject;
-  root.AppLogic.importProject = importProject;
-  root.AppLogic._store = store;
+  root.AppLogic.storage = defaultInstance.storage;
+  root.AppLogic.storageAvailable = defaultInstance.storage.available;
+  root.AppLogic.getState = function () {
+    return defaultInstance.getState();
+  };
+  root.AppLogic.dispatch = function (action) {
+    return defaultInstance.dispatch(action);
+  };
+  root.AppLogic.subscribe = function (listener) {
+    return defaultInstance.subscribe(listener);
+  };
+  root.AppLogic.validateStep = function (stepId) {
+    return defaultInstance.validateStep(stepId);
+  };
+  root.AppLogic.createSnapshot = function (label) {
+    return defaultInstance.createSnapshot(label);
+  };
+  root.AppLogic.restoreSnapshot = function (id) {
+    return defaultInstance.restoreSnapshot(id);
+  };
+  root.AppLogic.exportProject = function () {
+    return defaultInstance.exportProject();
+  };
+  root.AppLogic.importProject = function () {
+    return defaultInstance.importProject();
+  };
+  root.AppLogic._store = defaultInstance.store;
 })(typeof window !== "undefined" ? window : globalThis);
 
 </script>
@@ -5116,18 +5164,16 @@ body {
     }
 
     var key = options.key || "engr4960j.frontend.preview.v2";
-    var storage = root.AppLogic.createStorage({ key: key });
-    var idGen = root.AppLogic.createIdGenerator({});
-    var store = root.AppLogic.createStore({ idGen: idGen, storage: storage });
+    var logicInstance = root.AppLogic.createInstance({
+      key: key,
+      persistent: options.persistent
+    });
+    var storage = logicInstance.storage;
+    var store = logicInstance.store;
     var saving = storage.available ? "saved" : "memory";
 
     if (options.state) {
       loadState(store, options.state);
-    } else if (options.persistent !== false) {
-      var disk = storage.load();
-      if (disk.ok && disk.data) {
-        loadState(store, disk.data);
-      }
     }
 
     function getState() {
@@ -5796,18 +5842,16 @@ body {
     }
 
     var key = options.key || "engr4960j.frontend.preview.v2";
-    var storage = root.AppLogic.createStorage({ key: key });
-    var idGen = root.AppLogic.createIdGenerator({});
-    var store = root.AppLogic.createStore({ idGen: idGen, storage: storage });
+    var logicInstance = root.AppLogic.createInstance({
+      key: key,
+      persistent: options.persistent
+    });
+    var storage = logicInstance.storage;
+    var store = logicInstance.store;
     var saving = storage.available ? "saved" : "memory";
 
     if (options.state) {
       loadState(store, options.state);
-    } else if (options.persistent !== false) {
-      var disk = storage.load();
-      if (disk.ok && disk.data) {
-        loadState(store, disk.data);
-      }
     }
 
     function getState() {
@@ -6675,6 +6719,7 @@ body {
   var locale='zh', view='workbook', presentation=null, presentationStep=1, unsubscribe, dragId=null;
   try { locale=localStorage.getItem('fieldnotes.ui.language')==='en'?'en':'zh'; } catch(e) {}
   var composing=false;
+  var archiveMenuOpen=false;
   var library, tipIndexes={}, tipOpen={};
   var app=document.getElementById('app'), modal=document.getElementById('modal'), modalContent=document.getElementById('modal-content');
   var paths={more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z',search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z'};
@@ -6785,19 +6830,27 @@ body {
     modal.dataset.revisionPanel='1';
     var body='';
     if(window.RevisionCompare){
-      body='<div class="revision-tools">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small','history','data-testid="snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small','history','data-testid="snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
+      body='<div class="revision-tools">'+labeledButton('存为「初步」（快照）','snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
     }
     modalContent.innerHTML='<div class="modal-head"><h2 id="modal-title">'+esc(bi('对比修订','Revision compare'))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;
     modal.showModal();
   }
+  function syncArchiveMenuDom(){
+    var btn=document.querySelector('[data-testid="archive-menu"]');
+    var panel=document.getElementById('archive-menu-panel');
+    if(btn)btn.setAttribute('aria-expanded',archiveMenuOpen?'true':'false');
+    if(panel){if(archiveMenuOpen)panel.removeAttribute('hidden');else panel.setAttribute('hidden','');}
+  }
+  function closeArchiveMenu(){archiveMenuOpen=false;syncArchiveMenuDom();}
+  function toggleArchiveMenu(){archiveMenuOpen=!archiveMenuOpen;syncArchiveMenuDom();}
   function workbenchToolbar(){
-    return '<div class="workbench-toolbar">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton(bi('对比修订','Compare revisions'),'revision-compare-open','small quiet','history','data-testid="revision-compare-open"')+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','small quiet','download','data-testid="toolbar-export-json"')+labeledButton(bi('载入存档（JSON）','Import archive (JSON)'),'import','small quiet','folder','data-testid="toolbar-import-json"')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','small quiet','note','data-testid="toolbar-export-md"')+button('method','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
+    return '<div class="workbench-toolbar">'+labeledButton('存为「初步」（快照）','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton('对比修订','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">存档 ▾</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+labeledButton('导出存档（JSON）','download-json','small quiet','download','data-testid="archive-export-json"')+labeledButton('载入存档（JSON）','import','small quiet','folder','data-testid="archive-import-json"')+labeledButton('导出素材（Markdown）','download-md','small quiet','note','data-testid="archive-export-md"')+'</div></span>'+labeledButton('帮助','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
   }
   function methodDialog(){
     var step=current(),own=rows().some(function(x){return x.step===step&&!!(x.text||x.word);})||(step===2&&rows('Q').some(function(x){return x.focusReason;}))||(step===7&&rows().some(function(x){return x.review;}));
     var revision='';
     if(window.RevisionCompare){
-      revision='<div class="revision-tools">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small','history','data-testid="snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small','history','data-testid="snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
+      revision='<div class="revision-tools">'+labeledButton('存为「初步」（快照）','snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
     }
     openDialog('method','<p class="hint">'+esc(t('countNote'))+'</p>'+warningBlock(step)+revision+'<div class="method-reference">'+button('reference','reference','','book',(!own||!data.steps[step-1].referenceLevel3?'disabled':'')+' title="'+esc(t('referenceLocked'))+'"')+'<p class="hint">'+esc(t('referenceLocked'))+'</p></div>'+((cases.recoveryData()||(engine.recoveryData&&engine.recoveryData()))?button('recovery','recovery','','download'):'')+'<p class="hint">'+esc(t('helpBody'))+'</p>');
   }
@@ -6854,7 +6907,7 @@ body {
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','primary','download')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','','note')+'</div>');}
   function onClick(event){var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
-    if(presentation && ['add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open'].includes(action))return;
+    if(presentation && ['add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open','archive-menu'].includes(action))return;
     if(action==='step-hint'){var tipStep=current();if(tipOpen[tipStep])tipIndexes[tipStep]=((tipIndexes[tipStep]||0)+1)%window.FieldnotesGuidance[tipStep-1].length;tipOpen[tipStep]=true;render();}
     if(action==='hide-hint'){tipOpen[current()]=false;render();document.getElementById('step-hint-toggle').focus({preventScroll:true});}
     if(action==='tools')toolsDialog();
@@ -6862,7 +6915,8 @@ body {
     if(action==='select-case'){cases.select(el.dataset.id);attachCase();modal.close();}
     if(action==='add-fact')factDialog();
     if(action==='method')methodDialog();
-    if(action==='revision-compare-open')revisionCompareDialog();
+    if(action==='revision-compare-open'){closeArchiveMenu();revisionCompareDialog();}
+    if(action==='archive-menu')toggleArchiveMenu();
     if(action==='review-step')dispatch('SET_STATUS',{step:current(),status:state().stepStatus[current()]==='checked'?'draft':'checked'});
     if(action==='navigate'){view='workbook';if(modal.open)modal.close();var target=Math.max(1,Math.min(10,Number(el.dataset.step)));if(presentation){presentationStep=target;render();}else dispatch('NAVIGATE',{step:target});window.scrollTo(0,0);if(el.dataset.id)setTimeout(function(){var item=document.getElementById('entry-'+el.dataset.id);if(item)item.scrollIntoView({block:'center',behavior:'smooth'});},0);}
     if(action==='language'){locale=el.dataset.lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();if(modal.open)modal.close();}
@@ -6885,12 +6939,12 @@ body {
     if(action==='answer')dispatch('ANSWER',{question:el.dataset.id});
     if(action==='reference'){if(presentation)return;dispatch('ACCEPT_L3',{step:current()});var ref=data.steps[current()-1].referenceLevel3;openDialog('reference','<p class="notice">'+esc(t('referenceDisclaimer'))+'</p>'+tag('textbook')+'<p>'+esc(!ref||isPending(ref.body)?t('referencePending'):ref.body)+'</p><small>'+esc(t('methodBasis'))+' · '+esc(data.meta.builtAt)+'</small>',true);}
     if(action==='export')exportDialog();
-    if(action==='download-json'){download(cases.exportProject(),jsonArchiveName(),'application/json');modal.close();}
-    if(action==='download-md'){download(exportMarkdown(),mdArchiveName(),'text/markdown;charset=utf-8');modal.close();}
+    if(action==='download-json'){closeArchiveMenu();download(cases.exportProject(),jsonArchiveName(),'application/json');modal.close();}
+    if(action==='download-md'){closeArchiveMenu();download(exportMarkdown(),mdArchiveName(),'text/markdown;charset=utf-8');modal.close();}
     if(action==='backup-json')download(cases.exportProject(),jsonArchiveName(),'application/json');
     if(action==='snapshot-initial'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_INITIAL:'初步');toast(bi('已存为「初步」快照 · ','Saved initial snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
     if(action==='snapshot-reviewed'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_REVIEWED:'复核后');toast(bi('已存为「复核后」快照 · ','Saved reviewed snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
-    if(action==='import'){modal.close();document.getElementById('project-file').click();}
+    if(action==='import'){closeArchiveMenu();modal.close();document.getElementById('project-file').click();}
     if(action==='recovery')download(cases.recoveryData()||engine.recoveryData(),data.meta.id+'-original-archive.json','application/json');
     if(action==='reset')confirmAction(t('resetConfirm'),function(){dispatch('RESET',{});toast(t('resetDone'));});
   }
@@ -6911,6 +6965,8 @@ body {
   }
   document.addEventListener('input',filterBasisSearch);document.addEventListener('compositionend',filterBasisSearch);
   document.addEventListener('change',function(e){if(e.target.matches('#basis-form [name="basis"]'))document.getElementById('basis-count').textContent=modal.querySelectorAll('[name="basis"]:checked').length+' '+bi('项依据已选','references selected');});
+  document.addEventListener('click',function(e){if(archiveMenuOpen&&!e.target.closest('[data-testid="archive-menu"]')&&!e.target.closest('#archive-menu-panel'))closeArchiveMenu();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&archiveMenuOpen)closeArchiveMenu();});
   document.addEventListener('click',onClick);document.addEventListener('input',function(e){if(e.target.matches('textarea[data-item],input[data-item]:not([type="checkbox"]),textarea[data-conflict],input[data-conflict]'))updateInput(e);});document.addEventListener('change',function(e){if(e.target.matches('select[data-item],select[data-conflict],input[type="checkbox"][data-item],[data-status],[data-review],[data-checklist],[data-applies]'))updateInput(e);});document.addEventListener('submit',submit);
   document.addEventListener('dragstart',function(e){var el=e.target.closest('[data-drag]');if(el&&!presentation){dragId=el.dataset.drag;e.dataTransfer.setData('text/plain',dragId);}});
   document.addEventListener('dragover',function(e){if(e.target.closest('[data-drag]'))e.preventDefault();});

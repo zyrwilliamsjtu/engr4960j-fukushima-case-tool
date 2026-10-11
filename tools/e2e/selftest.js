@@ -35,6 +35,16 @@
     origErr.apply(console, arguments);
   };
 
+  var origAnchorClick = HTMLAnchorElement.prototype.click;
+  HTMLAnchorElement.prototype.click = function () {
+    if (this.download) {
+      window.__selftestDownloads = window.__selftestDownloads || [];
+      window.__selftestDownloads.push(this.download);
+      return;
+    }
+    return origAnchorClick.apply(this, arguments);
+  };
+
   function click(sel) {
     var el = typeof sel === "string" ? document.querySelector(sel) : sel;
     if (!el) return false;
@@ -79,15 +89,57 @@
     return true;
   }
 
+  function assertUniqueTestIds() {
+    var els = document.querySelectorAll("[data-testid]");
+    var seen = {};
+    var dups = [];
+    var i;
+    for (i = 0; i < els.length; i++) {
+      var tid = els[i].getAttribute("data-testid");
+      if (seen[tid]) {
+        if (dups.indexOf(tid) < 0) dups.push(tid);
+      } else seen[tid] = true;
+    }
+    if (dups.length) fail("testid-unique", dups.join(", "));
+    else pass("testid-unique");
+  }
+
   later(function run() {
     try {
+      assertUniqueTestIds();
+
       if (document.querySelector('[data-testid="revision-compare-open"]')) pass("revision-entry-visible");
       else fail("revision-entry-visible");
 
-      ["toolbar-export-md", "toolbar-export-json", "toolbar-import-json"].forEach(function (id) {
+      if (document.querySelector('[data-testid="archive-menu"]')) pass("archive-menu");
+      else fail("archive-menu");
+
+      if (document.querySelector('[data-testid="toolbar-help"]')) pass("toolbar-help");
+      else fail("toolbar-help");
+
+      click('[data-testid="archive-menu"]');
+      var menuBtn = document.querySelector('[data-testid="archive-menu"]');
+      var panel = document.getElementById("archive-menu-panel");
+      if (menuBtn && menuBtn.getAttribute("aria-expanded") === "true" && panel && !panel.hidden) {
+        pass("archive-menu-open");
+      } else fail("archive-menu-open");
+
+      ["archive-export-json", "archive-import-json", "archive-export-md"].forEach(function (id) {
         if (document.querySelector('[data-testid="' + id + '"]')) pass(id);
-        else fail("toolbar-" + id);
+        else fail(id);
       });
+
+      click('[data-testid="archive-export-json"]');
+      menuBtn = document.querySelector('[data-testid="archive-menu"]');
+      panel = document.getElementById("archive-menu-panel");
+      if (
+        menuBtn &&
+        menuBtn.getAttribute("aria-expanded") === "false" &&
+        panel &&
+        panel.hasAttribute("hidden")
+      ) {
+        pass("archive-menu-closes");
+      } else fail("archive-menu-closes");
 
       var nav = document.querySelectorAll("[data-testid^='nav-step-']");
       if (nav.length === 10) pass("nav-10-steps");
@@ -121,6 +173,9 @@
       } else fail("input-before-refresh", "no field");
 
       var beforeSnaps = eng.getState().snapshots.length;
+      if (document.querySelectorAll('[data-testid="snapshot-initial"]').length !== 1) {
+        fail("snapshot-initial-unique-toolbar");
+      } else pass("snapshot-initial-unique-toolbar");
       try {
         if (!click('[data-testid="snapshot-initial"]')) throw new Error("no initial button");
         if (!click('[data-testid="snapshot-reviewed"]')) throw new Error("no reviewed button");

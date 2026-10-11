@@ -81,18 +81,16 @@
     }
 
     var key = options.key || "engr4960j.frontend.preview.v2";
-    var storage = root.AppLogic.createStorage({ key: key });
-    var idGen = root.AppLogic.createIdGenerator({});
-    var store = root.AppLogic.createStore({ idGen: idGen, storage: storage });
+    var logicInstance = root.AppLogic.createInstance({
+      key: key,
+      persistent: options.persistent
+    });
+    var storage = logicInstance.storage;
+    var store = logicInstance.store;
     var saving = storage.available ? "saved" : "memory";
 
     if (options.state) {
       loadState(store, options.state);
-    } else if (options.persistent !== false) {
-      var disk = storage.load();
-      if (disk.ok && disk.data) {
-        loadState(store, disk.data);
-      }
     }
 
     function getState() {
