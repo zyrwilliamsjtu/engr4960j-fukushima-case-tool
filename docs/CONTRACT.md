@@ -14,6 +14,7 @@
 | v1.0 | 脚手架阶段，无正式契约文档 |
 | v2.0 | 对齐 PRODUCT v1.0 第九～十一节；`dataVersion` / `stateVersion` 均为 `2.0` |
 | v2.0 冻结前修订 | 补 `nameEn`、统一 ID 规则、收编 `isCore`/`focusReason`、新增字段→存储映射表 |
+| v2.0 | 运行时接口 validateStep 返回字段名由 locators 统一为 anchors（非持久化结构，未升 dataVersion） |
 
 ---
 
@@ -514,7 +515,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 |------|------|------|--------|------|
 | `getState` | `getState()` | 无 | 当前用户状态对象 | 供界面渲染 |
 | `dispatch` | `dispatch(action)` | `action`: `{ type, payload }` | 更新后的状态或 void | 统一提交增删改、关联、步骤状态 |
-| `validateStep` | `validateStep(stepId)` | `stepId`: number | `{ errors[], suggestions[], locators[] }` | 形式检查；区分 error 与 suggest |
+| `validateStep` | `validateStep(stepId)` | `stepId`: number | `{ errors[], suggestions[], anchors[] }` | 形式检查；区分 error 与 suggest |
 | `subscribe` | `subscribe(listener)` | `listener(state)` | 取消订阅函数 | 状态变更通知 UI |
 | `exportProject` | `exportProject()` | 无 | JSON 字符串或 Blob | 导出可继续编辑的工程 |
 | `importProject` | `importProject(json)` | JSON 字符串/对象 | `{ ok, state?, errors? }` | 恢复工程；失败不覆盖现有草稿 |
