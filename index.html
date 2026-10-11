@@ -1,218 +1,25 @@
-<!--
-  开发入口 HTML。
-  最终交付由 tools/build.py 将脚本与样式内联打包为 dist/index.html（单文件、离线双击运行）。
--->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>福岛第一核电站事故 · 案例分析</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-size: 14px;
-      color: #1a1a1a;
-      background: #f5f6f8;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 20px;
-      background: #fff;
-      border-bottom: 1px solid #dde1e6;
-    }
-    .top-bar h1 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
-    .progress {
-      font-size: 14px;
-      color: #525252;
-    }
-    .layout {
-      flex: 1;
-      display: flex;
-      min-height: 0;
-    }
-    .nav {
-      width: 220px;
-      background: #fff;
-      border-right: 1px solid #dde1e6;
-      padding: 12px 0;
-      overflow-y: auto;
-    }
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      color: #393939;
-      border-left: 3px solid transparent;
-    }
-    .nav-item.is-active {
-      background: #edf5ff;
-      border-left-color: #0f62fe;
-      font-weight: 600;
-    }
-    .badge {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: #fff1e6;
-      color: #8a3800;
-      white-space: nowrap;
-    }
-    .main {
-      flex: 1;
-      padding: 20px 24px;
-      overflow-y: auto;
-    }
-    .step-panel {
-      background: #fff;
-      border: 1px solid #dde1e6;
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 900px;
-    }
-    .step-section {
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px dashed #e0e0e0;
-    }
-    .step-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-    .step-section h2 {
-      margin: 0 0 8px;
-      font-size: 13px;
-      color: #6f6f6f;
-      font-weight: 600;
-    }
-    .placeholder {
-      color: #8d8d8d;
-      font-style: italic;
-    }
-    .step-actions {
-      margin-top: 24px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-    }
-    .btn {
-      padding: 8px 16px;
-      border-radius: 4px;
-      border: 1px solid #c6c6c6;
-      background: #f4f4f4;
-      color: #393939;
-      cursor: default;
-    }
-    .btn-primary {
-      background: #0f62fe;
-      border-color: #0f62fe;
-      color: #fff;
-    }
-    .btn:disabled,
-    .btn-primary:disabled {
-      opacity: 0.5;
-    }
-    .bottom-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: #fff;
-      border-top: 1px solid #dde1e6;
-      font-size: 13px;
-      color: #525252;
-    }
-    .bottom-actions {
-      display: flex;
-      gap: 8px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#355cf4">
+  <title>Fieldnotes · 案例分析工作台</title>
+  <link rel="stylesheet" href="src/styles/workbench.css">
 </head>
 <body>
-  <header class="top-bar">
-    <h1>福岛第一核电站事故 · 案例分析</h1>
-    <span class="progress" id="progressLabel">进度 0/10</span>
-  </header>
-
-  <div class="layout">
-    <nav class="nav" aria-label="分析步骤">
-      <div class="nav-item is-active">
-        <span>1 识别伦理问题</span>
-        <span class="badge">课堂展示</span>
-      </div>
-      <div class="nav-item">
-        <span>2 聚焦</span>
-        <span class="badge">课堂展示</span>
-      </div>
-      <div class="nav-item">
-        <span>3 相关事实</span>
-        <span class="badge">课堂展示</span>
-      </div>
-      <div class="nav-item">
-        <span>4 合理假设</span>
-        <span class="badge">课堂展示</span>
-      </div>
-      <div class="nav-item">
-        <span>5 定义澄清</span>
-        <span class="badge">课堂展示</span>
-      </div>
-      <div class="nav-item"><span>6 伦理分析</span></div>
-      <div class="nav-item"><span>7 过程回顾</span></div>
-      <div class="nav-item"><span>8 得出结论</span></div>
-      <div class="nav-item"><span>9 实践约束</span></div>
-      <div class="nav-item"><span>10 避免问题</span></div>
-    </nav>
-
-    <main class="main">
-      <article class="step-panel">
-        <div class="step-section">
-          <h2>① 背景说明（可折叠）</h2>
-          <p class="placeholder">脚手架阶段：背景说明占位，后续由数据与逻辑层加载。</p>
-        </div>
-        <div class="step-section">
-          <h2>② 引导问题列表</h2>
-          <p class="placeholder">引导问题占位。</p>
-        </div>
-        <div class="step-section">
-          <h2>③ 输入区</h2>
-          <p class="placeholder">按步骤类型变化的输入组件占位。</p>
-        </div>
-        <div class="step-section">
-          <h2>④ 检查结果 / 提示</h2>
-          <p class="placeholder">校验结果占位。</p>
-        </div>
-        <div class="step-section">
-          <h2>⑤ 参考视角</h2>
-          <button type="button" class="btn" disabled>参考视角（写完才可点）</button>
-        </div>
-        <div class="step-actions">
-          <button type="button" class="btn" disabled>上一步</button>
-          <button type="button" class="btn btn-primary" disabled>下一步 →</button>
-        </div>
-      </article>
-    </main>
-  </div>
-
-  <footer class="bottom-bar">
-    <span>自动保存于 —（未实现）</span>
-    <div class="bottom-actions">
-      <button type="button" class="btn" disabled>导出素材</button>
-      <button type="button" class="btn" disabled>术语表</button>
-      <button type="button" class="btn" disabled>帮助</button>
-    </div>
-  </footer>
+  <a class="skip-link" href="#workspace">跳到工作区 / Skip to workspace</a>
+  <div id="app"></div>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <input id="project-file" type="file" accept="application/json,.json" hidden>
+  <noscript>请启用 JavaScript / Enable JavaScript to use this offline workbook.</noscript>
+  <script src="src/data/fukushima.js"></script>
+  <!-- Load the PI's CASE_RUNTIME here before the UI adapter when ready. -->
+  <script src="src/ui/i18n.js"></script>
+  <script src="src/ui/preview-runtime.js"></script>
+  <script src="src/ui/case-workspaces.js"></script>
+  <script src="src/ui/workbench.js"></script>
 </body>
 </html>
