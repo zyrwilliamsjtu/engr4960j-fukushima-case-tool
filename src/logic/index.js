@@ -4,6 +4,10 @@
 (function (root) {
   root.AppLogic = root.AppLogic || {};
 
+  // validate.js 的两参数实现。必须在门面覆盖之前抓住，
+  // 否则后创建的实例会误校验默认脚手架存储。
+  var validateAgainstState = root.AppLogic.validateStep;
+
   function createInstance(options) {
     options = options || {};
     var storage = root.AppLogic.createStorage({
@@ -21,8 +25,6 @@
       }
     }
 
-    var validateStepImpl = root.AppLogic.validateStep;
-
     function getState() {
       return store.getState();
     }
@@ -36,7 +38,7 @@
     }
 
     function validateStep(stepId) {
-      return validateStepImpl(stepId, store.getState());
+      return validateAgainstState(stepId, store.getState());
     }
 
     function createSnapshot(label) {

@@ -290,6 +290,15 @@ input:focus,textarea:focus,select:focus {
   line-height:1.55;
   font-weight:500
 }
+.step-class {
+  flex:none;
+  font-size:13px;
+  line-height:1.2;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#ffffff22;
+  color:inherit
+}
 .step-nav>.icon {
   width:14px;
   height:14px;
@@ -1237,7 +1246,7 @@ legend {
   border-top:1px solid #bac9dd
 }
 .step-footer .button {
-  font-size:12px;
+  font-size:14px;
   padding:11px 17px
 }
 .review-toggle {

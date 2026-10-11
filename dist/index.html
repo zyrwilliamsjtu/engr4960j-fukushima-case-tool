@@ -299,6 +299,15 @@ input:focus,textarea:focus,select:focus {
   line-height:1.55;
   font-weight:500
 }
+.step-class {
+  flex:none;
+  font-size:13px;
+  line-height:1.2;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#ffffff22;
+  color:inherit
+}
 .step-nav>.icon {
   width:14px;
   height:14px;
@@ -1246,7 +1255,7 @@ legend {
   border-top:1px solid #bac9dd
 }
 .step-footer .button {
-  font-size:12px;
+  font-size:14px;
   padding:11px 17px
 }
 .review-toggle {
@@ -4987,6 +4996,10 @@ body {
 (function (root) {
   root.AppLogic = root.AppLogic || {};
 
+  // validate.js 的两参数实现。必须在门面覆盖之前抓住，
+  // 否则后创建的实例会误校验默认脚手架存储。
+  var validateAgainstState = root.AppLogic.validateStep;
+
   function createInstance(options) {
     options = options || {};
     var storage = root.AppLogic.createStorage({
@@ -5004,8 +5017,6 @@ body {
       }
     }
 
-    var validateStepImpl = root.AppLogic.validateStep;
-
     function getState() {
       return store.getState();
     }
@@ -5019,7 +5030,7 @@ body {
     }
 
     function validateStep(stepId) {
-      return validateStepImpl(stepId, store.getState());
+      return validateAgainstState(stepId, store.getState());
     }
 
     function createSnapshot(label) {
@@ -5424,7 +5435,7 @@ body {
       getState: getState,
       dispatch: uiDispatch,
       validateStep: function (step) {
-        return root.AppLogic.validateStep(step, getState());
+        return logicInstance.validateStep(step);
       },
       subscribe: function (listener) {
         return store.subscribe(listener);
@@ -6102,7 +6113,7 @@ body {
       getState: getState,
       dispatch: uiDispatch,
       validateStep: function (step) {
-        return root.AppLogic.validateStep(step, getState());
+        return logicInstance.validateStep(step);
       },
       subscribe: function (listener) {
         return store.subscribe(listener);
@@ -6817,7 +6828,7 @@ body {
     return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(source.publisher)+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(entry.locator)+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(entry.note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(entry.note)+'</p>':'')+(source&&source.note?'<p class="source-note">'+esc(source.note)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step){
-    return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(step===x.id?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(step===x.id?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('')+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
+    return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(step===x.id?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(step===x.id?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(x.presentInClass?'<span class="step-class">'+esc(bi('课堂','Class'))+'</span>':'')+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('')+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
   }
   function toolsDialog(){
     openDialog('more','<div class="tools-list">'+button('newCase','cases','','folder')+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','','download')+labeledButton(bi('载入存档（JSON）','Import archive (JSON)'),'import','','folder')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','','note')+button('method','method','','help')+button('reset','reset','danger','trash')+'</div>');
@@ -6889,7 +6900,7 @@ body {
     var saveStatus=cases.getSaveStatus();
     var type=addType[step],hasRecords=type&&rows(type[0]).length>0;
     var add=type&&step!==3?(step===6?button('choosePrinciples','materials','primary small','plus','data-tab="principles"'):hasRecords?button(type[1],'add','primary small','plus','data-type="'+type[0]+'" data-step="'+step+'"'):''):'';
-    app.innerHTML='<div class="app-shell">'+sidebar(step)+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions"><div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">中文</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">EN</button></div>'+button('cases','cases','material-button','folder')+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+workbenchToolbar()+'</main></div></div>';
+    app.innerHTML='<div class="app-shell">'+sidebar(step)+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions"><div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">中文</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">EN</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+workbenchToolbar()+'</main></div></div>';
     app.querySelectorAll('details[id]').forEach(function(el){if(Object.prototype.hasOwnProperty.call(disclosures,el.id))el.open=disclosures[el.id];});
     if(focusId){var found=document.getElementById(focusId);if(found){found.focus({preventScroll:true});if(selection&&found.setSelectionRange)try{found.setSelectionRange(selection[0],selection[1]);}catch(e){}}}window.scrollTo(0,scroll);
   }
@@ -6929,6 +6940,8 @@ body {
     if(action==='revision-compare-open'){closeArchiveMenu();revisionCompareDialog();}
     if(action==='archive-menu')toggleArchiveMenu();
     if(action==='review-step')dispatch('SET_STATUS',{step:current(),status:state().stepStatus[current()]==='checked'?'draft':'checked'});
+    if(action==='present'){presentation=JSON.parse(JSON.stringify(engine.getState()));presentationStep=state().currentStep;if(modal.open)modal.close();render();window.scrollTo(0,0);}
+    if(action==='exit-present'){presentation=null;if(modal.open)modal.close();render();}
     if(action==='navigate'){view='workbook';if(modal.open)modal.close();var target=Math.max(1,Math.min(10,Number(el.dataset.step)));if(presentation){presentationStep=target;render();}else dispatch('NAVIGATE',{step:target});window.scrollTo(0,0);if(el.dataset.id)setTimeout(function(){var item=document.getElementById('entry-'+el.dataset.id);if(item)item.scrollIntoView({block:'center',behavior:'smooth'});},0);}
     if(action==='language'){locale=el.dataset.lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();if(modal.open)modal.close();}
     if(action==='add'){dispatch('ADD_ITEM',{type:el.dataset.type,step:Number(el.dataset.step),fields:el.dataset.type==='C'?{word:'',others:'',mine:''}:el.dataset.type==='PA'?{order:rows('PA').length+1}:undefined});var items=rows(el.dataset.type),last=items[items.length-1];setTimeout(function(){var input=document.querySelector('[data-item="'+last.id+'"]');if(input)input.focus();},0);}

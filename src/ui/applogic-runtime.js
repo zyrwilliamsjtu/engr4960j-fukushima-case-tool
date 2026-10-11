@@ -330,7 +330,7 @@
       getState: getState,
       dispatch: uiDispatch,
       validateStep: function (step) {
-        return root.AppLogic.validateStep(step, getState());
+        return logicInstance.validateStep(step);
       },
       subscribe: function (listener) {
         return store.subscribe(listener);
