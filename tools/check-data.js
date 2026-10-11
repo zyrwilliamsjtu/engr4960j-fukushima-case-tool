@@ -137,6 +137,87 @@ else fail("extra ids not in draft");
 if (d.meta.dataVersion === "2.1") pass("dataVersion 2.1");
 else fail("dataVersion " + d.meta.dataVersion);
 
+function normalizeText(s) {
+  if (!s) return "";
+  var t = s.trim().replace(/\s+/g, " ");
+  t = t.replace(/\\\|/g, "|");
+  var map = {
+    ",": "，",
+    ".": "。",
+    ";": "；",
+    ":": "：",
+    "!": "！",
+    "?": "？",
+    "(": "（",
+    ")": "）"
+  };
+  t = t.replace(/[,.;:!?()]/g, function (ch) {
+    return map[ch] || ch;
+  });
+  return t.toLowerCase();
+}
+
+function extractDraftTexts(md) {
+  var byId = {};
+  var section = "";
+  md.split("\n").forEach(function (line) {
+    if (line.indexOf("## 2. 时间线") === 0) section = "timeline";
+    else if (line.indexOf("## 3. 事实：物质") === 0) section = "facts";
+    else if (line.indexOf("## 4. 事实：个人") === 0) section = "facts";
+    else if (line.indexOf("## 5. 事实：组织") === 0) section = "facts";
+    else if (line.indexOf("## 7. 评估性内容") === 0) section = "assessments";
+    else if (line.indexOf("## 6.") === 0) section = "";
+
+    if (line.indexOf("|") !== 0 || section === "") return;
+    var parts = line.split("|");
+    if (parts.length < 4) return;
+    var id = parts[1] ? parts[1].trim() : "";
+    if (!/^(tl-\d+|f-mat-\d+|f-ind-\d+|f-org-\d+|ev-\d+)$/.test(id)) return;
+    var text = "";
+    if (section === "timeline") text = (parts[3] || "").trim();
+    else if (section === "facts") text = (parts[2] || "").trim();
+    else if (section === "assessments") text = (parts[2] || "").trim();
+    if (text && text.indexOf("---") !== 0 && text.indexOf("编号") !== 0) {
+      byId[id] = text;
+    }
+  });
+  return byId;
+}
+
+var draftTexts = extractDraftTexts(draft);
+var diffs = [];
+
+function dataTextForId(id) {
+  var i;
+  for (i = 0; i < d.timeline.length; i++) {
+    if (d.timeline[i].id === id) return d.timeline[i].event;
+  }
+  for (i = 0; i < d.facts.length; i++) {
+    if (d.facts[i].id === id) return d.facts[i].text;
+  }
+  for (i = 0; i < (d.assessments || []).length; i++) {
+    if (d.assessments[i].id === id) return d.assessments[i].text;
+  }
+  return null;
+}
+
+Object.keys(draftTexts).forEach(function (id) {
+  var draftT = normalizeText(draftTexts[id]);
+  var dataT = normalizeText(dataTextForId(id) || "");
+  if (draftT !== dataT) {
+    diffs.push({ id: id, draft: draftTexts[id], data: dataTextForId(id) || "" });
+  }
+});
+
+console.log("TEXT_DIFF: 不一致=" + diffs.length);
+var show = diffs.slice(0, 20);
+show.forEach(function (row) {
+  console.log(row.id + " | 草稿：" + row.draft + " | 数据：" + row.data);
+});
+if (diffs.length > 20) {
+  console.log("TEXT_DIFF: （另 " + (diffs.length - 20) + " 条未列出）");
+}
+
 console.log("---");
 console.log("SUMMARY: FAIL=" + fails);
 process.exit(fails ? 1 : 0);
