@@ -61,3 +61,16 @@
 - **产出**：
   - `CONTRIBUTING.md`、`docs/CONTRACT.md`、`src/data/fukushima.js`、`src/data/mock-state.js`、`docs/DECISIONS.md`
 - **备注**：截图由 PI 补入 `docs/ai-logs/`
+
+
+### 2026-10-11 — Fieldnotes 前端实现与真实浏览器迭代
+
+- **用户目标**：读取最新 main 与本地产品功能草案，创建 frontend 分支；实现美观、人性化的中英文前端，在本地 frontend 文件夹开发并推送，暂不合并。
+- **本轮真实迭代**：
+  1. 阅读产品与数据契约，建立十步工作台、材料抽屉、双语 UI 和可替换预览适配器。
+  2. 增加推理关联、两槽快照、手写判断、排序双通道、独立展示与隔离 mock。
+  3. 检查并修正快照保存顺序、展示起始步骤、重复自定义原则字段、依赖方向、中文输入法组合、mock 概念清空兼容、存储恢复提示。
+  4. 离线 Chrome 跑完整填写流程、双语各十步、JSON 下载、刷新恢复、快照差异、展示隔离、手机布局。首次测试发现导航定位器同时命中品牌链接与步骤按钮，已把测试定位限制为 step-nav。
+- **产出**：index.html、src/ui/、src/styles/workbench.css、preview.html、docs/FRONTEND.md。
+- **数据边界**：未编辑 src/data、src/logic、tools、dist、CONTRACT 或本地用户草案；未补造福岛事实。
+- **截图**：docs/ai-logs/frontend-qa/ 是实际界面 QA 截图，含明确虚构测试文本；不是 AI 聊天截图。真实对话截图待组员从当前聊天保存，不伪造迭代或截图证据。

@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#173f37">
+  <title>Fieldnotes · 福岛案例分析</title>
+  <style>
+:root{--paper:#f5f4ee;--surface:#fffefa;--ink:#253a34;--muted:#6d7971;--line:#dde1d6;--green:#224c3e;--soft:#e8eddf;--accent:#b5643d;--radius:14px;font-family:"Segoe UI","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;font-size:14px;line-height:1.6}button,input,textarea,select{font:inherit;color:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.42}button{border:0;background:none}a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:600;line-height:1.4}p{overflow-wrap:anywhere}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #b5643d;outline-offset:4px}input:focus,textarea:focus,select:focus{outline:2px solid #729581;outline-offset:2px}.icon{width:19px;height:19px;flex:none;vertical-align:middle}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:13px;font-weight:600;line-height:1.45;transition:background .15s,border-color .15s,transform .15s}.button:hover:not(:disabled){background:#eef1e7;border-color:#b6c6b9}.button:active:not(:disabled){transform:translateY(1px)}.button.primary{background:var(--green);border-color:var(--green);color:#fffefa}.button.primary:hover:not(:disabled){background:#30614d}.button.quiet{background:transparent;border-color:transparent}.button.small{padding:8px 11px;font-size:12px}.button.icon-button{width:33px;height:33px;padding:6px;font-size:0;gap:0}.button.icon-button .icon{width:16px;height:16px}
+.app-shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:250px;background:#f0f1e8;border-right:1px solid var(--line);padding:28px 20px 20px;overflow-y:auto;z-index:10}.brand{display:flex;align-items:center;gap:11px;font-family:Georgia,serif;font-size:27px;letter-spacing:-1px;font-weight:600;line-height:1.1}.brand:hover{text-decoration:none}.brand-mark{display:grid;place-items:center;width:38px;height:42px;border-radius:12px;background:var(--green);color:#f6f6e8}.brand-mark .icon{width:23px;height:23px}.brand-sub{display:block;font:9px/1.6 "Segoe UI",sans-serif;letter-spacing:2.3px;margin-top:6px;color:var(--muted)}.case-card{position:relative;overflow:hidden;margin:30px 0 22px;padding:21px 17px 16px;border-radius:12px;background:var(--green);color:#f1f4e8;min-height:177px}.case-card .eyebrow{font-size:10px;letter-spacing:2px;position:relative;color:#d4dec9}.case-card h2{font-size:22px;position:relative;margin:20px 0 5px;letter-spacing:-.5px}.case-card p{font-size:11px;position:relative;color:#d5dfd1}.contours{position:absolute;right:-28px;top:-12px;width:255px;color:#a6b8a0;opacity:.27;transform:rotate(-12deg)}.case-caption{display:flex;align-items:center;gap:6px;font-size:10px;margin-top:20px;color:#d7e2d0}.case-caption .icon{width:13px;height:13px}.nav-heading{display:flex;justify-content:space-between;padding:0 8px 12px;color:var(--muted);font-size:11px;letter-spacing:.6px}.nav-heading span{font-variant-numeric:tabular-nums}.step-nav{display:flex;align-items:center;gap:11px;width:100%;padding:10px 11px;text-align:left;border-radius:9px;margin-bottom:3px;border:1px solid transparent}.step-nav:hover{background:#e7ebdf}.step-nav.active{background:var(--surface);border-color:#ccd7c7;box-shadow:0 2px 5px #253a3406}.step-index{width:25px;height:28px;display:grid;place-items:center;font:12px/1 "Segoe UI",sans-serif;color:#879282;flex:none}.active .step-index{background:var(--green);border-radius:6px;color:white}.step-name{font-size:12px;font-weight:600;flex:1}.step-name small{display:block;font-size:9px;font-weight:400;margin-top:1px;color:#899081}.step-name .status-stale{color:var(--accent)}.step-name .status-checked{color:var(--green)}.class-dot{width:4px;height:4px;border-radius:50%;background:#c88350}.nav-divider{padding:12px 12px 5px;font-size:9px;color:#8e9787;letter-spacing:1px}.sidebar-foot{border-top:1px solid var(--line);margin-top:24px;padding-top:18px}.sidebar-foot p{font-size:11px;color:var(--muted);padding:0 9px 8px}.sidebar-foot .button{width:100%;justify-content:flex-start}
+.main-shell{margin-left:250px;padding-bottom:80px}.topbar{height:82px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px;background:#f8f8f1}.breadcrumb{font-size:12px;color:var(--muted)}.breadcrumb span{margin:0 12px;color:#a1a99b}.top-actions{display:flex;align-items:center;gap:13px}.language-switch{display:flex;border:1px solid var(--line);padding:3px;border-radius:8px;background:#eeefe6}.language-switch button{padding:5px 9px;border-radius:5px;font-size:11px;color:var(--muted)}.language-switch .selected{background:var(--surface);color:var(--green);box-shadow:0 1px 3px #253a3412}.view-tabs{margin:0 36px;display:flex;gap:24px;border-bottom:1px solid var(--line);align-items:center;height:70px}.view-tab{display:flex;align-items:center;gap:8px;height:70px;padding:0 2px;position:relative;font-size:12px;color:var(--muted)}.view-tab .icon{width:16px}.view-tab.selected{font-weight:600;color:var(--green)}.view-tab.selected:after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:3px;background:var(--green);border-radius:2px}.tab-caption{margin-left:auto;font-size:10px;color:var(--muted)}.tab-caption:before{content:"";display:inline-block;background:#c88350;width:4px;height:4px;border-radius:50%;margin-right:7px;vertical-align:middle}.workspace-layout{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:30px;padding:30px 36px;max-width:1600px;margin:0 auto}.workspace-layout.wide{display:block}main{min-width:0}.step-hero{padding:29px 30px 31px;background:#e8eddf;border:1px solid #dfe5d6;border-radius:var(--radius);position:relative;overflow:hidden;min-height:192px}.eyebrow{display:flex;align-items:center;gap:6px;text-transform:uppercase;font-size:10px;letter-spacing:1.4px;font-weight:600;color:var(--green)}.step-hero .eyebrow span{color:#85917c;font-weight:400;margin-left:6px;letter-spacing:.6px}.step-hero h1{font-size:28px;letter-spacing:-1px;margin:19px 0 12px;position:relative;max-width:85%;z-index:1}.step-hero p{font-size:12px;color:#687760;max-width:78%;position:relative;z-index:1;line-height:1.8}.hero-number{position:absolute;right:16px;bottom:-25px;font:160px/1 Georgia,serif;color:#d4ddc7;letter-spacing:-15px;user-select:none}.workspace-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:30px 0 18px}.workspace-heading .eyebrow{font-size:9px;color:#88927f;letter-spacing:1.1px}.workspace-heading h2{font-size:18px;letter-spacing:-.3px;margin-top:5px}.entries{display:grid;gap:16px}.entry-card,.review-card,.fact-card,.snapshot-card,.diff-card,.library-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:23px}.entry-card h3{font-size:16px;margin:13px 0 17px}.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:24px;margin-bottom:15px}.card-head>div{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.tag{display:inline-block;padding:3px 7px;background:#e9edde;color:var(--green);border-radius:5px;font-size:9px;letter-spacing:.3px;font-weight:500}.tag.muted{background:#f0f1e9;color:#7a826f}.tag.green{background:#dfecdf;color:#31604b}.record-id{font:9px/1.4 Consolas,monospace;color:#929987;overflow-wrap:anywhere}.field{display:block;margin-bottom:16px}.field:last-child{margin-bottom:0}.field>span,.read-field>span{display:block;font-size:11px;font-weight:600;margin-bottom:8px;color:#67725f}.field textarea,.field input,.field select,select[data-review],.status-select select{width:100%;border:1px solid #dce1d5;background:#fafaf5;border-radius:8px;padding:12px 13px;line-height:1.7;font-size:13px;transition:border-color .15s}.field textarea{resize:vertical;min-height:86px;display:block}.field input,.field select{padding:10px 12px;min-height:41px}textarea::placeholder,input::placeholder{color:#9a9f90;font-size:12px}.two-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}.two-columns .field{margin:0}.empty-state{border:1px dashed #cdd7c6;border-radius:12px;text-align:center;padding:48px 25px 42px;background:linear-gradient(120deg,#fffefa,#f7f8ef)}.empty-state>.icon{width:32px;height:32px;margin-bottom:15px;color:#8b9e7d;stroke-width:1.2}.empty-state h3{font-size:16px;font-weight:500;margin:0 0 9px}.empty-state p{font-size:12px;line-height:1.85;color:var(--muted);max-width:380px;margin:0 auto 22px}.empty-state .button{font-size:12px}.empty-state p:last-child{margin-bottom:0}.step-footer{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:25px 0 0;border-top:1px solid var(--line);margin-top:23px}.status-select{display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted)}.status-select select{padding:6px 7px;width:auto;background:transparent;font-size:11px}.reminders{margin-top:20px;border:1px solid var(--line);border-radius:9px;background:#f1f2e8;font-size:12px}.reminders summary{cursor:pointer;list-style:none;padding:13px 16px;display:flex;align-items:center;gap:7px;color:#6b785f}.reminders summary::-webkit-details-marker{display:none}.reminders summary:after{content:"+";margin-left:auto;font-size:17px;font-weight:300}.reminders[open] summary:after{content:"−"}.reminders summary span{margin-left:3px;background:#e2e8d8;border-radius:4px;font-size:10px;padding:0 5px}.reminders button{display:flex;align-items:flex-start;gap:10px;text-align:left;width:100%;padding:10px 16px;border-top:1px solid var(--line);font-size:11px;line-height:1.8}.reminders button:hover{background:#e7ebdd}.reminders button .tag{white-space:nowrap}.reminders>p{padding:10px 16px;font-size:11px}.context-rail{min-width:0}.guide-card{border:1px solid #dadfce;border-radius:12px;padding:23px 20px;background:#eef0e4}.guide-card .eyebrow{font-size:10px;letter-spacing:1px;color:#758369}.guide-card .eyebrow .icon{width:14px}.guide-card p{font-size:17px;line-height:1.85;letter-spacing:-.3px;color:#43523d;margin-top:17px}.rail-section{padding:25px 3px;border-bottom:1px solid var(--line)}.rail-section h3{font-size:12px;margin:0 0 11px}.rail-section p,.rail-section small{font-size:11px;color:var(--muted);line-height:1.85;display:block;margin-bottom:14px}.rail-section .button{width:100%;justify-content:space-between;font-size:11px}.rail-note{margin-top:24px;font-size:10px;color:#88917d;line-height:1.9;padding:0 4px}.savebar{position:fixed;left:250px;right:0;bottom:0;padding:14px 36px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:12;border-top:1px solid var(--line);background:#f8f8f2f5;backdrop-filter:blur(10px)}.savebar>div{display:flex;align-items:center;gap:10px}.savebar strong{font-weight:400;font-size:10px;color:#6d7963}.save-indicator{width:5px;height:5px;border-radius:50%;background:#62815c}.save-indicator.warn{background:var(--accent)}.save-caption{font-size:9px;color:#949b89}.savebar .button{font-size:11px;padding:8px 11px}.savebar .icon{width:15px}.notice{display:flex;align-items:flex-start;gap:12px;background:#f5ece2;border:1px solid #e9dbc9;border-radius:9px;padding:17px;font-size:12px;color:#89633e}.notice strong{font-size:12px;font-weight:500}.notice p{margin-top:3px;font-size:11px;line-height:1.8}.notice .icon{width:17px;margin-top:1px}.hint{font-size:11px;color:var(--muted);line-height:1.9}.is-core{border-color:#9eb59c;box-shadow:inset 3px 0 #547e59}.check{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin:9px 0 15px;cursor:pointer}.check input{accent-color:var(--green);margin:4px 0 0;width:15px;height:15px;flex:none}.fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.fact-column{min-width:0;border:1px solid var(--line);border-radius:9px;background:#eeefe5;padding:13px}.section-label{font-size:10px;text-transform:uppercase;font-weight:600;letter-spacing:.5px;color:#68765d;display:flex;justify-content:space-between;gap:6px}.section-label span{font-size:9px;color:#89947f}.column-empty{padding:23px 0;font-size:10px;color:#9aa18e;text-align:center}.fact-card{padding:14px;margin-top:11px;border-radius:7px}.fact-card p{font-size:12px;margin:9px 0}.fact-card small,.library-card small{color:#8a9580;font-size:10px;display:block;margin:10px 0}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:9px 0 2px}.section-heading h3{font-size:15px}.basis-box{border-top:1px solid var(--line);padding-top:17px}.basis-box>p{font-size:12px;margin:10px 0;color:var(--muted)}.relation{display:flex;align-items:flex-start;gap:8px;padding:13px 0;border-top:1px solid #e9ecdf;font-size:11px}.relation>.icon{width:14px;height:14px;margin-top:3px;color:#799272}.relation>div{flex:1;min-width:0}.relation strong{font-weight:500}.relation p{font-size:10px;color:#87907d;margin-top:4px}.word-shelf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}.word-shelf>span{width:100%;font-size:10px;color:var(--muted);margin-bottom:4px}.word-chip{border:1px solid #d9dfce;border-radius:25px;font-size:11px;padding:7px 11px;display:flex;gap:7px;align-items:center;background:#edf0e4}.word-chip:hover{background:#e1e9d5}.word-chip .icon{width:12px;height:12px}.rank-heading{display:flex;gap:12px;align-items:center;margin:8px 0 22px}.rank-heading h3{flex:1;margin:0;font-size:15px}.rank-number{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid #c6d3bb;color:#547045;font:16px Georgia,serif}.rank-controls{display:flex;gap:3px}.review-prompts{display:grid;gap:7px;grid-template-columns:repeat(2,1fr)}.review-prompt{display:flex;align-items:center;text-align:left;gap:8px;font-size:11px;padding:14px;background:#e8eddf;border:1px solid var(--line);border-radius:7px}.review-prompt span{flex:1}.review-prompt .icon{width:14px}.review-card h3{font-size:14px;line-height:1.8;margin:10px 0 15px}.review-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}.review-actions select{width:auto;font-size:11px;padding:7px 10px}.view-heading{margin:10px 0 30px}.view-heading h1{font-size:30px;margin:15px 0 10px;letter-spacing:-1px}.view-heading>p{font-size:12px;color:var(--muted);max-width:640px}.map-question{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-bottom:22px;padding:25px}.map-question h2{font-size:19px;margin-bottom:26px}.reasoning-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.reasoning-columns>section{min-width:0}.reasoning-columns h3{font-size:11px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px;color:var(--muted)}.map-node{display:block;width:100%;background:#edf0e4;border:1px solid #dbe2d1;border-radius:7px;text-align:left;padding:12px;margin:8px 0}.map-node p{font-size:11px;margin-top:5px;line-height:1.85}.map-empty{padding:15px;color:#a2ab98;border:1px dashed var(--line);border-radius:7px;text-align:center}.link-reason{font-size:10px;color:#90987f;padding:0 8px 12px}.global-concepts{border-top:1px solid var(--line);padding-top:22px}.global-concepts h3{font-size:13px;margin-bottom:14px}.concept-summary{display:inline-block;vertical-align:top;background:#ecefe3;padding:15px 20px;border-radius:8px;margin:0 10px 10px 0;max-width:300px}.concept-summary strong{font-size:12px}.concept-summary p{font-size:11px;margin-top:6px;color:var(--muted)}.snapshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px}.snapshot-card{background:#e9eddf}.snapshot-card h2{font-size:22px;margin:18px 0 9px}.snapshot-card p{color:var(--muted);font-size:11px;margin-bottom:20px}.snapshot-card .button{margin-right:4px}.diff-card{margin:15px 0}.diff-card h3{font-size:10px;color:var(--muted);margin:0 0 10px}.diff-card pre{font:12px/1.9 "Segoe UI","Microsoft YaHei",sans-serif;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:17px;background:#f2f2e9;border-radius:7px}.diff-card .two-columns>section:last-child pre{background:#edf2e6}.mode-banner{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 36px;background:#e3ebd8;color:var(--green);font-size:12px}.mock-banner{background:#f2e4d6;color:#925e39}.read-field{padding:15px 0;border-top:1px solid var(--line)}.read-field p{white-space:pre-wrap;font-size:16px;line-height:1.9}.presentation .workspace-layout{grid-template-columns:minmax(0,1fr) 230px}.presentation .entry-card h3{font-size:21px}.presentation .hero-number{opacity:.7}.presentation .savebar .save-caption{display:none}.presentation .savebar [data-action="import"]{display:none}
+dialog{border:1px solid var(--line);border-radius:16px;padding:0;width:min(570px,calc(100% - 32px));max-height:85vh;color:var(--ink);background:var(--surface);box-shadow:0 30px 100px #172e3340}dialog::backdrop{background:#17332a62;backdrop-filter:blur(3px)}#modal-content{padding:27px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}.modal-head h2{font-size:20px}.modal-head .button{flex:none}.modal-message{font-size:13px;line-height:1.9}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:25px}.drawer{margin:0 0 0 auto;inset:0 0 0 auto;height:100vh;max-height:100vh;width:min(520px,100%);border-radius:16px 0 0 16px;border-right:none}.drawer #modal-content{padding:30px}.drawer-tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:15px;margin-bottom:23px}.drawer-tabs button{font-size:11px;color:var(--muted);padding:7px 10px;border-radius:6px}.drawer-tabs .selected{background:var(--soft);color:var(--green);font-weight:600}.principle-group{margin:18px 0}.principle-group>summary{cursor:pointer;font-size:12px;font-weight:600;padding:14px 0;border-top:1px solid var(--line)}.principle-group>summary span{float:right;color:#94a185;font-size:11px}.library-card{padding:19px;margin:12px 0;background:#f8f9f1}.library-card h3{font-size:14px;margin:13px 0 10px}.library-card p{font-size:12px;line-height:1.9}.library-card details{margin:12px 0;font-size:10px;color:var(--muted)}.library-card details summary{cursor:pointer}.library-card details p{margin:10px 0;font-size:11px}.library-card>.tag{margin-left:6px}.quote{padding:17px 20px;border-left:3px solid #94ac86;background:#eef2e5;margin-bottom:23px;font-size:13px}.export-choices,.help-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.discussion-list{border-top:1px solid var(--line);margin-top:22px;padding-top:15px}.discussion-list p{padding:12px;background:#f2f4e9;border-radius:7px;margin:8px 0;font-size:12px}.timeline{border-left:1px solid #bacbb0;margin-left:10px;padding-left:25px}.timeline article{position:relative;padding:0 0 27px}.timeline article:before{content:"";position:absolute;left:-30px;top:5px;width:8px;height:8px;border:2px solid var(--surface);border-radius:50%;background:var(--green)}.timeline time{font-size:10px;color:var(--muted)}.timeline h3{font-size:14px;margin:9px 0}.timeline small{font-size:10px;color:var(--muted)}fieldset{border:1px solid var(--line);border-radius:8px;margin:17px 0 23px;padding:14px}legend{font-size:11px;color:var(--muted);padding:0 6px}#toast{position:fixed;bottom:85px;left:calc(50% + 125px);transform:translate(-50%,10px);padding:12px 22px;background:#224c3ef5;color:white;border-radius:10px;box-shadow:0 10px 30px #17332a20;z-index:100;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90vw}#toast.visible{opacity:1;transform:translate(-50%,0)}
+@media(min-width:1550px){.workspace-layout{grid-template-columns:minmax(0,1fr) 260px;gap:40px}.step-hero h1{font-size:34px}.step-hero p{font-size:13px}.step-hero{padding:33px 35px;min-height:210px}}
+@media(max-width:1200px){.sidebar{width:225px;padding:25px 16px}.main-shell{margin-left:225px}.savebar{left:225px;padding:13px 25px}.topbar{padding:0 25px}.view-tabs{margin:0 25px;gap:20px}.workspace-layout{padding:25px;gap:20px;grid-template-columns:minmax(0,1fr) 195px}.step-hero{padding:25px}.step-hero h1{font-size:25px}.guide-card{padding:20px 17px}.guide-card p{font-size:15px}.top-actions{gap:7px}.breadcrumb{font-size:11px}.save-caption{display:none}.presentation .workspace-layout{grid-template-columns:minmax(0,1fr) 195px}.reasoning-columns{grid-template-columns:repeat(2,1fr)}#toast{left:calc(50% + 112px)}}
+@media(max-width:1020px){.workspace-layout,.presentation .workspace-layout{grid-template-columns:minmax(0,1fr)}.context-rail{display:grid;grid-template-columns:1fr 1fr;gap:16px}.guide-card{grid-column:1/-1}.guide-card p{font-size:16px;margin-top:11px}.rail-section{padding:18px 8px}.rail-note{grid-column:1/-1;margin:0}.tab-caption{display:none}.breadcrumb{display:none}.topbar{justify-content:flex-end;height:72px}.step-hero p{max-width:85%}.hero-number{opacity:.65}.field textarea{min-height:100px}}
+@media(max-width:760px){.sidebar{position:relative;width:100%;padding:18px 20px 0;overflow:visible;border-right:0;border-bottom:1px solid var(--line)}.brand{font-size:23px}.brand-mark{width:32px;height:36px}.brand-sub{font-size:8px;letter-spacing:2px}.case-card,.sidebar-foot,.nav-heading,.nav-divider{display:none}.sidebar nav{display:flex;overflow-x:auto;padding:16px 0 11px;gap:7px;scrollbar-width:thin}.step-nav{width:auto;flex:none;padding:7px 10px;margin:0}.step-index{width:22px;height:25px}.step-name{font-size:11px}.step-name small{display:none}.class-dot{display:none}.main-shell{margin-left:0;padding-bottom:85px}.topbar{height:65px;padding:0 20px}.top-actions{width:100%;justify-content:space-between;gap:7px}.top-actions .button{font-size:11px;padding:9px 10px}.top-actions .icon{width:16px}.view-tabs{margin:0 20px;height:57px;justify-content:space-between;gap:12px}.view-tab{height:57px;font-size:11px;gap:7px}.workspace-layout{padding:20px;gap:25px}.step-hero{padding:25px 22px;min-height:205px}.step-hero h1{font-size:26px;margin-top:20px;max-width:92%;line-height:1.6}.step-hero p{max-width:90%;font-size:12px}.hero-number{font-size:140px;right:13px;bottom:-15px;opacity:.55}.workspace-heading{margin-top:24px}.workspace-heading h2{font-size:17px}.workspace-heading .button{font-size:11px;padding:8px}.entry-card,.review-card,.diff-card{padding:19px}.two-columns{grid-template-columns:1fr;gap:16px}.fact-grid{grid-template-columns:1fr}.column-empty{padding:12px}.fact-column{padding:15px}.section-heading{flex-wrap:wrap}.savebar{left:0;padding:12px 16px}.savebar>div{gap:6px}.savebar .button{padding:8px;font-size:0;gap:0}.savebar .button .icon{width:19px;height:19px}.savebar strong{font-size:9px;max-width:140px}.savebar [data-action="export"]{font-size:11px;gap:6px}.step-footer{flex-wrap:wrap;gap:15px}.status-select{order:3;justify-content:center;width:100%}.step-footer>.button{font-size:12px}.snapshot-grid{grid-template-columns:1fr}.view-heading h1{font-size:25px}.reasoning-columns{grid-template-columns:1fr 1fr;gap:12px}.map-question{padding:19px}.map-question h2{font-size:17px}.review-prompts{grid-template-columns:1fr}.context-rail{grid-template-columns:1fr}.guide-card{grid-column:auto}.rail-note{grid-column:auto}.rail-section{padding:15px 4px}.mode-banner{padding:12px 20px;font-size:11px}.mock-banner{align-items:flex-start;flex-direction:column}.drawer{border-radius:0}.drawer #modal-content,#modal-content{padding:23px}.modal-head h2{font-size:18px}#toast{left:50%;bottom:90px;font-size:11px;width:max-content;max-width:90vw}.read-field p{font-size:15px}.presentation .step-hero h1{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+@media print{.sidebar,.topbar,.view-tabs,.savebar,.context-rail,.step-footer,.mode-banner,dialog,#toast,.reminders,.button{display:none!important}.main-shell{margin:0;padding:0}.workspace-layout{display:block;padding:0}.entry-card,.map-question,.diff-card{break-inside:avoid;box-shadow:none}.step-hero{background:white;min-height:0}.hero-number{display:none}body{background:white}.entries{gap:14px}.field input,.field textarea{border:0;background:white}.field textarea{resize:none}}
+
+.skip-link{position:fixed;left:20px;top:-80px;z-index:200;background:var(--green);color:white;padding:12px 20px;border-radius:8px}.skip-link:focus{top:16px}.rail-materials{margin-top:27px}.rail-materials .section-heading{margin-bottom:12px}.rail-materials h3{font-size:12px}.rail-materials>.section-heading .icon{width:15px;color:#829574}.material-link{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);width:100%;padding:12px 2px;font-size:11px;text-align:left;color:#67785d}.material-link:hover{color:var(--green);background:#ecefe3}.material-link .icon{width:13px}.material-status{display:flex;gap:7px;align-items:center;font-size:9px;color:#949a87;padding:11px 0}.status-dot{width:4px;height:4px;border-radius:50%;background:#b99364}.reference-card{border:1px dashed #d5ddc9;border-radius:10px;padding:17px;margin-top:18px}.reference-card h3{font-size:11px}.reference-card p{font-size:10px;color:#8a937c;line-height:1.9;margin:10px 0}.reference-card .button{font-size:10px;padding:7px 0}.rail-note>span{font:15px Georgia,serif;letter-spacing:3px;color:#b3bcaa;display:block;margin-bottom:8px}.map-entry{display:block;width:100%;background:#edf0e4;border:1px solid #dbe2d1;border-radius:7px;text-align:left;padding:12px;margin:8px 0}.map-entry:hover{background:#e1e8d7}.map-entry p{font-size:11px;margin-top:5px;line-height:1.85}.card-head>.icon-button[data-action="revision-note"]{margin-left:auto}.review-checklist{background:#eef1e5;margin:12px 0}.review-checklist .check:last-child{margin-bottom:0}
+
+.discussion-summary{border-top:1px solid var(--line);padding-top:24px;margin-top:27px}.discussion-summary>h3{font-size:14px;margin-bottom:17px}.discussion-summary p{font-size:12px;white-space:pre-wrap;line-height:1.9;padding:14px;background:#eeefe5;border-radius:7px;margin-top:10px}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到工作区 / Skip to workspace</a>
+  <div id="app"></div>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <input id="project-file" type="file" accept="application/json,.json" hidden>
+  <noscript>请启用 JavaScript / Enable JavaScript to use this offline workbook.</noscript>
+  <script>
+/**
+ * 福岛案例静态数据（契约 v2，dataVersion 2.0）
+ * 原则库已填入；事实与时间线仍为占位，由 PI 查证后替换。
+ */
+(function () {
+  var principles = [
+    {
+      id: "p-basic-1",
+      group: "basic",
+      name: "公众安全",
+      nameEn:
+        "keep members of the public safe from serious negative consequences resulting from their development and implementation of technology",
+      desc: "使公众免受技术开发与实施所致严重负面后果",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-2",
+      group: "basic",
+      name: "基本人权",
+      nameEn:
+        "ensure that fundamental human rights are not negatively impacted as a result of their work with technology",
+      desc: "确保基本人权不因技术工作受负面影响",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-3",
+      group: "basic",
+      name: "环境保护",
+      nameEn:
+        "avoid damage to the environment and living beings that would result in serious negative consequences, including long-term ones, to human life",
+      desc: "避免对环境与生物造成危及人类生命的严重损害",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-4",
+      group: "basic",
+      name: "胜任能力",
+      nameEn: "engage only in engineering activities they are competent to carry out",
+      desc: "只从事自己有能力胜任的工程活动",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-5",
+      group: "basic",
+      name: "决策依据",
+      nameEn:
+        "base their engineering decisions on scientific principles and mathematical analyses and seek to avoid the influence of extraneous factors",
+      desc: "决策基于科学与数学分析，避免无关因素",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-6",
+      group: "basic",
+      name: "真实披露",
+      nameEn:
+        "keep the public informed of their decisions, which have the potential to seriously affect the public, and to be truthful and complete in their disclosures",
+      desc: "告知可能严重影响公众的决策，披露真实完整",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-7",
+      group: "basic",
+      name: "尊重非道德文化价值",
+      nameEn:
+        "understand and respect the nonmoral cultural values of those they encounter in fulfilling their engineering duties",
+      desc: "理解并尊重履职中遇到的非道德性文化价值",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-basic-8",
+      group: "basic",
+      name: "拒绝违规文化实践",
+      nameEn:
+        "endeavor to refuse to participate in engineering activities that are claimed to reflect cultural practices but that violate basic ethical principles for global engineering",
+      desc: "拒绝参与以文化为名却违反全球工程伦理的活动",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-1",
+      group: "organization",
+      name: "避免不必要伤害",
+      nameEn: "avoid producing unnecessary harms to those in and outside of their organizations",
+      desc: "避免对组织内外造成不必要的伤害",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-2",
+      group: "organization",
+      name: "公平对待利益相关方",
+      nameEn: "ensure that all stakeholders of their organizations are treated fairly and justly",
+      desc: "确保组织利益相关方受到公平公正对待",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-3",
+      group: "organization",
+      name: "遵守法律法规",
+      nameEn: "ensure that all relevant laws and regulations are followed within their organizations",
+      desc: "确保组织内遵守相关法律法规",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-4",
+      group: "organization",
+      name: "免受歧视与骚扰",
+      nameEn: "protect members of their organizations against internal discrimination and harassment",
+      desc: "保护组织成员免受内部歧视与骚扰",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-5",
+      group: "organization",
+      name: "基于功绩的人事决定",
+      nameEn: "make all hiring, compensation, promotion, and termination decisions based on merit",
+      desc: "招聘薪酬晋升解聘均基于功绩",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-org-6",
+      group: "organization",
+      name: "履行合同",
+      nameEn: "ensure that all legitimate corporate contracts are upheld",
+      desc: "确保合法公司合同得到履行",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-1",
+      group: "employee",
+      name: "服从合法指令",
+      nameEn: "obey all legitimate, job-related directives",
+      desc: "服从一切合法且与工作相关的指令",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-2",
+      group: "employee",
+      name: "达到行业水准",
+      nameEn: "perform their contracted duties on at least an industry-standard level",
+      desc: "以不低于行业标准履行合同职责",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-3",
+      group: "employee",
+      name: "保守机密",
+      nameEn:
+        "uphold the principle of confidentiality in relation to knowledge gained in present and past employment",
+      desc: "对现职与前职所获知识保守机密",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-4",
+      group: "employee",
+      name: "不损害组织",
+      nameEn: "avoid actions that harm the corporation in acting on behalf of the organization",
+      desc: "代表组织行事时避免损害组织",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-5",
+      group: "employee",
+      name: "诚实",
+      nameEn: "be honest in their business relationships with others",
+      desc: "在商业关系中保持诚实",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-emp-6",
+      group: "employee",
+      name: "执行伦理原则",
+      nameEn: "enforce all organizational and employee ethical principles, when in positions of authority",
+      desc: "身处权力岗位时执行组织与员工伦理原则",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-inv-1",
+      group: "involvement",
+      name: "公共参与",
+      nameEn:
+        "Principle of public participation—Engineers should seriously consider participating in public policy discussions regarding future applications of technology.",
+      desc: "认真考虑参与技术未来应用的公共政策讨论",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-inv-2",
+      group: "involvement",
+      name: "公众教育",
+      nameEn:
+        "Principle of public education—Engineers should seriously consider helping the public to understand the applications of technologies in broader social, global contexts.",
+      desc: "认真考虑帮助公众理解技术的社会全球语境",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-inv-3",
+      group: "involvement",
+      name: "工程投入",
+      nameEn:
+        "Principle of engineering engagement—Engineers should seriously consider becoming involved in helping to improve the technological futures of those less fortunate than themselves, on a voluntary basis.",
+      desc: "认真考虑自愿改善处境不如己者的技术未来",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-1",
+      group: "rights",
+      name: "免受不必要伤害",
+      nameEn: "be protected from unnecessary harm in their employment",
+      desc: "在受雇中免受不必要的伤害",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-2",
+      group: "rights",
+      name: "公平公正对待",
+      nameEn: "fair and just treatment by employers",
+      desc: "受雇主公平公正对待",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-3",
+      group: "rights",
+      name: "不受歧视与骚扰",
+      nameEn: "not be subjected to discrimination or harassment in their employment",
+      desc: "在受雇中不受歧视或骚扰",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-4",
+      group: "rights",
+      name: "基于功绩对待",
+      nameEn: "be treated by their employers based on merit",
+      desc: "受雇主基于功绩的对待",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-5",
+      group: "rights",
+      name: "合同得到履行",
+      nameEn: "have their contracts honored",
+      desc: "合同得到履行",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-6",
+      group: "rights",
+      name: "不服从非法指令",
+      nameEn: "disobey illegitimate employment directives",
+      desc: "不服从不合法的雇佣指令",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-7",
+      group: "rights",
+      name: "举报权",
+      nameEn:
+        "blow the whistle (externally or internally) if, in their professional judgments, the physical safety of the public will be endangered as a result of their failures to act",
+      desc: "专业判断公众安全将受威胁时有权举报",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-8",
+      group: "rights",
+      name: "获得必要资源",
+      nameEn: "obtain the resources necessary to perform their assigned tasks competently",
+      desc: "获得胜任任务所需的资源",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-9",
+      group: "rights",
+      name: "告知公众",
+      nameEn:
+        "inform the public of engineering decisions that have the potential to seriously harm the physical welfare of the public",
+      desc: "就可能严重损害公众福祉的决策告知公众",
+      sourceId: "src-textbook-appendix-I"
+    },
+    {
+      id: "p-right-10",
+      group: "rights",
+      name: "公平报酬与知识产权",
+      nameEn:
+        "fair compensation for their work, including the right to share equitably in gains resulting from their contributions to intellectual property",
+      desc: "获公平报酬并公平分享知识产权收益",
+      sourceId: "src-textbook-appendix-I"
+    }
+  ];
+
+  var steps = [
+    {
+      id: 1,
+      key: "identify",
+      name: "识别伦理问题",
+      presentInClass: true,
+      intro:
+        "列出与本案例相关的伦理问题。教材建议以问句形式表述，便于后续聚焦与分析。",
+      prompts: [
+        {
+          text: "你能否把每条伦理关切写成问句（含「是否/应该」或问号）？",
+          source: "textbook"
+        },
+        {
+          text: "TODO(PI): 补引导问题",
+          source: "team"
+        }
+      ],
+      fields: [
+        {
+          key: "issues",
+          type: "list",
+          label: "伦理问题",
+          min: 5,
+          minSource: "textbook",
+          itemSchema: ["text:question", "actor:optional"],
+          hint: "建议问句形式；涉及主体选填"
+        }
+      ],
+      checks: [
+        { id: "minItems", level: "suggest", refSource: "textbook" },
+        { id: "mustBeQuestion", level: "suggest", refSource: "textbook" }
+      ],
+      referenceLevel1: ["timeline", "sources"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「问句形式」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 2,
+      key: "focus",
+      name: "聚焦",
+      presentInClass: true,
+      intro: "从第 1 步的问题中选出 2 条作为核心问题，并说明理由。",
+      prompts: [
+        {
+          text: "选 2 条时，完整性是否优于广度？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "chosen",
+          type: "multiSelect",
+          label: "选定的核心问题",
+          min: 2,
+          max: 2,
+          from: "items.Q"
+        },
+        {
+          key: "focusReasons",
+          type: "list",
+          label: "每条选定问题的理由",
+          itemSchema: ["questionRef", "reason:textarea"]
+        },
+        {
+          key: "rewriteNote",
+          type: "textarea",
+          label: "改写以涵盖子问题（选填）",
+          rows: 3
+        }
+      ],
+      checks: [
+        { id: "exactSelect", level: "suggest", refSource: "textbook" },
+        { id: "reasonNonEmpty", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: [],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「完整性优于广度」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 3,
+      key: "facts",
+      name: "相关事实",
+      presentInClass: true,
+      intro:
+        "整理与核心问题相关的事实：物质/技术、个人、组织，并记录缺失事实。分类为启发式，可重叠多标签。",
+      prompts: [
+        {
+          text: "三类分类是启发式的——同一条事实可否同时属于多个类别？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "factEntries",
+          type: "bucketedFacts",
+          label: "相关事实与缺失",
+          buckets: ["material", "individual", "organization", "missing"],
+          allowMultiTag: true
+        },
+        {
+          key: "evidenceLinks",
+          type: "relation",
+          label: "事实与问题的关联",
+          targets: "Q",
+          require: "why"
+        }
+      ],
+      checks: [
+        { id: "minPerBucket", level: "suggest", refSource: "team" },
+        { id: "minMissing", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["facts"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「三类为启发式、可重叠」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 4,
+      key: "assumptions",
+      name: "合理假设",
+      presentInClass: true,
+      intro: "在信息不完整处作出合理假设，并为每条假设记录依据。",
+      prompts: [
+        {
+          text: "假设能否是「开放式」的？依据应指向哪些条目或来源？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "assumptions",
+          type: "assumption",
+          label: "合理假设",
+          require: "basis"
+        },
+        {
+          key: "assumptionLinks",
+          type: "relation",
+          label: "假设与信息缺口",
+          targets: "M",
+          require: "why"
+        }
+      ],
+      checks: [
+        { id: "basisRequired", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["facts"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「假设不能开放式」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 5,
+      key: "clarify",
+      name: "定义澄清",
+      presentInClass: true,
+      intro: "澄清价值含义词：他人可能如何理解，以及你打算如何在分析中使用。",
+      prompts: [
+        {
+          text: "至少澄清 2 个词；可从候选词中选，也可自建。",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "clarifications",
+          type: "clarify",
+          label: "概念澄清",
+          cols: ["others", "mine"],
+          min: 2,
+          minSource: "textbook",
+          allowCustomWord: true
+        }
+      ],
+      checks: [
+        { id: "minItems", level: "suggest", refSource: "textbook" },
+        { id: "bothColsNonEmpty", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["glossary"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「价值含义词」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 6,
+      key: "analysis",
+      name: "伦理分析",
+      presentInClass: false,
+      intro:
+        "选择适用原则，处理原则冲突（四问），排序并说明理由；可自建原则。",
+      prompts: [
+        {
+          text: "选了 ≥2 条原则时，它们在本案某问题上是否冲突？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "selectedPrinciples",
+          type: "multiSelect",
+          label: "适用原则",
+          from: "principles",
+          min: 3,
+          minSource: "textbook"
+        },
+        {
+          key: "principleConflicts",
+          type: "conflict",
+          label: "原则冲突",
+          questions: 4
+        },
+        {
+          key: "principleOrder",
+          type: "rankList",
+          label: "原则优先级",
+          allowTie: true
+        },
+        {
+          key: "orderReason",
+          type: "textarea",
+          label: "排序理由",
+          rows: 4
+        },
+        {
+          key: "principleGap",
+          type: "textarea",
+          label: "是否有原则不足",
+          rows: 3
+        },
+        {
+          key: "customPrinciples",
+          type: "list",
+          label: "自建原则（选填）",
+          itemSchema: ["name", "desc"]
+        }
+      ],
+      checks: [
+        { id: "minPrinciples", level: "suggest", refSource: "textbook" },
+        { id: "conflictReasonIfNeeded", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["principles"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「原则冲突与层级」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 7,
+      key: "review",
+      name: "过程回顾",
+      presentInClass: false,
+      intro: "回显第 1–6 步内容，按复核提示检查，标记需修订项并记录修改原因。",
+      prompts: [
+        {
+          text: "案例分析是迭代过程——哪些条目需要回到上游修改？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "reviewPanel",
+          type: "review",
+          label: "前序步骤回显",
+          source: "steps1to6"
+        },
+        {
+          key: "biasReview",
+          type: "checkList",
+          label: "偏见自查",
+          from: "biasChecks"
+        },
+        {
+          key: "reviewPromptActions",
+          type: "checkList",
+          label: "复核提示",
+          from: "reviewPrompts"
+        }
+      ],
+      checks: [
+        { id: "allReviewTouched", level: "suggest", refSource: "team" },
+        { id: "revisionJumpAvailable", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["biasChecks"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对「迭代过程」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 8,
+      key: "conclusion",
+      name: "得出结论",
+      presentInClass: false,
+      intro:
+        "针对第 2 步选定的每个核心问题，分别写出结论与理由。程序不提供措辞建议。",
+      prompts: [
+        {
+          text: "每条核心问题是否都有对应的结论与理由？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "resolutions",
+          type: "list",
+          label: "结论与理由",
+          itemSchema: ["questionRef", "conclusion:textarea", "reason:textarea"]
+        }
+      ],
+      checks: [
+        { id: "conclusionAndReason", level: "suggest", refSource: "textbook" }
+      ],
+      referenceLevel1: [],
+      referenceLevel3: null,
+      state: "todo"
+    },
+    {
+      id: 9,
+      key: "constraints",
+      name: "现实约束与责任判断",
+      presentInClass: false,
+      intro:
+        "识别现实约束并做责任判断：约束是什么、当时有何选择、是否减轻责任及理由。可勾选预置提示词或声明本案无相关约束。",
+      prompts: [
+        {
+          text: "约束存在是否必然意味着责任减轻？",
+          source: "textbook"
+        },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "constraintJudgments",
+          type: "list",
+          label: "约束条目（三问）",
+          itemSchema: [
+            "whatAndWho:textarea",
+            "alternatives:textarea",
+            "mitigationJudgment:textarea"
+          ]
+        },
+        {
+          key: "presetHints",
+          type: "multiSelect",
+          label: "预置约束提示（可多选可不选）",
+          from: "constraints"
+        },
+        {
+          key: "noRelevantConstraints",
+          type: "checkList",
+          label: "本案声明",
+          options: [{ id: "none", label: "本案没有相关约束" }]
+        }
+      ],
+      checks: [
+        { id: "threeQuestionsComplete", level: "suggest", refSource: "team" },
+        { id: "presetOrNone", level: "suggest", refSource: "team" }
+      ],
+      referenceLevel1: ["glossary"],
+      referenceLevel3: {
+        type: "text",
+        source: "textbook",
+        body: "教材对 excusing / mitigating conditions 与「约束的现实性」的说明（正文待 PI 摘录）。"
+      },
+      state: "todo"
+    },
+    {
+      id: 10,
+      key: "avoid",
+      name: "避免问题",
+      presentInClass: false,
+      intro: "列出未来类似情境中应避免的问题或失误模式。",
+      prompts: [
+        { text: "至少列出 3 条可操作的「应避免」事项。", source: "textbook" },
+        { text: "TODO(PI): 补引导问题", source: "team" }
+      ],
+      fields: [
+        {
+          key: "avoidItems",
+          type: "list",
+          label: "应避免的问题",
+          min: 3,
+          minSource: "textbook",
+          itemSchema: ["text"]
+        }
+      ],
+      checks: [{ id: "minItems", level: "suggest", refSource: "textbook" }],
+      referenceLevel1: [],
+      referenceLevel3: null,
+      state: "todo"
+    }
+  ];
+
+  window.CASE_DATA = {
+    meta: {
+      id: "fukushima",
+      title: "福岛第一核电站事故",
+      dataVersion: "2.0",
+      builtAt: "2026-10-11"
+    },
+    sources: [
+      {
+        id: "src-textbook-appendix-I",
+        title: "Global Engineering Ethics, Appendix I: Principles Reviewed",
+        publisher: "Elsevier",
+        year: 2017,
+        url: "",
+        accessedAt: ""
+      }
+    ],
+    timeline: [
+      {
+        id: "tl-001",
+        date: "【占位】",
+        event: "【占位】此处待补",
+        sourceId: "TODO(PI)",
+        infoKnownBy: [],
+        infoKnownWhen: ""
+      }
+    ],
+    facts: [
+      {
+        id: "f-mat-001",
+        text: "【占位】此处待补",
+        categories: ["material"],
+        sourceId: "TODO(PI)",
+        note: ""
+      },
+      {
+        id: "f-ind-001",
+        text: "【占位】此处待补",
+        categories: ["individual"],
+        sourceId: "TODO(PI)",
+        note: ""
+      },
+      {
+        id: "f-org-001",
+        text: "【占位】此处待补",
+        categories: ["organization"],
+        sourceId: "TODO(PI)",
+        note: ""
+      }
+    ],
+    valueWords: [
+      {
+        id: "vw-001",
+        word: "责任",
+        whyVague: "可指法律责任、道德责任或组织分工，需在本案中界定。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "vw-002",
+        word: "安全",
+        whyVague: "可指人身、环境或系统可靠性，标准因语境而异。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "vw-003",
+        word: "合规",
+        whyVague: "可指满足最低法规或更高行业规范，含义需澄清。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "vw-004",
+        word: "透明",
+        whyVague: "可指信息公开程度或决策过程可见性，需具体化。",
+        sourceId: "TODO(PI)"
+      }
+    ],
+    principles: principles,
+    constraints: [
+      {
+        id: "rch-001",
+        label: "深层文化规范",
+        desc: "组织或行业长期形成的非成文规范，可能塑造决策默认选项。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "rch-002",
+        label: "组织压力",
+        desc: "来自上级、绩效或团队期望的压力，不预设必然减责。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "rch-003",
+        label: "信息不对称",
+        desc: "不同主体掌握信息范围与时机不同，需结合当时情境判断。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "rch-004",
+        label: "时间压力",
+        desc: "紧急决策窗口内可选方案受限，须说明当时还有哪些可行选择。",
+        sourceId: "TODO(PI)"
+      },
+      {
+        id: "rch-005",
+        label: "职业风险",
+        desc: "举报、抗命等可能带来职业后果，与责任判断是否减轻须分开论证。",
+        sourceId: "TODO(PI)"
+      }
+    ],
+    biasChecks: [
+      { id: "bc-001", label: "是否遗漏了某类事实？（按三分类检查）", jumpTo: 3 },
+      { id: "bc-002", label: "是否有概念仍然模糊？", jumpTo: 5 },
+      { id: "bc-003", label: "假设是否都写了依据？", jumpTo: 4 },
+      { id: "bc-004", label: "前后是否有矛盾？", jumpTo: 7 },
+      { id: "bc-005", label: "是否只站在了一个主体的视角？", jumpTo: 1 }
+    ],
+    reviewPrompts: [
+      {
+        id: "rp-001",
+        label: "是否遗漏了某类事实？",
+        jumpTo: 3,
+        kind: "missing-facts"
+      },
+      {
+        id: "rp-002",
+        label: "是否有概念仍然模糊？",
+        jumpTo: 5,
+        kind: "vague-concept"
+      },
+      {
+        id: "rp-003",
+        label: "假设是否都写了依据？",
+        jumpTo: 4,
+        kind: "assumption-basis"
+      },
+      {
+        id: "rp-004",
+        label: "前后是否有矛盾？",
+        jumpTo: 7,
+        kind: "contradiction"
+      },
+      {
+        id: "rp-005",
+        label: "是否只站在了一个主体的视角？",
+        jumpTo: 1,
+        kind: "single-perspective"
+      }
+    ],
+    steps: steps
+  };
+})();
+
+</script>
+  <script>
+/**
+ * 仅供界面开发调试的 mock 用户状态（stateVersion 2.0）。
+ * 不代表任何真实福岛分析结论或事实；勿用于交付或演示正文。
+ * 本文件 ID 规则与 docs/CONTRACT.md 的「静态数据 ID」一致。
+ */
+(function () {
+  var itemsSnapshot1 = {
+    "Q-1-01": {
+      id: "Q-1-01",
+      type: "Q",
+      step: 1,
+      text: "【示例】某主体在决策 X 时是否应当优先考虑公众安全？",
+      actors: ["【示例】角色甲"],
+      isCore: true,
+      focusReason: "【示例】覆盖安全与决策主线",
+      createdAt: "2026-01-01T00:10:00.000Z",
+      updatedAt: "2026-01-01T00:20:00.000Z"
+    },
+    "Q-1-02": {
+      id: "Q-1-02",
+      type: "Q",
+      step: 1,
+      text: "【示例】某机构是否应该公开某类信息？",
+      actors: [],
+      isCore: true,
+      focusReason: "【示例】覆盖信息披露维度",
+      createdAt: "2026-01-01T00:11:00.000Z",
+      updatedAt: "2026-01-01T00:21:00.000Z"
+    },
+    "M-3-01": {
+      id: "M-3-01",
+      type: "M",
+      step: 3,
+      text: "【示例】尚缺的关键事实 A",
+      createdAt: "2026-01-01T00:30:00.000Z",
+      updatedAt: "2026-01-01T00:30:00.000Z"
+    },
+    "M-3-02": {
+      id: "M-3-02",
+      type: "M",
+      step: 3,
+      text: "【示例】尚缺的关键事实 B",
+      createdAt: "2026-01-01T00:31:00.000Z",
+      updatedAt: "2026-01-01T00:31:00.000Z"
+    },
+    "A-4-01": {
+      id: "A-4-01",
+      type: "A",
+      step: 4,
+      text: "【示例】假设：当时某主体已掌握信息 Y",
+      basisRefs: ["M-3-01"],
+      createdAt: "2026-01-01T00:40:00.000Z",
+      updatedAt: "2026-01-01T00:40:00.000Z"
+    },
+    "PA-6-01": {
+      id: "PA-6-01",
+      type: "PA",
+      step: 6,
+      principleId: "p-basic-1",
+      appliesTo: ["Q-1-01"],
+      createdAt: "2026-01-01T01:00:00.000Z"
+    }
+  };
+
+  var relationsSnapshot1 = [
+    {
+      id: "REL-0001",
+      kind: "fact-supports-question",
+      from: "f-mat-001",
+      to: "Q-1-01",
+      why: "【示例】该占位事实若成立，会影响对决策 X 的讨论。",
+      createdAt: "2026-01-01T00:35:00.000Z"
+    },
+    {
+      id: "REL-0002",
+      kind: "assumption-fills-gap",
+      from: "A-4-01",
+      to: "M-3-01",
+      why: "【示例】用假设暂时填补信息缺口 Y。",
+      createdAt: "2026-01-01T00:45:00.000Z"
+    }
+  ];
+
+  var conflictsSnapshot1 = [
+    {
+      id: "CF-6-01",
+      questionId: "Q-1-01",
+      principleA: "p-basic-1",
+      principleB: "p-emp-1",
+      supportsA: "【示例】原则 A 支持采取更保守的公开与防护行动",
+      supportsB: "【示例】原则 B 强调服从组织合法指令与流程",
+      priority: "【示例】在本案中优先协调两者而非简单取舍",
+      scope: "case",
+      reason: "【示例】说明为何在本问题情境下这样排序"
+    }
+  ];
+
+  window.MOCK_USER_STATE = {
+    stateVersion: "2.0",
+    caseId: "fukushima",
+    currentStep: 3,
+    startedAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T01:05:00.000Z",
+    authorship: {
+      notes: ["【示例】组员 A：第 1 步问句由 A 起草"],
+      reservations: []
+    },
+    stepStatus: {
+      1: "checked",
+      2: "checked",
+      3: "draft",
+      4: "todo",
+      5: "todo",
+      6: "todo",
+      7: "todo",
+      8: "todo",
+      9: "todo",
+      10: "todo"
+    },
+    items: {
+      "Q-1-01": itemsSnapshot1["Q-1-01"],
+      "Q-1-02": itemsSnapshot1["Q-1-02"],
+      "Q-1-03": {
+        id: "Q-1-03",
+        type: "Q",
+        step: 1,
+        text: "【示例】个人责任与组织责任在此情境下该如何划分？",
+        actors: ["【示例】角色乙"],
+        createdAt: "2026-01-01T00:12:00.000Z",
+        updatedAt: "2026-01-01T00:12:00.000Z"
+      },
+      "Q-1-04": {
+        id: "Q-1-04",
+        type: "Q",
+        step: 1,
+        text: "【示例】在资源有限时，是否应当先执行措施 X？",
+        actors: [],
+        createdAt: "2026-01-01T00:13:00.000Z",
+        updatedAt: "2026-01-01T00:13:00.000Z"
+      },
+      "Q-1-05": {
+        id: "Q-1-05",
+        type: "Q",
+        step: 1,
+        text: "【示例】合规是否等同于满足最低安全标准？",
+        actors: ["【示例】角色丙"],
+        createdAt: "2026-01-01T00:14:00.000Z",
+        updatedAt: "2026-01-01T00:14:00.000Z"
+      },
+      "M-3-01": itemsSnapshot1["M-3-01"],
+      "M-3-02": itemsSnapshot1["M-3-02"],
+      "A-4-01": itemsSnapshot1["A-4-01"],
+      "PA-6-01": itemsSnapshot1["PA-6-01"],
+      "C-5-01": {
+        id: "C-5-01",
+        type: "C",
+        step: 5,
+        word: "【示例】责任",
+        othersView: "【示例】他人可能理解为法律追责",
+        myUsage: "【示例】我在此指角色分工意义上的责任",
+        createdAt: "2026-01-01T00:50:00.000Z"
+      },
+      "RC-9-01": {
+        id: "RC-9-01",
+        type: "RC",
+        step: 9,
+        text: "【示例】约束条目占位",
+        createdAt: "2026-01-01T01:02:00.000Z"
+      },
+      "R-8-01": {
+        id: "R-8-01",
+        type: "R",
+        step: 8,
+        text: "【示例】结论占位",
+        createdAt: "2026-01-01T01:01:00.000Z"
+      },
+      "AV-10-01": {
+        id: "AV-10-01",
+        type: "AV",
+        step: 10,
+        text: "【示例】应避免的问题占位",
+        createdAt: "2026-01-01T01:03:00.000Z"
+      }
+    },
+    relations: relationsSnapshot1,
+    conflicts: conflictsSnapshot1,
+    snapshots: [
+      {
+        id: "SN-01",
+        label: "初步",
+        createdAt: "2026-01-01T00:55:00.000Z",
+        payload: {
+          items: itemsSnapshot1,
+          relations: relationsSnapshot1,
+          conflicts: []
+        }
+      },
+      {
+        id: "SN-02",
+        label: "复核后",
+        createdAt: "2026-01-01T01:05:00.000Z",
+        payload: {
+          items: itemsSnapshot1,
+          relations: relationsSnapshot1,
+          conflicts: conflictsSnapshot1
+        }
+      }
+    ],
+    hasAcceptedL3: {
+      1: true,
+      2: true,
+      3: false
+    }
+  };
+})();
+
+</script>
+  <!-- Load the PI's CASE_RUNTIME here before the UI adapter when ready. -->
+  <script>
+/* Translation overlay; the frozen CASE_DATA and user wording are untouched. */
+(function () {
+  'use strict';
+  var pairs = {
+    caseShort:['福岛 · 第一核电站','Fukushima Daiichi'], recovery:['下载原始存档','Download original archive'], changeCount:['项变化','changes'], from:['起点','From'], to:['终点','To'], associationKind:['关联类型','Link type'], confirm:['确认','Confirm'], saveUnknown:['保存状态由逻辑层管理','Saving is managed by the runtime'], biasChecklist:['遗漏与偏见检查','Omissions & bias checklist'],
+    workbook:['分析工作台','Workbook'], overview:['推理总览','Reasoning map'], revisions:['修订对比','Revisions'], materials:['案例材料','Case materials'], help:['使用指南','Guide'], export:['导出','Export'], present:['课堂展示','Present'], exitPresent:['返回编辑','Back to editing'], language:['语言','Language'],
+    caseTitle:['福岛第一核电站事故','Fukushima Daiichi'], caseSub:['工程伦理 · 案例 01','ENGINEERING ETHICS · CASE 01'], course:['ENGR4960J · 全球工程伦理','ENGR4960J · Global Engineering Ethics'], offline:['离线工作簿','Offline workbook'], yourReason:['由你提出问题，也由你作出判断。','Your questions. Your reasoning. Your judgment.'],
+    discover:['理解情境','Understand'], deliberate:['展开分析','Deliberate'], act:['判断与行动','Decide & act'], classSteps:['课堂展示 · 步骤 01–05','IN CLASS · STEPS 01–05'], allSteps:['十步案例分析','The ten-step process'],
+    todo:['未开始','Not started'], draft:['草稿','Draft'], discuss:['待讨论','Discuss'], checked:['已复核','Reviewed'], stale:['需回看','Revisit'], status:['步骤状态','Step status'], reviewed:['已复核','reviewed'], step:['步骤','Step'],
+    previous:['上一步','Previous'], next:['下一步','Next step'], add:['添加','Add'], remove:['删除','Delete'], cancel:['取消','Cancel'], save:['保存','Save'], close:['关闭','Close'], edit:['编辑','Edit'], optional:['选填','Optional'],
+    saved:['已保存在此浏览器','Saved in this browser'], saving:['正在保存…','Saving…'], memory:['自动保存不可用，请导出备份','Autosave unavailable. Export a backup.'], localOnly:['本地保存 · JSON 可带到另一台电脑','Saved locally · JSON travels with you'],
+    textbook:['教材','Textbook'], team:['本组','Team'], instructor:['老师','Instructor'], method:['方法提示','Method note'], guide:['思考引导','A question to consider'], suggestion:['建议','Suggestion'], reminders:['待回看事项','Things to revisit'], noReminders:['当前没有形式缺项；这不代表伦理判断已被验证。','No missing fields found. This does not validate your ethical judgment.'],
+    addQuestion:['添加伦理问题','Add a question'], question:['伦理问题','Ethical question'], actor:['涉及主体','Actors involved'], actorHint:['例如：某工程师、机构、受影响的人','An engineer, an organization, people affected…'], questionHint:['用问句提出你真正想讨论的问题…','Frame the issue you want to discuss as a question…'],
+    emptyQuestions:['先留下你的第一个问题。','Every analysis starts with a question.'], emptyQuestionsSub:['从可能严重影响他人生活的行动入手。不同观点可以并存。','Look for actions that could seriously affect others. Leave room for different perspectives.'],
+    focus:['核心问题','Core question'], focusWhy:['为什么优先讨论这个问题？','Why focus on this question?'], selectCore:['选为核心问题','Make this a core question'], core:['核心','Core'], focusEmpty:['先在第 1 步提出问题，再决定分析重点。','Write your questions in step 1, then choose a focus.'], focusReasonHint:['说明重要性、影响范围或需要深入讨论的原因…','Explain its importance, consequences, or need for deeper discussion…'],
+    facts:['事实','Fact'], material:['物质 / 技术','Material / technical'], individual:['个人','Individual'], organization:['组织','Organization'], missing:['信息缺口','Information gap'], addGap:['记录信息缺口','Record an information gap'], gapHint:['还有什么信息会改变你的分析？','What missing information could change your analysis?'],
+    pendingFacts:['事实与时间线待资料负责人核实补入。','Facts and timeline await source verification by the content owner.'], pendingFactsSub:['占位内容不作为事实。可以先记录问题、信息缺口和自己的假设。','Placeholders are not facts. You can still record questions, gaps, and assumptions.'],
+    library:['材料库','Library'], source:['来源','Source'], pendingSource:['来源待核实','Source to be verified'], original:['原始材料','Original material'], sourceOriginal:['原文','Original text'], linkEvidence:['关联依据','Link evidence'], linked:['已关联','Linked'], questionTarget:['关联问题','Related question'], whyRelated:['为什么相关？','Why is it relevant?'], whyHint:['解释这条材料如何影响你的问题…','Explain how this material informs your question…'],
+    relationEmpty:['把依据与问题连接起来，并留下理由。','Connect evidence to a question, and explain why.'], noTargets:['请先创建一个伦理问题。','Create an ethical question first.'],
+    assumption:['我的假设','My assumption'], addAssumption:['添加合理假设','Add an assumption'], assumptionHint:['写下暂定假设，不把它当作已知事实…','Write a tentative assumption, distinct from known facts…'], basis:['依据条目','Supporting material'], basisWhy:['推断依据 / 为什么能暂时填补缺口？','Basis for inference / why can it fill this gap?'], selectGap:['对应信息缺口','Information gap addressed'], choose:['请选择','Select'],
+    concept:['概念','Concept'], addConcept:['澄清一个概念','Clarify a concept'], word:['关键词','Key term'], others:['他人可能怎样理解','How others might understand it'], mine:['本组在这里如何使用','How we use it here'], wordHint:['例如：责任、安全、合规…','Responsibility, safety, compliance…'], othersHint:['考虑另一位读者或受影响者的解释…','Consider another reader or person affected…'], mineHint:['明确本次分析使用的含义与范围…','Define the meaning and scope used in this analysis…'], candidateWords:['可讨论的词','Terms to explore'],
+    principles:['原则与权利','Principles & rights'], basic:['工程基本原则','Engineering principles'], employee:['员工伦理','Employee ethics'], involvement:['公共参与','Public involvement'], rights:['工程师权利','Engineers’ rights'], principleLibrary:['附录 I · 原则与权利','APPENDIX I · PRINCIPLES & RIGHTS'], selected:['已选择','Selected'], selectedPrinciples:['本案适用条目','Applied in this case'], applyWhy:['为什么适用于这个问题？','Why does it apply to this question?'],
+    addCustom:['添加自定义原则','Add your own principle'], custom:['自定义原则','Custom principle'], customHint:['写出原则及其依据…','State a principle and its basis…'], priority:['优先级','Priority'], moveUp:['上移','Move up'], moveDown:['下移','Move down'], tie:['允许同级','Equal ranks allowed'], conflict:['原则冲突','Principle conflict'], addConflict:['记录一次冲突','Examine a conflict'], principleA:['条目 A','Entry A'], principleB:['条目 B','Entry B'], supportsA:['A 支持或限制什么行动？','What action does A support or limit?'], supportsB:['B 支持或限制什么行动？','What action does B support or limit?'], coordinate:['如何取舍或同时满足两者？','How would you prioritize or satisfy both?'], scope:['适用范围','Scope of the priority'], caseScope:['仅本案','This case'], generalScope:['更普遍适用','More general'], reason:['理由','Reason'], noConflict:['不必为了排序而制造冲突；如有冲突，请记录四问。','A list need not imply conflict. If there is one, work through the four questions.'],
+    review:['复核','Review'], reviewAll:['前六步记录','Your first six steps'], notReviewed:['未看','Not reviewed'], revise:['需修订','Needs revision'], unchanged:['无需修订','No revision needed'], note:['备注','Note'], reviewEmpty:['前六步还没有记录。随时可以回去补充。','No records in the first six steps yet. You can always return.'],
+    conclusion:['我的判断','My judgment'], resolution:['结论','Resolution'], writeAnswer:['开始填写我的判断','Write my judgment'], answer:['对核心问题的回答','Answer to the core question'], answerWhy:['简短论证','Brief justification'], conclusionEmpty:['先选择核心问题；程序不会替你生成结论。','Choose a core question first. The tool does not generate conclusions.'],
+    constraint:['现实约束','Practical constraint'], addConstraint:['记录现实约束','Record a constraint'], whatWho:['约束是什么，影响哪个主体？','What is the constraint, and who is affected?'], alternatives:['当时还有哪些可行选择？','What alternatives were feasible at the time?'], mitigation:['是否减轻责任，以及为什么？','Does it mitigate responsibility? Why?'], noConstraints:['本案没有相关约束','No relevant constraints in this case'], constraintHint:['这些是讨论提示词，不代表已经减轻责任。','These are prompts for discussion, not automatic excuses.'],
+    prevention:['预防措施','Prevention'], addPrevention:['添加预防措施','Add a preventive action'], preventionHint:['更早采取什么行动，有可能避免同类问题？','What earlier action might help avoid this kind of problem?'],
+    empty:['还没有记录','A space for your thinking'], emptySub:['先写一点也可以，之后随时修改。','A first thought is enough. You can revisit it later.'], records:['条记录','records'], myRecord:['我的记录','My record'],
+    reference:['参考观点','Reference perspective'], referenceLocked:['先记录自己的想法，再展开参考观点。','Record your own thinking before opening a reference perspective.'], referenceDisclaimer:['参考视角不代表工具判断，仅供对照。','For comparison only; not the tool’s judgment.'], referencePending:['本步参考摘录待资料负责人补充。','The content owner has not supplied this reference excerpt yet.'],
+    timeline:['时间线','Timeline'], sources:['来源目录','Sources'], glossary:['术语与方法','Terms & method'], sourceTranslation:['界面译文；来源原文保留','UI translation; source wording retained'], methodBasis:['Chapter 2 · 10-step case analysis','Chapter 2 · 10-step case analysis'], countNote:['正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。','Chapter 2 exercises use 5 questions and 2 focal issues; Appendix II uses 3 and 1. Counts guide the work; they never lock navigation.'],
+    noData:['资料尚未补入','Materials are not supplied yet'], noDataSub:['资料更新后会在这里显示，界面不生成案例事实。','Verified material will appear here when provided. The UI does not invent case facts.'],
+    firstSnapshot:['保存初步快照','Save initial snapshot'], secondSnapshot:['保存复核后快照','Save reviewed snapshot'], initial:['初步','Initial'], revised:['复核后','Reviewed'], snapshotEmpty:['给思考的变化留下一个位置。','Make room for a change of mind.'], snapshotSub:['保存初步记录，修改后再保存复核记录。两份快照不会随日常编辑改变。','Save an initial record, then a reviewed record. Snapshots stay independent of everyday edits.'], restore:['恢复此快照','Restore this snapshot'], restoreConfirm:['恢复会替换当前工作记录，建议先导出备份。继续吗？','Restoring replaces your working records. Export a backup first. Continue?'], snapshotReplace:['这个位置已有快照。要用当前记录替换吗？','This slot already has a snapshot. Replace it with your current records?'], changeReason:['修改原因（可跳过）','Reason for the change (optional)'], changes:['变化','changes'], noChanges:['两份快照中的条目与关联没有变化。','No differences in entries or links between these snapshots.'], added:['新增','Added'], deleted:['删除','Removed'], modified:['修改','Changed'], before:['原先','Before'], after:['现在','After'],
+    overviewEmpty:['先提出一个问题，再逐步连接依据。','Start with a question. Connect your evidence as you go.'], overviewSub:['这里整理你的记录，不替你补全推理。','This view organizes your records; it does not fill in the reasoning.'], assumptions:['假设','Assumptions'], concepts:['概念澄清','Concepts'], links:['关联','links'],
+    notes:['小组讨论','Team discussion'], discussion:['讨论笔记','Discussion note'], reservation:['保留意见','Reservation'], author:['署名','Name'], authorHint:['成员名字 / 首字母','Name / initials'], noteHint:['记录讨论或尚未达成共识的观点…','Record a discussion or an unresolved perspective…'], addNote:['记录讨论','Add a discussion note'],
+    jsonExport:['保存 JSON 工程','Save JSON project'], jsonImport:['载入 JSON 工程','Load JSON project'], markdown:['导出 Markdown 素材','Export Markdown notes'], exportDisclaimer:['本文件为分析素材。案例分析正文与自我反思报告须由小组成员独立撰写，禁止 AI 代笔。','These are analysis materials. Group members must independently write the case analysis and self-reflection; AI must not ghostwrite them.'],
+    exportReminder:['以下是形式提醒，不影响继续导出。','These are form reminders. You may still export.'], continueExport:['继续导出','Export anyway'], importConfirm:['载入将替换当前工作区；请确认已经备份。','Loading replaces your current workspace. Confirm you have a backup.'], imported:['工程已载入','Project loaded'], invalidImport:['无法载入：文件不兼容或关联不完整。当前草稿未被覆盖。','Cannot load: incompatible file or broken references. Your draft was not replaced.'],
+    reset:['清空当前工作区','Clear working records'], resetConfirm:['清空当前工作记录？请先导出备份。展示数据不受影响。','Clear your working records? Export a backup first. Presentation data is unaffected.'], resetDone:['工作区已清空','Workspace cleared'],
+    deleteConfirm:['删除此记录？','Delete this entry?'], deleteLinked:['这条记录被其他条目引用。删除会移除相关链接，并标记受影响步骤需回看。继续吗？','Other entries reference this record. Deleting removes its links and marks affected steps for review. Continue?'],
+    helpTitle:['让工具整理，让自己判断。','Let the tool organize. Keep the judgment yours.'], helpBody:['任何步骤都可以进入。保存草稿、关联证据、解释取舍，再回头复核。中英文切换只改变界面，不翻译或改写你的记录。','Visit any step. Save drafts, link evidence, explain tradeoffs, and return to review. Switching languages changes the UI, never your written records.'],
+    presentationNotice:['正在展示你自己的记录副本。编辑被隐藏，返回后工作区不变。','Presenting a copy of your own records. Editing is hidden; your workspace remains unchanged.'], presentEmpty:['请先记录分析内容或载入本组工程，再进行课堂展示。','Record your analysis or load your group’s project before presenting.'],
+    mock:['界面样例（开发用）','UI sample (development only)'], mockConfirm:['载入仓库提供的虚构 mock 到隔离预览空间？它不是真实案例分析，不能用作课堂报告。','Load the repository’s fictional mock in an isolated preview? It is not real case analysis and must not be used as presentation findings.'], mockBanner:['虚构界面样例 · 仅用于调试，不是福岛事实或本组结论','Fictional UI sample · not Fukushima facts or group conclusions'], exitMock:['回到我的工作区','Back to my workspace'],
+    written:['已记录','recorded'], outline:['分析路径','Analysis path'], connect:['连接材料与思考','Connect materials and thinking'], why:['为什么','Why'], noTranslation:['原文保留','Original wording'], materialPending:['材料准备中','Materials in preparation'], readSource:['查看来源','View source'],
+    noteSaved:['讨论已记录','Discussion recorded'], snapshotSaved:['快照已保存','Snapshot saved'], needReason:['请写一句为什么相关。','Add a reason for the connection.'], needPair:['请选择两个不同的条目和一个问题。','Choose two different entries and a question.'], fileLarge:['请选择小于 5 MB 的 JSON 工程。','Choose a JSON project smaller than 5 MB.']
+  };
+  var titles = [
+    ['识别伦理问题','Identify ethical issues','先提出一个值得讨论的问题。','Start with a better question.'],
+    ['聚焦核心问题','Narrow the focus','把重要的问题，讨论得更深入。','Make space to go deeper.'],
+    ['确定相关事实','Determine relevant facts','分清知道的，和还不知道的。','What do we know? What is missing?'],
+    ['作出合理假设','Make reasonable assumptions','让暂定的假设，有迹可循。','Give your assumptions a basis.'],
+    ['澄清概念定义','Clarify definitions','同一个词，可能有不同的含义。','The same word. Different meanings.'],
+    ['开展伦理分析','Conduct ethical analysis','把原则放回具体的情境。','Bring principles into the context.'],
+    ['回顾分析过程','Review the process','换一个角度，再看一次。','A second look changes things.'],
+    ['形成明确结论','Resolve the issue','现在，由你作出判断。','Now, make your judgment.'],
+    ['现实约束与责任','Consider practical constraints','在现实条件中，讨论责任。','Consider what was possible.'],
+    ['避免伦理问题','Avoid ethical problems','更早的一步，可能带来改变。','Think ahead. Make a difference.']
+  ];
+  var intros = [
+    'Identify actions that could seriously affect others. Frame concerns as questions without settling the answer yet.',
+    'Choose issues worth examining in depth. Explain your focus and refine the wording to include important subquestions.',
+    'Separate material, individual, and organizational facts from missing information. Categories may overlap.',
+    'Make reasonable, explicit assumptions where information is missing. Link the basis and explain your inference.',
+    'Clarify ambiguous terms: how others might interpret them and what you mean in this analysis.',
+    'Select applicable principles, explain their relevance, and examine conflicts. Priorities may be specific to this case.',
+    'Revisit steps 1–6 for omissions, ambiguous concepts, and bias. Record what changes and why.',
+    'Answer each core question with your own judgment and a brief justification. This space starts blank.',
+    'Identify constraints, alternatives available at the time, and whether they mitigate responsibility.',
+    'Consider earlier actions that might prevent similar problems. Keep your proposals grounded in the analysis.'
+  ];
+  var prompts = ['Who might be affected directly or indirectly?','Why is this issue important enough to examine in depth?','Which facts could change your response to the core question?','What makes this inference reasonable rather than merely convenient?','Would another reader understand these key terms differently?','Which principles conflict in this particular situation?','What have you overlooked, and whose perspective is missing?','Does your answer address the question you originally posed?','What other actions were feasible under the circumstances?','What could have been done earlier to avoid the dilemma?'];
+  var principleNames = ['Public safety','Human rights','Environmental protection','Competence','Scientific decisions','Truthful disclosure','Nonmoral cultural values','Refuse unethical cultural practices','Avoid unnecessary harm','Fairness to stakeholders','Laws and regulations','Protection from discrimination','Merit-based decisions','Honor contracts','Legitimate directives','Industry-standard performance','Confidentiality','Avoid harm to the organization','Honesty','Enforce ethical principles','Public participation','Public education','Engineering engagement','Protection from harm','Fair treatment','No discrimination or harassment','Treatment based on merit','Contracts honored','Refuse illegitimate directives','Whistleblowing','Necessary resources','Inform the public','Fair compensation and intellectual property'];
+  var words = [['Responsibility','Legal, moral, and organizational responsibilities may differ.'],['Safety','Physical safety, environmental safety, and reliability may use different standards.'],['Compliance','Minimum legal rules and professional standards may differ.'],['Transparency','Information disclosure and visibility of decisions are distinct meanings.']];
+  var constraints = [['Cultural norms','Long-standing informal norms may shape the choices people perceive.'],['Organizational pressure','Pressure does not automatically mitigate responsibility.'],['Information asymmetry','Consider who knew what and when.'],['Time pressure','Explain the alternatives feasible within the decision window.'],['Career risk','Career consequences and ethical responsibility require separate consideration.']];
+  var biasLabels=['Have we overlooked a category of facts?','Have we left a key term ambiguous?','Are assumptions clearly distinguished from facts?','Does the reasoning contain contradictions?','Have we considered other perspectives?'];
+  window.FieldnotesI18n = { biasLabels:biasLabels, pairs:pairs, titles:titles, intros:intros, prompts:prompts, principleNames:principleNames, words:words, constraints:constraints };
+})();
+
+</script>
+  <script>
+/**
+ * Replaceable UI preview adapter, not the PI-owned production logic layer.
+ * Install window.CASE_RUNTIME before workbench.js to replace this implementation.
+ * Persists in a separate key; public state keeps CONTRACT v2 root fields.
+ */
+(function () {
+  'use strict';
+  function clone(value) { return JSON.parse(JSON.stringify(value)); }
+  function now() { return new Date().toISOString(); }
+  function blank() {
+    var status = {}; for (var i=1;i<=10;i++) status[i]='todo';
+    return { stateVersion:'2.0', caseId:'fukushima', currentStep:1, startedAt:now(), updatedAt:now(),
+      authorship:{notes:[],reservations:[]}, stepStatus:status, items:{}, relations:[], conflicts:[], snapshots:[], hasAcceptedL3:{} };
+  }
+  function create(data, options) {
+    options = options || {};
+    var key='engr4960j.frontend.preview.v2', state=blank(), listeners=[], saving='saved', timer, lastId=Date.now();
+    var recovery=null, persistent=options.persistent!==false;
+    var staticIds=new Set([].concat(data.facts,data.sources,data.principles,data.valueWords,data.constraints).map(function(x){return x.id;}));
+    function validateProject(input) {
+      var errors=[];
+      function record(s, nested) {
+        if (!s || typeof s!=='object' || Array.isArray(s)) { errors.push('structure'); return; }
+        if (!s.items || typeof s.items!=='object' || Array.isArray(s.items) || !Array.isArray(s.relations) || !Array.isArray(s.conflicts)) { errors.push('structure'); return; }
+        var ids=new Set(staticIds), collectionIds=new Set(), allowed=['Q','M','A','C','PA','RC','R','AV'];
+        Object.keys(s.items).forEach(function(id){
+          var it=s.items[id];
+          if (!it || it.id!==id || allowed.indexOf(it.type)<0 || !Number.isInteger(it.step) || it.step<1 || it.step>10 || !new RegExp('^'+it.type+'-'+it.step+'-[0-9]+$').test(id) || typeof it.createdAt!=='string') errors.push('item');
+          else ids.add(id);
+          if(it){
+            ['text','word','others','othersView','mine','myUsage','focusReason','reason','alternatives','mitigationJudgment'].forEach(function(k){if(it[k]!==undefined&&typeof it[k]!=='string')errors.push('field');});
+            ['actors','checkedIds'].forEach(function(k){if(it[k]!==undefined&&(!Array.isArray(it[k])||it[k].some(function(v){return typeof v!=='string';})))errors.push('field');});
+            if(it.isCore!==undefined&&typeof it.isCore!=='boolean')errors.push('field');
+            if(it.order!==undefined&&(!Number.isFinite(it.order)||it.order<1))errors.push('field');
+            if(it.review&&(!['unseen','checked','revise'].includes(it.review.status)||typeof it.review.note!=='string'))errors.push('field');
+          }
+        });
+        s.relations.forEach(function(r){
+          if (!r || typeof r.id!=='string' || collectionIds.has(r.id) || !ids.has(r.from) || !ids.has(r.to) || typeof r.why!=='string' || !['fact-supports-question','assumption-fills-gap','principle-applies-to','resolution-answers-question','review-targets-item'].includes(r.kind)) errors.push('relation');
+          else collectionIds.add(r.id);
+        });
+        Object.values(s.items).forEach(function(it){
+          if (!it) return;
+          ['basisRefs','appliesTo','selectedIds'].forEach(function(field){
+            if (it[field]!==undefined && (!Array.isArray(it[field]) || it[field].some(function(id){return !ids.has(id); }))) errors.push('reference');
+          });
+          if (it.principleId && !ids.has(it.principleId)) errors.push('principle');
+        });
+        s.conflicts.forEach(function(c){ if (!c || typeof c.id!=='string' || collectionIds.has(c.id) || !ids.has(c.questionId) || !ids.has(c.principleA) || !ids.has(c.principleB) || c.principleA===c.principleB || !['case','general'].includes(c.scope) || ['supportsA','supportsB','priority','reason'].some(function(k){return typeof c[k]!=='string';})) errors.push('conflict');else collectionIds.add(c.id); });
+        if (!nested && Array.isArray(s.snapshots)) {var slots=new Set();s.snapshots.forEach(function(sn){ if (!sn || !sn.payload || !['SN-01','SN-02'].includes(sn.id) || slots.has(sn.id) || typeof sn.createdAt!=='string') errors.push('snapshot'); else {slots.add(sn.id);record(sn.payload,true);} });}
+      }
+      if (!input || input.caseId!=='fukushima' || input.stateVersion!=='2.0') errors.push('version');
+      else {
+        if (!Number.isInteger(input.currentStep) || input.currentStep<1 || input.currentStep>10 || !input.authorship || !Array.isArray(input.authorship.notes) || !Array.isArray(input.authorship.reservations) || !input.stepStatus || !Array.isArray(input.snapshots) || input.snapshots.length>2 || !input.hasAcceptedL3 || typeof input.startedAt!=='string' || typeof input.updatedAt!=='string') errors.push('structure');
+        for(var step=1;step<=10;step++)if(['todo','draft','discuss','checked','stale'].indexOf((input.stepStatus||{})[step])<0)errors.push('status');
+        if(input.authorship&&['notes','reservations'].some(function(k){return !Array.isArray(input.authorship[k])||input.authorship[k].some(function(v){return typeof v!=='string';});}))errors.push('authorship');
+        record(input,false);
+      }
+      return Array.from(new Set(errors));
+    }
+    if (options.state) state=clone(options.state);
+    else if (persistent) {
+      try { var raw=localStorage.getItem(key); if(raw){var loaded=JSON.parse(raw);if(validateProject(loaded).length===0) state=loaded;else{recovery=raw;saving='memory';persistent=false;}} }
+      catch(e){saving='memory';persistent=false;}
+    }
+    function notify() { listeners.slice().forEach(function(fn){fn(clone(state));}); }
+    function persist() {
+      if (!persistent) { saving='memory'; return; }
+      try { localStorage.setItem(key,JSON.stringify(state)); saving='saved'; }
+      catch(e) { saving='memory'; }
+    }
+    function change() { state.updatedAt=now(); saving=persistent?'saving':'memory'; clearTimeout(timer); timer=setTimeout(function(){persist();notify();},800); notify(); }
+    function newId(type,step) {
+      lastId=Math.max(Date.now(),lastId+1);
+      // Timestamp-derived monotonically increasing sequence avoids recycling deleted IDs.
+      return type==='REL' ? 'REL-'+lastId : type+'-'+step+'-'+lastId;
+    }
+    function related(id) {
+      var result=new Set();
+      var visit=function(target){
+        state.relations.forEach(function(r){ var dependent=r.kind==='resolution-answers-question'||r.kind==='review-targets-item'?r.to===target?r.from:null:r.from===target?r.to:null;if(dependent&&!result.has(dependent)){result.add(dependent);visit(dependent);} });
+        Object.values(state.items).forEach(function(it){ if([].concat(it.basisRefs||[],it.appliesTo||[]).indexOf(target)>=0&&!result.has(it.id)){result.add(it.id);visit(it.id);} });
+      }; visit(id); result.delete(id); return Array.from(result);
+    }
+    function markAffected(id) {
+      related(id).forEach(function(ref){ var it=state.items[ref]; if(it) state.stepStatus[it.step]='stale'; });
+      state.conflicts.forEach(function(c){if([c.questionId,c.principleA,c.principleB].indexOf(id)>=0)state.stepStatus[6]='stale';});
+      var it=state.items[id];
+      if(it && it.type==='Q'){ [2,3,4,6,7,8,9,10].forEach(function(step){ if(state.stepStatus[step]!=='todo')state.stepStatus[step]='stale'; }); }
+    }
+    function addRelation(from,to,kind,why) {
+      var r=state.relations.find(function(x){return x.from===from&&x.to===to&&x.kind===kind;});
+      if(r)r.why=why;else state.relations.push({id:newId('REL'),kind:kind,from:from,to:to,why:why,createdAt:now()});
+    }
+    function dispatch(action) {
+      var p=action.payload||{}, it, ids;
+      switch(action.type) {
+        case 'NAVIGATE': state.currentStep=Math.max(1,Math.min(10,Number(p.step))); break;
+        case 'ADD_ITEM':
+          it=Object.assign({id:newId(p.type,p.step),type:p.type,step:p.step,createdAt:now(),updatedAt:now(),text:''},p.fields||{});
+          state.items[it.id]=it; state.stepStatus[p.step]='draft'; break;
+        case 'UPDATE_ITEM':
+          it=state.items[p.id]; if(!it) return;
+          var reviewOnly=Object.keys(p.fields).every(function(k){return k==='review';});
+          if(!reviewOnly)markAffected(p.id);
+          Object.assign(it,p.fields,{updatedAt:now()});
+          if(p.fields.others!==undefined)delete it.othersView;
+          if(p.fields.mine!==undefined)delete it.myUsage;
+          if(p.fields.appliesTo){state.relations=state.relations.filter(function(r){return !(r.from===p.id&&r.kind==='principle-applies-to');});p.fields.appliesTo.forEach(function(target){addRelation(p.id,target,'principle-applies-to',it.text||'');});}
+          if(it.type==='PA'&&p.fields.text!==undefined)state.relations.forEach(function(r){if(r.from===it.id&&r.kind==='principle-applies-to')r.why=it.text;});
+          if(!reviewOnly && state.stepStatus[it.step]!=='stale')state.stepStatus[it.step]='draft';
+          if(p.reason)state.authorship.notes.push(now()+' · '+p.id+' · '+p.reason);
+          break;
+        case 'DELETE_ITEM':
+          it=state.items[p.id]; if(!it)return; markAffected(p.id);
+          state.relations=state.relations.filter(function(r){return r.from!==p.id&&r.to!==p.id;});
+          Object.values(state.items).forEach(function(x){ ['basisRefs','appliesTo','selectedIds'].forEach(function(k){if(Array.isArray(x[k]))x[k]=x[k].filter(function(id){return id!==p.id;});}); });
+          state.conflicts=state.conflicts.filter(function(c){return [c.questionId,c.principleA,c.principleB].indexOf(p.id)<0;});
+          delete state.items[p.id]; state.stepStatus[it.step]='draft'; break;
+        case 'SET_STATUS': state.stepStatus[p.step]=p.status; break;
+        case 'SET_CHECKLIST': it=state.items[p.id];if(it)it.checkedIds=p.ids;state.stepStatus[7]='draft';break;
+        case 'LINK': markAffected(p.from);addRelation(p.from,p.to,p.kind,p.why);markAffected(p.to);break;
+        case 'UNLINK': it=state.relations.find(function(r){return r.id===p.id;});if(it){markAffected(it.from);markAffected(it.to);}state.relations=state.relations.filter(function(r){return r.id!==p.id;}); break;
+        case 'ADD_CONFLICT': state.conflicts.push(Object.assign({id:newId('CF',6)},p)); state.stepStatus[6]='draft'; break;
+        case 'UPDATE_CONFLICT': it=state.conflicts.find(function(c){return c.id===p.id;}); if(it)Object.assign(it,p.fields);state.stepStatus[6]='draft';break;
+        case 'DELETE_CONFLICT': state.conflicts=state.conflicts.filter(function(c){return c.id!==p.id;}); break;
+        case 'ADD_NOTE': state.authorship[p.kind==='reservation'?'reservations':'notes'].push(p.text); break;
+        case 'ACCEPT_L3': state.hasAcceptedL3[p.step]=true; break;
+        case 'SET_BASIS':
+          it=state.items[p.id]; if(!it)return; markAffected(p.id); it.basisRefs=p.refs;
+          state.relations=state.relations.filter(function(r){return !(r.from===p.id&&r.kind==='assumption-fills-gap');});
+          if(p.gap)addRelation(p.id,p.gap,'assumption-fills-gap',p.why);
+          state.stepStatus[4]='draft'; break;
+        case 'ANSWER':
+          it=Object.values(state.items).find(function(x){return x.type==='R'&&state.relations.some(function(r){return r.from===x.id&&r.to===p.question;});});
+          if(!it){it={id:newId('R',8),type:'R',step:8,text:'',createdAt:now()};state.items[it.id]=it;addRelation(it.id,p.question,'resolution-answers-question','');} break;
+        case 'RESET': state=blank();break;
+        default: throw new Error('Unknown UI action: '+action.type);
+      }
+      change(); return clone(state);
+    }
+    function validateStep(step) {
+      var items=Object.values(state.items), rows=items.filter(function(x){return x.step===step;}), suggestions=[];
+      function hint(key,id,source){suggestions.push({key:key,itemId:id||null,step:step,source:source||'team'});}
+      if(step===1){if(rows.filter(function(x){return (x.text||'').trim();}).length<5)hint('questionsCount',null,'textbook');rows.forEach(function(x){if(x.text&&!/[?？]|是否|应该|应当|\b(should|ought|must|may)\b/i.test(x.text))hint('questionForm',x.id,'textbook');});}
+      if(step===2){var core=items.filter(function(x){return x.type==='Q'&&x.isCore;});if(core.length!==2)hint('coreCount',null,'textbook');core.forEach(function(x){if(!(x.focusReason||'').trim())hint('focusBasis',x.id);});}
+      if(step===3){if(rows.filter(function(x){return x.type==='M'&&x.text;}).length<2)hint('gapCount');['material','individual','organization'].forEach(function(cat){var count=state.relations.filter(function(r){var fact=data.facts.find(function(f){return f.id===r.from;});return r.kind==='fact-supports-question'&&fact&&fact.categories.indexOf(cat)>=0;}).length;if(count<2)hint('factCount:'+cat);});}
+      if(step===4)rows.forEach(function(x){if(x.type==='A'&&(!(x.basisRefs||[]).length||!state.relations.some(function(r){return r.from===x.id&&r.kind==='assumption-fills-gap'&&r.why.trim();})))hint('assumptionBasis',x.id);});
+      if(step===5){if(rows.length<2)hint('conceptCount');rows.forEach(function(x){if(!(x.others||x.othersView)||!(x.mine||x.myUsage))hint('conceptColumns',x.id);});}
+      if(step===6){if(rows.filter(function(x){return x.type==='PA';}).length<3)hint('principleCount');state.conflicts.forEach(function(c){if(!c.reason||!c.supportsA||!c.supportsB||!c.priority)hint('conflictFields',c.id);});}
+      if(step===7&&items.some(function(x){return x.step<7&&(!x.review||!x.review.status||x.review.status==='unseen');}))hint('reviewNeeded');
+      if(step===8)items.filter(function(x){return x.type==='Q'&&x.isCore;}).forEach(function(q){var r=state.relations.find(function(x){return x.kind==='resolution-answers-question'&&x.to===q.id;});var answer=r&&state.items[r.from];if(!answer||!answer.text||!answer.reason)hint('answerNeeded',q.id,'textbook');});
+      if(step===9){rows.forEach(function(x){if(!(x.checkedIds||[]).includes('none')&&(!x.text||!x.alternatives||!x.mitigationJudgment))hint('constraintFields',x.id);});if(rows.some(function(x){return(x.checkedIds||[]).includes('none');})&&rows.some(function(x){return!(x.checkedIds||[]).includes('none');}))hint('constraintContradiction');}
+      if(step===10&&rows.filter(function(x){return x.text;}).length<3)hint('preventionCount',null,'textbook');
+      if(!rows.length && step!==2 && step!==3)hint('emptyStep');
+      state.relations.filter(function(r){return !r.why.trim()&&r.kind!=='resolution-answers-question';}).forEach(function(r){if(step===3||step===4)hint('linkWhy',r.id);});
+      return {errors:[],suggestions:suggestions,locators:suggestions.map(function(x){return x.itemId;}).filter(Boolean)};
+    }
+    var engine={
+      getState:function(){return clone(state);}, dispatch:dispatch, validateStep:validateStep,
+      subscribe:function(fn){listeners.push(fn);return function(){listeners=listeners.filter(function(x){return x!==fn;});};},
+      exportProject:function(){return JSON.stringify(state,null,2);},
+      importProject:function(json){var input;try{input=typeof json==='string'?JSON.parse(json):clone(json);}catch(e){return{ok:false,errors:['json']};}var errors=validateProject(input);if(errors.length)return{ok:false,errors:errors};state=clone(input);change();return{ok:true,state:clone(state)};},
+      createSnapshot:function(label){var id=label==='initial'?'SN-01':'SN-02',sn={id:id,label:label,createdAt:now(),payload:clone({items:state.items,relations:state.relations,conflicts:state.conflicts})},index=state.snapshots.findIndex(function(x){return x.id===id;});if(index<0)state.snapshots.push(sn);else state.snapshots[index]=sn;state.snapshots.sort(function(a,b){return a.id.localeCompare(b.id);});change();return id;},
+      restoreSnapshot:function(id){var sn=state.snapshots.find(function(x){return x.id===id;});if(!sn)return;state.items=clone(sn.payload.items);state.relations=clone(sn.payload.relations);state.conflicts=clone(sn.payload.conflicts);for(var i=1;i<=10;i++)state.stepStatus[i]='stale';change();},
+      getSaveStatus:function(){return saving;}, flush:function(){clearTimeout(timer);persist();}, affected:related,
+      recoveryData:function(){return recovery;}, isPreview:true
+    };
+    persist();
+    return engine;
+  }
+  window.FrontendPreviewRuntime={create:create,blank:blank};
+})();
+
+</script>
+  <script>
+(function () {
+  'use strict';
+  var I=window.FieldnotesI18n, data=window.CASE_DATA;
+  var engine=window.CASE_RUNTIME||window.FrontendPreviewRuntime.create(data), workingEngine=engine;
+  var locale='zh', view='workbook', presentation=null, presentationStep=1, mockMode=false, unsubscribe, dragId=null;
+  try { locale=localStorage.getItem('fieldnotes.ui.language')==='en'?'en':'zh'; } catch(e) {}
+  var composing=false;
+  var app=document.getElementById('app'), modal=document.getElementById('modal'), modalContent=document.getElementById('modal-content');
+  var paths={plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z'};
+  function icon(name){return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(paths[name]||paths.note)+'"/></svg>';}
+  function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function t(key){return I.pairs[key]?I.pairs[key][locale==='zh'?0:1]:key;}
+  function bi(zh,en){return locale==='zh'?zh:en;}
+  function title(step){return I.titles[step-1][locale==='zh'?0:1];}
+  function state(){return presentation||engine.getState();}
+  function rows(type,s){return Object.values((s||state()).items).filter(function(it){return !type||it.type===type;});}
+  function current(){return presentation?presentationStep:state().currentStep;}
+  function isPending(text){return /TODO|占位|待补|待 PI|待资料/.test(text||'');}
+  function facts(){return data.facts.filter(function(f){return !isPending(f.text)&&!isPending(f.sourceId);});}
+  function display(it){if(!it)return '';if(it.type==='PA')return principleName(it.principleId)||it.text;return it.word||it.text||it.why||it.reason||it.priority||it.id;}
+  function principleName(id){var idx=data.principles.findIndex(function(p){return p.id===id;});if(idx<0)return display(state().items[id]);return locale==='zh'?data.principles[idx].name:I.principleNames[idx]||data.principles[idx].nameEn;}
+  function tag(key,cls){return '<span class="tag '+(cls||'')+'">'+esc(t(key))+'</span>';}
+  function button(key,action,cls,ico,attrs){return '<button type="button" class="button '+(cls||'')+'" data-action="'+action+'" '+(attrs||'')+'>'+(ico?icon(ico):'')+esc(t(key))+'</button>';}
+  function empty(key,sub,action){return '<div class="empty-state">'+icon('note')+'<h3>'+esc(t(key||'empty'))+'</h3><p>'+esc(t(sub||'emptySub'))+'</p>'+(action||'')+'</div>';}
+  function field(it,key,label,hint,short,kind){var value=it[key]||'', id='field-'+it.id+'-'+key;if(key==='actors')value=(it.actors||[]).join(', ');if(key==='others')value=it.others!==undefined?it.others:it.othersView||'';if(key==='mine')value=it.mine!==undefined?it.mine:it.myUsage||'';
+    if(presentation)return '<div class="read-field"><span>'+esc(t(label))+'</span><p>'+esc(value||'—')+'</p></div>';
+    var attrs=' id="'+esc(id)+'" data-'+(kind==='conflict'?'conflict':'item')+'="'+esc(it.id)+'" data-field="'+key+'" placeholder="'+esc(t(hint||label))+'"';
+    return '<label class="field" for="'+esc(id)+'"><span>'+esc(t(label))+'</span>'+(short?'<input'+attrs+' value="'+esc(value)+'">':'<textarea rows="3"'+attrs+'>'+esc(value)+'</textarea>')+'</label>';
+  }
+  function deleteButton(it,conflict){return presentation?'':button('remove',conflict?'delete-conflict':'delete','icon-button quiet','trash','data-id="'+esc(it.id)+'" aria-label="'+esc(t('remove'))+' '+esc(it.id)+'"');}
+  function cardHead(it,label){return '<div class="card-head"><div>'+tag(label,'muted')+'<span class="record-id">'+esc(it.id)+'</span></div>'+(presentation?'':button('changeReason','revision-note','icon-button quiet','history','data-id="'+esc(it.id)+'" aria-label="'+esc(t('changeReason'))+'"'))+deleteButton(it)+'</div>';}
+  function relationList(id){return state().relations.filter(function(r){return r.from===id;}).map(function(r){var target=state().items[r.to];return '<div class="relation">'+icon('link')+'<div><strong>'+esc(target?display(target):r.to)+'</strong><p>'+esc(r.why||'—')+'</p></div>'+(presentation?'':button('remove','unlink','icon-button quiet','close','data-id="'+esc(r.id)+'"'))+'</div>';}).join('');}
+  function connectButton(it){return presentation?'':button('linkEvidence','link','small quiet','link','data-id="'+esc(it.id)+'"');}
+  function inputStep(step){var s=state(), list, html='';
+    if(step===1){list=rows('Q');html=list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'question')+field(it,'text','question','questionHint')+field(it,'actors','actor','actorHint',true)+'</article>';}).join('');return html||empty('emptyQuestions','emptyQuestionsSub',presentation?'':button('addQuestion','add','primary','plus','data-type="Q" data-step="1"'));}
+    if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+field(it,'text','question','questionHint'):'')+'</article>';}).join(''):empty('focusEmpty','emptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
+    if(step===3){html=data.facts.some(function(f){return isPending(f.text)||isPending(f.sourceId);})?'<div class="notice">'+icon('book')+'<div><strong>'+esc(t('pendingFacts'))+'</strong><p>'+esc(t('pendingFactsSub'))+'</p></div></div>':'';
+      html+='<div class="fact-grid">'+['material','individual','organization'].map(function(cat){var f=facts().filter(function(x){return x.categories.indexOf(cat)>=0;});return '<section class="fact-column"><div class="section-label">'+esc(t(cat))+' <span>'+f.length+'</span></div>'+(f.length?f.map(function(it){return '<article class="fact-card">'+tag('facts','green')+'<p>'+esc(it.text)+'</p><small>'+esc(sourceName(it.sourceId))+'</small>'+relationList(it.id)+connectButton(it)+'</article>';}).join(''):'<p class="column-empty">'+esc(t('noData'))+'</p>')+'</section>';}).join('')+'</div>';
+      list=rows('M');html+='<div class="section-heading"><h3>'+esc(t('missing'))+'</h3>'+(presentation?'':button('addGap','add','small','plus','data-type="M" data-step="3"'))+'</div>';
+      return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'missing')+field(it,'text','missing','gapHint')+relationList(it.id)+connectButton(it)+'</article>';}).join(''):empty('empty','emptySub'));}
+    if(step===4){list=rows('A');return list.length?list.map(function(it){var refs=(it.basisRefs||[]).map(function(id){return state().items[id]||data.facts.find(function(f){return f.id===id;})||data.sources.find(function(f){return f.id===id;});});return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'assumption')+field(it,'text','assumption','assumptionHint')+'<div class="basis-box"><span class="section-label">'+esc(t('basis'))+'</span><p>'+esc(refs.map(function(x){return x?display(x)||x.title:'';}).filter(Boolean).join(' · ')||t('empty'))+'</p>'+relationList(it.id)+(presentation?'':button('basis','basis','small','link','data-id="'+esc(it.id)+'"'))+'</div></article>';}).join(''):empty();}
+    if(step===5){list=rows('C');html='<div class="word-shelf"><span>'+esc(t('candidateWords'))+'</span>'+data.valueWords.map(function(w,idx){return '<button type="button" class="word-chip" data-action="concept" data-word="'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+icon('plus')+'</button>';}).join('')+'</div>';
+      return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'concept')+field(it,'word','word','wordHint',true)+'<div class="two-columns">'+field(it,'others','others','othersHint')+field(it,'mine','mine','mineHint')+'</div></article>';}).join(''):empty());}
+    if(step===6){list=rows('PA').sort(function(a,b){return (a.order||0)-(b.order||0);});html='<div class="section-heading"><h3>'+esc(t('selectedPrinciples'))+'</h3>'+(presentation?'':button('principles','materials','small','book','data-tab="principles"'))+'</div>';
+      html+=list.length?list.map(function(it,idx){return '<article class="entry-card rank-card" draggable="'+(!presentation)+'" data-drag="'+esc(it.id)+'">'+cardHead(it,it.principleId?'principles':'custom')+'<div class="rank-heading"><span class="rank-number">'+(idx+1)+'</span><h3>'+esc(principleName(it.principleId)||it.text||t('custom'))+'</h3>'+(presentation?'':'<div class="rank-controls">'+button('moveUp','rank','icon-button','up','data-id="'+esc(it.id)+'" data-direction="-1" '+(idx===0?'disabled':''))+button('moveDown','rank','icon-button','down','data-id="'+esc(it.id)+'" data-direction="1" '+(idx===list.length-1?'disabled':''))+'</div>')+'</div>'+field(it,'text',it.principleId?'applyWhy':'custom',it.principleId?'applyWhy':'customHint')+(presentation?'<p>'+esc((it.appliesTo||[]).map(function(id){return display(s.items[id]);}).join(' · '))+'</p>':'<fieldset><legend>'+esc(t('questionTarget'))+'</legend>'+rows('Q').map(function(q){return '<label class="check"><input type="checkbox" id="applies-'+esc(it.id)+'-'+esc(q.id)+'" data-applies="'+esc(it.id)+'" value="'+esc(q.id)+'" '+((it.appliesTo||[]).includes(q.id)?'checked':'')+'>'+esc(q.text||q.id)+'</label>';}).join('')+'</fieldset>')+'<label class="field"><span>'+esc(t('priority'))+' · '+esc(t('tie'))+'</span>'+(presentation?'<p>'+esc(it.order||idx+1)+'</p>':'<input type="number" min="1" max="99" data-item="'+esc(it.id)+'" data-field="order" value="'+esc(it.order||idx+1)+'">')+'</label></article>';}).join(''):empty();
+      html+='<div class="section-heading"><h3>'+esc(t('conflict'))+'</h3>'+(presentation?'':button('addConflict','conflict','small','plus'))+'</div><p class="hint">'+esc(t('noConflict'))+'</p>';
+      return html+state().conflicts.map(function(c){return '<article class="entry-card"><div class="card-head"><strong>'+esc(principleName(c.principleA))+' ↔ '+esc(principleName(c.principleB))+'</strong>'+deleteButton(c,true)+'</div><p class="hint">'+esc(display(s.items[c.questionId]))+'</p><div class="two-columns">'+field(c,'supportsA','supportsA',null,false,'conflict')+field(c,'supportsB','supportsB',null,false,'conflict')+'</div>'+field(c,'priority','coordinate',null,false,'conflict')+field(c,'reason','reason',null,false,'conflict')+(presentation?'<p>'+esc(t(c.scope==='general'?'generalScope':'caseScope'))+'</p>':'<label class="field"><span>'+esc(t('scope'))+'</span><select data-conflict="'+esc(c.id)+'" data-field="scope"><option value="case" '+(c.scope==='case'?'selected':'')+'>'+esc(t('caseScope'))+'</option><option value="general" '+(c.scope==='general'?'selected':'')+'>'+esc(t('generalScope'))+'</option></select></label>')+'</article>';}).join('');}
+    if(step===7){list=rows().filter(function(x){return x.step<7;});html='<div class="review-prompts">'+data.reviewPrompts.map(function(p,idx){return '<button class="review-prompt" data-action="navigate" data-step="'+p.jumpTo+'">'+icon('spark')+'<span>'+esc(locale==='zh'?p.label:['Any missing facts?','Any unclear terms?','Do assumptions have a basis?','Any contradictions?','Whose perspective is missing?'][idx])+'</span>'+icon('arrow')+'</button>';}).join('')+'</div>';
+      if(list.length){var carrier=list[0];html+='<fieldset class="review-checklist"><legend>'+esc(t('biasChecklist'))+'</legend>'+data.biasChecks.map(function(check,idx){return '<label class="check"><input type="checkbox" id="checklist-'+esc(check.id)+'" data-checklist="'+esc(carrier.id)+'" value="'+esc(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?check.label:I.biasLabels[idx])+'</label>';}).join('')+'</fieldset>';}
+      return html+(list.length?list.map(function(it){var status=it.review?it.review.status:'unseen';return '<article class="review-card" id="entry-'+esc(it.id)+'"><span class="record-id">'+esc(it.id)+'</span><h3>'+esc(display(it)||t('empty'))+'</h3><div class="review-actions">'+button('edit','navigate','small quiet','arrow','data-step="'+it.step+'" data-id="'+esc(it.id)+'"')+(presentation?tag(status==='revise'?'revise':status==='checked'?'unchanged':'notReviewed'):'<select id="review-'+esc(it.id)+'" data-review="'+esc(it.id)+'"><option value="unseen" '+(status==='unseen'?'selected':'')+'>'+esc(t('notReviewed'))+'</option><option value="checked" '+(status==='checked'?'selected':'')+'>'+esc(t('unchanged'))+'</option><option value="revise" '+(status==='revise'?'selected':'')+'>'+esc(t('revise'))+'</option></select>')+'</div></article>';}).join(''):empty('reviewEmpty','emptySub'));}
+    if(step===8){list=rows('Q').filter(function(q){return q.isCore;});return list.length?list.map(function(q){var rel=s.relations.find(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}),r=rel?s.items[rel.from]:null;return '<article class="entry-card">'+tag('focus','green')+'<h3>'+esc(q.text||q.id)+'</h3>'+(r?field(r,'text','answer','answer')+field(r,'reason','answerWhy','answerWhy'):(presentation?'<p>'+esc(t('empty'))+'</p>':button('writeAnswer','answer','primary','note','data-id="'+esc(q.id)+'"')))+'</article>';}).join(''):empty('conclusionEmpty','emptySub');}
+    if(step===9){list=rows('RC');html='<div class="notice">'+icon('help')+'<p>'+esc(t('constraintHint'))+'</p></div><div class="word-shelf">'+data.constraints.map(function(c,idx){return '<button class="word-chip" data-action="constraint" data-text="'+esc(locale==='zh'?c.label:I.constraints[idx][0])+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?c.label:I.constraints[idx][0])+icon('plus')+'</button>';}).join('')+'</div>'+(presentation?'':button('noConstraints','no-constraints','small quiet','check'));
+      return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'constraint')+((it.checkedIds||[]).includes('none')?'<p>'+esc(t('noConstraints'))+'</p>':field(it,'text','whatWho','whatWho')+field(it,'alternatives','alternatives','alternatives')+field(it,'mitigationJudgment','mitigation','mitigation'))+'</article>';}).join(''):empty());}
+    if(step===10){list=rows('AV');return list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'prevention')+field(it,'text','prevention','preventionHint')+field(it,'actors','actor','actorHint',true)+'</article>';}).join(''):empty();}
+    return html;
+  }
+  var addType={1:['Q','addQuestion'],3:['M','addGap'],4:['A','addAssumption'],5:['C','addConcept'],6:['PA','addCustom'],9:['RC','addConstraint'],10:['AV','addPrevention']};
+  function warningMessage(w){var map={constraintContradiction:['同时记录了存在约束和没有相关约束，请回看是否矛盾。','Both constraints and no relevant constraints are recorded. Review the apparent contradiction.'],questionsCount:['建议尝试提出 5 个问题（附录 II 为 3 个）。','Consider 5 questions (Appendix II uses 3).'],questionForm:['教材建议将伦理问题写成问句。','Consider phrasing the issue as a question.'],coreCount:['建议聚焦 2 个问题（附录 II 为 1 个）。','Consider 2 focal issues (Appendix II uses 1).'],focusBasis:['为核心问题补一句选择理由。','Add a reason for your focus.'],gapCount:['建议记录至少 2 项缺失信息。','Consider at least 2 information gaps.'],assumptionBasis:['这条假设还没有完整记录依据与推断理由。','This assumption needs supporting material and an inference reason.'],conceptCount:['本组建议澄清 2 个关键词。','The team suggests clarifying 2 key terms.'],conceptColumns:['补充他人理解和本组用法。','Add both interpretations of the term.'],principleCount:['本组建议比较约 3 项相关原则；不需要凑数。','The team suggests examining about 3 relevant principles; no need to pad the list.'],conflictFields:['这项冲突还缺少行动、取舍或理由。','This conflict needs actions, priority, and reasoning.'],reviewNeeded:['部分前序记录尚未复核。','Some earlier entries have not been reviewed.'],answerNeeded:['核心问题还缺少回答或简短论证。','A core question still needs an answer or justification.'],constraintFields:['约束还缺少可行选择或责任判断。','A constraint still needs alternatives or responsibility reasoning.'],preventionCount:['教材练习建议提出至少 3 项预防思路。','The exercise suggests at least 3 preventive ideas.'],emptyStep:['这里还没有记录。可以继续，也可以稍后返回。','No records here yet. Continue or return later.'],linkWhy:['为这条关联补充为什么相关。','Explain why this connection matters.']};if(w.key&&w.key.indexOf('factCount:')===0)return bi('本组建议为「'+t(w.key.split(':')[1])+'」关联约 2 条事实。','The team suggests about 2 relevant facts for '+t(w.key.split(':')[1])+'.');return map[w.key]?map[w.key][locale==='zh'?0:1]:w.message||w.text||w.key;}
+  function warnings(step){var v=engine.validateStep(step);return [].concat(v.errors||[],v.suggestions||[]).map(function(w){return typeof w==='string'?{message:w,step:step}:Object.assign({step:step},w);});}
+  function warningBlock(step){if(presentation)return '';var list=warnings(step);return '<details class="reminders"><summary>'+icon('help')+esc(t('reminders'))+' <span>'+list.length+'</span></summary>'+(list.length?list.map(function(w){return '<button data-action="navigate" data-step="'+step+'" data-id="'+esc(w.itemId||'')+'">'+tag(w.key==='conceptCount'||w.key==='principleCount'?'team':w.source||'team')+'<span>'+esc(warningMessage(w))+'</span></button>';}).join(''):'<p>'+esc(t('noReminders'))+'</p>')+'</details>';}
+  function hero(step){var phase=step<=5?'discover':step<=7?'deliberate':'act';return '<section class="step-hero"><div class="eyebrow">'+esc(t(phase))+' <span> / '+String(step).padStart(2,'0')+' — 10</span></div><h1>'+esc(I.titles[step-1][locale==='zh'?2:3])+'</h1><p>'+esc(locale==='zh'?data.steps[step-1].intro:I.intros[step-1])+'</p><span class="hero-number" aria-hidden="true">'+String(step).padStart(2,'0')+'</span></section>';}
+  function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?source.title:t('pendingSource');}
+  function topography(){return '<svg class="contours" viewBox="0 0 240 150" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M-30 90c55-70 48-130 135-95s8 106 105 109 60-90 115-112M-30 105C25 35 18-20 100 12s12 100 110 100 60-80 115-93M-30 120C25 50 18-5 100 30s12 88 110 92 60-70 115-84M-30 135C25 65 18 15 100 48s12 80 110 86 60-60 115-73M-30 150C25 80 18 32 100 66s12 72 110 80 60-50 115-63M-30 165C25 95 18 49 100 84s12 64 110 74"/></g><circle cx="114" cy="83" r="5" fill="currentColor"/><circle cx="114" cy="83" r="12" fill="none" stroke="currentColor"/></svg>';}
+  function sidebar(step){var reviewed=Object.values(state().stepStatus).filter(function(x){return x==='checked';}).length;return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">ETHICS WORKSHOP</span></span></a><div class="case-card">'+topography()+'<span class="eyebrow">CASE 01</span><h2>'+esc(t('caseShort'))+'</h2><p>'+esc(t('course'))+'</p><span class="case-caption">'+icon('folder')+esc(t('offline'))+'</span></div><div class="nav-heading">'+esc(t('allSteps'))+'<span>'+reviewed+'/10</span></div><nav aria-label="'+esc(t('allSteps'))+'">'+data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button class="step-nav '+(step===x.id&&view==='workbook'?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(step===x.id&&view==='workbook'?'aria-current="step"':'')+'><span class="step-index">'+(status==='checked'?icon('check'):String(x.id).padStart(2,'0'))+'</span><span class="step-name">'+esc(title(x.id))+'<small class="status-'+status+'">'+esc(t(status))+'</small></span>'+(x.id<=5?'<span class="class-dot" title="'+esc(t('classSteps'))+'"></span>':'')+'</button>';}).join('')+'</nav><div class="sidebar-foot"><p>'+esc(t('yourReason'))+'</p>'+button('help','help','quiet small','help')+'</div></aside>';}
+  function rail(step){var own=rows().some(function(x){return x.step===step&&!!(x.text||x.word);})||(step===2&&rows('Q').some(function(x){return x.focusReason;}))||(step===7&&rows().some(function(x){return x.review||(x.checkedIds||[]).length;}));return '<aside class="context-rail"><section class="guide-card"><span class="eyebrow">'+icon('spark')+esc(t('guide'))+'</span><p>'+esc(locale==='zh'?['谁可能受到直接或间接的影响？','为什么这个问题值得深入讨论？','什么事实可能改变你对核心问题的回答？','这项推断为什么合理，而不仅仅是方便？','另一位读者会怎样理解这个词？','哪些原则在这个具体情境中发生冲突？','你遗漏了什么，又缺少了谁的视角？','你的回答对应最初提出的问题吗？','当时还有什么可行行动？','哪些更早的行动可能避免这个困境？'][step-1]:I.prompts[step-1])+'</p>'+tag('team','muted')+'</section><section class="rail-materials"><div class="section-heading"><h3>'+esc(t('library'))+'</h3>'+icon('book')+'</div>'+['timeline','facts','principles','sources'].map(function(tab){return '<button class="material-link" data-action="materials" data-tab="'+tab+'"><span>'+esc(t(tab))+'</span>'+icon('arrow')+'</button>';}).join('')+'<div class="material-status"><span class="status-dot"></span>'+esc(t('materialPending'))+'</div></section><section class="reference-card"><h3>'+esc(t('reference'))+'</h3><p>'+esc(t('referenceLocked'))+'</p>'+button('reference','reference','small quiet','book',(!own||!data.steps[step-1].referenceLevel3?'disabled':'')+' title="'+esc(t('referenceLocked'))+'"')+'</section><div class="rail-note"><span>01—10</span><p>'+esc(t('yourReason'))+'</p></div></aside>';}
+  function overview(){var s=state(),qs=rows('Q');return '<section class="view-heading"><span class="eyebrow">FIELDNOTES / '+esc(t('outline'))+'</span><h1>'+esc(t('connect'))+'</h1><p>'+esc(t('overviewSub'))+'</p></section>'+(qs.length?qs.map(function(q){var links=s.relations.filter(function(r){return r.to===q.id&&r.kind==='fact-supports-question';});var gaps=links.map(function(r){return r.from;});var assumptions=rows('A').filter(function(a){return s.relations.some(function(r){return r.from===a.id&&gaps.includes(r.to);});});var p=rows('PA').filter(function(x){return (x.appliesTo||[]).includes(q.id);});var res=s.relations.filter(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}).map(function(r){return s.items[r.from];});function stack(records){return records.length?records.map(function(x){return '<button class="map-entry" data-action="navigate" data-step="'+(x.step||3)+'" data-id="'+esc(x.id)+'"><span class="record-id">'+esc(x.id)+'</span><p>'+esc(display(x)||'—')+'</p></button>';}).join(''):'<div class="map-empty">—</div>';}
+      return '<article class="map-question"><div class="card-head">'+tag(q.isCore?'focus':'question',q.isCore?'green':'muted')+'<span class="record-id">'+esc(q.id)+'</span></div><h2>'+esc(q.text||'—')+'</h2><div class="reasoning-columns"><section><h3>'+esc(t('facts'))+' / '+esc(t('missing'))+'</h3>'+stack(links.map(function(r){var x=s.items[r.from]||data.facts.find(function(f){return f.id===r.from;});return Object.assign({},x,{text:x&&isPending(x.text)?t('noData'):x?x.text:r.from});}))+links.map(function(r){return '<p class="link-reason">'+esc(r.why)+'</p>';}).join('')+'</section><section><h3>'+esc(t('assumptions'))+'</h3>'+stack(assumptions)+'</section><section><h3>'+esc(t('principles'))+'</h3>'+stack(p)+'</section><section><h3>'+esc(t('conclusion'))+'</h3>'+stack(res.filter(Boolean))+'</section></div></article>';}).join(''):empty('overviewEmpty','emptySub'))+'<section class="global-concepts"><h3>'+esc(t('concepts'))+'</h3>'+rows('C').map(function(c){return '<div class="concept-summary"><strong>'+esc(c.word)+'</strong><p>'+esc(c.mine||c.myUsage||'—')+'</p></div>';}).join('')+'</section>';}
+  function comparable(value){var copy=JSON.parse(JSON.stringify(value||{}));delete copy.createdAt;delete copy.updatedAt;delete copy.review;return copy;}
+  function snapshotChanges(a,b){var result=[];['items','relations','conflicts'].forEach(function(kind){var x=kind==='items'?a.items:Object.fromEntries((a[kind]||[]).map(function(r){return[r.id,r];})),y=kind==='items'?b.items:Object.fromEntries((b[kind]||[]).map(function(r){return[r.id,r];}));new Set(Object.keys(x||{}).concat(Object.keys(y||{}))).forEach(function(id){if(JSON.stringify(comparable(x[id]))!==JSON.stringify(comparable(y[id])))result.push({id:id,before:x[id],after:y[id],kind:!x[id]?'added':!y[id]?'deleted':'modified'});});});return result;}
+  function snapshotText(x){
+    if(!x)return '—';
+    var aliases={word:'word',others:'others',othersView:'others',mine:'mine',myUsage:'mine',focusReason:'focusWhy',why:'whyRelated',reason:'reason',supportsA:'supportsA',supportsB:'supportsB',priority:'coordinate',mitigationJudgment:'mitigation',alternatives:'alternatives',order:'priority',from:'from',to:'to',kind:'associationKind',scope:'scope'};
+    var values=[];
+    if(x.principleId)values.push(principleName(x.principleId));
+    if(x.text)values.push(x.text);
+    Object.keys(aliases).forEach(function(k){if(x[k]&&!((k==='othersView'&&x.others!==undefined)||(k==='myUsage'&&x.mine!==undefined)))values.push(t(aliases[k])+': '+(k==='scope'?t(x[k]==='case'?'caseScope':'generalScope'):x[k]));});
+    ['actors','basisRefs','appliesTo'].forEach(function(k){if(x[k]&&x[k].length)values.push(t(k==='actors'?'actor':k==='basisRefs'?'basis':'questionTarget')+': '+x[k].join(' · '));});
+    if(x.isCore!==undefined)values.push(t('core')+': '+bi(x.isCore?'是':'否',x.isCore?'Yes':'No'));
+    return values.join('\n\n')||x.id||'—';
+  }
+  function discussionSummary(){var a=state().authorship;return '<section class="discussion-summary"><h3>'+esc(t('notes'))+'</h3><div class="two-columns"><div><span class="section-label">'+esc(t('discussion'))+'</span>'+a.notes.map(function(n){return '<p>'+esc(n)+'</p>';}).join('')+'</div><div><span class="section-label">'+esc(t('reservation'))+'</span>'+a.reservations.map(function(n){return '<p>'+esc(n)+'</p>';}).join('')+'</div></div></section>';}
+  function revisions(){var s=state(),a=s.snapshots.find(function(x){return x.id==='SN-01';}),b=s.snapshots.find(function(x){return x.id==='SN-02';});var changes=a&&b?snapshotChanges(a.payload,b.payload):[];return '<section class="view-heading"><span class="eyebrow">FIELDNOTES / '+esc(t('revisions'))+'</span><h1>'+esc(t('snapshotEmpty'))+'</h1><p>'+esc(t('snapshotSub'))+'</p></section><div class="snapshot-grid">'+[a,b].map(function(sn,idx){return '<article class="snapshot-card"><span class="eyebrow">0'+(idx+1)+' / '+esc(t(idx?'revised':'initial'))+'</span><h2>'+esc(t(idx?'revised':'initial'))+'</h2><p>'+(sn?esc(new Date(sn.createdAt).toLocaleString(locale==='zh'?'zh-CN':'en-GB')):esc(t('empty')))+'</p>'+(presentation?'':button(idx?'secondSnapshot':'firstSnapshot','snapshot','small primary','history','data-slot="'+(idx?'reviewed':'initial')+'"'))+(sn&&!presentation?button('restore','restore','small quiet',null,'data-id="'+sn.id+'"'):'')+'</article>';}).join('')+'</div>'+(a&&b?'<div class="section-heading"><h3>'+changes.length+' '+esc(t('changeCount'))+'</h3></div>'+(changes.length?changes.map(function(c){return '<article class="diff-card"><div class="card-head">'+tag(c.kind,c.kind==='added'?'green':'muted')+'<span class="record-id">'+esc(c.id)+'</span></div><div class="two-columns"><section><h3>'+esc(t('before'))+'</h3><pre>'+esc(snapshotText(c.before))+'</pre></section><section><h3>'+esc(t('after'))+'</h3><pre>'+esc(snapshotText(c.after))+'</pre></section></div></article>';}).join(''):'<p class="notice">'+esc(t('noChanges'))+'</p>'):empty('snapshotEmpty','snapshotSub'))+discussionSummary();}
+  function render(){if(composing)return;var active=document.activeElement, focusId=active&&active.id, selection=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;var scroll=window.scrollY;var step=current();document.documentElement.lang=locale==='zh'?'zh-CN':'en';document.title='Fieldnotes · '+t('caseTitle');document.body.classList.toggle('presentation',!!presentation);
+    var saveStatus=engine.getSaveStatus?engine.getSaveStatus():'unknown';
+    app.innerHTML='<div class="app-shell">'+sidebar(step)+'<div class="main-shell"><header class="topbar"><div class="breadcrumb">'+esc(t('workbook'))+' <span>/</span> '+esc(t('caseTitle'))+'</div><div class="top-actions"><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">中文</button><button data-action="language" data-lang="en" aria-pressed="'+(locale==='en')+'" class="'+(locale==='en'?'selected':'')+'">EN</button></div>'+button('materials','materials','quiet','book')+button(presentation?'exitPresent':'present',presentation?'exit-present':'present','primary','screen')+'</div></header>'+(mockMode?'<div class="mode-banner mock-banner">'+esc(t('mockBanner'))+button('exitMock','exit-mock','small quiet')+'</div>':'')+(presentation?'<div class="mode-banner">'+esc(t('presentationNotice'))+'</div>':'')+'<div class="view-tabs" role="group">'+[['workbook','note'],['overview','map'],['revisions','history']].map(function(x){return '<button class="view-tab '+(view===x[0]?'selected':'')+'" data-action="view" data-view="'+x[0]+'" aria-pressed="'+(view===x[0])+'">'+icon(x[1])+esc(t(x[0]))+'</button>';}).join('')+'<span class="tab-caption">'+esc(t('classSteps'))+'</span></div><div class="workspace-layout '+(view!=='workbook'?'wide':'')+'"><main id="workspace" tabindex="-1">'+(view==='workbook'?hero(step)+'<div class="workspace-heading"><div><span class="eyebrow">'+esc(t('step'))+' '+String(step).padStart(2,'0')+'</span><h2>'+esc(title(step))+'</h2></div>'+(!presentation&&addType[step]?button(addType[step][1],'add','small','plus','data-type="'+addType[step][0]+'" data-step="'+step+'"'):'')+'</div><div class="entries">'+inputStep(step)+'</div>'+warningBlock(step)+'<div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+(presentation?'':'<label class="status-select">'+esc(t('status'))+'<select id="step-status-'+step+'" data-status="'+step+'">'+['todo','draft','discuss','checked','stale'].map(function(x){return '<option value="'+x+'" '+(state().stepStatus[step]===x?'selected':'')+'>'+esc(t(x))+'</option>';}).join('')+'</select></label>')+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>':view==='overview'?overview():revisions())+'</main>'+(view==='workbook'?rail(step):'')+'</div><footer class="savebar"><div><span class="save-indicator '+(saveStatus==='memory'?'warn':'')+'"></span><strong>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</strong><span class="save-caption">'+esc(t('localOnly'))+'</span></div><div>'+button('notes','notes','small quiet','note')+button('jsonImport','import','small quiet','folder')+button('export','export','small','download')+'</div></footer></div></div>';
+    if(focusId){var found=document.getElementById(focusId);if(found){found.focus({preventScroll:true});if(selection&&found.setSelectionRange)try{found.setSelectionRange(selection[0],selection[1]);}catch(e){}}}window.scrollTo(0,scroll);
+  }
+  function toast(message){var box=document.getElementById('toast');box.textContent=message;box.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(function(){box.classList.remove('visible');},3500);}
+  function openDialog(titleKey,body,drawer){if(modal.open)modal.close();modal.className=drawer?'drawer':'';modalContent.innerHTML='<div class="modal-head"><h2>'+esc(t(titleKey))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;modal.showModal();}
+  function confirmAction(message,action){openDialog('help','<p class="modal-message">'+esc(message)+'</p><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" data-action="confirm">'+esc(t('confirm'))+'</button></div>');modal.confirmHandler=action;}
+  function dispatch(type,payload){engine.dispatch({type:type,payload:payload});}
+  function options(records){return '<option value="">'+esc(t('choose'))+'</option>'+records.map(function(x){return '<option value="'+esc(x.id)+'">'+esc(display(x)||x.title||x.id)+'</option>';}).join('');}
+  function materialBody(tab){var tabs=['timeline','facts','principles','sources','glossary'];var body='<div class="drawer-tabs">'+tabs.map(function(k){return '<button data-action="material-tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'">'+esc(t(k))+'</button>';}).join('')+'</div>';
+    if(tab==='principles')body+='<p class="hint">'+esc(t('sourceTranslation'))+' · 23 '+bi('条原则 + 10 项权利','principles + 10 rights')+'</p>'+['basic','organization','employee','involvement','rights'].map(function(group){return '<details class="principle-group" '+(group==='basic'?'open':'')+'><summary>'+esc(t(group))+'<span>'+data.principles.filter(function(p){return p.group===group;}).length+'</span></summary>'+data.principles.filter(function(p){return p.group===group;}).map(function(p){var chosen=rows('PA').some(function(it){return it.principleId===p.id;});return '<article class="library-card"><span class="record-id">'+esc(p.id)+'</span>'+tag(group==='rights'?'rights':'textbook','muted')+'<h3>'+esc(principleName(p.id))+'</h3><p>'+esc(locale==='zh'?p.desc:p.nameEn)+'</p><details><summary>'+esc(t('sourceOriginal'))+'</summary><p>'+esc(p.nameEn)+'</p><small>'+esc(sourceName(p.sourceId))+'</small></details>'+(!presentation?button(chosen?'selected':'add','principle','small '+(chosen?'quiet':'primary'),chosen?'check':'plus','data-id="'+p.id+'" '+(chosen?'disabled':'')):'')+'</article>';}).join('')+'</details>';}).join('');
+    if(tab==='timeline'){var timeline=data.timeline.filter(function(x){return !isPending(x.event);});body+=timeline.length?'<div class="timeline">'+timeline.map(function(x){return '<article><time>'+esc(x.date)+'</time><h3>'+esc(x.event)+'</h3><small>'+esc(sourceName(x.sourceId))+'</small></article>';}).join('')+'</div>':empty('noData','noDataSub');}
+    if(tab==='facts')body+=facts().length?facts().map(function(f){return '<article class="library-card">'+tag('facts','green')+'<p>'+esc(f.text)+'</p><div>'+f.categories.map(function(c){return tag(c);}).join(' ')+'</div><small>'+esc(sourceName(f.sourceId))+'</small>'+connectButton(f)+'</article>';}).join(''):empty('noData','noDataSub');
+    if(tab==='sources')body+=data.sources.map(function(s){var url=/^https?:\/\//i.test(s.url||'')?s.url:'';return '<article class="library-card"><span class="record-id">'+esc(s.id)+'</span><h3>'+esc(s.title)+'</h3><p>'+esc(s.publisher)+' · '+esc(s.year)+'</p>'+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</article>';}).join('');
+    if(tab==='glossary')body+='<article class="library-card"><h3>'+esc(t('methodBasis'))+'</h3><p>'+esc(t('countNote'))+'</p>'+tag('textbook')+'</article>'+data.valueWords.map(function(w,idx){return '<article class="library-card"><h3>'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+'</h3><p>'+esc(locale==='zh'?w.whyVague:I.words[idx]?I.words[idx][1]:w.whyVague)+'</p>'+tag('team','muted')+' <small>'+esc(t('pendingSource'))+'</small></article>';}).join('');
+    return body;
+  }
+  function openMaterials(tab){openDialog('materials',materialBody(tab||'timeline'),true);}
+  function linkDialog(id){var source=state().items[id]||data.facts.find(function(f){return f.id===id;});if(!rows('Q').length){toast(t('noTargets'));return;}openDialog('linkEvidence','<form id="link-form" data-from="'+esc(id)+'"><p class="quote">'+esc(display(source))+'</p><label class="field"><span>'+esc(t('questionTarget'))+'</span><select name="target" required>'+options(rows('Q'))+'</select></label><label class="field"><span>'+esc(t('whyRelated'))+'</span><textarea name="why" placeholder="'+esc(t('whyHint'))+'" required></textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');}
+  function basisDialog(id){var it=state().items[id],rel=state().relations.find(function(r){return r.from===id&&r.kind==='assumption-fills-gap';});var refs=rows('M').concat(facts(),data.sources);openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><fieldset><legend>'+esc(t('basis'))+'</legend>'+refs.map(function(x){return '<label class="check"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+((it.basisRefs||[]).includes(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</fieldset><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');if(rel)modal.querySelector('[name="gap"]').value=rel.to;}
+  function exportMarkdown(){var s=state(),text='# '+t('caseTitle')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
+  function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
+  function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+button('jsonExport','download-json','primary','download')+button('markdown','download-md','','note')+'</div>');}
+  function enterPresentation(){if(!rows().length){toast(t('presentEmpty'));return;}var list=[];for(var n=1;n<=10;n++)list=list.concat(warnings(n));openDialog('present','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<button data-action="navigate" data-step="'+w.step+'">'+esc(title(w.step))+' · '+esc(warningMessage(w))+'</button>';}).join('')+'</details>'+button('present','start-present','primary','screen'));}
+  function onClick(event){var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
+    if(presentation && ['add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note'].includes(action))return;
+    if(action==='navigate'){view='workbook';if(modal.open)modal.close();var target=Math.max(1,Math.min(10,Number(el.dataset.step)));if(presentation){presentationStep=target;render();}else dispatch('NAVIGATE',{step:target});window.scrollTo(0,0);if(el.dataset.id)setTimeout(function(){var item=document.getElementById('entry-'+el.dataset.id);if(item)item.scrollIntoView({block:'center',behavior:'smooth'});},0);}
+    if(action==='view'){view=el.dataset.view;render();window.scrollTo(0,0);}
+    if(action==='language'){locale=el.dataset.lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();if(modal.open)modal.close();}
+    if(action==='add'){dispatch('ADD_ITEM',{type:el.dataset.type,step:Number(el.dataset.step),fields:el.dataset.type==='C'?{word:'',others:'',mine:''}:el.dataset.type==='PA'?{order:rows('PA').length+1}:undefined});var items=rows(el.dataset.type),last=items[items.length-1];setTimeout(function(){var input=document.querySelector('[data-item="'+last.id+'"]');if(input)input.focus();},0);}
+    if(action==='delete'){var it=state().items[el.dataset.id];var dependencies=engine.affected?engine.affected(it.id):[];var impacts=Array.from(new Set(dependencies.map(function(id){return state().items[id]?state().items[id].step:null;}).filter(Boolean)));confirmAction(t((state().relations.some(function(r){return r.from===it.id||r.to===it.id;})||(engine.affected&&engine.affected(it.id).length))?'deleteLinked':'deleteConfirm')+(impacts.length?' '+t('step')+' '+impacts.join(', '):''),function(){dispatch('DELETE_ITEM',{id:it.id});});}
+    if(action==='delete-conflict')confirmAction(t('deleteConfirm'),function(){dispatch('DELETE_CONFLICT',{id:el.dataset.id});});
+    if(action==='close'){modal.close();modal.confirmHandler=null;}
+    if(action==='confirm'){var fn=modal.confirmHandler;modal.close();modal.confirmHandler=null;if(fn)fn();}
+    if(action==='materials')openMaterials(el.dataset.tab);
+    if(action==='material-tab')modalContent.innerHTML='<div class="modal-head"><h2>'+esc(t('materials'))+'</h2>'+button('close','close','icon-button quiet','close')+'</div>'+materialBody(el.dataset.tab);
+    if(action==='link') {if(modal.open)modal.close();linkDialog(el.dataset.id);}
+    if(action==='unlink')dispatch('UNLINK',{id:el.dataset.id});
+    if(action==='basis')basisDialog(el.dataset.id);
+    if(action==='concept')dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});
+    if(action==='constraint')dispatch('ADD_ITEM',{type:'RC',step:9,fields:{text:el.dataset.text}});
+    if(action==='no-constraints')dispatch('ADD_ITEM',{type:'RC',step:9,fields:{checkedIds:['none'],text:''}});
+    if(action==='principle'){dispatch('ADD_ITEM',{type:'PA',step:6,fields:{principleId:el.dataset.id,appliesTo:[],order:rows('PA').length+1}});modal.close();view='workbook';dispatch('NAVIGATE',{step:6});}
+    if(action==='rank'){var list=rows('PA').sort(function(a,b){return(a.order||0)-(b.order||0);}),idx=list.findIndex(function(x){return x.id===el.dataset.id;}),dest=idx+Number(el.dataset.direction);if(dest>=0&&dest<list.length){var other=list[dest];list[dest]=list[idx];list[idx]=other;list.forEach(function(x,i){dispatch('UPDATE_ITEM',{id:x.id,fields:{order:i+1}});});}}
+    if(action==='conflict'){var entries=rows('PA').map(function(it){return{id:it.principleId||it.id,text:principleName(it.principleId)||it.text||t('custom')};});openDialog('addConflict','<form id="conflict-form"><label class="field"><span>'+esc(t('questionTarget'))+'</span><select name="question" required>'+options(rows('Q'))+'</select></label><div class="two-columns"><label class="field"><span>'+esc(t('principleA'))+'</span><select name="a" required>'+options(entries)+'</select></label><label class="field"><span>'+esc(t('principleB'))+'</span><select name="b" required>'+options(entries)+'</select></label></div><button type="submit" class="button primary">'+esc(t('addConflict'))+'</button></form>');}
+    if(action==='answer')dispatch('ANSWER',{question:el.dataset.id});
+    if(action==='snapshot'){var slot=el.dataset.slot,id=slot==='initial'?'SN-01':'SN-02';var save=function(){engine.createSnapshot(slot);toast(t('snapshotSaved'));};if(state().snapshots.some(function(x){return x.id===id;}))confirmAction(t('snapshotReplace'),save);else save();}
+    if(action==='restore')confirmAction(t('restoreConfirm'),function(){engine.restoreSnapshot(el.dataset.id);});
+    if(action==='reference'){if(presentation)return;dispatch('ACCEPT_L3',{step:current()});var ref=data.steps[current()-1].referenceLevel3;openDialog('reference','<p class="notice">'+esc(t('referenceDisclaimer'))+'</p>'+tag('textbook')+'<p>'+esc(!ref||isPending(ref.body)?t('referencePending'):ref.body)+'</p><small>'+esc(t('methodBasis'))+' · '+esc(data.meta.builtAt)+'</small>',true);}
+    if(action==='revision-note')openDialog('changeReason','<form id="revision-form" data-id="'+esc(el.dataset.id)+'"><label class="field"><span>'+esc(t('changeReason'))+'</span><textarea name="text" required></textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button type="submit" class="button primary">'+esc(t('save'))+'</button></div></form>');
+    if(action==='notes')openDialog('notes','<form id="notes-form"><label class="field"><span>'+esc(t('author'))+'</span><input name="author" placeholder="'+esc(t('authorHint'))+'"></label><label class="field"><span>'+esc(t('notes'))+'</span><textarea name="text" placeholder="'+esc(t('noteHint'))+'" required></textarea></label><label class="field"><select name="kind"><option value="note">'+esc(t('discussion'))+'</option><option value="reservation">'+esc(t('reservation'))+'</option></select></label><button type="submit" class="button primary" '+(presentation?'disabled':'')+'>'+esc(t('addNote'))+'</button></form><div class="discussion-list">'+state().authorship.notes.concat(state().authorship.reservations).map(function(n){return '<p>'+esc(n)+'</p>';}).join('')+'</div>');
+    if(action==='export')exportDialog();
+    if(action==='download-json'){download(engine.exportProject(),'fukushima-project.json','application/json');modal.close();}
+    if(action==='download-md'){download(exportMarkdown(),'fukushima-notes.md','text/markdown;charset=utf-8');modal.close();}
+    if(action==='import')document.getElementById('project-file').click();
+    if(action==='present')enterPresentation();
+    if(action==='start-present'){presentationStep=current();presentation=JSON.parse(JSON.stringify(engine.getState()));modal.close();render();}
+    if(action==='exit-present'){presentation=null;render();}
+    if(action==='help')openDialog('help','<h3>'+esc(t('helpTitle'))+'</h3><p>'+esc(t('helpBody'))+'</p><p class="hint">'+esc(t('countNote'))+'</p><div class="help-actions">'+button('jsonExport','download-json','','download')+button('mock','mock','quiet','note')+button('reset','reset','quiet','trash')+(engine.recoveryData&&engine.recoveryData()?button('recovery','recovery','quiet','download'):'')+'</div>');
+    if(action==='recovery')download(engine.recoveryData(),'fukushima-original-archive.json','application/json');
+    if(action==='reset')confirmAction(t('resetConfirm'),function(){dispatch('RESET',{});toast(t('resetDone'));});
+    if(action==='mock')confirmAction(t('mockConfirm'),function(){if(!mockMode)workingEngine=engine;engine=window.FrontendPreviewRuntime.create(data,{persistent:false,state:window.MOCK_USER_STATE});mockMode=true;view='workbook';bindEngine();render();});
+    if(action==='exit-mock'){engine=workingEngine;mockMode=false;presentation=null;bindEngine();render();}
+  }
+  function updateInput(event){if(presentation||composing)return;var el=event.target;if(el.dataset.item||el.dataset.conflict){var key=el.dataset.field,value=el.type==='checkbox'?el.checked:el.value;if(key==='actors')value=value.split(/[,，]/).map(function(x){return x.trim();}).filter(Boolean);if(key==='appliesTo')value=value?[value]:[];if(key==='order')value=Math.max(1,Math.min(99,Number(value)||1));var fields={};fields[key]=value;dispatch(el.dataset.conflict?'UPDATE_CONFLICT':'UPDATE_ITEM',{id:el.dataset.item||el.dataset.conflict,fields:fields});}if(el.dataset.applies){var pa=state().items[el.dataset.applies],targets=(pa.appliesTo||[]).filter(function(id){return id!==el.value;});if(el.checked)targets.push(el.value);dispatch('UPDATE_ITEM',{id:pa.id,fields:{appliesTo:targets}});}if(el.dataset.checklist){var carrier=state().items[el.dataset.checklist],ids=(carrier.checkedIds||[]).filter(function(id){return id!==el.value;});if(el.checked)ids.push(el.value);dispatch('SET_CHECKLIST',{id:carrier.id,ids:ids});}if(el.dataset.status)dispatch('SET_STATUS',{step:Number(el.dataset.status),status:el.value});if(el.dataset.review){var it=state().items[el.dataset.review];dispatch('UPDATE_ITEM',{id:it.id,fields:{review:{status:el.value,note:it.review?it.review.note||'':''}}});dispatch('SET_STATUS',{step:7,status:'draft'});if(el.value==='revise')dispatch('SET_STATUS',{step:it.step,status:'stale'});}}
+  function submit(event){if(presentation){event.preventDefault();return;}var form=event.target;if(!['link-form','basis-form','conflict-form','notes-form','revision-form'].includes(form.id))return;event.preventDefault();var fd=new FormData(form);
+    if(form.id==='link-form'){if(!String(fd.get('why')).trim()){toast(t('needReason'));return;}dispatch('LINK',{from:form.dataset.from,to:fd.get('target'),kind:'fact-supports-question',why:String(fd.get('why')).trim()});}
+    if(form.id==='basis-form'){if(!String(fd.get('why')).trim()){toast(t('needReason'));return;}var refs=fd.getAll('basis');if(!refs.length)refs=[fd.get('gap')];dispatch('SET_BASIS',{id:form.dataset.id,refs:refs,gap:fd.get('gap'),why:fd.get('why')});}
+    if(form.id==='conflict-form'){if(fd.get('a')===fd.get('b')){toast(t('needPair'));return;}dispatch('ADD_CONFLICT',{questionId:fd.get('question'),principleA:fd.get('a'),principleB:fd.get('b'),supportsA:'',supportsB:'',priority:'',reason:'',scope:'case'});}
+    if(form.id==='revision-form'){dispatch('ADD_NOTE',{kind:'note',text:new Date().toISOString()+' · '+form.dataset.id+' · '+fd.get('text')});toast(t('noteSaved'));}
+    if(form.id==='notes-form'){dispatch('ADD_NOTE',{kind:fd.get('kind'),text:(fd.get('author')?fd.get('author')+' · ':'')+fd.get('text')});toast(t('noteSaved'));}modal.close();
+  }
+  function bindEngine(){if(unsubscribe)unsubscribe();unsubscribe=engine.subscribe(render);}
+  document.addEventListener('compositionstart',function(){composing=true;});document.addEventListener('compositionend',function(e){composing=false;updateInput(e);});
+  document.addEventListener('click',onClick);document.addEventListener('input',function(e){if(e.target.matches('textarea[data-item],input[data-item]:not([type="checkbox"]),textarea[data-conflict],input[data-conflict]'))updateInput(e);});document.addEventListener('change',function(e){if(e.target.matches('select[data-item],select[data-conflict],input[type="checkbox"][data-item],[data-status],[data-review],[data-checklist],[data-applies]'))updateInput(e);});document.addEventListener('submit',submit);
+  document.addEventListener('dragstart',function(e){var el=e.target.closest('[data-drag]');if(el&&!presentation){dragId=el.dataset.drag;e.dataTransfer.setData('text/plain',dragId);}});
+  document.addEventListener('dragover',function(e){if(e.target.closest('[data-drag]'))e.preventDefault();});
+  document.addEventListener('drop',function(e){var el=e.target.closest('[data-drag]');if(!el||!dragId||presentation)return;e.preventDefault();var list=rows('PA').sort(function(a,b){return(a.order||0)-(b.order||0);}),from=list.findIndex(function(x){return x.id===dragId;}),to=list.findIndex(function(x){return x.id===el.dataset.drag;});if(from>=0&&to>=0){var row=list.splice(from,1)[0];list.splice(to,0,row);list.forEach(function(x,i){dispatch('UPDATE_ITEM',{id:x.id,fields:{order:i+1}});});}dragId=null;});
+  document.getElementById('project-file').addEventListener('change',function(e){var file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>5*1024*1024){toast(t('fileLarge'));return;}var reader=new FileReader();reader.onload=function(){confirmAction(t('importConfirm'),function(){var result=engine.importProject(reader.result);toast(t(result.ok?'imported':'invalidImport'));if(result.ok){view='workbook';render();}});};reader.onerror=function(){toast(t('invalidImport'));};reader.readAsText(file);});
+  window.addEventListener('pagehide',function(){if(engine.flush)engine.flush();});
+  window.FIELDNOTES={mount:function(runtime){engine=runtime;workingEngine=runtime;presentation=null;mockMode=false;bindEngine();render();},getEngine:function(){return engine;},getLocale:function(){return locale;},snapshotChanges:snapshotChanges};
+  bindEngine();render();
+})();
+
+</script>
+</body>
+</html>

@@ -16,3 +16,9 @@
 2026-10-11 / 静态数据 ID 统一为 f-mat- / f-ind- / f-org- / tl- 等前缀，引用时直接写原 id / 避免界面层与数据层各自假设一套 id。
 2026-10-11 / 静态约束提示词前缀改为 rch- / 避免与用户条目 RC- 在大小写不敏感的匹配中冲突。
 2026-10-11 / main 追平：三 docs 分支内容已合入 / 此前 `docs/contract-v2`、`docs/contributing-and-contract-fixup`、`docs/fix-id-prefix` 长期未进 `main`，远程 `main` 一度仅 `ab66919` 脚手架；现 `git log origin/main` 在脚手架之上新增 `2bc1481 Docs/fix id prefix (#3)`，node 核验 principles=33、constraints=rch-001…005，判定文档与静态数据已追平。合入方式为 squash（main 上仅 1 条新提交，无 merge 节点）。
+
+2026-10-11 / 用户要求精确创建 frontend 分支，从 origin/main 起步 / 只向该分支推送，不合并 main。
+2026-10-11 / Fieldnotes 使用研究工作本布局，原始材料常驻、结论从空白开始 / 用关联与复核支持人工推理，避免自动分析。
+2026-10-11 / 双语只翻译 UI，不改用户原文 / 保留作者意思，教材原句另行保留。
+2026-10-11 / 在 src/ui 提供可替换预览 runtime 与 preview.html 构建 / PI 的 logic、data、tools、dist 保持其归属，前端可独立评审。
+2026-10-11 / 修改原因用卡片历史图标主动记录，不在每次输入时弹窗 / 支持留痕，同时不打断中文输入和小组讨论。
