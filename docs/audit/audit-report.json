@@ -1,0 +1,741 @@
+{
+  "allowedSkips": [],
+  "summary": {
+    "pass": 55,
+    "fail": 1,
+    "skip": 0
+  },
+  "checks": [
+    {
+      "id": "D3-boot",
+      "status": "pass",
+      "detail": "engine mounted"
+    },
+    {
+      "id": "D6-1-boot",
+      "status": "pass",
+      "detail": "workspace after reset"
+    },
+    {
+      "id": "D2-step-1",
+      "status": "pass",
+      "detail": "从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+    },
+    {
+      "id": "D2-step-2",
+      "status": "pass",
+      "detail": "找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+    },
+    {
+      "id": "D2-step-3",
+      "status": "pass",
+      "detail": "分清已知与未知。 | inputs=0 buttons=换个角度,查看相关资料,选择相关事实,添加信息缺口,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）"
+    },
+    {
+      "id": "D2-step-4",
+      "status": "pass",
+      "detail": "让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+    },
+    {
+      "id": "D2-step-5",
+      "status": "pass",
+      "detail": "把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+    },
+    {
+      "id": "D2-step-6",
+      "status": "pass",
+      "detail": "让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+    },
+    {
+      "id": "D2-step-7",
+      "status": "pass",
+      "detail": "回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+    },
+    {
+      "id": "D2-step-8",
+      "status": "pass",
+      "detail": "写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+    },
+    {
+      "id": "D2-step-9",
+      "status": "pass",
+      "detail": "把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+    },
+    {
+      "id": "D2-step-10",
+      "status": "pass",
+      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+    },
+    {
+      "id": "D3-1",
+      "status": "pass",
+      "detail": "intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|对比修订|存档 ▾"
+    },
+    {
+      "id": "D3-2",
+      "status": "pass",
+      "detail": "hintHidden=1,2,3,4,5"
+    },
+    {
+      "id": "D4-1",
+      "status": "pass",
+      "detail": "found"
+    },
+    {
+      "id": "D4-2",
+      "status": "pass",
+      "detail": "presentation control search"
+    },
+    {
+      "id": "D2-variety",
+      "status": "pass",
+      "detail": "distinct control signatures=10"
+    },
+    {
+      "id": "D1-1",
+      "status": "pass",
+      "detail": "hard=0 soft=6"
+    },
+    {
+      "id": "D1-3",
+      "status": "pass",
+      "detail": "referenceLevel3=null"
+    },
+    {
+      "id": "D1-3b",
+      "status": "pass",
+      "detail": "disabled=true"
+    },
+    {
+      "id": "D2-2",
+      "status": "pass",
+      "detail": "用问句提出你真正想讨论的问题… | 运营商是否向公众及时说明了风险？"
+    },
+    {
+      "id": "D2-4",
+      "status": "pass",
+      "detail": "coreChecked=true"
+    },
+    {
+      "id": "D5-1",
+      "status": "pass",
+      "detail": "library=true relation=true textHit=true"
+    },
+    {
+      "id": "D5-2",
+      "status": "fail",
+      "detail": "no 推理总览 control in the workbook"
+    },
+    {
+      "id": "D5-3",
+      "status": "pass",
+      "detail": "diffItems=1 summary=true"
+    },
+    {
+      "id": "D5-4",
+      "status": "pass",
+      "detail": "helpHas问句=true nextDisabled=false"
+    },
+    {
+      "id": "D4-4",
+      "status": "pass",
+      "detail": "next enabled while form incomplete"
+    },
+    {
+      "id": "D1-5",
+      "status": "pass",
+      "detail": "len=675"
+    },
+    {
+      "id": "D5-5",
+      "status": "pass",
+      "detail": "sections=10"
+    },
+    {
+      "id": "D5-6",
+      "status": "pass",
+      "detail": "importOk=true items 4->4"
+    },
+    {
+      "id": "D6-2",
+      "status": "pass",
+      "detail": "badImport=\"pack\""
+    },
+    {
+      "id": "D2-6",
+      "status": "pass",
+      "detail": "让每个假设有依据。"
+    },
+    {
+      "id": "D2-7",
+      "status": "pass",
+      "detail": "chips=4"
+    },
+    {
+      "id": "D2-11",
+      "status": "pass",
+      "detail": "constraint notice"
+    },
+    {
+      "id": "D2-12",
+      "status": "pass",
+      "detail": "preset prevention=false"
+    },
+    {
+      "id": "D2-3",
+      "status": "pass",
+      "detail": "正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。"
+    },
+    {
+      "id": "D6-console",
+      "status": "pass",
+      "detail": "no window.error"
+    },
+    {
+      "id": "D7-1@1410",
+      "status": "pass",
+      "detail": "scrollWidth=1395 inner=1410"
+    },
+    {
+      "id": "D7-2-hero@1410",
+      "status": "pass",
+      "detail": "hero=35.955"
+    },
+    {
+      "id": "D7-2-field@1410",
+      "status": "pass",
+      "detail": "field=14"
+    },
+    {
+      "id": "D7-2-nav@1410",
+      "status": "pass",
+      "detail": "stepName=16"
+    },
+    {
+      "id": "D7-2-body@1410",
+      "status": "pass",
+      "detail": "body=14"
+    },
+    {
+      "id": "D7-2-primary@1410",
+      "status": "pass",
+      "detail": "footerPrimary=14"
+    },
+    {
+      "id": "D7-1@1250",
+      "status": "pass",
+      "detail": "scrollWidth=1235 inner=1250"
+    },
+    {
+      "id": "D7-2-hero@1250",
+      "status": "pass",
+      "detail": "hero=31.875"
+    },
+    {
+      "id": "D7-2-field@1250",
+      "status": "pass",
+      "detail": "field=14"
+    },
+    {
+      "id": "D7-2-nav@1250",
+      "status": "pass",
+      "detail": "stepName=16"
+    },
+    {
+      "id": "D7-2-body@1250",
+      "status": "pass",
+      "detail": "body=14"
+    },
+    {
+      "id": "D7-2-primary@1250",
+      "status": "pass",
+      "detail": "footerPrimary=14"
+    },
+    {
+      "id": "D7-1@994",
+      "status": "pass",
+      "detail": "scrollWidth=979 inner=994"
+    },
+    {
+      "id": "D7-2-hero@994",
+      "status": "pass",
+      "detail": "hero=30"
+    },
+    {
+      "id": "D7-2-field@994",
+      "status": "pass",
+      "detail": "field=14"
+    },
+    {
+      "id": "D7-2-nav@994",
+      "status": "pass",
+      "detail": "stepName=16"
+    },
+    {
+      "id": "D7-2-body@994",
+      "status": "pass",
+      "detail": "body=14"
+    },
+    {
+      "id": "D7-2-primary@994",
+      "status": "pass",
+      "detail": "footerPrimary=14"
+    },
+    {
+      "id": "D6-3",
+      "status": "pass",
+      "detail": "status=自动保存不可用，请导出备份 editable=true newErrors=0"
+    }
+  ],
+  "frictions": [
+    {
+      "persona": "P1",
+      "severity": "yellow",
+      "title": "填写示例默认收起",
+      "evidence": "step-hint-panel hidden on steps 1,2,3,4,5,6,7,8,9,10"
+    },
+    {
+      "persona": "P1",
+      "severity": "yellow",
+      "title": "没有推理总览入口",
+      "evidence": "i18n.overview exists; workbook DOM does not render it"
+    },
+    {
+      "persona": "P2",
+      "severity": "yellow",
+      "title": "下一步在首屏之下",
+      "evidence": "next.top > innerHeight 805"
+    },
+    {
+      "persona": "P3",
+      "severity": "blue",
+      "title": "结论类词语出现在用户槽位标签和形式提醒里",
+      "evidence": "soft hits=6; hard hits=0"
+    },
+    {
+      "persona": "P1",
+      "severity": "blue",
+      "title": "首屏主行动是添加问题，但品牌名 fieldnotes 先于课程任务",
+      "evidence": "hero=从一个问题开始。"
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "从一个问题开始。",
+      "intro": "谁受到影响？哪些行动值得提出伦理疑问？",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "添加问题",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订",
+        "存档 ▾"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 2,
+      "title": "找到讨论的重点。",
+      "intro": "选择最值得深入分析的问题，并说明理由。",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "上一步",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订",
+        "存档 ▾"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 3,
+      "title": "分清已知与未知。",
+      "intro": "整理相关事实，记录还需要知道的信息。",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "查看相关资料",
+        "选择相关事实",
+        "添加信息缺口",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 4,
+      "title": "让每个假设有依据。",
+      "intro": "写下暂定假设，说明依据与推断理由。",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "查看相关资料",
+        "添加假设",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 5,
+      "title": "把关键词说清楚。",
+      "intro": "同一个词，他人怎么理解，你们怎么使用？",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "查看相关资料",
+        "添加概念",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 6,
+      "title": "让原则回应问题。",
+      "intro": "选择适用原则，解释它们如何影响你的判断。",
+      "hintHidden": true,
+      "buttons": [
+        "选择原则",
+        "换个角度",
+        "查看相关资料",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 7,
+      "title": "回看，再想一次。",
+      "intro": "检查前六步，保留观点，也允许自己修订。",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "查看相关资料",
+        "回到问题",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 8,
+      "title": "写下自己的判断。",
+      "intro": "回答核心问题，并用自己的理由支持它。",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "选择核心问题",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订",
+        "存档 ▾"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 9,
+      "title": "把现实条件考虑进来。",
+      "intro": "当时有哪些选择？这些约束如何影响责任？",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "本案没有相关约束",
+        "添加约束",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    },
+    {
+      "step": 10,
+      "title": "想想更早的一步。",
+      "intro": "哪些更早的行动可能避免同类困境？",
+      "hintHidden": true,
+      "buttons": [
+        "换个角度",
+        "添加预防措施",
+        "上一步",
+        "下一步",
+        "存为「初步」（快照）",
+        "存为「复核后」（快照）",
+        "对比修订",
+        "存档 ▾"
+      ],
+      "inputs": 0,
+      "hasEntryOrEmpty": true
+    }
+  ],
+  "ops": [
+    {
+      "step": 1,
+      "action": "navigate"
+    },
+    {
+      "step": 2,
+      "action": "navigate"
+    },
+    {
+      "step": 3,
+      "action": "navigate"
+    },
+    {
+      "step": 4,
+      "action": "navigate"
+    },
+    {
+      "step": 5,
+      "action": "navigate"
+    },
+    {
+      "step": 6,
+      "action": "navigate"
+    },
+    {
+      "step": 7,
+      "action": "navigate"
+    },
+    {
+      "step": 8,
+      "action": "navigate"
+    },
+    {
+      "step": 9,
+      "action": "navigate"
+    },
+    {
+      "step": 10,
+      "action": "navigate"
+    },
+    {
+      "step": 8,
+      "action": "open-help"
+    },
+    {
+      "step": 1,
+      "action": "add-question"
+    },
+    {
+      "step": 1,
+      "action": "type-question"
+    },
+    {
+      "step": 2,
+      "action": "navigate"
+    },
+    {
+      "step": 2,
+      "action": "check-core"
+    },
+    {
+      "step": 2,
+      "action": "type-reason"
+    },
+    {
+      "step": 3,
+      "action": "navigate"
+    },
+    {
+      "step": 3,
+      "action": "open-library"
+    },
+    {
+      "step": 3,
+      "action": "choose-question"
+    },
+    {
+      "step": 3,
+      "action": "type-why"
+    },
+    {
+      "step": 3,
+      "action": "save-link"
+    },
+    {
+      "step": 3,
+      "action": "return"
+    },
+    {
+      "step": 1,
+      "action": "snapshot-initial"
+    },
+    {
+      "step": 1,
+      "action": "edit-question"
+    },
+    {
+      "step": 1,
+      "action": "snapshot-reviewed"
+    },
+    {
+      "step": 1,
+      "action": "open-compare"
+    },
+    {
+      "step": 1,
+      "action": "add-nonquestion"
+    },
+    {
+      "step": 1,
+      "action": "type-nonquestion"
+    },
+    {
+      "step": 1,
+      "action": "open-help"
+    },
+    {
+      "step": 4,
+      "action": "navigate-to-fill"
+    },
+    {
+      "step": 4,
+      "action": "add-assumption"
+    },
+    {
+      "step": 4,
+      "action": "type-assumption"
+    },
+    {
+      "step": 5,
+      "action": "navigate-to-fill"
+    },
+    {
+      "step": 5,
+      "action": "pick-term"
+    },
+    {
+      "step": 5,
+      "action": "type-others"
+    },
+    {
+      "step": 5,
+      "action": "type-mine"
+    }
+  ],
+  "keywords": [
+    {
+      "where": "i18n.suggestion",
+      "hard": false,
+      "text": "建议"
+    },
+    {
+      "where": "i18n.resolution",
+      "hard": false,
+      "text": "结论"
+    },
+    {
+      "where": "i18n.restoreConfirm",
+      "hard": false,
+      "text": "恢复会替换当前工作记录，建议先导出备份。继续吗？"
+    },
+    {
+      "where": "i18n.resetConfirm",
+      "hard": false,
+      "text": "清空当前记录？建议先导出备份。"
+    },
+    {
+      "where": "i18n.mockBanner",
+      "hard": false,
+      "text": "仅用于调试，不是福岛事实或本组结论"
+    },
+    {
+      "where": "body",
+      "hard": false,
+      "text": "形成明确结论"
+    }
+  ],
+  "errors": [],
+  "viewports": [
+    {
+      "innerWidth": 1410,
+      "innerHeight": 805,
+      "scrollWidth": 1395,
+      "overflowX": false,
+      "fonts": {
+        "hero": 35.955,
+        "stepName": 16,
+        "field": 14,
+        "primary": 14,
+        "body": 14
+      },
+      "nextBelowFold": true,
+      "overlapNote": true
+    },
+    {
+      "innerWidth": 1250,
+      "innerHeight": 625,
+      "scrollWidth": 1235,
+      "overflowX": false,
+      "fonts": {
+        "hero": 31.875,
+        "stepName": 16,
+        "field": 14,
+        "primary": 14,
+        "body": 14
+      },
+      "nextBelowFold": true,
+      "overlapNote": true
+    },
+    {
+      "innerWidth": 994,
+      "innerHeight": 673,
+      "scrollWidth": 979,
+      "overflowX": false,
+      "fonts": {
+        "hero": 30,
+        "stepName": 16,
+        "field": 14,
+        "primary": 14,
+        "body": 14
+      },
+      "nextBelowFold": true,
+      "overlapNote": true
+    }
+  ],
+  "storage": [
+    {
+      "id": "D6-3",
+      "status": "pass",
+      "detail": "status=自动保存不可用，请导出备份 editable=true newErrors=0"
+    }
+  ],
+  "codePaths": [
+    "ANSWER 只创建空的 R 条目（text:\"\"），不写入判断句。",
+    "自建案例在装载时把 referenceLevel3 置空。"
+  ]
+}

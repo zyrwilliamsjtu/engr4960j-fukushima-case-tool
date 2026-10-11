@@ -8,5 +8,8 @@ Thumbs.db
 *.pdf
 dist/_selftest.html
 dist/_selftest.png
+dist/_audit.html
+dist/_audit-storage.html
+dist/_browser-smoke-last.txt
 dist/_edge-profile/
 dist/_edge-downloads/
