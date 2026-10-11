@@ -115,27 +115,84 @@
     runtime = createRuntime(pack, active, { state: savedState });
     return true;
   }
+  function staticRefIds(pack) {
+    var ids = new Set();
+    pack.facts.forEach(function (f) { ids.add(f.id); });
+    pack.sources.forEach(function (s) { ids.add(s.id); });
+    pack.principles.forEach(function (p) { ids.add(p.id); });
+    return ids;
+  }
+  function validateAnalysisPayload(payload, pack) {
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+      return { ok: false, code: 'structure', message: '存档结构无效：根对象缺失或类型错误。' };
+    }
+    if (payload.stateVersion !== '2.0') {
+      return { ok: false, code: 'version', message: '版本不匹配：需要 stateVersion "2.0"。' };
+    }
+    if (payload.caseId !== pack.meta.id) {
+      return { ok: false, code: 'caseId', message: '案例不匹配：存档 caseId 为「' + payload.caseId + '」，当前为「' + pack.meta.id + '」。' };
+    }
+    if (!payload.items || typeof payload.items !== 'object' || Array.isArray(payload.items)) {
+      return { ok: false, code: 'structure', message: '存档结构无效：items 必须为对象。' };
+    }
+    if (!Array.isArray(payload.relations) || !Array.isArray(payload.conflicts) || !Array.isArray(payload.snapshots)) {
+      return { ok: false, code: 'structure', message: '存档结构无效：relations / conflicts / snapshots 必须为数组。' };
+    }
+    if (!payload.stepStatus || typeof payload.stepStatus !== 'object' || payload.idSeq === undefined) {
+      return { ok: false, code: 'structure', message: '存档结构无效：缺少 stepStatus 或 idSeq。' };
+    }
+    var ids = staticRefIds(pack);
+    Object.keys(payload.items).forEach(function (id) { ids.add(id); });
+    var ri;
+    for (ri = 0; ri < payload.relations.length; ri++) {
+      var rel = payload.relations[ri];
+      if (!rel || !ids.has(rel.from) || !ids.has(rel.to)) {
+        return { ok: false, code: 'integrity', message: '关联完整性失败：relation ' + (rel && rel.id ? rel.id : ri) + ' 引用不存在的 id。' };
+      }
+    }
+    var ci;
+    for (ci = 0; ci < payload.conflicts.length; ci++) {
+      var cf = payload.conflicts[ci];
+      if (!cf || !ids.has(cf.questionId) || !ids.has(cf.principleA) || !ids.has(cf.principleB)) {
+        return { ok: false, code: 'integrity', message: '关联完整性失败：conflict ' + (cf && cf.id ? cf.id : ci) + ' 引用不存在的 id。' };
+      }
+    }
+    return { ok: true };
+  }
   function exportProject() {
     if (active === template.meta.id) return runtime.exportProject();
     return JSON.stringify({ format: 'fieldnotes-project-v1', caseData: packs[active], state: runtime.getState() }, null, 2);
   }
   function importProject(json) {
     var input;
-    try { input = typeof json === 'string' ? JSON.parse(json) : clone(json); } catch (error) { return { ok: false }; }
+    try { input = typeof json === 'string' ? JSON.parse(json) : clone(json); } catch (error) { return { ok: false, code: 'json', message: '无法解析 JSON。' }; }
     var bundled = input && input.format === 'fieldnotes-project-v1';
     var pack = bundled ? input.caseData : input && Object.prototype.hasOwnProperty.call(packs, input.caseId) ? packs[input.caseId] : null;
     var payload = bundled ? input.state : input;
-    if (!pack || (bundled && (!validPack(pack) || pack.meta.id === template.meta.id))) return { ok: false };
+    if (!pack || (bundled && (!validPack(pack) || pack.meta.id === template.meta.id))) {
+      return { ok: false, code: 'pack', message: '无法识别案例包或不允许导入到内置福岛包。' };
+    }
+    var checked = validateAnalysisPayload(payload, pack);
+    if (!checked.ok) return { ok: false, code: checked.code, message: checked.message };
     // 仅用于校验导入数据格式，不承载运行时状态，故保留 preview 实例。
     var candidate = window.FrontendPreviewRuntime.create(pack, { persistent: false });
     var result = candidate.importProject(payload);
     candidate.flush();
-    if (!result.ok) return result;
-    // Validation completes before touching any active draft or catalog.
+    if (!result.ok) {
+      if (!(window.AppLogicRuntime && window.AppLogicRuntime.available())) {
+        return { ok: false, code: 'preview', message: '预览运行时拒绝该存档（结构或字段不兼容）。' };
+      }
+      if (runtime.flush) runtime.flush();
+      packs[pack.meta.id] = pack;
+      active = pack.meta.id;
+      runtime = createRuntime(pack, active, { state: payload });
+      metadataSaved = saveCatalog();
+      return { ok: true };
+    }
     if (runtime.flush) runtime.flush();
     packs[pack.meta.id] = pack;
     active = pack.meta.id;
-    runtime = window.FrontendPreviewRuntime.create(pack, { key: storageKey(active), state: result.state });
+    runtime = createRuntime(pack, active, { state: result.state || payload });
     metadataSaved = saveCatalog();
     return { ok: true };
   }
@@ -143,6 +200,7 @@
     getData: function () { return packs[active]; }, getRuntime: function () { return runtime; },
     list: function () { return Object.values(packs).map(function (pack) { return { id: pack.meta.id, title: pack.meta.title }; }); },
     select: select, create: create, addFact: addFact, importProject: importProject, exportProject: exportProject,
+    validateAnalysisPayload: validateAnalysisPayload,
     isCustom: function () { return active !== template.meta.id; },
     getSaveStatus: function () { return metadataSaved ? (runtime.getSaveStatus ? runtime.getSaveStatus() : 'unknown') : 'memory'; },
     mount: function (instance) { if (runtime.flush) runtime.flush(); runtime = instance; },
