@@ -614,7 +614,7 @@ input:focus,textarea:focus,select:focus {
   margin:27px 0 15px
 }
 .workspace-heading h2 {
-  font-size:18px;
+  font-size:26px;
   letter-spacing:-.2px;
   display:flex;
   align-items:center;
@@ -623,7 +623,7 @@ input:focus,textarea:focus,select:focus {
 .workspace-heading h2:before {
   content:'';
   width:5px;
-  height:19px;
+  height:26px;
   border-radius:4px;
   background:var(--stage)
 }
@@ -636,7 +636,7 @@ input:focus,textarea:focus,select:focus {
 .step-hint-symbol {display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#e7dbaa;color:#8d713c;flex-shrink:0;}
 .step-hint-symbol .icon {width:21px;height:21px;}
 .step-hint-content {flex:1;min-width:0;}
-.step-hint-top {display:flex;justify-content:space-between;gap:10px;color:#949273;font-size:10px;margin-bottom:9px;}
+.step-hint-top {display:flex;justify-content:flex-end;gap:10px;color:#949273;font-size:10px;margin-bottom:9px;}
 .step-hint-top>span:last-child {font-variant-numeric:tabular-nums;white-space:nowrap;}
 .step-hint-content h3 {font-size:16px;color:#4d635a;margin-bottom:6px;}
 .step-hint-content p {font-size:13px;color:#738174;line-height:1.85;}
@@ -726,13 +726,13 @@ input:focus,textarea:focus,select:focus {
   border-radius:9px;
   background:var(--stage-soft);
   color:var(--stage);
-  font-size:12px;
+  font-size:16px;
   font-weight:700;
   font-variant-numeric:tabular-nums
 }
 .entry-label {
   color:#516787;
-  font-size:13px;
+  font-size:18px;
   font-weight:600
 }
 .card-head .icon-button {
@@ -2130,7 +2130,7 @@ dialog::backdrop {
   margin:22px 0 14px
 }
 .workspace-heading h2 {
-  font-size:17px
+  font-size:22px
 }
 .workspace-heading .button {
   font-size:11px;

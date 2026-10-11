@@ -623,7 +623,7 @@ input:focus,textarea:focus,select:focus {
   margin:27px 0 15px
 }
 .workspace-heading h2 {
-  font-size:18px;
+  font-size:26px;
   letter-spacing:-.2px;
   display:flex;
   align-items:center;
@@ -632,7 +632,7 @@ input:focus,textarea:focus,select:focus {
 .workspace-heading h2:before {
   content:'';
   width:5px;
-  height:19px;
+  height:26px;
   border-radius:4px;
   background:var(--stage)
 }
@@ -645,7 +645,7 @@ input:focus,textarea:focus,select:focus {
 .step-hint-symbol {display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:#e7dbaa;color:#8d713c;flex-shrink:0;}
 .step-hint-symbol .icon {width:21px;height:21px;}
 .step-hint-content {flex:1;min-width:0;}
-.step-hint-top {display:flex;justify-content:space-between;gap:10px;color:#949273;font-size:10px;margin-bottom:9px;}
+.step-hint-top {display:flex;justify-content:flex-end;gap:10px;color:#949273;font-size:10px;margin-bottom:9px;}
 .step-hint-top>span:last-child {font-variant-numeric:tabular-nums;white-space:nowrap;}
 .step-hint-content h3 {font-size:16px;color:#4d635a;margin-bottom:6px;}
 .step-hint-content p {font-size:13px;color:#738174;line-height:1.85;}
@@ -735,13 +735,13 @@ input:focus,textarea:focus,select:focus {
   border-radius:9px;
   background:var(--stage-soft);
   color:var(--stage);
-  font-size:12px;
+  font-size:16px;
   font-weight:700;
   font-variant-numeric:tabular-nums
 }
 .entry-label {
   color:#516787;
-  font-size:13px;
+  font-size:18px;
   font-weight:600
 }
 .card-head .icon-button {
@@ -2139,7 +2139,7 @@ dialog::backdrop {
   margin:22px 0 14px
 }
 .workspace-heading h2 {
-  font-size:17px
+  font-size:22px
 }
 .workspace-heading .button {
   font-size:11px;
@@ -5496,7 +5496,7 @@ body {
   function tipButton(step){return '<button id="step-hint-toggle" type="button" class="step-hint-toggle" data-action="step-hint" aria-expanded="'+!!tipOpen[step]+'" aria-controls="step-hint-panel" title="'+esc(bi('点击看提示，再点换一条','Click for a hint; click again for another'))+'">'+icon('spark')+'<span>'+esc(bi('填写提示','Writing hint'))+'</span></button>';}
   function stepHint(step){
     var tips=window.FieldnotesGuidance[step-1], idx=tipIndexes[step]||0, tip=tips[idx], en=locale==='en', tab={3:'facts',4:'facts',5:'glossary',6:'principles',7:'facts'}[step];
-    return '<aside id="step-hint-panel" class="step-hint-panel" '+(!tipOpen[step]?'hidden':'')+'><div class="step-hint-symbol">'+icon('spark')+'</div><div class="step-hint-content"><div class="step-hint-top"><span>'+esc(bi('小组提示 · 非教材原句','Team prompt · not a textbook quotation'))+'</span><span>'+String(idx+1).padStart(2,'0')+' / '+String(tips.length).padStart(2,'0')+'</span></div><div aria-live="polite" aria-atomic="true"><h3>'+esc(tip[en?1:0])+'</h3><p>'+esc(tip[en?3:2])+'</p><blockquote><span>'+esc(bi('提问 / 表达示意','Question / writing example'))+'</span>'+esc(tip[en?5:4])+'</blockquote></div><div class="step-hint-actions">'+labeledButton(bi('换个角度','Another angle'),'step-hint','small quiet','arrow','id="step-hint-next"')+(tab?labeledButton(bi('查看相关资料','Browse related material'),'materials','small quiet','book','data-tab="'+tab+'"'):'')+'</div></div><button type="button" class="icon-button quiet" data-action="hide-hint" aria-label="'+esc(bi('收起提示','Hide hint'))+'">'+icon('close')+'</button></aside>';
+    return '<aside id="step-hint-panel" class="step-hint-panel" '+(!tipOpen[step]?'hidden':'')+'><div class="step-hint-symbol">'+icon('spark')+'</div><div class="step-hint-content"><div class="step-hint-top"><span>'+String(idx+1).padStart(2,'0')+' / '+String(tips.length).padStart(2,'0')+'</span></div><div aria-live="polite" aria-atomic="true"><h3>'+esc(tip[en?1:0])+'</h3><p>'+esc(tip[en?3:2])+'</p><blockquote><span>'+esc(bi('提问 / 表达示意','Question / writing example'))+'</span>'+esc(tip[en?5:4])+'</blockquote></div><div class="step-hint-actions">'+labeledButton(bi('换个角度','Another angle'),'step-hint','small quiet','arrow','id="step-hint-next"')+(tab?labeledButton(bi('查看相关资料','Browse related material'),'materials','small quiet','book','data-tab="'+tab+'"'):'')+'</div></div><button type="button" class="icon-button quiet" data-action="hide-hint" aria-label="'+esc(bi('收起提示','Hide hint'))+'">'+icon('close')+'</button></aside>';
   }
   function hero(step){
     return '<section class="step-hero"><div class="hero-copy"><div class="eyebrow"><span class="hero-badge">STEP '+String(step).padStart(2,'0')+'</span><span>'+esc(t(step<=5?'discover':step<=7?'deliberate':'act'))+'</span></div><h1>'+esc(I.simpleTitles[step-1][locale==='zh'?0:1])+'</h1><p>'+esc(I.simpleIntros[step-1][locale==='zh'?0:1])+'</p></div><div class="hero-object" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-sheet"><span>FIELDNOTES / '+String(step).padStart(2,'0')+'</span>'+icon(['help','spark','book','link','globe','map','history','check','folder','arrow'][step-1])+'<div class="sheet-lines"><i></i><i></i><i></i></div></div><span class="hero-stamp">'+String(step).padStart(2,'0')+'<small>/ 10</small></span></div><div class="hero-progress" aria-hidden="true">'+data.steps.map(function(x){return '<span class="'+(x.id<=step?'filled':'')+'"></span>';}).join('')+'</div></section>';
