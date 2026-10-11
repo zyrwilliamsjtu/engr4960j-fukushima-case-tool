@@ -229,3 +229,17 @@
   - 修复：校验打到当前案例存储；步骤上可见折叠提醒；前 5 步「课堂」标记和只读「课堂展示」；页脚按钮 14px。
   - 未做推理总览（审查仍 FAIL 这一项）。
 - **截图**：`docs/audit/viewport-1440x900.png` 等为页面 QA，不是对话截图。截图待 PI 补入。
+
+### 2026-10-11 — 推理总览与按模板分区导出
+
+- **提示词要点**：
+  - 先合并远程 `docs/AI-LOG.md`（两侧记录都保留），再推送。
+  - 新增只读「推理总览」：课堂视图到第 5 步，完整视图再加原则与结论；不改状态、不改契约。
+  - 新增按 `Template_3.tex` 分区的 Markdown 导出，保留原来的 10 步导出。模板没有来源的内容只放占位，不代写分析。
+  - 禁止安装依赖；`dist/index.html` 不得带自测或审查代码。
+- **产出**：
+  - `src/ui/reasoning-overview.js`、`src/ui/template-export.js`、`src/ui/workbench.js`、`src/ui/i18n.js`、`index.html`。
+  - `docs/audit/template-mapping.md`。审查 `D5-2` 改为可判定，导出测试增加模板断言。
+  - 结论：导出重排不需要新增契约字段。
+- **截图**：截图待 PI 补入。
+

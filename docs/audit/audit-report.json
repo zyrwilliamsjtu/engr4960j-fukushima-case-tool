@@ -1,8 +1,8 @@
 {
   "allowedSkips": [],
   "summary": {
-    "pass": 55,
-    "fail": 1,
+    "pass": 63,
+    "fail": 0,
     "skip": 0
   },
   "checks": [
@@ -19,12 +19,12 @@
     {
       "id": "D2-step-1",
       "status": "pass",
-      "detail": "从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+      "detail": "从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
     },
     {
       "id": "D2-step-2",
       "status": "pass",
-      "detail": "找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+      "detail": "找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
     },
     {
       "id": "D2-step-3",
@@ -54,7 +54,7 @@
     {
       "id": "D2-step-8",
       "status": "pass",
-      "detail": "写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+      "detail": "写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
     },
     {
       "id": "D2-step-9",
@@ -64,12 +64,12 @@
     {
       "id": "D2-step-10",
       "status": "pass",
-      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,存档 ▾"
+      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
     },
     {
       "id": "D3-1",
       "status": "pass",
-      "detail": "intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|对比修订|存档 ▾"
+      "detail": "intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|对比修订|推理总览"
     },
     {
       "id": "D3-2",
@@ -94,7 +94,7 @@
     {
       "id": "D1-1",
       "status": "pass",
-      "detail": "hard=0 soft=6"
+      "detail": "hard=0 soft=7"
     },
     {
       "id": "D1-3",
@@ -112,6 +112,26 @@
       "detail": "用问句提出你真正想讨论的问题… | 运营商是否向公众及时说明了风险？"
     },
     {
+      "id": "D5-2",
+      "status": "pass",
+      "detail": "button=true opened=true"
+    },
+    {
+      "id": "D5-2b",
+      "status": "pass",
+      "detail": "核心问题 0 条 · 关联事实 0 条 · 假设 0 条 · 待澄清 0 条"
+    },
+    {
+      "id": "D5-2e",
+      "status": "pass",
+      "detail": "guidance=true conclusionGroup=false newErrors=0"
+    },
+    {
+      "id": "D5-2f-empty",
+      "status": "pass",
+      "detail": "getState identical around empty overview"
+    },
+    {
       "id": "D2-4",
       "status": "pass",
       "detail": "coreChecked=true"
@@ -122,9 +142,19 @@
       "detail": "library=true relation=true textHit=true"
     },
     {
-      "id": "D5-2",
-      "status": "fail",
-      "detail": "no 推理总览 control in the workbook"
+      "id": "D5-2c",
+      "status": "pass",
+      "detail": "classGroup=false fullGroup=true"
+    },
+    {
+      "id": "D5-2d",
+      "status": "pass",
+      "detail": "whyHit=true factHit=true"
+    },
+    {
+      "id": "D5-2f",
+      "status": "pass",
+      "detail": "getState identical around linked overview"
     },
     {
       "id": "D5-3",
@@ -150,6 +180,11 @@
       "id": "D5-5",
       "status": "pass",
       "detail": "sections=10"
+    },
+    {
+      "id": "D5-7",
+      "status": "pass",
+      "detail": "btn=true triggered=true file=fukushima-report-material-20261011.md len=3045"
     },
     {
       "id": "D5-6",
@@ -295,12 +330,6 @@
       "evidence": "step-hint-panel hidden on steps 1,2,3,4,5,6,7,8,9,10"
     },
     {
-      "persona": "P1",
-      "severity": "yellow",
-      "title": "没有推理总览入口",
-      "evidence": "i18n.overview exists; workbook DOM does not render it"
-    },
-    {
       "persona": "P2",
       "severity": "yellow",
       "title": "下一步在首屏之下",
@@ -310,7 +339,7 @@
       "persona": "P3",
       "severity": "blue",
       "title": "结论类词语出现在用户槽位标签和形式提醒里",
-      "evidence": "soft hits=6; hard hits=0"
+      "evidence": "soft hits=7; hard hits=0"
     },
     {
       "persona": "P1",
@@ -333,7 +362,7 @@
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
         "对比修订",
-        "存档 ▾"
+        "推理总览"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -351,7 +380,7 @@
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
         "对比修订",
-        "存档 ▾"
+        "推理总览"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -459,7 +488,7 @@
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
         "对比修订",
-        "存档 ▾"
+        "推理总览"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -495,7 +524,7 @@
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
         "对比修订",
-        "存档 ▾"
+        "推理总览"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -648,6 +677,11 @@
     }
   ],
   "keywords": [
+    {
+      "where": "i18n.overviewConclusion",
+      "hard": false,
+      "text": "结论"
+    },
     {
       "where": "i18n.suggestion",
       "hard": false,
