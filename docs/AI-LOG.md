@@ -61,3 +61,11 @@
 - **产出**：
   - `CONTRIBUTING.md`、`docs/CONTRACT.md`、`src/data/fukushima.js`、`src/data/mock-state.js`、`docs/DECISIONS.md`
 - **备注**：截图由 PI 补入 `docs/ai-logs/`
+
+### 2026-10-11 — 阶段 B：src/logic 状态层骨架
+
+- **阶段名**：阶段 B（逻辑层）
+- **目标**：实现 `getState` / `dispatch` / `validateStep` / `subscribe` / 快照 / storage 降级；`tools/smoke-test.js`。
+- **提示词要点**：契约 v2.0 为准；不碰 UI 与 fukushima.js；Node 可测；ID 不回收。
+- **产出**：`src/logic/*.js`、`tools/smoke-test.js`
+- **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
