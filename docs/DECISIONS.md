@@ -16,3 +16,5 @@
 2026-10-11 / 静态数据 ID 统一为 f-mat- / f-ind- / f-org- / tl- 等前缀，引用时直接写原 id / 避免界面层与数据层各自假设一套 id。
 2026-10-11 / 静态约束提示词前缀改为 rch- / 避免与用户条目 RC- 在大小写不敏感的匹配中冲突。
 2026-10-11 / main 追平：三 docs 分支内容已合入 / 此前 `docs/contract-v2`、`docs/contributing-and-contract-fixup`、`docs/fix-id-prefix` 长期未进 `main`，远程 `main` 一度仅 `ab66919` 脚手架；现 `git log origin/main` 在脚手架之上新增 `2bc1481 Docs/fix id prefix (#3)`，node 核验 principles=33、constraints=rch-001…005，判定文档与静态数据已追平。合入方式为 squash（main 上仅 1 条新提交，无 merge 节点）。
+2026-10-11 / 停止使用 Pull Request，改为单分支直推 main / 2 人团队下 PR 的边际价值低于其协调成本（每次改动都要等对方点合并），且交付时间紧张。安全网改为推送前本地闸门（冒烟测试 + 双击验证）与 checkpoint 标签回退。代价是失去第二双眼睛，故禁止强推与历史改写。
+2026-10-11 / 禁止强推与历史改写，统一用 git revert 回退 / 单分支直推下 main 是唯一事实来源，改写历史会让双方本地仓库分叉且无法安全回退。revert 生成反向提交，安全且可追溯。

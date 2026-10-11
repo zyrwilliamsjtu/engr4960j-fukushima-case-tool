@@ -1,17 +1,32 @@
 # 贡献指南
 
-## 分支命名
+## 分支命名（历史遗留）
 
-- `feat/ui-*` — 界面与样式
-- `feat/logic-*` — 流程、校验、存储、导出
-- `data/*` — 案例内容与数据结构
-- `docs/*` — 文档与契约
+早期使用过 `feat/*`、`docs/*`、`data/*` 等分支。现已改为单分支直推 `main`，
+新工作不再创建分支。若因特殊原因需要临时分支，仍沿用上述前缀，用完即删。
 
-## Pull Request
+## 工作方式：单分支直推
 
-- 至少 **1 人** review 后方可合并。
-- 使用仓库 PR 模板，并勾选 **「是否影响数据契约」**。
-- 若契约变更，必须先升版本号并在小组群内通知（见 `docs/CONTRACT.md`）。
+- **所有工作直接在 `main` 上进行**。不再创建功能分支，不再创建 Pull Request。
+- 工作流固定为：`git pull --ff-only` → 改动 → 本地自测 → `git add` → 提交 → `git push origin main`。
+  若 `--ff-only` 失败改用 `git pull --no-rebase`（允许产生合并节点），然后再推送。
+- 每完成一个可独立验证的小块就推送一次。**不要攒一周再推**，避免大范围冲突。
+- 提交信息仍用 Conventional Commits（`feat:` / `fix:` / `data:` / `docs:` / `chore:`）。
+
+## 推送前闸门（替代 PR 审查）
+
+推送前必须逐条确认，**任一项不通过就不推送**：
+
+1. `node tools/smoke-test.js` 全部 PASS（逻辑层相关改动必须跑）。
+2. 双击 `index.html` 能正常打开、控制台无报错。
+3. `git status` 干净，且没有临时文件、调试输出、密钥。
+4. 未引入任何外部依赖、CDN、ES Module、`fetch()`。
+
+## 回退方式
+
+- **禁止** `git push --force`、rebase、`git reset --hard`：不得改写已推送的历史。
+- 需要撤销某次推送时，用 `git revert <sha>`（生成反向提交，安全）。
+- 大改动前先打标签：`git tag checkpoint-<说明>` 并 `git push origin <tag>`。
 
 ## 提交信息（Conventional Commits）
 
@@ -29,31 +44,10 @@
 
 ## 契约冻结
 
-`docs/CONTRACT.md` 中的 `window.CASE_DATA` 与用户 `localStorage` 结构为组内接口。字段增删改必须先更新 `dataVersion` / `stateVersion`，经 review 并在群内公告后再合并。
-
-## main 分支与合并方式
-
-- `main` 是**可交付基线**：任何时候拉下来、双击 `index.html`，都应能打开且控制台无报错。
-  任何 PR 合并前，请自己先双击验证一次。
-- **团队约定：不直接 push 到 `main`，所有改动走分支 + PR。**
-- 从 `main` 拉分支；合并后删除分支。分支存活不要超过 3 天，防止长期漂移。
-- 合并统一用 **Squash merge**，保持 `main` 历史线性，便于回溯迭代痕迹。
-
-> ⚠️ 说明：本仓库**未启用 GitHub 分支保护**，上述规则靠团队自律执行。
-> 若因紧急情况（例如演示前抢修）直推了 `main`，必须在小组群里说明做了什么改动。
-
-## 谁能自合并
-
-| 变更类型 | 需要 review | 说明 |
-|---|---|---|
-| 契约 / 数据结构 / 逻辑 | 1 人（对方） | 必须勾选 PR 模板的「是否影响数据契约」 |
-| 界面 / 样式 / 案例内容 | 1 人（对方） | — |
-| 纯文档、注释、错别字 | **可自合并** | 前提是不影响程序运行结果 |
-
-> 「纯文档可自合并」是 2 人团队的现实折中。判断标准只有一条：
-> **这次合并会不会改变双击 `index.html` 后的行为？** 会 → 必须对方 review。
->
-> 自合并后请在群里发一句：分支名 + 改了什么。
+- `docs/CONTRACT.md` 中的 `window.CASE_DATA` 与用户 `localStorage` 结构为组内接口。
+- 字段增删改必须先升 `dataVersion` / `stateVersion`，**在小组群公告**，然后再改代码。
+- 不再需要 PR review。
+- 若发现契约与实际实现不一致，以契约为准修正实现；确需改契约的，按上一条处理。
 
 ## 目录归属（减少冲突）
 
@@ -75,7 +69,9 @@
 
 - [ ] 本轮与 AI 的对话截图已存入 `docs/ai-logs/`，并在 `docs/AI-LOG.md` 追加一条
 - [ ] `docs/DECISIONS.md` 已记录本轮「为什么这么定」的决策（如有）
-- [ ] 双击 `index.html` 仍然能正常打开、控制台无报错
+- [ ] `node tools/smoke-test.js` 全部 PASS（逻辑层改动必做）
+- [ ] 双击 `index.html` 仍能打开、控制台无报错
+- [ ] 大改动前已打 checkpoint 标签
 - [ ] 未引入任何外部依赖、CDN、ES Module 或 `fetch()`
 - [ ] 若改了契约字段，已升 `dataVersion` / `stateVersion` 并通知小组群
 - [ ] 提交信息符合 Conventional Commits
