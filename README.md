@@ -22,7 +22,7 @@
 
 ## 当前状态
 
-`frontend` 分支提供 Fieldnotes 双语工作台、十步人工填写、材料库、推理总览、修订快照、JSON/Markdown 导出与独立课堂展示模式。
+`frontend` 分支目前提供简化版 Fieldnotes：鲜明的蓝白工作台、十步人工填写、按需材料库、自动保存及 JSON/Markdown 导出。主界面只处理当前步骤；推理总览、快照与展示入口暂缓，后续按需求恢复。
 
 可双击 `preview.html` 评审单文件版本。运行 `python src/ui/build-preview.py` 可更新此文件。正式逻辑和已核实福岛事实仍由数据与逻辑负责人补入；预览适配器不改变其目录。
 
