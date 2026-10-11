@@ -9,7 +9,7 @@
   <style>
 /* Offline writing desk: shared tokens for all ten steps and the evidence drawer. */
 :root {
-  --paper:#dfe7f3;
+  --paper:#e5eaf3;
   --ink:#192c49;
   --muted:#5d708e;
   --line:#c5d2e5;
@@ -46,6 +46,20 @@
   --hero-end:#3496a0
 }
 
+:root[data-step="2"] {
+  --stage:#4e63b0;
+  --stage-soft:#e0e5f4;
+  --hero-start:#263969;
+  --hero-end:#6980cd
+}
+
+:root[data-step="4"] {
+  --stage:#946546;
+  --stage-soft:#eee0d3;
+  --hero-start:#563d3b;
+  --hero-end:#b38766
+}
+
 :root[data-step="5"] {
   --stage:#7253bc;
   --stage-soft:#e8e0f4;
@@ -58,6 +72,20 @@
   --stage-soft:#f0e0cd;
   --hero-start:#603b36;
   --hero-end:#bc7c48
+}
+
+:root[data-step="7"] {
+  --stage:#8b5c81;
+  --stage-soft:#eddfeb;
+  --hero-start:#49334e;
+  --hero-end:#a27f9b
+}
+
+:root[data-step="10"] {
+  --stage:#427753;
+  --stage-soft:#dfe9d6;
+  --hero-start:#244b46;
+  --hero-end:#709369
 }
 
 * {
@@ -654,7 +682,7 @@ input:focus,textarea:focus,select:focus {
 
 /* Writing and reasoning */
 .entry-card,.review-card {
-  background:#f1f4fa;
+  background:linear-gradient(145deg,#f8faff,#edf2f9);
   border:1px solid #bfcfe5;
   border-radius:16px;
   padding:24px 27px;
@@ -716,7 +744,7 @@ input:focus,textarea:focus,select:focus {
   width:100%;
   border:1px solid #bfcee3;
   border-radius:11px;
-  background:#e3ebf7;
+  background:#eaf0f8;
   padding:12px 15px;
   font-size:14px;
   line-height:1.85;
@@ -1215,6 +1243,136 @@ legend {
   background:#cee5dc;
   color:#276f5c
 }
+
+/* A reading room: compact index on the left, working source on the right. */
+.library-dialog {
+  width:min(1190px,calc(100% - 48px));
+  height:min(850px,91dvh);
+  max-height:94dvh;
+  border:1px solid #bccdcd;
+  background:#f4f6f3;
+  overflow:hidden;
+  border-radius:22px;
+  color:#233b3c
+}
+.library-dialog #modal-content {padding:0;height:100%;}
+.library-shell {height:100%;display:flex;flex-direction:column;min-width:0;}
+.library-header {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 27px 20px;background:#173b40;color:#f6fbf7;flex-shrink:0;}
+.library-brand {display:flex;align-items:center;gap:14px;min-width:0;}
+.library-brand>.icon {width:43px;height:43px;padding:10px;border:1px solid #ffffff27;border-radius:13px;color:#dcea9d;background:#ffffff09;}
+.library-brand h2 {font-size:23px;letter-spacing:-.5px;}
+.library-brand p {font-size:12px;color:#bcceca;margin-top:3px;}
+.library-header-actions {display:flex;gap:12px;align-items:center;flex-shrink:0;}
+.library-header-actions .icon-button {color:#d9e5df;}
+.library-header .language-switch {background:#ffffff0c;border-color:#ffffff2c;}
+.library-header .language-switch button {color:#ccdeda;}
+.library-header .language-switch button.selected {color:#173b40;background:#deeca7;}
+.library-tabs {display:flex;gap:6px;padding:0 27px;flex-shrink:0;background:#e8eeea;border-bottom:1px solid #cbd8d0;overflow:auto;}
+.library-tabs button {display:flex;align-items:center;gap:8px;flex-shrink:0;padding:15px 12px 13px;font-size:13px;color:#647b74;border-bottom:3px solid transparent;}
+.library-tabs button span {font-size:10px;background:#d8e2dc;border-radius:5px;padding:0 5px;font-variant-numeric:tabular-nums;}
+.library-tabs button.selected {color:#185b54;border-color:#23796c;font-weight:700;}
+.library-tabs button.selected span {background:#2e7665;color:#fff;}
+.library-body {display:grid;grid-template-columns:36% minmax(0,1fr);flex:1;min-height:0;overflow:hidden;}
+.library-browser {display:flex;flex-direction:column;min-height:0;min-width:0;border-right:1px solid #cedbd1;background:#eaf0eb;}
+.library-controls {padding:19px 19px 0;flex-shrink:0;}
+.library-search {display:flex;align-items:center;gap:9px;background:#f9fcf8;border:1px solid #becfc4;border-radius:11px;padding:9px 12px;}
+.library-search:focus-within {outline:2px solid #308573;outline-offset:2px;}
+.library-search .icon {color:#658575;width:18px;flex-shrink:0;}
+.library-search input {padding:0;border:0;background:transparent;min-width:0;width:100%;font-size:13px;outline:none;}
+.library-search input::placeholder {color:#7f9486;}
+.library-filter-chips {display:flex;flex-wrap:wrap;gap:5px;margin:13px 0 10px;}
+.library-filter-chips button {border:1px solid transparent;color:#5d766c;padding:4px 8px;border-radius:6px;font-size:11px;line-height:1.6;}
+.library-filter-chips button:hover {background:#dce6de;}
+.library-filter-chips button.selected {background:#cbded2;border-color:#aecab8;color:#1c604f;font-weight:650;}
+.library-filter-row {display:flex;align-items:center;gap:10px;}
+.library-filter-row select {min-width:0;flex:1;border:1px solid #c6d5cb;border-radius:7px;background:#f5f8f3;padding:6px 9px;font-size:11px;}
+.library-linked-filter {display:flex;gap:5px;align-items:center;flex-shrink:0;font-size:11px;color:#5d766c;}
+.library-linked-filter input {accent-color:#276b5b;}
+.library-result-summary {display:flex;align-items:center;justify-content:space-between;gap:5px;padding:12px 0 7px;font-size:11px;color:#73877e;}
+.library-text-button {font-size:11px;padding:0;color:#317660;min-height:24px;}
+.library-text-button .icon {width:13px;height:13px;}
+.library-results {padding:5px 11px 14px;overflow:auto;min-height:0;flex:1;scrollbar-width:thin;scrollbar-color:#adbdaf transparent;}
+.library-row {display:block;width:100%;text-align:left;padding:15px 13px;margin-bottom:7px;border:1px solid transparent;border-radius:12px;color:#334e42;background:#f5f8f3;transition:background .15s,border-color .15s;}
+.library-row:hover {background:#e0eadf;border-color:#c9d8c9;}
+.library-row.active {background:#d8e8d9;border-color:#90b59a;box-shadow:inset 3px 0 #347c60;}
+.library-row-top,.library-row-bottom {display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.library-row-kind {font-size:10px;font-weight:650;color:#75887a;}
+.library-use-badge {display:inline-flex;gap:3px;align-items:center;color:#2d6c50;font-size:10px;flex-shrink:0;}
+.library-use-badge .icon {width:11px;height:11px;}
+.library-review-badge {font-size:9px;color:#947443;background:#f0e5c8;border-radius:4px;padding:1px 5px;white-space:nowrap;}
+.library-row-title {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font-size:13px;line-height:1.85;font-weight:550;margin:6px 0 10px;}
+.library-row-bottom {font-size:10px;color:#7f9082;}
+.library-row-bottom>span:first-child {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.library-row-bottom>span:last-child {font-size:15px;color:#658975;}
+.library-browser-bottom {padding:11px 18px;background:#e0e9e1;border-top:1px solid #ccd8ce;}
+.library-browser-bottom .button {font-size:12px;color:#2f6757;padding:7px 0;}
+.library-reading {overflow:auto;min-height:0;background:#f7f8f2;scrollbar-width:thin;scrollbar-color:#bfcac0 transparent;}
+.library-detail-inner {padding:28px 33px 34px;}
+.library-detail-heading {display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px;}
+.library-detail-kicker {font-size:11px;letter-spacing:.4px;color:#54806a;border-radius:5px;background:#e5edde;padding:4px 9px;}
+.library-detail-heading .record-id {font-size:10px;color:#98a392;}
+.library-reading-text {font-size:18px;font-weight:550;line-height:1.95;letter-spacing:-.15px;}
+.library-reading-title {font-size:26px;line-height:1.55;letter-spacing:-.4px;}
+.library-reading-note {font-size:11px;color:#819184;line-height:1.8;margin-top:13px;}
+.library-relevance {padding:20px 22px;margin:24px 0;background:#e6efea;border:1px solid #c6d9cc;border-radius:13px;}
+.library-section-title {display:flex;gap:8px;align-items:center;margin-bottom:16px;}
+.library-section-title .icon {width:17px;height:17px;color:#39735b;}
+.library-section-title h3 {font-size:14px;font-weight:650;}
+.library-relevance>p {font-size:13px;color:#597663;margin-bottom:14px;}
+.library-relevance .field {margin-bottom:14px;}
+.library-relevance .field>span {font-size:11px;color:#6a8171;margin-bottom:6px;}
+.library-relevance .field select,.library-relevance .field textarea {background:#f6f9f2;border-color:#bfd0c1;border-radius:8px;font-size:12px;line-height:1.8;padding:10px 12px;}
+.library-relevance .field textarea {min-height:88px;}
+.library-relevance .field textarea::placeholder {font-size:12px;color:#8c9a8e;}
+.library-relevance .button.primary,.library-dialog .button.primary {background:#276859;color:#f6faf3;border-color:#276859;box-shadow:0 3px 8px #1f594716;}
+.library-save-row {display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.library-save-row small {color:#6c8776;font-size:10px;}
+.library-relations {display:flex;flex-direction:column;gap:8px;}
+.library-relations:empty {display:none;}
+.library-relations article {display:flex;align-items:flex-start;gap:9px;border-top:1px solid #cadacc;padding-top:14px;margin-top:15px;font-size:12px;}
+.library-relations article>div {flex:1;min-width:0;}
+.library-relations strong {font-weight:600;color:#486957;}
+.library-relations p {margin-top:4px;color:#6b8272;white-space:pre-wrap;}
+.library-relations .icon-button {width:25px;height:25px;flex-shrink:0;}
+.library-provenance {padding:4px 0;margin-top:22px;}
+.library-source-title {font-size:12px;font-weight:650;line-height:1.8;color:#5b7363;}
+.library-locator {display:flex;gap:9px;flex-wrap:wrap;padding:11px 0;font-size:11px;color:#879286;}
+.library-locator strong {font-weight:550;color:#4f6a57;}
+.library-original {margin:16px 0;padding:17px 20px;border-left:3px solid #b2c39b;background:#edf0e1;border-radius:0 9px 9px 0;}
+.library-original>span {display:block;font-size:10px;letter-spacing:.4px;color:#919879;margin-bottom:9px;}
+.library-original p {font-size:12px;color:#607057;line-height:1.9;white-space:pre-wrap;}
+.library-confidence {display:block;font-size:10px;color:#7e8e80;margin:10px 0;}
+.library-provenance .source-review {display:block;padding:12px 14px;border-radius:8px;line-height:1.9;font-size:11px;background:#e7eee0;color:#597255;white-space:pre-wrap;}
+.library-provenance .source-review.pending {color:#88662e;background:#f4ecd7;border:1px solid #e9d9af;}
+.library-provenance .source-note {font-size:11px;color:#7c8b79;margin:12px 0;}
+.library-source-link {display:inline-flex;color:#347263;font-size:12px;margin-top:15px;border-bottom:1px solid #a7c1ad;padding-bottom:3px;}
+.library-footer {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 26px;background:#e3eade;border-top:1px solid #cbd7c8;flex-shrink:0;}
+.library-footer p {display:flex;align-items:center;gap:7px;font-size:11px;color:#74816b;}
+.library-footer p .icon {width:15px;height:15px;color:#63876b;}
+.library-footer .button {font-size:12px;flex-shrink:0;}
+.library-no-results,.library-welcome {padding:45px 22px;text-align:center;color:#7d9281;}
+.library-no-results>.icon,.library-welcome>.icon {width:37px;height:37px;color:#9aac91;margin-bottom:16px;}
+.library-no-results h3,.library-welcome h3 {font-size:15px;margin-bottom:9px;color:#638069;}
+.library-no-results p,.library-welcome p {font-size:12px;line-height:1.9;margin-bottom:15px;}
+.library-principle-desc {font-size:16px;line-height:1.9;color:#59705f;margin:16px 0;}
+.library-principle-action {margin-top:26px;}
+.library-principle-action p {font-size:12px;color:#7f8b7b;margin-top:12px;}
+.library-event-date {display:block;font-size:26px;color:#548272;margin:5px 0 13px;letter-spacing:-.5px;}
+.library-publisher {font-size:13px;color:#7b8d7d;margin-top:15px;}
+.library-source-caution {background:#f0ead9;color:#8a7853;font-size:13px;line-height:1.9;padding:19px 22px;border-radius:11px;margin:23px 0 8px;}
+.library-source-usage {display:flex;align-items:center;gap:20px;margin:30px 0;padding:20px 0;border-top:1px solid #d8dece;border-bottom:1px solid #d8dece;}
+.library-source-usage>strong {font-size:43px;line-height:1.2;color:#4b7e5f;font-weight:550;}
+.library-source-usage h3 {font-size:14px;color:#4a6a57;}
+.library-source-usage p {font-size:12px;color:#899782;margin-top:5px;}
+.library-word-preview {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0 13px;}
+.library-word-preview span {padding:27px 19px;border:1px dashed #cbd4bd;border-radius:11px;color:#829377;font-size:12px;background:#edf0e2;}
+.basis-search {margin-bottom:15px;}
+.basis-options {max-height:300px;overflow:auto;padding:2px 10px 2px 0;scrollbar-width:thin;}
+.basis-options .check {padding:12px 10px;background:#e3ebf7;border:1px solid #cbd6e7;border-radius:8px;margin:0 0 6px;font-size:12px;}
+.basis-options .check[hidden] {display:none;}
+.basis-options .check input {flex-shrink:0;}
+.basis-count {font-size:11px;color:#677b96;margin:10px 0 16px;}
+.basis-search input {min-height:42px;}
 
 /* Dialogs and materials */
 dialog {
@@ -2078,6 +2236,63 @@ dialog::backdrop {
 
 }
 
+@media (max-width:900px) {
+  .library-dialog {width:calc(100% - 24px);height:94dvh;}
+  .library-body {grid-template-columns:38% minmax(0,1fr);}
+  .library-header {padding:18px 20px;}
+  .library-tabs {padding:0 14px;gap:0;}
+  .library-tabs button {padding:13px 10px;font-size:12px;}
+  .library-tabs button span {font-size:9px;}
+  .library-controls {padding:14px 12px 0;}
+  .library-results {padding-left:8px;padding-right:8px;}
+  .library-row {padding:12px 10px;}
+  .library-detail-inner {padding:24px 23px;}
+  .library-relevance {padding:18px;}
+  .library-footer {padding:12px 18px;}
+}
+@media (max-width:620px) {
+  .library-dialog {width:calc(100% - 12px);height:96dvh;max-height:96dvh;border-radius:15px;}
+  .library-header {padding:14px 15px;gap:8px;}
+  .library-brand {gap:9px;}
+  .library-brand>.icon {width:34px;height:34px;padding:8px;border-radius:9px;}
+  .library-brand h2 {font-size:17px;}
+  .library-brand p {display:none;}
+  .library-header-actions {gap:4px;}
+  .library-header-actions .icon-button {width:31px;height:31px;}
+  .library-header .language-switch button {padding:4px 8px;font-size:10px;}
+  .library-tabs {padding:0 7px;}
+  .library-tabs button {font-size:11px;padding:12px 10px;gap:5px;}
+  .library-body {display:flex;flex-direction:column;}
+  .library-browser {height:260px;max-height:45%;flex-shrink:0;border-right:0;border-bottom:1px solid #c3d2c4;}
+  .library-controls {padding:11px 12px 0;}
+  .library-search {padding:7px 10px;}
+  .library-filter-chips {margin:8px 0 6px;gap:4px;}
+  .library-filter-chips button {font-size:10px;padding:3px 7px;}
+  .library-filter-row select {padding:4px 8px;font-size:10px;}
+  .library-result-summary {padding:6px 0 3px;}
+  .library-results {padding:3px 8px 9px;}
+  .library-row {padding:9px 11px;margin-bottom:5px;}
+  .library-row-title {font-size:12px;-webkit-line-clamp:2;margin:3px 0 4px;}
+  .library-row-top,.library-row-bottom {font-size:9px;}
+  .library-row-bottom {display:none;}
+  .library-browser-bottom {padding:5px 12px;}
+  .library-browser-bottom .button {padding:3px 0;font-size:11px;}
+  .library-reading {flex:1;}
+  .library-detail-inner {padding:21px 20px;}
+  .library-detail-heading {margin-bottom:12px;}
+  .library-reading-text {font-size:15px;line-height:1.9;}
+  .library-reading-title {font-size:22px;}
+  .library-relevance {padding:15px 16px;margin:20px 0;}
+  .library-section-title h3 {font-size:12px;}
+  .library-original {padding:14px 16px;}
+  .library-save-row {align-items:flex-end;}
+  .library-save-row .button {font-size:11px;padding:7px 11px;}
+  .library-footer {padding:10px 12px;gap:8px;}
+  .library-footer p {font-size:9px;line-height:1.6;gap:5px;}
+  .library-footer .button {font-size:10px;padding:7px 10px;}
+  .library-footer .button .icon {width:14px;height:14px;}
+  .library-source-usage {gap:14px;}
+}
 @media print {
   .sidebar,.topbar,.step-footer,dialog,#toast,.button,.entry-details,.hero-object,.hero-progress {
   display:none!important
@@ -2120,7 +2335,7 @@ body {
 <body>
   <a class="skip-link" href="#workspace">跳到工作区 / Skip to workspace</a>
   <div id="app"></div>
-  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
   <input id="project-file" type="file" accept="application/json,.json" hidden>
   <noscript>请启用 JavaScript / Enable JavaScript to use this offline workbook.</noscript>
@@ -5155,6 +5370,7 @@ body {
 (function () {
   'use strict';
   var pairs = {
+    focusEmptySub:['回到第一步提出问题，再选择讨论重点。','Write questions in step 1, then choose your focus.'],reviewEmptySub:['写下问题与依据后，就能在这里逐项回看。','Write your questions and reasoning, then revisit each entry here.'],conclusionEmptySub:['先确定讨论重点，再形成你的回答与论证。','Set your focus before writing an answer and justification.'],backToQuestions:['回到问题','Back to questions'],chooseFocus:['选择核心问题','Choose a core question'],
     materials:['资料与依据','Evidence library'], materialPurpose:['查资料，选依据，写下为什么。','Read, select, explain why.'], materialPurposeSub:['把与问题有关的材料带回分析，判断由你完成。','Bring relevant material into your analysis. The judgment stays yours.'], evidenceSteps:['查看原文 → 关联问题 → 写下理由','Read the source → Link a question → Explain why'], selectedFacts:['你选用的事实','Facts you selected'], browseFacts:['选择相关事实','Choose relevant facts'], factsAvailable:['条可供查阅','available to explore'], evidenceEmpty:['从资料中选择与问题相关的事实','Select facts relevant to your questions'], evidenceEmptySub:['关联问题并说明理由后，事实会出现在这里。','Link a question and explain why. Your selected facts will appear here.'], categoryEmpty:['还没有选用这一类事实','No selected facts in this category'], sourceDetails:['原文与出处','Source & original wording'], sourceLocation:['章节 / 页码','Section / page'], verificationPending:['待复核原文','Source review pending'], recordedSource:['已有核验记录','Review recorded'], verificationNote:['资料备注','Material notes'], confidence:['资料包置信度','Confidence recorded in the pack'], confidenceHigh:['高','High'], confidenceMedium:['中','Medium'], confidenceLow:['低','Low'], allFacts:['全部事实','All facts'], filterFacts:['筛选事实类别','Filter fact categories'], factSelectionHint:['选择一条事实，关联到你提出的问题，并写下它为什么重要。','Choose a fact, link it to your question, and explain why it matters.'], noFactsYet:['先加入一条来自材料的事实','Add a fact from your material'], noFactsYetSub:['记录内容和出处，再决定它与哪个问题相关。','Record the wording and source, then decide which question it informs.'],
     principleSettings:['关联与优先级','Connections & priority'], caseWorkshop:['工程伦理工作本','Ethics workbook'], more:['更多','More'], markReviewed:['标记已复核','Mark reviewed'], choosePrinciples:['选择原则','Choose principles'], principlesEmpty:['从一条相关原则开始','Choose a relevant principle'], principlesEmptySub:['打开原则库，选择适用于本案的条目。','Open the library and select what applies to your case.'],
     caseShort:['福岛 · 第一核电站','Fukushima Daiichi'], recovery:['下载原始存档','Download original archive'], changeCount:['项变化','changes'], from:['起点','From'], to:['终点','To'], associationKind:['关联类型','Link type'], confirm:['确认','Confirm'], saveUnknown:['保存状态由逻辑层管理','Saving is managed by the runtime'], biasChecklist:['遗漏与偏见检查','Omissions & bias checklist'],
@@ -5183,7 +5399,7 @@ body {
     prevention:['预防措施','Prevention'], addPrevention:['添加预防措施','Add a preventive action'], preventionHint:['更早采取什么行动，有可能避免同类问题？','What earlier action might help avoid this kind of problem?'],
     empty:['留下你的想法','A space for your thinking'], emptySub:['从一个想法开始。','Start with one thought.'], records:['条记录','records'], myRecord:['我的记录','My record'],
     reference:['参考观点','Reference perspective'], referenceLocked:['先记录自己的想法，再展开参考观点。','Record your own thinking before opening a reference perspective.'], referenceDisclaimer:['参考视角不代表工具判断，仅供对照。','For comparison only; not the tool’s judgment.'], referencePending:['本步参考摘录待资料负责人补充。','The content owner has not supplied this reference excerpt yet.'],
-    timeline:['时间线','Timeline'], sources:['来源目录','Sources'], glossary:['术语与方法','Terms & method'], sourceTranslation:['界面译文；来源原文保留','UI translation; source wording retained'], methodBasis:['Chapter 2 · 10-step case analysis','Chapter 2 · 10-step case analysis'], countNote:['正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。','Chapter 2 exercises use 5 questions and 2 focal issues; Appendix II uses 3 and 1. Counts guide the work; they never lock navigation.'],
+    timeline:['时间线','Timeline'], sources:['来源目录','Sources'], glossary:['术语提示','Terms to explore'], sourceTranslation:['界面译文；来源原文保留','UI translation; source wording retained'], methodBasis:['Chapter 2 · 10-step case analysis','Chapter 2 · 10-step case analysis'], countNote:['正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。','Chapter 2 exercises use 5 questions and 2 focal issues; Appendix II uses 3 and 1. Counts guide the work; they never lock navigation.'],
     noData:['资料尚未补入','Materials are not supplied yet'], noDataSub:['资料更新后会在这里显示，界面不生成案例事实。','Verified material will appear here when provided. The UI does not invent case facts.'],
     firstSnapshot:['保存初步快照','Save initial snapshot'], secondSnapshot:['保存复核后快照','Save reviewed snapshot'], initial:['初步','Initial'], revised:['复核后','Reviewed'], snapshotEmpty:['给思考的变化留下一个位置。','Make room for a change of mind.'], snapshotSub:['保存初步记录，修改后再保存复核记录。两份快照不会随日常编辑改变。','Save an initial record, then a reviewed record. Snapshots stay independent of everyday edits.'], restore:['恢复此快照','Restore this snapshot'], restoreConfirm:['恢复会替换当前工作记录，建议先导出备份。继续吗？','Restoring replaces your working records. Export a backup first. Continue?'], snapshotReplace:['这个位置已有快照。要用当前记录替换吗？','This slot already has a snapshot. Replace it with your current records?'], changeReason:['修改原因（可跳过）','Reason for the change (optional)'], changes:['变化','changes'], noChanges:['两份快照中的条目与关联没有变化。','No differences in entries or links between these snapshots.'], added:['新增','Added'], deleted:['删除','Removed'], modified:['修改','Changed'], before:['原先','Before'], after:['现在','After'],
     overviewEmpty:['先提出一个问题，再逐步连接依据。','Start with a question. Connect your evidence as you go.'], overviewSub:['这里整理你的记录，不替你补全推理。','This view organizes your records; it does not fill in the reasoning.'], assumptions:['假设','Assumptions'], concepts:['概念澄清','Concepts'], links:['关联','links'],
@@ -5575,6 +5791,154 @@ body {
 
 </script>
   <script>
+/* An offline reading workspace. Selection and draft reasons are UI-only;
+ * only a deliberate save writes a relation to the analysis runtime. */
+(function () {
+  'use strict';
+  function create(ctx) {
+    var modal=ctx.modal, host=ctx.host, tab='facts', query='', category='all', source='', linkedOnly=false;
+    var selected={}, drafts={}, caseId=null, composing=false;
+    function bi(zh,en){return ctx.locale()==='zh'?zh:en;}
+    function e(v){return ctx.escape(v);}
+    function t(k){return ctx.t(k);}
+    function data(){return ctx.data();}
+    function state(){return ctx.state();}
+    function items(type){return Object.values(state().items).filter(function(x){return x.type===type;});}
+    function button(label,action,cls,attrs){return '<button type="button" class="button '+(cls||'')+'" data-lib="'+action+'" '+(attrs||'')+'>'+label+'</button>';}
+    function sourceOf(x){return data().sources.find(function(s){return s.id===x.sourceId;});}
+    function relations(id){return state().relations.filter(function(r){return r.from===id&&r.kind==='fact-supports-question';});}
+    function chosen(id){return items('PA').some(function(x){return x.principleId===id;});}
+    function records(){
+      if(tab==='facts')return ctx.facts();
+      if(tab==='principles')return data().principles;
+      if(tab==='sources')return data().sources;
+      if(tab==='timeline')return data().timeline.filter(function(x){return !/TODO|占位|待补/.test(x.event);}).slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date));});
+      return data().valueWords;
+    }
+    function name(x){
+      if(tab==='principles')return ctx.principleName(x.id);
+      if(tab==='sources')return x.title;
+      if(tab==='timeline')return x.event;
+      if(tab==='glossary'){var i=data().valueWords.indexOf(x);return ctx.locale()==='zh'?x.word:(ctx.words[i]||[x.word])[0];}
+      return x.text;
+    }
+    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
+    function filtered(){var terms=query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return records().filter(function(x){
+      return terms.every(function(term){return searchable(x).includes(term);})&&
+        (tab!=='facts'||((category==='all'||x.categories.includes(category))&&(!source||x.sourceId===source)&&(!linkedOnly||relations(x.id).length)))&&
+        (tab!=='principles'||category==='all'||x.group===category);
+    });}
+    function metadata(x){
+      if(tab==='facts')return x.categories.map(function(c){return t(c);}).join(' · ');
+      if(tab==='principles')return t(x.group);
+      if(tab==='sources')return [x.publisher,x.year].filter(Boolean).join(' · ');
+      if(tab==='timeline')return x.date;
+      return t('team');
+    }
+    function filters(){
+      var html='';
+      if(tab==='facts'||tab==='principles'){
+        var cats=tab==='facts'?['all','material','individual','organization']:['all','basic','organization','employee','involvement','rights'];
+        html='<div class="library-filter-chips" role="group" aria-label="'+e(t('filterFacts'))+'">'+cats.map(function(c){return '<button type="button" id="library-category-'+c+'" data-lib="category" data-category="'+c+'" aria-pressed="'+(category===c)+'" class="'+(category===c?'selected':'')+'">'+e(c==='all'?bi('全部','All'):t(c))+'</button>';}).join('')+'</div>';
+      }
+      if(tab==='facts')html+='<div class="library-filter-row"><label class="sr-only" for="library-source">'+e(t('source'))+'</label><select id="library-source" data-lib-field="source"><option value="">'+e(bi('所有来源','All sources'))+'</option>'+data().sources.filter(function(s){return ctx.facts().some(function(f){return f.sourceId===s.id;});}).map(function(s){return '<option value="'+e(s.id)+'" '+(source===s.id?'selected':'')+'>'+e(s.publisher||s.title)+'</option>';}).join('')+'</select><label class="library-linked-filter"><input type="checkbox" data-lib-field="linked" '+(linkedOnly?'checked':'')+'>'+e(bi('已引用','Linked'))+'</label></div>';
+      return html;
+    }
+    function badge(x){
+      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(x.note)+'">'+e(bi('需复核','Review'))+'</span>':'';
+      var count=tab==='facts'?relations(x.id).length:tab==='principles'&&chosen(x.id)?1:0;
+      return warning+(count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
+    }
+    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?s.publisher||s.title:tab==='sources'?x.id:tab==='timeline'?x.date:bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
+      '<div class="library-no-results">'+ctx.icon('book')+'<h3>'+e(bi('没有找到匹配资料','No matching materials'))+'</h3><p>'+e(bi('试试更短的词，或清除筛选。','Try fewer words or clear the filters.'))+'</p>'+button(e(bi('清除筛选','Clear filters')),'clear','small')+'</div>';}
+    function urlLink(s){return s&&/^https?:\/\//i.test(s.url||'')?'<a class="library-source-link" href="'+e(s.url)+'" target="_blank" rel="noopener noreferrer">'+e(t('readSource'))+' ↗</a>':'';}
+    function sourceContent(x){
+      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=x.note||'';
+      return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?s.title:bi('尚未记录来源','No source recorded'))+'</p>'+
+        (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(x.locator)+'</strong></div>':'')+
+        (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(x.quote)+'</p></blockquote>':'')+
+        (x.confidence?'<span class="library-confidence">'+e(t('confidence'))+' · '+e(t('confidence'+x.confidence[0].toUpperCase()+x.confidence.slice(1)))+'</span>':'')+
+        (note?'<p class="source-review '+(pending?'pending':'')+'">'+ctx.materialText(note)+'</p>':'')+
+        (s&&s.note?'<p class="source-note">'+e(s.note)+'</p>':'')+urlLink(s)+'</section>';
+    }
+    function draft(x){
+      if(!drafts[x.id]){var qs=items('Q'), existing=relations(x.id)[0];drafts[x.id]={target:existing?existing.to:qs.length===1?qs[0].id:'',why:existing?existing.why:'',dirty:false,reasons:{}};}
+      var d=drafts[x.id];if(d.target&&!items('Q').some(function(q){return q.id===d.target;})){d.target='';d.why='';d.dirty=false;}return d;
+    }
+    function linkForm(x){
+      if(ctx.readonly())return '';
+      var qs=items('Q'), d=draft(x), existing=relations(x.id).find(function(r){return r.to===d.target;});
+      return '<section class="library-relevance"><div class="library-section-title">'+ctx.icon('link')+'<h3>'+e(bi('它如何帮助你的分析？','How does it inform your analysis?'))+'</h3></div>'+
+        (qs.length?'<form id="library-link-form" data-id="'+e(x.id)+'"><label class="field"><span>'+e(t('questionTarget'))+'</span><select id="library-target" name="target" required><option value="">'+e(t('choose'))+'</option>'+qs.map(function(q){return '<option value="'+e(q.id)+'" '+(d.target===q.id?'selected':'')+'>'+e(q.text||q.id)+'</option>';}).join('')+'</select></label><label class="field"><span>'+e(t('whyRelated'))+'</span><textarea id="library-why" name="why" rows="3" required placeholder="'+e(t('whyHint'))+'">'+e(d.why)+'</textarea></label><div class="library-save-row"><small id="library-draft-status" role="status">'+e(d.dirty?bi('未保存的引用理由','Unsaved reason'):existing?bi('已保存，可以修改理由','Saved. You can edit the reason.'):bi('由你决定是否引用','You decide whether to use it.'))+'</small><button type="submit" class="button primary small">'+ctx.icon(existing?'check':'plus')+e(existing?bi('更新引用','Update link'):bi('保存引用','Save link'))+'</button></div></form>':
+          '<p>'+e(bi('先写下一个伦理问题，再说明这条资料与它的关系。','Write an ethical question first, then explain how this material relates to it.'))+'</p>'+button(e(bi('去写一个问题','Write a question')),'navigate','primary small','data-step="1"'))+
+        '<div class="library-relations">'+relations(x.id).map(function(r){var q=state().items[r.to];return '<article><div><strong>'+e(q?q.text||q.id:r.to)+'</strong><p>'+e(r.why)+'</p></div>'+button(ctx.icon('close'),'unlink','icon-button quiet','data-id="'+e(r.id)+'" aria-label="'+e(t('remove'))+'"')+'</article>';}).join('')+'</div></section>';
+    }
+    function detail(x){
+      if(!x)return '<div class="library-welcome">'+ctx.icon('book')+'<h3>'+e(bi('从一条资料开始','Start with one material'))+'</h3><p>'+e(bi('选择左侧资料，查看原文与出处，再判断它是否有助于你的问题。','Select a material, check its source, and decide whether it informs your question.'))+'</p></div>';
+      var html='<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
+      if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(x.text)+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 保留原材料语言','Material summary · original language retained'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
+      if(tab==='principles')html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.desc:x.nameEn)+'</p><blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+e(x.nameEn)+'</p></blockquote><p class="library-reading-note">'+e(t('sourceTranslation'))+'</p>'+sourceContent(x)+(!ctx.readonly()?'<div class="library-principle-action">'+button(ctx.icon(chosen(x.id)?'check':'plus')+e(chosen(x.id)?t('selected'):bi('加入原则比较','Add to comparison')),'principle',chosen(x.id)?'quiet':'primary','data-id="'+e(x.id)+'" '+(chosen(x.id)?'disabled':''))+'<p>'+e(bi('加入后，在第六步写下适用理由与取舍。','Then explain relevance and priorities in step 6.'))+'</p></div>':'');
+      if(tab==='timeline')html+='<time class="library-event-date">'+e(x.date)+'</time><h3 class="library-reading-text">'+ctx.materialText(x.event)+'</h3>'+sourceContent(x);
+      if(tab==='sources'){var count=ctx.facts().filter(function(f){return f.sourceId===x.id;}).length;html+='<h3 class="library-reading-title">'+e(x.title)+'</h3><p class="library-publisher">'+e([x.publisher,x.year].filter(Boolean).join(' · '))+'</p>'+(x.note?'<p class="library-source-caution">'+e(x.note)+'</p>':'')+urlLink(x)+'<div class="library-source-usage"><strong>'+count+'</strong><div><h3>'+e(bi('条资料引用此来源','materials cite this source'))+'</h3><p>'+e(bi('查看摘要、定位和原文，再决定如何使用。','Check summaries, locators and quotations before using them.'))+'</p></div></div>'+(count?button(e(bi('查看相关资料','Browse these materials'))+ctx.icon('arrow'),'source-facts','primary','data-id="'+e(x.id)+'"'):'');}
+      if(tab==='glossary'){var idx=data().valueWords.indexOf(x);html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.whyVague:(ctx.words[idx]||['',x.whyVague])[1])+'</p><div class="library-word-preview"><span>'+e(t('others'))+'</span><span>'+e(t('mine'))+'</span></div><p class="library-reading-note">'+e(bi('这是小组的思考提示，具体定义由你们填写。','This is a team prompt. Write your own definitions.'))+'</p>'+(!ctx.readonly()?button(ctx.icon('plus')+e(bi('去澄清这个词','Clarify this term')),'concept','primary','data-word="'+e(name(x))+'"'):'');}
+      return '<div class="library-detail-inner">'+html+'</div>';
+    }
+    function refresh(focus) {
+      var active=document.activeElement, id=active&&active.id, caret=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;
+      var listEl=host.querySelector('.library-results'), oldList=listEl?listEl.scrollTop:0, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
+      var listData=filtered();if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
+      var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
+      host.innerHTML='<div class="library-shell"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">中文</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">EN</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+listData.length+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');newList.scrollTop=oldList;newRead.scrollTop=focus==='select'?0:oldRead;
+      var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
+    }
+    function open(nextTab,id){
+      if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;}
+      if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;}
+      if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;}
+      if(modal.open)modal.close();modal.className='library-dialog';refresh();modal.showModal();host.querySelector('#library-search').focus({preventScroll:true});
+    }
+    host.addEventListener('click',function(event){var el=event.target.closest('[data-lib]');if(!el||el.disabled)return;event.preventDefault();var a=el.dataset.lib;
+      if(a==='close'){modal.close();return;}
+      if(a==='return'||a==='navigate'){modal.close();if(a==='navigate'||tab==='principles')ctx.navigate(a==='navigate'?Number(el.dataset.step):6);return;}
+      if(a==='cite'){var form=host.querySelector('.library-relevance');form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});var input=form.querySelector('textarea,button');if(input)input.focus({preventScroll:true});return;}
+      if(a==='language'){ctx.language(el.dataset.lang);refresh();return;}
+      if(a==='tab'){tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;refresh('select');return;}
+      if(a==='select'){selected[tab]=el.dataset.id;refresh('select');return;}
+      if(a==='category'){category=el.dataset.category;refresh('select');return;}
+      if(a==='clear'){query='';category='all';source='';linkedOnly=false;refresh('select');return;}
+      if(a==='source-facts'){tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;refresh('select');return;}
+      if(ctx.readonly())return;
+      if(a==='unlink'){ctx.dispatch('UNLINK',{id:el.dataset.id});var d=drafts[selected.facts];if(d&&!d.dirty){d.why='';}refresh();return;}
+      if(a==='principle'&&!chosen(el.dataset.id)){ctx.dispatch('ADD_ITEM',{type:'PA',step:6,fields:{principleId:el.dataset.id,appliesTo:[],order:items('PA').length+1}});refresh();ctx.toast(bi('已加入比较，在第六步解释适用理由。','Added. Explain its relevance in step 6.'));return;}
+      if(a==='custom-principle'){modal.close();ctx.dispatch('ADD_ITEM',{type:'PA',step:6,fields:{order:items('PA').length+1}});ctx.navigate(6);return;}
+      if(a==='concept'){modal.close();ctx.dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});ctx.navigate(5);return;}
+      if(a==='add-fact'){ctx.addFact();}
+    });
+    function searchInput(){query=host.querySelector('#library-search').value;refresh('select');}
+    host.addEventListener('compositionstart',function(event){if(event.target.id==='library-search')composing=true;});
+    host.addEventListener('compositionend',function(event){if(event.target.id==='library-search'){composing=false;searchInput();}});
+    host.addEventListener('input',function(event){
+      if(event.target.id==='library-search'&&!composing&&!event.isComposing)searchInput();
+      if(event.target.id==='library-why'){event.target.setCustomValidity('');var d=drafts[selected.facts];d.why=event.target.value;d.dirty=true;d.reasons[d.target]={why:d.why,dirty:true};host.querySelector('#library-draft-status').textContent=bi('未保存的引用理由','Unsaved reason');}
+    });
+    host.addEventListener('change',function(event){
+      if(event.target.dataset.libField==='source'){source=event.target.value;refresh('select');}
+      if(event.target.dataset.libField==='linked'){linkedOnly=event.target.checked;refresh('select');}
+      if(event.target.id==='library-target'){var d=drafts[selected.facts], rel=relations(selected.facts).find(function(r){return r.to===event.target.value;});var unassigned=!d.target&&d.dirty?d.why:'';d.reasons[d.target]={why:d.why,dirty:d.dirty};d.target=event.target.value;var prior=d.reasons[d.target];d.why=prior?prior.why:rel?rel.why:unassigned;d.dirty=prior?prior.dirty:!!unassigned;refresh();}
+    });
+    host.addEventListener('submit',function(event){var form=event.target;if(form.id!=='library-link-form')return;event.preventDefault();event.stopPropagation();if(ctx.readonly())return;
+      var fd=new FormData(form), target=String(fd.get('target')||''), why=String(fd.get('why')||'').trim();if(!why){var input=form.querySelector('textarea');input.setCustomValidity(bi('请写下你认为相关的理由。','Explain why you consider it relevant.'));input.reportValidity();return;}if(!items('Q').some(function(q){return q.id===target;}))return;
+      ctx.dispatch('LINK',{from:form.dataset.id,to:target,kind:'fact-supports-question',why:why});var d=drafts[form.dataset.id];d.target=target;d.why=why;d.dirty=false;d.reasons[target]={why:why,dirty:false};refresh();ctx.toast(bi('引用已保存，可以继续浏览。','Link saved. Keep browsing.'));
+    });
+    modal.addEventListener('close',function(){if(!modal.open&&modal.classList.contains('library-dialog')&&document.activeElement===document.body){var workspace=document.getElementById('workspace');if(workspace)workspace.focus({preventScroll:true});}});
+    return {open:open,isOpen:function(){return modal.open&&modal.classList.contains('library-dialog');}};
+  }
+  window.FieldnotesLibrary={create:create};
+})();
+
+</script>
+  <script>
 (function () {
   'use strict';
   var I=window.FieldnotesI18n, cases=window.FieldnotesCases, data=cases.getData();
@@ -5582,9 +5946,9 @@ body {
   var locale='zh', view='workbook', presentation=null, presentationStep=1, unsubscribe, dragId=null;
   try { locale=localStorage.getItem('fieldnotes.ui.language')==='en'?'en':'zh'; } catch(e) {}
   var composing=false;
-  var materialCategory='all';
+  var library;
   var app=document.getElementById('app'), modal=document.getElementById('modal'), modalContent=document.getElementById('modal-content');
-  var paths={more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z'};
+  var paths={more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z',search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z'};
   function icon(name){return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(paths[name]||paths.note)+'"/></svg>';}
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function materialText(value){return esc(value).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');}
@@ -5621,7 +5985,7 @@ body {
   function connectButton(it){return presentation?'':button('linkEvidence','link','small quiet','link','data-id="'+esc(it.id)+'"');}
   function inputStep(step){var s=state(), list, html='';
     if(step===1){list=rows('Q');html=list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'question')+field(it,'text','question','questionHint')+optionalActors(it)+'</article>';}).join('');return html||empty('emptyQuestions','emptyQuestionsSub',presentation?'':button('addQuestion','add','primary','plus','data-type="Q" data-step="1"'));}
-    if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+field(it,'text','question','questionHint'):'')+'</article>';}).join(''):empty('focusEmpty','emptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
+    if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+field(it,'text','question','questionHint'):'')+'</article>';}).join(''):empty('focusEmpty','focusEmptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
     if(step===3){var selectedFacts=facts().filter(function(f){return s.relations.some(function(r){return r.from===f.id;});});
       html='<div class="evidence-intro"><span class="evidence-icon">'+icon('book')+'</span><div><h3>'+esc(t('selectedFacts'))+'</h3><p>'+facts().length+' '+esc(t('factsAvailable'))+' · '+esc(t('factSelectionHint'))+'</p></div>'+button('browseFacts','materials','primary small','plus','data-tab="facts"')+'</div>';
       html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(it.text)+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
@@ -5638,8 +6002,8 @@ body {
     if(step===7){list=rows().filter(function(x){return x.step<7;});html='<details class="analysis-extra" id="review-guidance"><summary>'+esc(t('biasChecklist'))+'</summary><div class="review-prompts">'+data.reviewPrompts.map(function(p,idx){return '<button class="review-prompt" data-action="navigate" data-step="'+p.jumpTo+'">'+icon('spark')+'<span>'+esc(locale==='zh'?p.label:['Any missing facts?','Any unclear terms?','Do assumptions have a basis?','Any contradictions?','Whose perspective is missing?'][idx])+'</span>'+icon('arrow')+'</button>';}).join('')+'</div>';
       if(list.length){var carrier=list[0];html+='<fieldset class="review-checklist"><legend>'+esc(t('biasChecklist'))+'</legend>'+data.biasChecks.map(function(check,idx){return '<label class="check"><input type="checkbox" id="checklist-'+esc(check.id)+'" data-checklist="'+esc(carrier.id)+'" value="'+esc(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?check.label:I.biasLabels[idx]||check.label)+'</label>';}).join('')+'</fieldset>';}
       html+='</details>';
-      return html+(list.length?list.map(function(it){var status=it.review?it.review.status:'unseen';return '<article class="review-card" id="entry-'+esc(it.id)+'"><span class="record-id">'+esc(it.id)+'</span><h3>'+esc(display(it)||t('empty'))+'</h3><div class="review-actions">'+button('edit','navigate','small quiet','arrow','data-step="'+it.step+'" data-id="'+esc(it.id)+'"')+(presentation?tag(status==='revise'?'revise':status==='checked'?'unchanged':'notReviewed'):'<select id="review-'+esc(it.id)+'" data-review="'+esc(it.id)+'"><option value="unseen" '+(status==='unseen'?'selected':'')+'>'+esc(t('notReviewed'))+'</option><option value="checked" '+(status==='checked'?'selected':'')+'>'+esc(t('unchanged'))+'</option><option value="revise" '+(status==='revise'?'selected':'')+'>'+esc(t('revise'))+'</option></select>')+'</div></article>';}).join(''):empty('reviewEmpty','emptySub'));}
-    if(step===8){list=rows('Q').filter(function(q){return q.isCore;});return list.length?list.map(function(q){var rel=s.relations.find(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}),r=rel?s.items[rel.from]:null;return '<article class="entry-card">'+tag('focus','green')+'<h3>'+esc(q.text||q.id)+'</h3>'+(r?field(r,'text','answer','answer')+field(r,'reason','answerWhy','answerWhy'):(presentation?'<p>'+esc(t('empty'))+'</p>':button('writeAnswer','answer','primary','note','data-id="'+esc(q.id)+'"')))+'</article>';}).join(''):empty('conclusionEmpty','emptySub');}
+      return html+(list.length?list.map(function(it){var status=it.review?it.review.status:'unseen';return '<article class="review-card" id="entry-'+esc(it.id)+'"><span class="record-id">'+esc(it.id)+'</span><h3>'+esc(display(it)||t('empty'))+'</h3><div class="review-actions">'+button('edit','navigate','small quiet','arrow','data-step="'+it.step+'" data-id="'+esc(it.id)+'"')+(presentation?tag(status==='revise'?'revise':status==='checked'?'unchanged':'notReviewed'):'<select id="review-'+esc(it.id)+'" data-review="'+esc(it.id)+'"><option value="unseen" '+(status==='unseen'?'selected':'')+'>'+esc(t('notReviewed'))+'</option><option value="checked" '+(status==='checked'?'selected':'')+'>'+esc(t('unchanged'))+'</option><option value="revise" '+(status==='revise'?'selected':'')+'>'+esc(t('revise'))+'</option></select>')+'</div></article>';}).join(''):empty('reviewEmpty','reviewEmptySub',presentation?'':button('backToQuestions','navigate','primary','back','data-step="1"')));}
+    if(step===8){list=rows('Q').filter(function(q){return q.isCore;});return list.length?list.map(function(q){var rel=s.relations.find(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}),r=rel?s.items[rel.from]:null;return '<article class="entry-card">'+tag('focus','green')+'<h3>'+esc(q.text||q.id)+'</h3>'+(r?field(r,'text','answer','answer')+field(r,'reason','answerWhy','answerWhy'):(presentation?'<p>'+esc(t('empty'))+'</p>':button('writeAnswer','answer','primary','note','data-id="'+esc(q.id)+'"')))+'</article>';}).join(''):empty('conclusionEmpty','conclusionEmptySub',presentation?'':button('chooseFocus','navigate','primary','back','data-step="2"'));}
     if(step===9){list=rows('RC');html='<div class="notice">'+icon('help')+'<p>'+esc(t('constraintHint'))+'</p></div><div class="word-shelf">'+data.constraints.map(function(c,idx){return '<button class="word-chip" data-action="constraint" data-text="'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+icon('plus')+'</button>';}).join('')+'</div>'+(presentation?'':button('noConstraints','no-constraints','small quiet','check'));
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'constraint')+((it.checkedIds||[]).includes('none')?'<p>'+esc(t('noConstraints'))+'</p>':field(it,'text','whatWho','whatWho')+field(it,'alternatives','alternatives','alternatives')+field(it,'mitigationJudgment','mitigation','mitigation'))+'</article>';}).join(''):empty());}
     if(step===10){list=rows('AV');return list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'prevention')+field(it,'text','prevention','preventionHint')+optionalActors(it)+'</article>';}).join(''):empty();}
@@ -5665,7 +6029,7 @@ body {
   }
   function attachCase(){
     data=cases.getData();engine=cases.getRuntime();workingEngine=engine;
-    presentation=null;view='workbook';materialCategory='all';bindEngine();render();window.scrollTo(0,0);
+    presentation=null;view='workbook';bindEngine();render();window.scrollTo(0,0);
   }
   function casesDialog(){
     openDialog('switchCase','<div class="case-list">'+cases.list().map(function(pack){
@@ -5713,24 +6077,19 @@ body {
     return html;
   }
   function toast(message){var box=document.getElementById('toast');box.textContent=message;box.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(function(){box.classList.remove('visible');},3500);}
-  function openDialog(titleKey,body,drawer){if(modal.open)modal.close();modal.className=drawer?'drawer':'';modalContent.innerHTML='<div class="modal-head"><h2>'+esc(t(titleKey))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;modal.showModal();}
+  function openDialog(titleKey,body,drawer){if(modal.open)modal.close();modal.className=drawer?'drawer':'';modalContent.innerHTML='<div class="modal-head"><h2 id="modal-title">'+esc(t(titleKey))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;modal.showModal();}
   function confirmAction(message,action){openDialog('help','<p class="modal-message">'+esc(message)+'</p><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" data-action="confirm">'+esc(t('confirm'))+'</button></div>');modal.confirmHandler=action;}
   function dispatch(type,payload){engine.dispatch({type:type,payload:payload});}
   function options(records){return '<option value="">'+esc(t('choose'))+'</option>'+records.map(function(x){return '<option value="'+esc(x.id)+'">'+esc(display(x)||x.title||x.id)+'</option>';}).join('');}
-  function materialBody(tab){var tabs=['facts','principles','timeline','sources','glossary'];var body='<div class="material-purpose"><span class="purpose-icon">'+icon('link')+'</span><h3>'+esc(t('materialPurpose'))+'</h3><p>'+esc(t('materialPurposeSub'))+'</p><div>'+esc(t('evidenceSteps'))+'</div></div><div class="drawer-tabs">'+tabs.map(function(k){return '<button data-action="material-tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+esc(t(k))+'</button>';}).join('')+'</div>';
-    if(tab==='principles')body+='<p class="hint">'+esc(t('sourceTranslation'))+' · 23 '+bi('条原则 + 10 项权利','principles + 10 rights')+'</p>'+['basic','organization','employee','involvement','rights'].map(function(group){return '<details class="principle-group" '+(group==='basic'?'open':'')+'><summary>'+esc(t(group))+'<span>'+data.principles.filter(function(p){return p.group===group;}).length+'</span></summary>'+data.principles.filter(function(p){return p.group===group;}).map(function(p){var chosen=rows('PA').some(function(it){return it.principleId===p.id;});return '<article class="library-card"><span class="record-id">'+esc(p.id)+'</span>'+tag(group==='rights'?'rights':'textbook','muted')+'<h3>'+esc(principleName(p.id))+'</h3><p>'+esc(locale==='zh'?p.desc:p.nameEn)+'</p><details><summary>'+esc(t('sourceOriginal'))+'</summary><p>'+esc(p.nameEn)+'</p><small>'+esc(sourceName(p.sourceId))+'</small></details>'+(!presentation?button(chosen?'selected':'add','principle','small '+(chosen?'quiet':'primary'),chosen?'check':'plus','data-id="'+p.id+'" '+(chosen?'disabled':'')):'')+'</article>';}).join('')+'</details>';}).join('');
-    if(tab==='timeline'){var timeline=data.timeline.filter(function(x){return !isPending(x.event);});body+=timeline.length?'<div class="timeline">'+timeline.map(function(x){return '<article><time>'+esc(x.date)+'</time><h3>'+materialText(x.event)+'</h3>'+sourceDetails(x)+'</article>';}).join('')+'</div>':empty('noData','noDataSub');}
-    if(tab==='facts')body+=(cases.isCustom()?button('addFact','add-fact','primary','plus'):'');
-    if(tab==='facts')body+='<div class="fact-filters" role="group" aria-label="'+esc(t('filterFacts'))+'">'+['all','material','individual','organization'].map(function(cat){return '<button data-action="filter-facts" data-category="'+cat+'" class="'+(materialCategory===cat?'selected':'')+'" aria-pressed="'+(materialCategory===cat)+'">'+esc(t(cat==='all'?'allFacts':cat))+'<span>'+facts().filter(function(f){return cat==='all'||f.categories.includes(cat);}).length+'</span></button>';}).join('')+'</div>';
-    if(tab==='facts')body+=facts().length?facts().filter(function(f){return materialCategory==='all'||f.categories.includes(materialCategory);}).map(function(f){var linked=state().relations.some(function(r){return r.from===f.id;});return '<article class="library-card library-fact"><div class="library-card-head">'+tag(cases.isCustom()?'userFact':'facts','green')+(linked?tag('linked','linked-tag'):'')+'</div><p>'+materialText(f.text)+'</p><div class="fact-categories">'+f.categories.map(function(c){return tag(c);}).join(' ')+'</div>'+sourceDetails(f)+relationList(f.id)+connectButton(f)+'</article>';}).join(''):empty('noFactsYet','noFactsYetSub');
-    if(tab==='sources')body+=data.sources.map(function(s){var url=/^https?:\/\//i.test(s.url||'')?s.url:'';return '<article class="library-card"><span class="record-id">'+esc(s.id)+'</span><h3>'+esc(s.title)+'</h3><p>'+esc(s.publisher)+' · '+esc(s.year)+'</p>'+(s.note?'<p class="source-note">'+esc(s.note)+'</p>':'')+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</article>';}).join('');
-    if(tab==='glossary')body+='<article class="library-card"><h3>'+esc(t('methodBasis'))+'</h3><p>'+esc(t('countNote'))+'</p>'+tag('textbook')+'</article>'+data.valueWords.map(function(w,idx){return '<article class="library-card"><h3>'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+'</h3><p>'+esc(locale==='zh'?w.whyVague:I.words[idx]?I.words[idx][1]:w.whyVague)+'</p>'+tag('team','muted')+' <small>'+esc(t('pendingSource'))+'</small></article>';}).join('');
-    if(tab==='principles')body+=button('addCustom','custom-principle','quiet','plus');
-    return body;
-  }
-  function openMaterials(tab){openDialog('materials',materialBody(tab||(current()===6?'principles':'facts')),true);}
+  function openMaterials(tab,id){library.open(tab||(current()===6?'principles':'facts'),id);}
   function linkDialog(id){var source=state().items[id]||data.facts.find(function(f){return f.id===id;});if(!rows('Q').length){toast(t('noTargets'));return;}openDialog('linkEvidence','<form id="link-form" data-from="'+esc(id)+'"><p class="quote">'+esc(display(source))+'</p><label class="field"><span>'+esc(t('questionTarget'))+'</span><select name="target" required>'+options(rows('Q'))+'</select></label><label class="field"><span>'+esc(t('whyRelated'))+'</span><textarea name="why" placeholder="'+esc(t('whyHint'))+'" required></textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');}
-  function basisDialog(id){var it=state().items[id],rel=state().relations.find(function(r){return r.from===id&&r.kind==='assumption-fills-gap';});var refs=rows('M').concat(facts(),data.sources);openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><fieldset><legend>'+esc(t('basis'))+'</legend>'+refs.map(function(x){return '<label class="check"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+((it.basisRefs||[]).includes(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</fieldset><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');if(rel)modal.querySelector('[name="gap"]').value=rel.to;}
+  function basisDialog(id){
+    var it=state().items[id],rel=state().relations.find(function(r){return r.from===id&&r.kind==='assumption-fills-gap';});
+    var linked=new Set(state().relations.map(function(r){return r.from;})), selected=new Set(it.basisRefs||[]);
+    var refs=rows('M').concat(facts(),data.sources).sort(function(a,b){return Number(selected.has(b.id))-Number(selected.has(a.id))||Number(linked.has(b.id))-Number(linked.has(a.id));});
+    openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><label class="field basis-search"><span>'+esc(bi('查找依据（已选资料优先显示）','Find a basis (selected material first)'))+'</span><input id="basis-search" type="search" placeholder="'+esc(bi('搜索内容或来源…','Search wording or sources…'))+'"></label><fieldset><legend>'+esc(t('basis'))+'</legend><div class="basis-options">'+refs.map(function(x){return '<label class="check" data-basis-text="'+esc([display(x)||x.title||'',x.sourceId?sourceName(x.sourceId):'',x.quote||'',x.locator||''].join(' ').toLocaleLowerCase())+'"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+(selected.has(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</div></fieldset><p id="basis-count" class="basis-count" role="status">'+selected.size+' '+esc(bi('项依据已选','references selected'))+'</p><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
+    if(rel)modal.querySelector('[name="gap"]').value=rel.to;
+  }
   function exportMarkdown(){var s=state(),text='# '+data.meta.title+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+button('jsonExport','download-json','primary','download')+button('markdown','download-md','','note')+'</div>');}
@@ -5740,7 +6099,6 @@ body {
     if(action==='cases')casesDialog();
     if(action==='select-case'){cases.select(el.dataset.id);attachCase();modal.close();}
     if(action==='add-fact')factDialog();
-    if(action==='filter-facts'){materialCategory=el.dataset.category;openMaterials('facts');}
     if(action==='method')methodDialog();
     if(action==='review-step')dispatch('SET_STATUS',{step:current(),status:state().stepStatus[current()]==='checked'?'draft':'checked'});
     if(action==='navigate'){view='workbook';if(modal.open)modal.close();var target=Math.max(1,Math.min(10,Number(el.dataset.step)));if(presentation){presentationStep=target;render();}else dispatch('NAVIGATE',{step:target});window.scrollTo(0,0);if(el.dataset.id)setTimeout(function(){var item=document.getElementById('entry-'+el.dataset.id);if(item)item.scrollIntoView({block:'center',behavior:'smooth'});},0);}
@@ -5751,8 +6109,7 @@ body {
     if(action==='close'){modal.close();modal.confirmHandler=null;}
     if(action==='confirm'){var fn=modal.confirmHandler;modal.close();modal.confirmHandler=null;if(fn)fn();}
     if(action==='materials')openMaterials(el.dataset.tab);
-    if(action==='material-tab')modalContent.innerHTML='<div class="modal-head"><h2>'+esc(t('materials'))+'</h2>'+button('close','close','icon-button quiet','close')+'</div>'+materialBody(el.dataset.tab);
-    if(action==='link') {if(modal.open)modal.close();linkDialog(el.dataset.id);}
+    if(action==='link') {if(data.facts.some(function(f){return f.id===el.dataset.id;}))openMaterials('facts',el.dataset.id);else{if(modal.open)modal.close();linkDialog(el.dataset.id);}}
     if(action==='unlink')dispatch('UNLINK',{id:el.dataset.id});
     if(action==='basis')basisDialog(el.dataset.id);
     if(action==='concept')dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});
@@ -5783,6 +6140,11 @@ body {
   }
   function bindEngine(){if(unsubscribe)unsubscribe();unsubscribe=engine.subscribe(render);}
   document.addEventListener('compositionstart',function(){composing=true;});document.addEventListener('compositionend',function(e){composing=false;updateInput(e);});
+  function filterBasisSearch(e){
+    if(e.target.id==='basis-search'&&!e.isComposing){var terms=e.target.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);modal.querySelectorAll('[data-basis-text]').forEach(function(row){row.hidden=!terms.every(function(term){return row.dataset.basisText.includes(term);});});}
+  }
+  document.addEventListener('input',filterBasisSearch);document.addEventListener('compositionend',filterBasisSearch);
+  document.addEventListener('change',function(e){if(e.target.matches('#basis-form [name="basis"]'))document.getElementById('basis-count').textContent=modal.querySelectorAll('[name="basis"]:checked').length+' '+bi('项依据已选','references selected');});
   document.addEventListener('click',onClick);document.addEventListener('input',function(e){if(e.target.matches('textarea[data-item],input[data-item]:not([type="checkbox"]),textarea[data-conflict],input[data-conflict]'))updateInput(e);});document.addEventListener('change',function(e){if(e.target.matches('select[data-item],select[data-conflict],input[type="checkbox"][data-item],[data-status],[data-review],[data-checklist],[data-applies]'))updateInput(e);});document.addEventListener('submit',submit);
   document.addEventListener('dragstart',function(e){var el=e.target.closest('[data-drag]');if(el&&!presentation){dragId=el.dataset.drag;e.dataTransfer.setData('text/plain',dragId);}});
   document.addEventListener('dragover',function(e){if(e.target.closest('[data-drag]'))e.preventDefault();});
@@ -5790,6 +6152,12 @@ body {
   document.getElementById('project-file').addEventListener('change',function(e){var file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>5*1024*1024){toast(t('fileLarge'));return;}var reader=new FileReader();reader.onload=function(){confirmAction(t('importConfirm'),function(){var result=cases.importProject(reader.result);if(result.ok)attachCase();toast(t(result.ok?'imported':'invalidImport'));if(result.ok){view='workbook';render();}});};reader.onerror=function(){toast(t('invalidImport'));};reader.readAsText(file);});
   window.addEventListener('pagehide',function(){if(engine.flush)engine.flush();});
   window.FIELDNOTES={mount:function(runtime){cases.mount(runtime);engine=runtime;workingEngine=runtime;presentation=null;bindEngine();render();},getEngine:function(){return engine;},getLocale:function(){return locale;},getCases:function(){return cases;},snapshotChanges:snapshotChanges};
+  library=window.FieldnotesLibrary.create({modal:modal,host:modalContent,escape:esc,t:t,icon:icon,materialText:materialText,
+    locale:function(){return locale;},data:function(){return data;},state:state,facts:facts,principleName:principleName,words:I.words,
+    custom:function(){return cases.isCustom();},readonly:function(){return !!presentation;},dispatch:dispatch,toast:toast,
+    navigate:function(step){view='workbook';dispatch('NAVIGATE',{step:step});window.scrollTo(0,0);},addFact:factDialog,
+    language:function(lang){locale=lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();}
+  });
   bindEngine();render();
 })();
 

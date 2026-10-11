@@ -11,7 +11,7 @@
 <body>
   <a class="skip-link" href="#workspace">跳到工作区 / Skip to workspace</a>
   <div id="app"></div>
-  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <dialog id="modal" aria-labelledby="modal-title"><div id="modal-content"></div></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
   <input id="project-file" type="file" accept="application/json,.json" hidden>
   <noscript>请启用 JavaScript / Enable JavaScript to use this offline workbook.</noscript>
@@ -20,6 +20,7 @@
   <script src="src/ui/i18n.js"></script>
   <script src="src/ui/preview-runtime.js"></script>
   <script src="src/ui/case-workspaces.js"></script>
+  <script src="src/ui/evidence-library.js"></script>
   <script src="src/ui/workbench.js"></script>
 </body>
 </html>
