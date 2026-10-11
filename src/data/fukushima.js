@@ -999,7 +999,7 @@
         locator: "§1.1 Summary of the accident",
         quote: "The reactors of Units 1, 2 and 3 suffered damage as the fuel overheated and melted. The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units",
         confidence: "high",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        note: "核验：✅"
       },
       {
         id: "f-mat-005",
@@ -1071,7 +1071,7 @@
         locator: "§1.1.2.5 Tsunami and station blackout",
         quote: "the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m [15]. However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant.",
         confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；核验⚠️：PDF 文本层在 “maximum” 与 “5.5 m” 之间插入脚注 12，引文作连续句；**15:36–15:37 为 3/11 海啸波，非氢爆**"
+        note: "核验：⚠️ PDF 文本层在 “maximum” 与 “tsunami height of 5.5 m” 之间插入脚注 12，草稿引文作连续句；且 15:36–15:37 为 3/11 第二波海啸，非氢爆"
       },
       {
         id: "f-mat-012",
@@ -1107,7 +1107,7 @@
         locator: "§1.3.2；§1.1.3.3",
         quote: "All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami",
         confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；核验⚠️：引文含 “…” **合并两节**，非 PDF 单一连续段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）"
+        note: "核验：⚠️ 草稿引文含 “…” 合并 §1.3.2 与 §1.1.3.3，非单一连续逐字段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）"
       },
       {
         id: "f-mat-015",
@@ -1275,7 +1275,7 @@
         locator: "§1.3.2 Unit 1 sequence",
         quote: "The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded.",
         confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；核验⚠️：PDF 连续文本为 `…that the operators manually stopped…`，非句首 `The operators`"
+        note: "核验：⚠️ 草稿以 “The operators manually…” 开头；PDF 连续文本为 “…that the operators manually…”（无句首 The operators）"
       },
       {
         id: "f-ind-009",
