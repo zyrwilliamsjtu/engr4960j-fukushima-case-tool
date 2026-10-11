@@ -132,6 +132,16 @@ def main() -> int:
     else:
         bad("runtime must use AppLogicRuntime via createRuntime (adapter switch not in dist)")
 
+    if "SelftestResult" in html or re.search(r"SELFTEST\s", html):
+        bad("SELFTEST marker in deliverable")
+    else:
+        ok("no SELFTEST marker in deliverable")
+
+    if "__REVISION_COMPARE_SELFTEST_HOOK__" in html:
+        bad("revision-compare selftest hook in deliverable")
+    else:
+        ok("no revision-compare test hooks leaked into deliverable")
+
     print("---")
     print(f"SUMMARY: PASS={pass_n} FAIL={fail_n}")
     return 0 if fail_n == 0 else 1

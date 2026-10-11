@@ -15,15 +15,19 @@
 """
 from __future__ import annotations
 
+import argparse
 import base64
 import hashlib
 import mimetypes
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
-OUT = ROOT / "dist" / "index.html"
+DEFAULT_OUT = ROOT / "dist" / "index.html"
+DELIVERABLE = DEFAULT_OUT
+SELFTEST_MARKERS = ("SelftestResult", 'document.title = "SELFTEST ')
 
 LOGIC_CHAIN = [
     "src/logic/ids.js",
@@ -90,7 +94,7 @@ def inline_style_tag(content: str) -> str:
     return f"<style>\n{content}\n</style>"
 
 
-def build() -> int:
+def build(out_path: Path, extra_js: Path | None) -> int:
     warnings: list[str] = []
     inlined: list[tuple[str, int]] = []
 
@@ -138,12 +142,31 @@ def build() -> int:
             logic_blocks.append(inline_script_tag(adapter_content))
         html = html.replace(RUNTIME_COMMENT, "\n".join(logic_blocks))
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(html, encoding="utf-8")
-    final_size = OUT.stat().st_size
-    digest = hashlib.sha256(OUT.read_bytes()).hexdigest()
+    if extra_js is not None:
+        extra_path = extra_js.resolve()
+        if not extra_path.is_file():
+            raise FileNotFoundError(extra_js)
+        extra_content = read_text(extra_path)
+        inlined.append((str(extra_js).replace("\\", "/"), len(extra_content.encode("utf-8"))))
+        inject = inline_script_tag(extra_content)
+        if "</body>" in html:
+            html = html.replace("</body>", inject + "\n</body>", 1)
+        else:
+            html += inject
 
-    print(f"Built: {OUT.relative_to(ROOT)}")
+    out_resolved = out_path.resolve()
+    if out_resolved == DELIVERABLE.resolve():
+        for marker in SELFTEST_MARKERS:
+            if marker in html:
+                print(f"ERROR: deliverable must not contain SELFTEST marker ({marker!r})")
+                return 1
+
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(html, encoding="utf-8")
+    final_size = out_path.stat().st_size
+    digest = hashlib.sha256(out_path.read_bytes()).hexdigest()
+
+    print(f"Built: {out_path.relative_to(ROOT)}")
     print(f"Inline count: {len(inlined)}")
     for rel, size in inlined:
         print(f"  {rel}: {size:,} bytes")
@@ -158,5 +181,24 @@ def build() -> int:
     return 0
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Inline local assets into a single HTML file.")
+    parser.add_argument(
+        "--out",
+        default=str(DEFAULT_OUT.relative_to(ROOT)).replace("\\", "/"),
+        help="Output HTML path (default: dist/index.html)",
+    )
+    parser.add_argument(
+        "--extra-js",
+        dest="extra_js",
+        default=None,
+        help="Extra script inlined immediately before </body>",
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    raise SystemExit(build())
+    args = parse_args()
+    out = (ROOT / args.out).resolve()
+    extra = (ROOT / args.extra_js).resolve() if args.extra_js else None
+    raise SystemExit(build(out, extra))

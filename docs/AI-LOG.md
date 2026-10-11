@@ -170,6 +170,12 @@
 - **可见核对**：在用户原 IAB 标签页刷新并打开新资料工作区，未添加测试数据至用户的草稿。保留通用工作台标题与双语模式。
 - **证据**：frontend-qa-library-final/ 保留工作台、概念页、原文复核、引用、原则与手机代表图，frontend-qa-library-final-dist/ 保留交付原则图；所有作者输入均为明确标注的虚构 QA。此前已提交的证据全部保留。本轮图片为界面检查，不替代老师要求的真实 AI 聊天截图；真实对话须从本聊天保存。
 
+### 2026-10-11 — 导出/导入、修订对比与无头自测
+
+- **提示词要点**：堵 importProject 洞；JSON/MD 导出与四项导入校验；revision-compare 接界面；Node 往返测 + Edge headless selftest；交付物不含 SELFTEST。
+- **产出**：`src/ui/case-workspaces.js`、`src/ui/workbench.js`、`src/ui/revision-compare.js`、`index.html`；`tools/export-import-test.js`、`tools/e2e/selftest.js`、`tools/browser-smoke.py`、`tools/build.py`、`tools/check-dist.py`、`.gitignore`
+- **截图**：待 PI 补入
+
 ### 2026-10-11 — 界面运行时切换 AppLogic 适配器
 
 - **提示词要点**：PI 授权 4 处 patch；收紧 check-dist 为 FAIL；规格落地节；不删 preview。

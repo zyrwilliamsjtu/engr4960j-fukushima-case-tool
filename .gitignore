@@ -6,3 +6,5 @@ Thumbs.db
 *.zip
 .pdf-cache/
 *.pdf
+dist/_selftest.html
+dist/_selftest.png
