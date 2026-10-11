@@ -1,368 +1,542 @@
-# 数据契约 v1
+# 数据契约 v2.0
 
-> **契约冻结规则**：`window.CASE_DATA` 与用户 `localStorage` 结构一旦组员开始开发，任何字段增删改、语义变更或校验键变更，必须先升级 `meta.dataVersion` 和/或 `stateVersion`，更新本文档，经 PR review 并在小组群内通知；禁止静默改字段。
+## 契约冻结规则
+
+`window.CASE_DATA` 与用户 `localStorage` 结构一旦组员开始开发，任何字段增删改、语义变更或校验键变更，必须先升级 `meta.dataVersion` 和/或 `stateVersion`，更新本文档，经 PR review 并在小组群内通知；**禁止静默改字段后再改代码**。
+
+### 版本历史
+
+| 版本 | 说明 |
+|------|------|
+| v1.0 | 脚手架阶段，无正式契约文档 |
+| v2.0 | 本轮：对齐 PRODUCT v1.0 第九～十一节；`dataVersion` / `stateVersion` 均为 `2.0` |
 
 ---
 
-## 1. 静态数据 `window.CASE_DATA`
+## 1. 稳定 ID 规则
 
-挂载方式：`src/data/fukushima.js` 内赋值 `window.CASE_DATA = { ... }`（非 ES Module）。
+所有用户创建的条目**必须**有稳定 ID，格式 `类型前缀-步骤号-序号`：
 
-### 1.1 根级字段
+| 前缀 | 类型 | 示例 |
+|------|------|------|
+| `Q` | 伦理问题 | `Q-1-03` |
+| `XR` | 引用的事实（引用 `CASE_DATA.facts` 的 id） | `F-material-012` |
+| `M` | 缺失事实 | `M-3-02` |
+| `A` | 假设 | `A-4-01` |
+| `C` | 概念/术语澄清 | `C-5-02` |
+| `PA` | 原则应用 | `PA-6-01` |
+| `CF` | 原则冲突 | `CF-6-01` |
+| `RC` | 现实约束 | `RC-9-01` |
+| `R` | 结论 | `R-8-01` |
+| `AV` | 避免措施 | `AV-10-01` |
+| `REL` | 关联记录 | `REL-0007` |
+| `SN` | 快照 | `SN-01` |
 
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `meta` | `object` | 是 | 案例元信息 | 见下表 |
-| `timeline` | `array` | 是 | 第 1 步参考：事件时间线 | `[{ "date": "【占位】", "event": "【占位】此处待补", "sourceId": "TODO" }]` |
-| `sources` | `array` | 是 | 文献/来源目录，供参考侧栏引用 | `[{ "id": "TODO", "title": "【占位】", "publisher": "【占位】", "year": 0, "url": "" }]` |
-| `facts` | `object` | 是 | 第 3 步参考：分桶事实库 | 见 1.2 |
-| `valueWords` | `array` | 是 | 第 5 步候选价值含义词 | `[{ "word": "【占位】", "whyVague": "【占位】此处待补" }]` |
-| `principles` | `array` | 是 | 第 6 步伦理原则卡片 | `[{ "id": "p-placeholder", "name": "【占位】", "desc": "【占位】此处待补", "sourceId": "TODO" }]` |
-| `constraints` | `array` | 是 | 第 9 步缓解/豁免条件选项 | `[{ "id": "c-placeholder", "label": "【占位】", "desc": "【占位】此处待补" }]` |
-| `biasChecks` | `array` | 是 | 第 7 步偏见自查项 | `[{ "id": "b-placeholder", "label": "【占位】此处待补" }]` |
-| `steps` | `array` | 是 | 10 个分析步骤定义（长度固定为 10） | 见第 2 节 |
+**生命周期**：ID 一旦生成**不得复用**、**不得因删除条目而回收**；删除仅标记影响范围，不重用旧 ID。
 
-### 1.2 `meta` 对象
+---
 
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `id` | `string` | 是 | 案例唯一标识 | `"fukushima"` |
-| `title` | `string` | 是 | 界面显示标题 | `"福岛第一核电站事故"` |
-| `dataVersion` | `string` | 是 | 静态数据契约版本 | `"1.0"` |
+## 2. 静态数据 `window.CASE_DATA`
 
-### 1.3 `facts` 对象
+挂载：`src/data/fukushima.js` 内 `window.CASE_DATA = { … }`（非 ES Module）。
 
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `material` | `array` | 是 | 材料/物理环境类事实 | `[{ "id": "fm-1", "text": "【占位】此处待补", "sourceId": "TODO" }]` |
-| `individual` | `array` | 是 | 个人/行为类事实 | `[{ "id": "fi-1", "text": "【占位】此处待补", "sourceId": "TODO" }]` |
-| `organization` | `array` | 是 | 组织/制度类事实 | `[{ "id": "fo-1", "text": "【占位】此处待补", "sourceId": "TODO" }]` |
-
-### 1.4 `timeline[]` 元素
+### 2.1 根级字段
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `date` | `string` | 是 | 事件日期或阶段描述 | `"【占位】"` |
-| `event` | `string` | 是 | 事件简述 | `"【占位】此处待补"` |
-| `sourceId` | `string` | 是 | 对应 `sources[].id` | `"TODO"` |
+| `meta` | `object` | 是 | 案例元信息 | 见 2.2 |
+| `sources` | `array` | 是 | 文献/来源目录 | 见 2.3 |
+| `timeline` | `array` | 是 | 事件时间线（L1） | 见 2.4 |
+| `facts` | `array` | 是 | 事实库（L1，可多标签） | 见 2.5 |
+| `valueWords` | `array` | 是 | 第 5 步候选词 | 见 2.6 |
+| `principles` | `array` | 是 | 附录 I 原则库 | 见 2.7 |
+| `constraints` | `array` | 是 | 第 9 步预置提示词 | 见 2.8 |
+| `biasChecks` | `array` | 是 | 第 7 步偏见自查 | 见 2.9 |
+| `reviewPrompts` | `array` | 是 | 第 7 步复核提示 | 见 2.10 |
+| `steps` | `array` | 是 | 10 步定义 | 见第 3 节 |
 
-### 1.5 `sources[]` 元素
-
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `id` | `string` | 是 | 来源唯一 id | `"TODO"` |
-| `title` | `string` | 是 | 文献或报告标题 | `"【占位】"` |
-| `publisher` | `string` | 是 | 发布方 | `"【占位】"` |
-| `year` | `number` | 是 | 出版/发布年 | `0` |
-| `url` | `string` | 否 | 链接（离线展示用，可为空） | `""` |
-
-### 1.6 事实条目（`facts.*[]`）
+### 2.2 `meta`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 事实条目 id | `"fm-1"` |
+| `id` | `string` | 是 | 案例 id | `"fukushima"` |
+| `title` | `string` | 是 | 界面标题 | `"福岛第一核电站事故"` |
+| `dataVersion` | `string` | 是 | 静态契约版本 | `"2.0"` |
+| `builtAt` | `string` | 是 | 数据构建日期 | `"2026-10-11"` |
+
+### 2.3 `sources[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 来源 id | `"src-001"` |
+| `title` | `string` | 是 | 标题 | `"Global Engineering Ethics, Appendix I: Principles Reviewed"` |
+| `publisher` | `string` | 是 | 出版方 | `"Elsevier"` |
+| `year` | `number` | 是 | 年份 | `2017` |
+| `url` | `string` | 否 | 链接 | `""` |
+| `accessedAt` | `string` | 否 | 访问日期 | `""` |
+
+### 2.4 `timeline[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 时间线条目 id | `"tl-001"` |
+| `date` | `string` | 是 | 日期或阶段 | `"【占位】"` |
+| `event` | `string` | 是 | 事件描述 | `"【占位】此处待补"` |
+| `sourceId` | `string` | 是 | 来源 id | `"TODO(PI)"` |
+| `infoKnownBy` | `array` | 否 | P2「站在当时」：当时知情主体 | `[]` |
+| `infoKnownWhen` | `string` | 否 | P2：信息何时被掌握 | `""` |
+
+### 2.5 `facts[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 事实 id | `"f-ph-1"` |
 | `text` | `string` | 是 | 事实正文 | `"【占位】此处待补"` |
-| `sourceId` | `string` | 是 | 来源 id | `"TODO"` |
+| `categories` | `string[]` | 是 | 多标签分类 | `["material","individual"]` |
+| `sourceId` | `string` | 是 | 来源 id | `"TODO(PI)"` |
+| `note` | `string` | 否 | 编辑备注 | `""` |
 
-### 1.7 其他数组元素
-
-**`valueWords[]`**
-
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `word` | `string` | 是 | 待澄清词 | `"【占位】"` |
-| `whyVague` | `string` | 是 | 为何需要澄清 | `"【占位】此处待补"` |
-
-**`principles[]`**
+### 2.6 `valueWords[]`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 原则 id | `"p-placeholder"` |
-| `name` | `string` | 是 | 原则名称 | `"【占位】"` |
-| `desc` | `string` | 是 | 简短说明 | `"【占位】此处待补"` |
-| `sourceId` | `string` | 是 | 教材/附录引用 | `"TODO"` |
+| `id` | `string` | 是 | 词条 id | `"vw-1"` |
+| `word` | `string` | 是 | 词 | `"责任"` |
+| `whyVague` | `string` | 是 | 为何需澄清 | `"可指法律责任或道德责任…"` |
+| `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
 
-**`constraints[]`**
-
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `id` | `string` | 是 | 条件项 id | `"c-placeholder"` |
-| `label` | `string` | 是 | 短标签 | `"【占位】"` |
-| `desc` | `string` | 是 | 说明 | `"【占位】此处待补"` |
-
-**`biasChecks[]`**
+### 2.7 `principles[]`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `string` | 是 | 自查项 id | `"b-placeholder"` |
-| `label` | `string` | 是 | 自查问题文案 | `"【占位】此处待补"` |
+| `id` | `string` | 是 | 原则 id | `"p-basic-1"` |
+| `group` | `string` | 是 | 分组 | `"basic"` / `"organization"` / `"employee"` / `"involvement"` / `"rights"` |
+| `name` | `string` | 是 | 中文短名 | `"公众安全"` |
+| `desc` | `string` | 是 | 中文简述 | `"使公众免受…"` |
+| `sourceId` | `string` | 是 | 来源 | `"src-textbook-appendix-I"` |
+
+> 实现文件 `fukushima.js` 中原则条目另含 `nameEn`（英文原文，供卡片双语展示）；逻辑层读取时不得忽略该字段。
+
+### 2.8 `constraints[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 提示项 id | `"c-hint-1"` |
+| `label` | `string` | 是 | 短标签 | `"深层文化规范"` |
+| `desc` | `string` | 是 | 说明（非结论） | `"…不预设必然减责。"` |
+| `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
+
+### 2.9 `biasChecks[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 项 id | `"bc-1"` |
+| `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？…"` |
+| `jumpTo` | `number` | 是 | 跳转步骤号 | `3` |
+
+### 2.10 `reviewPrompts[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 项 id | `"rp-1"` |
+| `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？"` |
+| `jumpTo` | `number` | 是 | 跳转步骤 | `3` |
+| `kind` | `string` | 是 | 类型 | `"missing-facts"` 等 |
 
 ---
 
-## 2. 单步结构 `steps[]`
-
-每个元素描述一步 UI/校验配置（非用户答案）。
+## 3. 单步结构 `steps[]`
 
 | 字段名 | 类型 | 必填 | 含义 | 示例值 |
 |--------|------|------|------|--------|
-| `id` | `number` | 是 | 步骤序号 1–10 | `1` |
-| `key` | `string` | 是 | 机器可读键 | `"identify"` |
-| `name` | `string` | 是 | 步骤中文名 | `"识别伦理问题"` |
-| `presentInClass` | `boolean` | 是 | 是否课堂展示（前 5 步为 `true`） | `true` |
-| `intro` | `string` | 是 | 背景说明 Markdown/纯文本 | `"【占位】背景说明…"` |
-| `prompts` | `string[]` | 是 | 引导问题列表 | `["【占位】引导问题？"]` |
-| `fields` | `object[]` | 是 | 本步输入区字段定义 | 见第 4 节 |
-| `checks` | `string[]` | 是 | 校验规则 token 列表 | `["minItems:5", "mustBeQuestion"]` |
-| `reference` | `object \| null` | 是 | 参考视角内容类型 | `{ "type": "timeline" }` |
+| `id` | `number` | 是 | 1–10 | `1` |
+| `key` | `string` | 是 | 机器键 | `"identify"` |
+| `name` | `string` | 是 | 中文名 | `"识别伦理问题"` |
+| `presentInClass` | `boolean` | 是 | 课堂展示 | `true`（前 5 步） |
+| `intro` | `string` | 是 | 步骤说明 | `"…"` |
+| `prompts` | `object[]` | 是 | 引导问题 | `{ text, source }` |
+| `fields` | `object[]` | 是 | 输入区 | 见第 4 节 |
+| `checks` | `object[]` | 是 | 形式检查 | `{ id, level, refSource }` |
+| `referenceLevel1` | `string[]` | 是 | L1 侧栏键 | `["timeline","sources"]` |
+| `referenceLevel3` | `object \| null` | 是 | L3 参考 | `{ type, source, body }` 或 `null` |
+| `state` | `string` | 是 | 配置态占位 | `"todo"` |
 
-**`reference.type` 枚举**
+`prompts[].source` ∈ `"textbook"` | `"team"` | `"instructor"`。
 
-| 值 | 含义 |
-|----|------|
-| `"timeline"` | 展示 `timeline` |
-| `"facts"` | 展示 `facts`（只读、不可一键复制） |
-| `"text"` | 展示 `reference.body` 或固定教材摘录（字段扩展时升版本） |
-| `null` | 本步无参考视角（如第 8 步） |
+`checks[].level` ∈ `"error"` | `"suggest"`（**绝大多数为 `suggest`**）。
 
-可选扩展（v1 未用时勿填）：`reference.body`（`string`）。
+`checks[].refSource` ∈ `"textbook"` | `"team"` | `"instructor"`。
 
-**`fields[]` 公共属性**
+`referenceLevel1` 取值示例：`"timeline"`、`"sources"`、`"facts"`、`"principles"`、`"glossary"`、`"biasChecks"`、`[]`。
 
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `key` | `string` | 是 | 用户状态中 `fields` 下的键 | `"issues"` |
-| `type` | `string` | 是 | 字段类型，见第 4 节 | `"list"` |
-| `label` | `string` | 是 | 界面标签 | `"伦理问题"` |
-| `hint` | `string` | 否 | 输入提示 | `"请用问句表述"` |
-| `min` | `number` | 否 | 最少条目/选项数 | `5` |
-| `max` | `number` | 否 | 最多条目/选项数 | `10` |
-| `itemSchema` | `string[]` | 否 | `list` 类型子字段约定 | `["text:question", "actor:optional"]` |
-| `optionsFrom` | `string` | 否 | 选项来源路径，如 `"steps.1.fields.issues"` | `"steps.1.fields.issues"` |
-| `buckets` | `string[]` | 否 | `bucketedFacts` 桶名 | `["material", "individual", "organization"]` |
+**第 1 步完整示例**（与 `fukushima.js` 一致）：
 
-**`checks[]` 常见 token（逻辑层解析）**
-
-- `minItems:n` — 某字段至少 n 条
-- `mustBeQuestion` — 问句格式
-- `exactSelect:n` — 多选恰好 n 个
-- `nonEmpty` — 文本非空
-- `allReviewed` — 回顾步全部标记完成
-
-（新增 token 须升 `dataVersion` 并文档化。）
+```json
+{
+  "id": 1,
+  "key": "identify",
+  "name": "识别伦理问题",
+  "presentInClass": true,
+  "intro": "列出与本案例相关的伦理问题。教材建议以问句形式表述，便于后续聚焦与分析。",
+  "prompts": [
+    { "text": "你能否把每条伦理关切写成问句（含「是否/应该」或问号）？", "source": "textbook" },
+    { "text": "TODO(PI): 补引导问题", "source": "team" }
+  ],
+  "fields": [
+    {
+      "key": "issues",
+      "type": "list",
+      "label": "伦理问题",
+      "min": 5,
+      "minSource": "textbook",
+      "itemSchema": ["text:question", "actor:optional"],
+      "hint": "建议问句形式；涉及主体选填"
+    }
+  ],
+  "checks": [
+    { "id": "minItems", "level": "suggest", "refSource": "textbook" },
+    { "id": "mustBeQuestion", "level": "suggest", "refSource": "textbook" }
+  ],
+  "referenceLevel1": ["timeline", "sources"],
+  "referenceLevel3": {
+    "type": "text",
+    "source": "textbook",
+    "body": "教材对「问句形式」的说明（正文待 PI 摘录）。"
+  },
+  "state": "todo"
+}
+```
 
 ---
 
-## 3. 用户状态（localStorage）
-
-**存储键（建议）**：`engr4960j.fukushima.v1`（实现时在 `src/logic/` 定稿，键名变更升 `stateVersion`）。
-
-### 3.1 根对象
-
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `stateVersion` | `string` | 是 | 用户状态 schema 版本 | `"1.0"` |
-| `caseId` | `string` | 是 | 与 `meta.id` 一致 | `"fukushima"` |
-| `currentStep` | `number` | 是 | 当前步骤 1–10 | `3` |
-| `startedAt` | `string` | 是 | ISO 8601 首次开始时间 | `"2025-10-11T06:00:00.000Z"` |
-| `updatedAt` | `string` | 是 | ISO 8601 最后保存时间 | `"2025-10-11T06:30:00.000Z"` |
-| `steps` | `object` | 是 | 键为步骤 id 字符串 `"1"`…`"10"` | 见 3.2 |
-
-### 3.2 `steps["n"]` 对象
-
-| 字段名 | 类型 | 必填 | 含义 | 示例值 |
-|--------|------|------|------|--------|
-| `completed` | `boolean` | 是 | 校验是否通过 | `true` |
-| `fields` | `object` | 是 | 键为对应 `fields[].key`，值为用户输入 | `{ "issues": [] }` |
-| `revisedAt` | `string` | 否 | 该步最后修订时间 ISO 8601 | `"2025-10-11T06:15:00.000Z"` |
-
-### 3.3 `stateVersion` 说明
-
-- 与 `meta.dataVersion` 独立：数据内容变更升 `dataVersion`；用户存盘结构变更升 `stateVersion`。
-- 读取时若 `stateVersion` 不支持，应提示用户导出备份后重置（实现阶段）。
-- 开发用 mock：`window.MOCK_USER_STATE`（`src/data/mock-state.js`），结构与本节一致。
-
----
-
-## 4. 可用字段类型清单
-
-每种类型对应 `steps[].fields[].type`；用户答案写入 `steps[n].fields[field.key]`。
+## 4. 字段类型清单（13 种）
 
 ### 4.1 `text`
 
-单行短文本。
+单行文本。
 
 ```json
 { "key": "shortNote", "type": "text", "label": "备注" }
 ```
 
-用户值示例：`"【示例】短文本"`
+**注意**：空值可在导出汇总中列为格式缺项，但不阻断跳步。
 
 ### 4.2 `textarea`
 
-多行长文本。
+多行文本。
 
 ```json
-{ "key": "reason", "type": "textarea", "label": "理由说明" }
+{ "key": "reason", "type": "textarea", "label": "理由说明", "rows": 4 }
 ```
 
-用户值示例：`"【示例】这是理由段落。"`
+**注意**：第 8 步结论/理由仅用此类型，逻辑层禁止自动填充。
 
 ### 4.3 `list`
 
-带 min/max 的条目列表；`itemSchema` 描述每条子结构。
+带 min/max、可增删的条目列表，每条分配稳定 ID。
 
 ```json
-{
-  "key": "issues",
-  "type": "list",
-  "label": "伦理问题",
-  "min": 5,
-  "itemSchema": ["text:question", "actor:optional"]
-}
+{ "key": "issues", "type": "list", "min": 5, "minSource": "textbook", "itemSchema": ["text:question"] }
 ```
 
-用户值示例：
-
-```json
-[
-  { "text": "【示例】某主体是否应当……？", "actor": "【示例】某角色" }
-]
-```
+**注意**：条数不足仅 🟡 建议，不拦截保存（PRODUCT 4.2）。
 
 ### 4.4 `question`
 
-单条问句（可带校验）；常用于列表项或独立问句字段。
+问句输入，附「建议写成问句」提示。
 
 ```json
 { "key": "focusQuestion", "type": "question", "label": "核心问句" }
 ```
 
-用户值示例：`"【示例】在某某情境下，是否应当……？"`
+**注意**：兼容英文 `should / ought to / ?`（PRODUCT 第六节第 1 步）。
 
 ### 4.5 `bucketedFacts`
 
-三分类事实 + 缺失事实栏；用户自填内容，与参考库分离。
+四栏：物质/技术、个人、组织、缺失；支持**多标签**。
 
 ```json
 {
-  "key": "relatedFacts",
+  "key": "factEntries",
   "type": "bucketedFacts",
-  "label": "相关事实",
-  "buckets": ["material", "individual", "organization"]
+  "buckets": ["material", "individual", "organization", "missing"],
+  "allowMultiTag": true
 }
 ```
 
-用户值示例：
-
-```json
-{
-  "material": ["【示例】材料类事实 A", "【示例】材料类事实 B"],
-  "individual": ["【示例】个人类事实 A", "【示例】个人类事实 B"],
-  "organization": ["【示例】组织类事实 A", "【示例】组织类事实 B"],
-  "missing": ["【示例】尚缺事实 1", "【示例】尚缺事实 2"]
-}
-```
+**注意**：与 `CASE_DATA.facts[].categories` 一致，同条可属多类。
 
 ### 4.6 `assumption`
 
-假设内容 + 依据绑定。
+假设内容 + 依据；依据为空标 🟡，**不阻断**。
 
 ```json
-{ "key": "assumptions", "type": "assumption", "label": "合理假设", "min": 2 }
+{ "key": "assumptions", "type": "assumption", "require": "basis" }
 ```
 
-用户值示例：
-
-```json
-[
-  { "content": "【示例】假设陈述……", "basis": "【示例】依据说明……" }
-]
-```
+**注意**：提示语用「这条假设还没有记录依据」（PRODUCT 十六）。
 
 ### 4.7 `clarify`
 
-价值词双栏：他人理解 / 我的用法。
+双栏：他人理解 / 我的用法；可自建词。
 
 ```json
-{ "key": "clarifications", "type": "clarify", "label": "定义澄清", "min": 2 }
+{ "key": "clarifications", "type": "clarify", "cols": ["others", "mine"], "min": 2 }
 ```
 
-用户值示例：
-
-```json
-[
-  {
-    "word": "【示例】责任",
-    "othersView": "【示例】他人可能理解为……",
-    "myUsage": "【示例】我在此分析中指……"
-  }
-]
-```
+**注意**：📘 建议 ≥2 词；两栏均须非空才消除 🟡。
 
 ### 4.8 `multiSelect`
 
-从 `optionsFrom` 或静态选项中多选。
+多选（原则、约束提示、聚焦问题等）。
 
 ```json
-{
-  "key": "chosen",
-  "type": "multiSelect",
-  "label": "选定问题",
-  "min": 2,
-  "max": 2,
-  "optionsFrom": "steps.1.fields.issues"
-}
+{ "key": "selectedPrinciples", "type": "multiSelect", "from": "principles", "min": 3 }
 ```
 
-用户值示例：`["issue-0", "issue-2"]`
+**注意**：第 2 步恰好 2 条为核心问题（📘 采用 2 条，见附录 12）。
 
 ### 4.9 `rankList`
 
-拖拽（或按钮）排序，用于原则冲突。
+原则排序；**必须同时提供拖拽与上下移动按钮**。
 
 ```json
-{ "key": "principleOrder", "type": "rankList", "label": "原则优先级" }
+{ "key": "principleOrder", "type": "rankList", "allowTie": true }
 ```
 
-用户值示例：`["p-placeholder-a", "p-placeholder-b", "p-placeholder-c"]`
+**注意**：投影环境拖拽不可靠，按钮为必需降级（PRODUCT 第 6 步）。
 
 ### 4.10 `checkList`
 
-勾选列表（如偏见自查、约束条件）。
+勾选式自查或清单。
 
 ```json
-{ "key": "biasChecked", "type": "checkList", "label": "偏见自查" }
+{ "key": "biasReview", "type": "checkList", "from": "biasChecks" }
 ```
 
-用户值示例：
-
-```json
-[
-  { "id": "b-placeholder", "checked": true }
-]
-```
+**注意**：勾选状态写入用户状态，不表示「分析正确」。
 
 ### 4.11 `review`
 
-只读回显前序答案 +「需修订 / 无需修订」开关。
+只读回显前序答案 + 三态（需修订/无需修订/未看）+ 跳转。
 
 ```json
-{ "key": "reviewItems", "type": "review", "label": "过程回顾" }
+{ "key": "reviewPanel", "type": "review", "source": "steps1to6" }
 ```
 
-用户值示例：
+**注意**：勾「需修订」须可跳转到对应条目；修改时记录一句原因（可跳过）。
+
+### 4.12 `conflict`
+
+原则冲突**四问**专用结构。
 
 ```json
-[
-  { "ref": "step:1:issues:0", "needsRevision": false }
-]
+{ "key": "principleConflicts", "type": "conflict", "questions": 4 }
 ```
+
+**注意**：≥2 条原则时启用；允许并列、按问题分别比较、自建原则（PRODUCT 第 6 步）。
+
+### 4.13 `relation`
+
+条目挂到问题（或其它目标），**必须**填写「为什么相关」。
+
+```json
+{ "key": "evidenceLinks", "type": "relation", "targets": "Q", "require": "why" }
+```
+
+**注意**：引用事实须回答「这条事实为什么和当前问题有关」（PRODUCT 第五节）。
 
 ---
 
-## 5. 版本
+## 5. 用户状态（localStorage）
 
-| 版本 | 说明 |
+建议存储键：`engr4960j.fukushima.v2`（实现时在 `src/logic/` 定稿；变更须升 `stateVersion`）。
+
+### 5.1 根对象
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `stateVersion` | `string` | 是 | 状态 schema 版本 | `"2.0"` |
+| `caseId` | `string` | 是 | 案例 id | `"fukushima"` |
+| `currentStep` | `number` | 是 | 当前步骤 1–10 | `3` |
+| `startedAt` | `string` | 是 | ISO 8601 开始时间 | `"2026-01-01T00:00:00.000Z"` |
+| `updatedAt` | `string` | 是 | ISO 8601 更新时间 | `"2026-01-01T01:05:00.000Z"` |
+| `authorship` | `object` | 是 | 本机署名与保留意见 | `{ notes:[], reservations:[] }` |
+| `stepStatus` | `object` | 是 | 键为步骤号，值为五种状态 | `{ 1:"checked", 2:"draft" }` |
+| `items` | `object` | 是 | 稳定 ID → 条目 | 见 5.2 |
+| `relations` | `array` | 是 | 关联记录 | 见 5.3 |
+| `conflicts` | `array` | 是 | 原则冲突四问答案 | 见 5.4 |
+| `snapshots` | `array` | 是 | 修订快照 | 见 5.5 |
+| `hasAcceptedL3` | `object` | 是 | 各步是否已展开 L3 | `{ 1:true, 2:false }` |
+
+`stepStatus` 取值：`todo` | `draft` | `discuss` | `checked` | `stale`（对应 PRODUCT 4.1 未开始/草稿/待讨论/已复核/需回看）。
+
+### 5.2 `items[id]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | 稳定 ID | `"Q-1-01"` |
+| `type` | `string` | 是 | 前缀类型 | `"Q"` |
+| `step` | `number` | 是 | 创建步骤 | `1` |
+| `text` | `string` | 视类型 | 主文本 | `"【示例】…是否应当…？"` |
+| `actors` | `array` | 否 | 涉及主体 | `["【示例】角色甲"]` |
+| `basisRefs` | `array` | 否 | 假设依据 id | `["M-3-02"]` |
+| `principleId` | `string` | 否 | PA 条目 | `"p-basic-1"` |
+| `appliesTo` | `array` | 否 | PA 适用问题 | `["Q-1-01"]` |
+| `createdAt` | `string` | 是 | ISO 8601 | `"…"` |
+| `updatedAt` | `string` | 否 | ISO 8601 | `"…"` |
+
+### 5.3 `relations[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | `REL-` 前缀 | `"REL-0001"` |
+| `kind` | `string` | 是 | 关系类型 | `"fact-supports-question"` |
+| `from` | `string` | 是 | 源条目 id | `"f-ph-1"` |
+| `to` | `string` | 是 | 目标条目 id | `"Q-1-01"` |
+| `why` | `string` | 是 | 为什么相关 | `"…"` |
+| `createdAt` | `string` | 是 | ISO 8601 | `"…"` |
+
+### 5.4 `conflicts[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | `CF-` 前缀 | `"CF-6-01"` |
+| `questionId` | `string` | 是 | 关联问题 | `"Q-1-01"` |
+| `principleA` | `string` | 是 | 原则 A id | `"p-basic-1"` |
+| `principleB` | `string` | 是 | 原则 B id | `"p-emp-1"` |
+| `supportsA` | `string` | 是 | A 支持/限制什么 | `"…"` |
+| `supportsB` | `string` | 是 | B 支持/限制什么 | `"…"` |
+| `priority` | `string` | 是 | 优先或协调说明 | `"…"` |
+| `scope` | `string` | 是 | `"case"` 或 `"general"` | `"case"` |
+| `reason` | `string` | 是 | 理由 | `"…"` |
+
+### 5.5 `snapshots[]`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `id` | `string` | 是 | `SN-` 前缀 | `"SN-01"` |
+| `label` | `string` | 是 | 标签 | `"初步"` |
+| `createdAt` | `string` | 是 | ISO 8601 | `"…"` |
+| `payload` | `object` | 是 | `items`/`relations`/`conflicts` 深拷贝 | `{ … }` |
+
+### 5.6 `authorship`
+
+| 字段名 | 类型 | 必填 | 含义 | 示例值 |
+|--------|------|------|------|--------|
+| `notes` | `string[]` | 是 | 讨论笔记 | `[]` |
+| `reservations` | `string[]` | 是 | 保留意见 | `[]` |
+
+---
+
+## 6. 关联规则
+
+| 关系 kind | 说明 |
+|-----------|------|
+| `fact-supports-question` | 事实 / 缺失事实 → 问题 |
+| `assumption-fills-gap` | 假设 → 信息缺口；假设须注明依据 |
+| `principle-applies-to` | 原则应用 → 问题与相关条目 |
+| `resolution-answers-question` | 结论 → 问题 |
+| `review-targets-item` | 复核记录 → 条目 |
+
+**硬规则 1（删除保护）**：删除被引用的条目时，**提示影响范围**，不静默丢失关联。
+
+**硬规则 2（依据变更）**：修改某条依据后，依赖它的条目标「需回看」，**但不自动改写用户判断文字**。
+
+---
+
+## 7. 运行时接口
+
+由 `src/logic/` 统一实现；UI **只**通过下列接口读写状态。
+
+| 接口 | 签名 | 参数 | 返回值 | 用途 |
+|------|------|------|--------|------|
+| `getState` | `getState()` | 无 | 当前用户状态对象 | 供界面渲染 |
+| `dispatch` | `dispatch(action)` | `action`: `{ type, payload }` | 更新后的状态或 void | 统一提交增删改、关联、步骤状态 |
+| `validateStep` | `validateStep(stepId)` | `stepId`: number | `{ errors[], suggestions[], locators[] }` | 形式检查；区分 error 与 suggest |
+| `subscribe` | `subscribe(listener)` | `listener(state)` | 取消订阅函数 | 状态变更通知 UI |
+| `exportProject` | `exportProject()` | 无 | JSON 字符串或 Blob | 导出可继续编辑的工程 |
+| `importProject` | `importProject(json)` | JSON 字符串/对象 | `{ ok, state?, errors? }` | 恢复工程；失败不覆盖现有草稿 |
+| `createSnapshot` | `createSnapshot(label)` | `label`: string | 快照 id | 保存修订版本 |
+| `restoreSnapshot` | `restoreSnapshot(id)` | `id`: string | void | 恢复快照到当前工作区 |
+
+---
+
+## 8. 版本与兼容
+
+- 升级 `dataVersion` / `stateVersion` **只标记变化，不自动解决兼容**。
+- 须约定迁移规则：能迁移则自动迁移；不能则**保留原始数据 + 提示导出备份**，不直接覆盖。
+- **导入时检查四项**：`caseId`、版本号、字段结构、关联完整性。
+- 契约冻结规则同文档头部。
+
+---
+
+## 9. mock 样例引用
+
+界面调试用的假用户状态**唯一来源**：`src/data/mock-state.js`（`window.MOCK_USER_STATE`）。
+
+核心结构（与文件一致）：
+
+```js
+{
+  stateVersion: "2.0",
+  caseId: "fukushima",
+  currentStep: 3,
+  stepStatus: { 1: "checked", 2: "checked", 3: "draft", /* … */ },
+  items: {
+    "Q-1-01": { id: "Q-1-01", type: "Q", step: 1, text: "【示例】…", coreFocus: true, focusReason: "…" },
+    "M-3-01": { id: "M-3-01", type: "M", step: 3, text: "【示例】尚缺…" },
+    "PA-6-01": { id: "PA-6-01", type: "PA", step: 6, principleId: "p-basic-1", appliesTo: ["Q-1-01"] }
+  },
+  relations: [
+    { id: "REL-0001", kind: "fact-supports-question", from: "f-ph-1", to: "Q-1-01", why: "【示例】…" }
+  ],
+  conflicts: [
+    { id: "CF-6-01", questionId: "Q-1-01", principleA: "p-basic-1", principleB: "p-emp-1", /* 四问字段 */ }
+  ],
+  snapshots: [
+    { id: "SN-01", label: "初步", payload: { items, relations, conflicts: [] } },
+    { id: "SN-02", label: "复核后", payload: { /* … */ } }
+  ],
+  hasAcceptedL3: { 1: true, 2: true, 3: false },
+  authorship: { notes: [], reservations: [] }
+}
+```
+
+> mock 中 `Q` 条目的 `coreFocus` / `focusReason` 为第 2 步 UI 调试便利字段，正式持久化形状由 `dispatch` 定稿时写入 `items`/`relations`。
+
+---
+
+## 10. 三条设计铁律与来源标注政策
+
+### 10.1 设计铁律（PRODUCT 第二节摘要）
+
+1. **人先写，程序后开口**——仅针对 L3 解释性参考；L1 原始材料随时可读。
+2. **只有引导，没有判决**——不出现「正确答案是…」。
+3. **结论槽位只能人填**——可恢复用户自己的存档/导入/快照，不自动生成结论。
+4. **不拦路，只提醒**——不阻止保存、跳步、返回；导出/演示前汇总。
+5. **每一项都要能溯源**——事实/观点/原则带来源标签；预置与用户内容视觉区分。
+6. **修改必须留痕**——关键条目改动记录修改原因。
+
+### 10.2 来源标注（PRODUCT 4.3）
+
+| 标签 | 含义 |
 |------|------|
-| 静态数据 `dataVersion` | `1.0`（脚手架） |
-| 用户状态 `stateVersion` | `1.0`（脚手架） |
+| 📘 教材 | 教材明确写的 |
+| 👥 本组 | 组内自定，可改 |
+| 🎓 老师 | 课程通知要求 |
+
+用户可见文字标签：`事实` / `参考观点` / `我的假设` / `我的判断`（PRODUCT 十六）。
+
+---
+
+## 11. 附录：教材内部不一致的处理
+
+| 项目 | 教材第 2 章正文 | 教材附录 II | 本工具采用 |
+|------|-----------------|-------------|------------|
+| 伦理问题条数 | 至少 5 条 | 至少 3 条 | **5 条**（附注：附录 II 为 3 条） |
+| 聚焦问题数量 | 选 2 条最重要 | 选 1 条 | **2 条**（附注：附录 II 为 1 条） |
+| 事实条数 | 每类 2 条（共 6）+ 缺失 2 条 | 未给数量 | **每类 2 条 + 缺失 2 条** |
+| 避免问题条数 | 至少 3 条 | 未给数量 | **3 条** |
+
+UI 上数量/格式要求须标注 📘/👥/🎓 来源（见各步 `checks[].refSource` 与 `minSource`）。
