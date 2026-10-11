@@ -69,3 +69,11 @@
 - **提示词要点**：契约 v2.0 为准；不碰 UI 与 fukushima.js；Node 可测；ID 不回收。
 - **产出**：`src/logic/*.js`、`tools/smoke-test.js`
 - **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
+
+### 2026-10-11 — 事实草稿逐字引用与条目扩充
+
+- **提示词要点**：
+  - 仅改 `docs/research/fukushima-facts-draft.md`；删除重复/报告元条目；各表增加「原文引用（逐字，英文）」列；自 IAEA PDF 文本缓存补 8–12 条；第 6 节汇总缺失依据；不改 `fukushima.js` / UI / logic。
+- **产出**：
+  - `docs/research/fukushima-facts-draft.md`（删 9 条、增 11 条、全表逐字引用）
+- **截图**：待 PI 补入
