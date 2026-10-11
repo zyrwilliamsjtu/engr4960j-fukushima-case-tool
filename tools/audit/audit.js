@@ -246,6 +246,26 @@
     }
     check("D2-2", !!(qField && /问句|[?？]/.test(qField.getAttribute("placeholder") || "") && qField.value.indexOf("运营商") >= 0), qField ? (qField.getAttribute("placeholder") + " | " + qField.value) : "no field");
 
+    var overviewBtn = document.querySelector('[data-testid="reasoning-overview-open"]');
+    var stateBeforeEmpty = JSON.stringify(window.FIELDNOTES.getEngine().getState());
+    var errorsBeforeEmpty = errors.length;
+    var openedEmpty = click('[data-testid="reasoning-overview-open"]');
+    var emptyPanel = document.getElementById("reasoning-overview");
+    var emptyText = emptyPanel ? emptyPanel.innerText : "";
+    var summaryEmpty = document.querySelector('[data-testid="overview-summary"]');
+    check("D5-2", !!(overviewBtn && openedEmpty), "button=" + !!overviewBtn + " opened=" + openedEmpty);
+    check("D5-2b", !!(summaryEmpty && /核心问题\s*\d+\s*条/.test(summaryEmpty.textContent || "")), summaryEmpty ? summaryEmpty.textContent : "no summary");
+    check(
+      "D5-2e",
+      /尚未选定核心问题。请先在第 2 步从伦理问题中选出 1–2 条作为分析焦点。/.test(emptyText) &&
+        !document.querySelector('[data-testid="overview-group-conclusion"]') &&
+        errors.length === errorsBeforeEmpty,
+      "guidance=" + /尚未选定核心问题/.test(emptyText) + " conclusionGroup=" + !!document.querySelector('[data-testid="overview-group-conclusion"]') + " newErrors=" + (errors.length - errorsBeforeEmpty)
+    );
+    var closeEmpty = document.querySelector('#modal [data-action="close"]');
+    if (closeEmpty) closeEmpty.click();
+    check("D5-2f-empty", JSON.stringify(window.FIELDNOTES.getEngine().getState()) === stateBeforeEmpty, "getState identical around empty overview");
+
     click("#nav-step-2");
     op(2, "navigate");
     var core = $("#workspace input[data-field='isCore']");
@@ -296,11 +316,33 @@
     if (!relationVisible) {
       friction("P1", "yellow", "关联后主工作区不一定能看到理由", "after library save, .relation=" + !!$(".relation"));
     }
-    var overview = /推理总览/.test(document.body.innerText);
-    check("D5-2", overview && relationVisible, overview ? "overview text present" : "no 推理总览 control in the workbook");
-    if (!overview) {
-      friction("P1", "yellow", "没有推理总览入口", "i18n.overview exists; workbook DOM does not render it");
+    var beforeOverview = JSON.stringify(window.FIELDNOTES.getEngine().getState());
+    var linkedRel = window.FIELDNOTES.getEngine().getState().relations.filter(function (rel) {
+      return rel.kind === "fact-supports-question";
+    })[0];
+    var linkedFact = "";
+    if (linkedRel && window.CASE_DATA && window.CASE_DATA.facts) {
+      var factRow = window.CASE_DATA.facts.filter(function (fact) {
+        return fact.id === linkedRel.from || fact.id === linkedRel.to;
+      })[0];
+      if (factRow && factRow.text) linkedFact = String(factRow.text).slice(0, 18);
     }
+    click('[data-testid="reasoning-overview-open"]');
+    var classConclusion = !!document.querySelector('[data-testid="overview-group-conclusion"]');
+    var fullToggle = document.querySelector('[data-overview-scope="full"]');
+    if (fullToggle) fullToggle.click();
+    var fullPanel = document.getElementById("reasoning-overview");
+    var fullText = fullPanel ? fullPanel.innerText : "";
+    var fullConclusion = !!document.querySelector('[data-testid="overview-group-conclusion"]');
+    check("D5-2c", !classConclusion && fullConclusion, "classGroup=" + classConclusion + " fullGroup=" + fullConclusion);
+    check(
+      "D5-2d",
+      !!(linkedRel && linkedRel.why && fullText.indexOf(linkedRel.why) >= 0 && linkedFact && fullText.indexOf(linkedFact) >= 0),
+      "whyHit=" + !!(linkedRel && fullText.indexOf(linkedRel.why) >= 0) + " factHit=" + !!(linkedFact && fullText.indexOf(linkedFact) >= 0)
+    );
+    var closeOverview = document.querySelector('#modal [data-action="close"]');
+    if (closeOverview) closeOverview.click();
+    check("D5-2f", JSON.stringify(window.FIELDNOTES.getEngine().getState()) === beforeOverview, "getState identical around linked overview");
 
     var state = window.FIELDNOTES.getEngine().getState();
     window.FIELDNOTES.getEngine().createSnapshot("初步");
@@ -378,6 +420,28 @@
     var sections = (md.match(/^## \d+\. /gm) || []).length;
     check("D1-5", md.indexOf("禁止 AI 代笔") >= 0 && md.indexOf("运营商是否") >= 0, "len=" + md.length);
     check("D5-5", sections === 10 && md.indexOf("禁止 AI 代笔") >= 0 && md.indexOf("运营商是否") >= 0, "sections=" + sections);
+
+    var templateBtn = document.querySelector('[data-testid="archive-export-template-md"]');
+    var anchorClick = HTMLAnchorElement.prototype.click;
+    var templateFiles = [];
+    HTMLAnchorElement.prototype.click = function () {
+      if (this.hasAttribute("download")) {
+        templateFiles.push(this.getAttribute("download") || "");
+        return;
+      }
+      return anchorClick.apply(this, arguments);
+    };
+    click('[data-testid="archive-menu"]');
+    var templateTriggered = click('[data-testid="archive-export-template-md"]');
+    HTMLAnchorElement.prototype.click = anchorClick;
+    var templateMd = window.TemplateExport
+      ? window.TemplateExport.exportReport(window.FIELDNOTES.getEngine().getState(), window.CASE_DATA)
+      : "";
+    check(
+      "D5-7",
+      !!(templateBtn && templateTriggered && templateFiles.length && templateMd.length > 0 && /fukushima-report-material-\d{8}\.md/.test(templateFiles[0] || "")),
+      "btn=" + !!templateBtn + " triggered=" + templateTriggered + " file=" + (templateFiles[0] || "") + " len=" + templateMd.length
+    );
 
     var cases = window.FIELDNOTES.getCases();
     var exported = cases.exportProject();

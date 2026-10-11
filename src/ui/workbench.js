@@ -110,6 +110,19 @@
   function factDialog(){
     openDialog('addFact','<form id="fact-form"><label class="field"><span>'+esc(t('factText'))+'</span><textarea name="text" maxlength="10000" required placeholder="'+esc(t('factHint'))+'"></textarea></label><fieldset><legend>'+esc(t('categories'))+'</legend>'+['material','individual','organization'].map(function(category){return '<label class="check"><input name="category" type="checkbox" value="'+category+'">'+esc(t(category))+'</label>';}).join('')+'</fieldset><label class="field"><span>'+esc(t('sourceTitle'))+'</span><input name="source" maxlength="1000" required placeholder="'+esc(t('sourceHint'))+'"></label><div class="two-columns"><label class="field"><span>'+esc(t('sourceYear'))+'</span><input name="year" type="number" min="1" max="9999" required value="'+new Date().getFullYear()+'"></label><label class="field"><span>'+esc(t('sourceUrl'))+'</span><input name="url" type="url" maxlength="2000" placeholder="https://…"></label></div><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
   }
+  function reasoningOverviewDialog(){
+    if(modal.open)modal.close();
+    modal.className='';
+    delete modal.dataset.revisionPanel;
+    var body='';
+    if(window.ReasoningOverview){
+      window.ReasoningOverview.setReaders(function(){return state();},function(){return data;},function(){return locale;});
+      if(window.ReasoningOverview.setScope)window.ReasoningOverview.setScope('class');
+      body=window.ReasoningOverview.renderPanel(state(), data);
+    }
+    modalContent.innerHTML='<div class="modal-head"><h2 id="modal-title">'+esc(bi('推理总览','Reasoning overview'))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;
+    modal.showModal();
+  }
   function revisionCompareDialog(){
     if(modal.open)modal.close();
     modal.className='';
@@ -130,7 +143,7 @@
   function closeArchiveMenu(){archiveMenuOpen=false;syncArchiveMenuDom();}
   function toggleArchiveMenu(){archiveMenuOpen=!archiveMenuOpen;syncArchiveMenuDom();}
   function workbenchToolbar(){
-    return '<div class="workbench-toolbar">'+labeledButton('存为「初步」（快照）','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton('对比修订','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">存档 ▾</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+labeledButton('导出存档（JSON）','download-json','small quiet','download','data-testid="archive-export-json"')+labeledButton('载入存档（JSON）','import','small quiet','folder','data-testid="archive-import-json"')+labeledButton('导出素材（Markdown）','download-md','small quiet','note','data-testid="archive-export-md"')+'</div></span>'+labeledButton('帮助','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
+    return '<div class="workbench-toolbar">'+labeledButton('存为「初步」（快照）','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton('对比修订','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+labeledButton('推理总览','reasoning-overview-open','small quiet','map','data-testid="reasoning-overview-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">存档 ▾</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+labeledButton('导出存档（JSON）','download-json','small quiet','download','data-testid="archive-export-json"')+labeledButton('载入存档（JSON）','import','small quiet','folder','data-testid="archive-import-json"')+labeledButton('导出素材（Markdown）','download-md','small quiet','note','data-testid="archive-export-md"')+labeledButton('导出报告素材（按模板分区）','download-template-md','small quiet','note','data-testid="archive-export-template-md"')+'</div></span>'+labeledButton('帮助','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
   }
   function methodDialog(){
     var step=current(),own=rows().some(function(x){return x.step===step&&!!(x.text||x.word);})||(step===2&&rows('Q').some(function(x){return x.focusReason;}))||(step===7&&rows().some(function(x){return x.review;}));
@@ -202,6 +215,7 @@
     if(action==='add-fact')factDialog();
     if(action==='method')methodDialog();
     if(action==='revision-compare-open'){closeArchiveMenu();revisionCompareDialog();}
+    if(action==='reasoning-overview-open'){closeArchiveMenu();reasoningOverviewDialog();}
     if(action==='archive-menu')toggleArchiveMenu();
     if(action==='review-step')dispatch('SET_STATUS',{step:current(),status:state().stepStatus[current()]==='checked'?'draft':'checked'});
     if(action==='present'){presentation=JSON.parse(JSON.stringify(engine.getState()));presentationStep=state().currentStep;if(modal.open)modal.close();render();window.scrollTo(0,0);}
@@ -229,6 +243,7 @@
     if(action==='export')exportDialog();
     if(action==='download-json'){closeArchiveMenu();download(cases.exportProject(),jsonArchiveName(),'application/json');modal.close();}
     if(action==='download-md'){closeArchiveMenu();download(exportMarkdown(),mdArchiveName(),'text/markdown;charset=utf-8');modal.close();}
+    if(action==='download-template-md'){closeArchiveMenu();var report=window.TemplateExport?window.TemplateExport.exportReport(state(), data):'';download(report,'fukushima-report-material-'+archiveStamp(false)+'.md','text/markdown;charset=utf-8');modal.close();}
     if(action==='backup-json')download(cases.exportProject(),jsonArchiveName(),'application/json');
     if(action==='snapshot-initial'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_INITIAL:'初步');toast(bi('已存为「初步」快照 · ','Saved initial snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
     if(action==='snapshot-reviewed'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_REVIEWED:'复核后');toast(bi('已存为「复核后」快照 · ','Saved reviewed snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}

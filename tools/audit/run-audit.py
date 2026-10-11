@@ -82,8 +82,8 @@ def run_browser(cmd: list[str], timeout_s: float) -> tuple[str, str]:
     deadline = time.monotonic() + timeout_s
     while time.monotonic() < deadline:
         text = "".join(stdout_chunks)
-        if "AUDIT_DONE" in text:
-            time.sleep(0.6)
+        if "AUDIT_DONE" in text and 'id="audit-json"' in text:
+            time.sleep(0.2)
             break
         if proc.poll() is not None and not t_out.is_alive():
             break
