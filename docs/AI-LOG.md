@@ -169,3 +169,9 @@
 - **验证**：preview 与 dist 的完整写作测试、中英文十步/60 组窄屏步骤、新阅读区两语言 × 5 标签 × 4 宽度、搜索/IME、逐问题暂存、关联更新不重复、来源反查、连续原则选择和依据筛选均通过；零页面错误、零外部请求。数据自检 TEXT_DIFF=0；smoke-test 8/8；adapter-test 7/7；状态和案例恢复检查通过；check-dist 10/10。保留构建工具既有 runtime-binding WARN，当前工作台仍使用已验证 UI 运行时。
 - **可见核对**：在用户原 IAB 标签页刷新并打开新资料工作区，未添加测试数据至用户的草稿。保留通用工作台标题与双语模式。
 - **证据**：frontend-qa-library-final/ 保留工作台、概念页、原文复核、引用、原则与手机代表图，frontend-qa-library-final-dist/ 保留交付原则图；所有作者输入均为明确标注的虚构 QA。此前已提交的证据全部保留。本轮图片为界面检查，不替代老师要求的真实 AI 聊天截图；真实对话须从本聊天保存。
+
+### 2026-10-11 — 界面运行时切换 AppLogic 适配器
+
+- **提示词要点**：PI 授权 4 处 patch；收紧 check-dist 为 FAIL；规格落地节；不删 preview。
+- **产出**：`index.html`、`src/ui/case-workspaces.js`、`tools/check-dist.py`、`docs/research/runtime-migration-spec.md`、`docs/DECISIONS.md`
+- **截图**：待 PI 补入

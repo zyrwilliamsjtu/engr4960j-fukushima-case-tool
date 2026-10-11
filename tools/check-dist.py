@@ -126,16 +126,11 @@ def main() -> int:
     else:
         ok("3 fact text samples found verbatim in dist")
 
-    if "FIELDNOTES_AppLogic_RUNTIME_V1" in html or "AppLogicRuntime" in html:
-        print(
-            "WARN: runtime binding points to AppLogic runtime "
-            "(switch patch pending; will become FAIL once UI selects adapter)"
-        )
+    has_adapter = "AppLogicRuntime" in html and "createRuntime" in html
+    if has_adapter:
+        ok("runtime binding points to AppLogic runtime")
     else:
-        print(
-            "WARN: AppLogicRuntime missing from dist "
-            "(switch patch pending; will become FAIL once UI selects adapter)"
-        )
+        bad("runtime must use AppLogicRuntime via createRuntime (adapter switch not in dist)")
 
     print("---")
     print(f"SUMMARY: PASS={pass_n} FAIL={fail_n}")

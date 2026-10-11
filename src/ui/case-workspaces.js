@@ -61,14 +61,27 @@
   function storageKey(id) {
     return id === template.meta.id ? 'engr4960j.frontend.preview.v2' : 'fieldnotes.ui.case.' + id + '.v2';
   }
-  var runtime = window.CASE_RUNTIME || window.FrontendPreviewRuntime.create(packs[active], { key: storageKey(active) });
+  function createRuntime(pack, id, extraOptions) {
+    var opts = { key: storageKey(id) };
+    if (extraOptions) {
+      for (var k in extraOptions) {
+        if (Object.prototype.hasOwnProperty.call(extraOptions, k)) opts[k] = extraOptions[k];
+      }
+    }
+    if (window.AppLogicRuntime && window.AppLogicRuntime.available && window.AppLogicRuntime.available()) {
+      var adapted = window.AppLogicRuntime.create(pack, opts);
+      if (adapted) return adapted;
+    }
+    return window.FrontendPreviewRuntime.create(pack, opts);
+  }
+  var runtime = window.CASE_RUNTIME || createRuntime(packs[active], active);
   var metadataSaved = saveCatalog();
 
   function select(id) {
     if (!Object.prototype.hasOwnProperty.call(packs, id)) return false;
     if (runtime.flush) runtime.flush();
     active = id;
-    runtime = window.FrontendPreviewRuntime.create(packs[id], { key: storageKey(id) });
+    runtime = createRuntime(packs[id], id);
     metadataSaved = saveCatalog();
     return true;
   }
@@ -99,7 +112,7 @@
     // Rebuild static-reference validation without changing the author's analysis.
     var savedState = runtime.getState();
     if (runtime.flush) runtime.flush();
-    runtime = window.FrontendPreviewRuntime.create(pack, { key: storageKey(active), state: savedState });
+    runtime = createRuntime(pack, active, { state: savedState });
     return true;
   }
   function exportProject() {
@@ -113,6 +126,7 @@
     var pack = bundled ? input.caseData : input && Object.prototype.hasOwnProperty.call(packs, input.caseId) ? packs[input.caseId] : null;
     var payload = bundled ? input.state : input;
     if (!pack || (bundled && (!validPack(pack) || pack.meta.id === template.meta.id))) return { ok: false };
+    // 仅用于校验导入数据格式，不承载运行时状态，故保留 preview 实例。
     var candidate = window.FrontendPreviewRuntime.create(pack, { persistent: false });
     var result = candidate.importProject(payload);
     candidate.flush();

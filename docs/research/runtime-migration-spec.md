@@ -79,3 +79,13 @@
 ## 7. 切换 patch（由界面负责人应用，PI 未落库）
 
 见任务汇报「patch 1 / patch 2」。
+
+## 落地结果（2026-10-11）
+
+- **改动位置（4 处）**：
+  1. `index.html`：在 `preview-runtime.js` 与 `case-workspaces.js` 之间增加 `applogic-runtime.js`
+  2. `case-workspaces.js`：新增 `createRuntime(pack, id, extraOptions)`（`storageKey` 之后）
+  3. 初始 `runtime`、`select()`、`addFact()` 三处改为 `createRuntime(...)`（`addFact` 保留 `{ state: savedState }`）
+  4. `importProject()` 校验仍用 `FrontendPreviewRuntime.create`（旁注中文注释）
+- **切换后运行时**：优先 `AppLogicRuntime.create`，失败回退 `FrontendPreviewRuntime`；`preview-runtime.js` 保留。
+- **阶段 1 卖点结论**：证据关联（LINK/UNLINK/删除保护）有界面入口，切换后走适配器 dispatch；修订对比（snapshot）**尚无界面按钮**（规格 §4）；需回看依赖 stepStatus/review dispatch，切换后可工作。`recoveryData` 非卖点，空值不影响课堂演示主路径。
