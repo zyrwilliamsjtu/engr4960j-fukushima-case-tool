@@ -13,16 +13,23 @@
   function validPack(pack) {
     try {
     if (!pack || !pack.meta || !/^[a-z0-9][a-z0-9-]{0,100}$/.test(pack.meta.id) ||
-        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || pack.meta.dataVersion !== '2.0' ||
+        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || !['2.0', '2.1'].includes(pack.meta.dataVersion) ||
         typeof pack.meta.builtAt !== 'string' || arrays.some(function (key) { return !Array.isArray(pack[key]); })) return false;
+    if (pack.meta.dataVersion === '2.1' && !Array.isArray(pack.assessments)) return false;
+    if (pack.assessments !== undefined && !Array.isArray(pack.assessments)) return false;
     var ids = new Set();
-    if (arrays.filter(function (key) { return key !== 'steps'; }).some(function (key) {
+    if (arrays.concat(pack.assessments ? ['assessments'] : []).filter(function (key) { return key !== 'steps'; }).some(function (key) {
       return pack[key].some(function (entry) {
         if (!entry || typeof entry.id !== 'string' || ids.has(entry.id)) return true;
         ids.add(entry.id); return false;
       });
     })) return false;
     var sources = new Set(pack.sources.map(function (s) { return s.id; }));
+    if (pack.timeline.concat(pack.facts, pack.assessments || []).some(function (entry) {
+      return ['quote', 'locator', 'note'].some(function (key) { return entry[key] !== undefined && typeof entry[key] !== 'string'; }) ||
+        (entry.confidence !== undefined && !['high', 'medium', 'low'].includes(entry.confidence));
+    })) return false;
+    if ((pack.assessments || []).some(function (entry) { return typeof entry.text !== 'string' || !sources.has(entry.sourceId) || !Array.isArray(entry.appliesToSteps) || entry.appliesToSteps.some(function (step) { return !Number.isInteger(step) || step < 1 || step > 10; }); })) return false;
     return pack.steps.length === 10 && pack.steps.every(function (step, i) { return step && step.id === i + 1; }) &&
       pack.sources.every(function (s) { return typeof s.title === 'string' && typeof s.publisher === 'string' && Number.isInteger(s.year); }) &&
       pack.facts.every(function (f) { return typeof f.text === 'string' && Array.isArray(f.categories) && f.categories.length && f.categories.every(function (c) { return ['material', 'individual', 'organization'].includes(c); }) && sources.has(f.sourceId); }) &&
@@ -70,8 +77,9 @@
     var pack = clone(template);
     var id = 'case-' + Date.now().toString(36);
     while (packs[id]) id += '-1';
-    pack.meta = { id: id, title: title.trim(), dataVersion: '2.0', builtAt: new Date().toISOString().slice(0, 10) };
+    pack.meta = { id: id, title: title.trim(), dataVersion: template.meta.dataVersion, builtAt: new Date().toISOString().slice(0, 10) };
     pack.facts = []; pack.timeline = [];
+    if (pack.assessments) pack.assessments = [];
     pack.sources = template.sources.filter(function (source) { return pack.principles.some(function (p) { return p.sourceId === source.id; }); });
     // Case-specific interpretive references must not leak into a new case.
     pack.steps.forEach(function (step) { step.referenceLevel3 = null; });

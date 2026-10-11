@@ -17,6 +17,8 @@ const original = cases.exportProject();
 const caseId = cases.create('Bridge design');
 assert.notEqual(caseId, 'fukushima');
 assert.equal(cases.getData().facts.length, 0);
+assert.equal(cases.getData().meta.dataVersion, '2.1');
+assert.equal(cases.getData().assessments.length, 0, 'New cases never inherit report judgments.');
 assert.equal(cases.getData().principles.length, 33);
 assert.ok(cases.getData().steps.every(s => s.referenceLevel3 === null));
 send('ADD_ITEM', { type: 'Q', step: 1, fields: { text: 'Should the team disclose limitations?', isCore: true } });
@@ -32,6 +34,11 @@ assert.equal(otherComputer.importProject(bundle).ok, true);
 assert.equal(otherComputer.getData().meta.title, 'Bridge design');
 assert.equal(otherComputer.getData().facts.length, 1);
 assert.equal(otherComputer.getRuntime().getState().relations.length, 2);
+const legacyBundle = JSON.parse(bundle);
+legacyBundle.caseData.meta.dataVersion = '2.0'; delete legacyBundle.caseData.assessments;
+const legacyComputer = boot();
+assert.equal(legacyComputer.importProject(legacyBundle).ok, true, 'Existing v2.0 custom packs remain portable.');
+legacyComputer.getRuntime().flush();
 const restored = boot(store);
 assert.equal(restored.getData().meta.id, caseId);
 assert.equal(restored.getRuntime().getState().relations.length, 2);
@@ -46,7 +53,10 @@ for (const mutate of [
   b => { b.caseData.facts[0].sourceId = 'missing-source'; },
   b => { b.caseData.steps[0] = null; },
   b => { b.state.relations[0].to = 'missing-question'; },
-  b => { b.caseData.valueWords[0].word = null; }
+  b => { b.caseData.valueWords[0].word = null; },
+  b => { b.caseData.assessments = null; },
+  b => { b.caseData.facts[0].confidence = { arbitrary: true }; },
+  b => { b.caseData.assessments = [{ id: 'ev-invalid', text: 'Report opinion', sourceId: 'missing', appliesToSteps: [6] }]; }
 ]) {
   const corrupt = JSON.parse(bundle); mutate(corrupt);
   assert.equal(cases.importProject(corrupt).ok, false);

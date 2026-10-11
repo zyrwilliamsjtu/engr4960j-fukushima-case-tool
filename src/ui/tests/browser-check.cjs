@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
-const root=path.resolve(__dirname,'../../..'), screenshots=path.join(root,'docs/ai-logs/frontend-qa-v3');
+const root=path.resolve(__dirname,'../../..'), screenshots=path.join(root,'docs/ai-logs/frontend-qa-v4');
 fs.mkdirSync(screenshots,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.FIELDNOTES_BROWSER});
@@ -35,8 +35,21 @@ fs.mkdirSync(screenshots,{recursive:true});
  await page.screenshot({path:path.join(screenshots,'02-workbook-en.png'),fullPage:true});
  await step(2);await page.locator('[data-field="isCore"]').check();
  await page.locator('[data-field="focusReason"]').fill('A test focus reason, not Fukushima analysis.');
- await step(3);await click('add');await page.locator('textarea[data-field="text"]').fill('What did the test actors know?');
- await click('link');await page.locator('#link-form select').selectOption(q);
+ await step(3);
+ assert.equal(await page.locator('.fact-card').count(),0,'Only deliberately selected evidence enters the writing canvas.');
+ await page.locator('.evidence-intro [data-action="materials"]').click();
+ assert.equal(await page.locator('.library-fact').count(),50,'Current data pack is available in the drawer.');
+ await page.locator('.library-fact .source-details > summary').first().click();
+ assert.ok((await page.locator('.source-details-body').first().innerText()).includes('§1.1.2.2'));
+ await page.screenshot({path:path.join(screenshots,'06-evidence-source.png'),fullPage:true});
+ await page.locator('[data-action="filter-facts"][data-category="individual"]').click();
+ assert.equal(await page.locator('.library-fact').count(),15,'Category filters show only matching evidence.');
+ await page.locator('.library-fact [data-action="link"]').first().click();
+ await page.locator('#link-form select').selectOption(q);await page.locator('#link-form textarea').fill('Our written reason for selecting this test evidence.');
+ await page.locator('#link-form button[type="submit"]').click();
+ assert.equal(await page.locator('.fact-card').count(),1);
+ await click('add');await page.locator('textarea[data-field="text"]').fill('What did the test actors know?');
+ await page.locator('.entry-card [data-action="link"]').click();await page.locator('#link-form select').selectOption(q);
  await page.locator('#link-form textarea').fill('This test gap may affect the judgment.');
  await page.locator('#link-form button[type="submit"]').click();
  await step(4);await click('add');await page.locator('textarea[data-field="text"]').fill('Our tentative test assumption.');
@@ -75,11 +88,15 @@ fs.mkdirSync(screenshots,{recursive:true});
  const customQuestion=Object.values((await get()).items)[0].id;
  await step(3);await click('add-fact');await page.locator('#fact-form [name="text"]').fill('Fictional QA material: the test report was circulated on Monday.');
  await page.locator('#fact-form [value="material"]').check();await page.locator('#fact-form [value="organization"]').check();await page.locator('#fact-form [name="source"]').fill('Fictional QA test report, section 2');await page.locator('#fact-form button[type="submit"]').click();
- assert.equal(await page.locator('.fact-card').count(),2,'Multi-category fact appears in both buckets.');
- await page.locator('.fact-card [data-action="link"]').first().click();await page.locator('#link-form select').selectOption(customQuestion);await page.locator('#link-form textarea').fill('Our independently written relevance reason.');await page.locator('#link-form button[type="submit"]').click();
+ assert.equal(await page.locator('.fact-card').count(),0,'Adding source material does not select it as evidence automatically.');
+ await page.locator('.evidence-intro [data-action="materials"]').click();
+ await page.locator('[data-action="filter-facts"][data-category="all"]').click();
+ await page.locator('.library-fact [data-action="link"]').first().click();await page.locator('#link-form select').selectOption(customQuestion);await page.locator('#link-form textarea').fill('Our independently written relevance reason.');await page.locator('#link-form button[type="submit"]').click();
+ assert.equal(await page.locator('.fact-card').count(),1,'Multi-category evidence appears once, with both category labels.');
+ assert.equal(await page.locator('.selected-fact-head > div .tag').count(),2);
  const bundle=await page.evaluate(()=>window.FIELDNOTES.getCases().exportProject());assert.equal(JSON.parse(bundle).caseData.facts.length,1);
  await page.locator('#toast.visible').waitFor({state:'hidden'});await page.screenshot({path:path.join(screenshots,'04-custom-case.png'),fullPage:true});
- await page.evaluate(()=>window.FIELDNOTES.getEngine().flush());await page.reload();assert.equal((await get()).caseId,customId);assert.equal(await page.locator('.fact-card').count(),2);
+ await page.evaluate(()=>window.FIELDNOTES.getEngine().flush());await page.reload();assert.equal((await get()).caseId,customId);assert.equal(await page.locator('.fact-card').count(),1);
  await click('cases');await page.locator('[data-action="select-case"][data-id="fukushima"]').click();assert.equal((await get()).items[q].text,'Our revised test question?');
  await click('tools');await click('import');await page.locator('#project-file').setInputFiles({name:'bridge.json',mimeType:'application/json',buffer:Buffer.from(bundle)});await click('confirm');assert.equal((await get()).caseId,customId);assert.equal((await get()).relations.length,1);
  await click('cases');await page.locator('[data-action="select-case"][data-id="fukushima"]').click();
@@ -96,15 +113,40 @@ fs.mkdirSync(screenshots,{recursive:true});
    el.dispatchEvent(new CompositionEvent('compositionend',{bubbles:true}));
  });
  assert.ok((await get()).items[q].text.endsWith('中文测试'));
+ await page.locator('#toast.visible').waitFor({state:'hidden'});
  for(const language of ['zh','en']){
   await page.locator('[data-lang="'+language+'"]').click();
-  for(let n=1;n<=10;n++){await step(n);assert.equal(await page.locator('.sidebar .active').getAttribute('data-step'),String(n));}
+  for(let n=1;n<=10;n++){await step(n);assert.equal(await page.locator('.sidebar .active').getAttribute('data-step'),String(n));await page.evaluate(()=>window.FIELDNOTES.getEngine().flush());await page.screenshot({path:path.join(screenshots,language+'-step-'+String(n).padStart(2,'0')+'.png'),fullPage:true});}
  }
+ await page.locator('[data-lang="zh"]').click();await step(3);await page.locator('.top-actions [data-action="materials"]').click();
+ for(const tab of ['facts','principles','timeline','sources','glossary']){
+  await page.locator('[data-action="material-tab"][data-tab="'+tab+'"]').click();
+  if(tab==='facts')assert.ok(await page.locator('.source-review.pending').count()>0,'Unreviewed sources remain visibly distinguished.');
+  if(tab==='sources')assert.ok((await page.locator('#modal-content').innerText()).includes('不得作为事实依据'));
+  await page.evaluate(()=>document.getElementById('modal').scrollTop=0);
+  await page.screenshot({path:path.join(screenshots,'drawer-'+tab+'.png')});
+ }
+ await click('close');await click('cases');await page.screenshot({path:path.join(screenshots,'dialog-cases.png')});await click('close');
+ await click('tools');await page.screenshot({path:path.join(screenshots,'dialog-tools.png')});await click('close');
  await step(1);await page.setViewportSize({width:390,height:844});await page.locator('#toast.visible').waitFor({state:'hidden'});
  await page.screenshot({path:path.join(screenshots,'05-mobile.png'),fullPage:true});
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile has no horizontal page overflow.');
  await page.locator('.sidebar .step-nav[data-step="5"]').click();
  for(const width of [1440,1024,768,390]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No overflow at '+width);}
+ for(const language of ['zh','en']){
+  await page.locator('[data-lang="'+language+'"]').click();
+  for(const width of [1024,768,390]){
+   await page.setViewportSize({width,height:900});
+   for(let n=1;n<=10;n++){
+    await step(n);
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No overflow: '+language+' step '+n+' at '+width);
+   }
+  }
+ }
+ await step(3);await page.locator('.top-actions [data-action="materials"]').click();
+ assert.ok(await page.locator('#modal-content').evaluate(el=>el.scrollWidth<=el.clientWidth),'English evidence drawer fits a phone.');
+ assert.equal(await page.locator('.source-details[id]').evaluateAll(els=>new Set(els.map(e=>e.id)).size),await page.locator('.source-details[id]').count(),'Evidence disclosures stay unique across canvas and drawer.');
+ await page.screenshot({path:path.join(screenshots,'07-mobile-evidence-en.png')});await click('close');
  await page.setViewportSize({width:1440,height:1080});await page.goto(pathToFileURL(path.join(root,'index.html')).href);await page.waitForSelector('.step-hero');
  assert.equal(errors.length,0,'Browser errors: '+errors.join(', '));assert.equal(external.length,0,'Standalone preview makes no network requests.');
  await browser.close();console.log('PASS: offline HTML, both languages × 10 steps, full authoring path, JSON export, autosave/reload, simple navigation, IME, preserved disclosures, invalid import protection, responsive layout.');
