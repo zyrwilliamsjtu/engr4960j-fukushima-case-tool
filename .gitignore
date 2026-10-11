@@ -4,3 +4,5 @@ __pycache__/
 Thumbs.db
 .vscode/
 *.zip
+.pdf-cache/
+*.pdf

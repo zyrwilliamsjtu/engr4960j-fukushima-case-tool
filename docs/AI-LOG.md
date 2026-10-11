@@ -70,6 +70,25 @@
 - **产出**：`src/logic/*.js`、`tools/smoke-test.js`
 - **备注**：截图待 PI 补入 `docs/ai-logs/`；阶段 A 草稿在分支 `docs/fukushima-facts-draft`
 
+### 2026-10-11 — NAIIC / TEPCO 本地 PDF 抽取（阶段 2）
+
+- **提示词要点**：
+  - 只读 `ass1/refs/` 已有 PDF；新增 20–30 条逐字引用；官方分歧表；不改 fukushima.js。
+- **产出**：
+  - `docs/research/fukushima-facts-draft.md`（src-004/005，+24 条，分歧表，ev-006–009）
+- **截图**：待 PI 补入
+
+### 2026-10-11 — IAEA 引文对抗式核验（阶段 1）
+
+- **提示词要点**：
+  - 仅本地 `.pdf-cache/`；禁止联网；46 条逐条核验；产出 verification.md；⚠️ 降置信度。
+- **产出**：
+  - `docs/research/fukushima-facts-verification.md`
+  - `docs/research/fukushima-facts-draft.md`（8 条 ⚠️）
+  - `.gitignore` 增加 `.pdf-cache/`、`*.pdf`
+- **截图**：待 PI 补入
+- **阶段 2**：`ass1/refs/` 下 NAIIC/TEPCO PDF 未检测到，未执行。
+
 ### 2026-10-11 — 事实草稿逐字引用与条目扩充
 
 - **提示词要点**：
@@ -107,3 +126,8 @@
 - **边界**：未改静态 data 与 PI logic；最新 AppLogic 导入导出仍未实现，继续使用可替换的 UI 运行层；研究草稿保持未经审阅状态，不自动发布为事实；分析状态的 v2 根字段保留。
 - **验证**：Node 逻辑冒烟 8/8；UI 状态检查与案例隔离/跨电脑恢复检查通过；离线 Chrome 中英文各十步、完整写作链、自建案例事实关联、刷新/切换/导入、损坏文件保护、IME、四种屏宽通过；零页面错误、零外部请求；预览服务 HTTP 200，IAB 显示新版且保留原先第 5 步状态。
 - **截图**：docs/ai-logs/frontend-qa-v3/（明确虚构的 QA 输入）。以前两轮 QA 截图完整保留。这些是页面检查截图，不能替代真实 AI 对话截图；真实对话截图仍需从聊天界面保存。
+
+### 2026-10-11 — 推送前保留同期 main 资料更新
+
+- 提交前 fetch 发现 main 新增 a641e41 与 d9d0ac7；完整读取引文核验报告、扩展事实草稿、官方报告分歧表与日志新增内容，再普通合并。两轮同学提交完整保留，研究材料未被前端写入预置事实。
+- 应用源码与预置数据未因这次同步改变，保留此前离线浏览器验证结果；再次检查冒烟测试、合并完整性与 diff 格式。
