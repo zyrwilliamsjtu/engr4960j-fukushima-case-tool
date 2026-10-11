@@ -5,7 +5,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
-const root=path.resolve(__dirname,'../../..'), screenshots=path.join(root,'docs/ai-logs/frontend-qa-v4');
+// Use a fresh evidence directory on every run; never overwrite earlier QA rounds.
+const root=path.resolve(__dirname,'../../..'), screenshots=path.join(root,'docs/ai-logs',process.env.FIELDNOTES_QA_DIR || 'frontend-qa-'+new Date().toISOString().replace(/\D/g,''));
 fs.mkdirSync(screenshots,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.FIELDNOTES_BROWSER});
@@ -13,7 +14,7 @@ fs.mkdirSync(screenshots,{recursive:true});
  const page=await context.newPage(), errors=[], external=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(/^https?:/.test(r.url()))external.push(r.url());});
- await page.goto(pathToFileURL(path.join(root,'preview.html')).href);
+ await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML || 'preview.html')).href);
  await page.waitForSelector('.step-hero');
  const click=action=>page.locator('[data-action="'+action+'"]').first().click();
  const step=n=>page.locator('.sidebar .step-nav[data-step="'+n+'"]').click();

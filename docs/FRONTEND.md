@@ -113,6 +113,10 @@ python src/ui/build-preview.py
 
 验证包括数据自检、逻辑冒烟、UI 状态与跨案例恢复、离线 Chrome 完整填写链、中英文各十步、60 组窄屏步骤检查及英文手机抽屉。新界面 QA 截图在 `docs/ai-logs/frontend-qa-v4/`，其中作者文本明确为虚构测试内容；仍不能代替真实 AI 聊天截图。
 
+推送前同步了同学的核验标签修正、AppLogicRuntime 适配器与正式构建工具（065e73e）。没有切换当前工作台的运行时。使用同学提供的 `tools/build.py` 重新生成 `dist/index.html`，与源码和 preview 的界面一致。浏览器检查可通过 `FIELDNOTES_HTML=dist/index.html` 直接跑完整交付包，通过 `FIELDNOTES_QA_DIR` 另存截图，避免覆盖旧轮次。整合后的预览/交付截图分别为 `frontend-qa-v5/` 与 `frontend-qa-v5-dist/`。
+
+v4 保留完整中英文十步及弹窗截图；v5 与 v5-dist 各保留原文出处、事实抽屉、概念页和英文手机抽屉四张代表图。合并后的两种 HTML 均运行完整检查，重复页面截图不重复入库。
+
 导入先在内存中校验资料包、caseId、状态结构及引用，成功才替换对应案例。预置案例继续导出原 v2 状态 JSON，兼容旧文件。目录或状态无法保存时提示导出备份；不兼容存档不直接覆盖。
 
 最新 `src/logic/index.js` 挂载 AppLogic，动作是 ITEM_ADD/ITEM_UPDATE 等，exportProject/importProject 仍抛未实现异常。它尚不能直接作为 CASE_RUNTIME 接入。保留其源码与独立 smoke-test；目前页面使用可工作的 UI 适配器。正式接入需对齐动作、完整导入导出、保存反馈与多案例实例创建，避免把部分实现当成完整运行时。
