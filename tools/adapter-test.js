@@ -140,6 +140,29 @@ ok("6 uses single storage key from options", function () {
   assert.strictEqual(e.storageKey, key);
 });
 
+ok("7 three-way store isolation via createInstance", function () {
+  var a = global.AppLogic.createInstance({
+    key: "engr4960j.adapter-isolation-a",
+    persistent: false
+  });
+  var b = global.AppLogic.createInstance({
+    key: "engr4960j.adapter-isolation-b",
+    persistent: false
+  });
+  var facadeBefore = Object.keys(global.AppLogic.getState().items).length;
+  var bBefore = Object.keys(b.getState().items).length;
+  a.dispatch({
+    type: "ITEM_ADD",
+    payload: { prefix: "Q", step: 1, item: { text: "isolation probe" } }
+  });
+  assert.ok(Object.keys(a.getState().items).length > bBefore);
+  assert.strictEqual(Object.keys(b.getState().items).length, bBefore);
+  assert.strictEqual(
+    Object.keys(global.AppLogic.getState().items).length,
+    facadeBefore
+  );
+});
+
 console.log("---");
 console.log("SUMMARY: PASS=" + pass + " FAIL=" + fail);
 process.exit(fail ? 1 : 0);
