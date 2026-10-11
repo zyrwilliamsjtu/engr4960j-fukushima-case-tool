@@ -9,7 +9,7 @@
 规则：
   - 按 index.html 中 <script src> / <link rel="stylesheet"> 的出现顺序内联。
   - 在「Load the PI's CASE_RUNTIME」注释处额外内联 src/logic/*.js（ids → storage →
-    validate → store → index），使 window.AppLogic 与冒烟测试一致；不内联 mock-state.js。
+    validate → store → index），随后内联 src/ui/applogic-runtime.js；不内联 mock-state.js。
   - 本地图片 url() 转为 data: URI；单张 >512KB 时 WARNING。
   - UTF-8 输出，覆盖 dist/index.html。
 """
@@ -32,6 +32,8 @@ LOGIC_CHAIN = [
     "src/logic/store.js",
     "src/logic/index.js",
 ]
+
+ADAPTER_SCRIPT = "src/ui/applogic-runtime.js"
 
 EXCLUDE_SCRIPTS = {"src/data/mock-state.js"}
 
@@ -129,6 +131,11 @@ def build() -> int:
             content = read_text(path)
             inlined.append((rel, len(content.encode("utf-8"))))
             logic_blocks.append(inline_script_tag(content))
+        adapter_path = (ROOT / ADAPTER_SCRIPT).resolve()
+        if adapter_path.is_file():
+            adapter_content = read_text(adapter_path)
+            inlined.append((ADAPTER_SCRIPT, len(adapter_content.encode("utf-8"))))
+            logic_blocks.append(inline_script_tag(adapter_content))
         html = html.replace(RUNTIME_COMMENT, "\n".join(logic_blocks))
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
