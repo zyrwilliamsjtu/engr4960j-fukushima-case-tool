@@ -92,7 +92,7 @@
       var rel = (state.relations || []).find(function (r) {
         return r.from === fact.id && r.kind === "fact-supports-question";
       });
-      entry(3, fact.text, "fact", fact.id);
+      entry(3, ctx.factText ? ctx.factText(fact) : fact.text, "fact", fact.id);
       if (rel && rel.why) entry(3, rel.why, "judgment", fact.id);
     });
     itemsOf(state, "M").forEach(function (it) {
@@ -108,7 +108,7 @@
           return f.id === refId;
         });
         if (basis) entry(4, basis.text || basis.title, "fact", it.id);
-        else if (fact) entry(4, fact.text, "fact", it.id);
+        else if (fact) entry(4, ctx.factText ? ctx.factText(fact) : fact.text, "fact", it.id);
       });
       var fill = (state.relations || []).find(function (r) {
         return r.from === it.id && r.kind === "assumption-fills-gap";

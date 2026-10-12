@@ -1,4 +1,4 @@
-# 数据契约 v2.1
+# 数据契约 v2.2
 
 > 开发以本文件为准。  
 > 注：`docs/PRODUCT.md` 中的 XR 等旧 ID 写法为决策记录，已被本文件的「静态数据 ID」取代。
@@ -16,6 +16,7 @@
 | v2.0 冻结前修订 | 补 `nameEn`、统一 ID 规则、收编 `isCore`/`focusReason`、新增字段→存储映射表 |
 | v2.0 | 运行时接口 validateStep 返回字段名由 locators 统一为 anchors（非持久化结构，未升 dataVersion） |
 | v2.1 | 新增可选字段 quote / locator / confidence / sources[].note，新增 assessments[]；dataVersion 2.0→2.1，stateVersion 不变（无用户数据结构变更，无需迁移） |
+| v2.2 | 新增可选英文字段（…En 系列），中文字段不变；dataVersion 2.1→2.2，stateVersion 不变（无需迁移） |
 
 ---
 
@@ -88,7 +89,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 |--------|------|------|------|--------|
 | `id` | `string` | 是 | 案例 id | `"fukushima"` |
 | `title` | `string` | 是 | 界面标题 | `"福岛第一核电站事故"` |
-| `dataVersion` | `string` | 是 | 静态契约版本 | `"2.1"` |
+| `dataVersion` | `string` | 是 | 静态契约版本 | `"2.2"` |
 | `dataUpdatedAt` | `string` | 否 | 静态数据内容更新日期 | `"2026-10-11"` |
 | `builtAt` | `string` | 是 | 数据构建日期 | `"2026-10-11"` |
 
@@ -118,6 +119,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `locator` | `string` | 否 | 章节或页码 | `"§1.1"` |
 | `confidence` | `string` | 否 | 置信度 | `"high"` / `"medium"` / `"low"` |
 | `note` | `string` | 否 | 编辑/核验备注 | `""` |
+| `eventEn` | `string` | 否 | v2.2：英文界面事件描述 | `""` |
 
 ### 2.5 `facts[]`
 
@@ -131,6 +133,8 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `quote` | `string` | 否 | 英文逐字原句 | `""` |
 | `locator` | `string` | 否 | 章节或页码 | `""` |
 | `confidence` | `string` | 否 | 置信度 | `"high"` / `"medium"` / `"low"` |
+| `textEn` | `string` | 否 | v2.2：英文界面事实正文 | `""` |
+| `noteEn` | `string` | 否 | v2.2：英文界面备注 | `""` |
 
 ### 2.5a `assessments[]`
 
@@ -143,6 +147,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `quote` | `string` | 否 | 英文逐字原句 | `""` |
 | `appliesToSteps` | `number[]` | 是 | 建议展示步骤 | `[6, 7]` |
 | `note` | `string` | 否 | 归属/说明 | `"NAIIC"` |
+| `textEn` | `string` | 否 | v2.2：英文界面摘要 | `""` |
 
 ### 2.6 `valueWords[]`
 
@@ -152,6 +157,8 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `word` | `string` | 是 | 词 | `"责任"` |
 | `whyVague` | `string` | 是 | 为何需澄清 | `"可指法律责任或道德责任…"` |
 | `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
+| `wordEn` | `string` | 否 | v2.2：英文词 | `""` |
+| `whyVagueEn` | `string` | 否 | v2.2：英文澄清说明 | `""` |
 
 ### 2.7 `principles[]`
 
@@ -163,6 +170,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `nameEn` | `string` | 是 | 原则的英文原文，便于对照教材 | `"keep members of the public safe ..."` |
 | `desc` | `string` | 是 | 中文简述 | `"使公众免受…"` |
 | `sourceId` | `string` | 是 | 来源 | `"src-textbook-appendix-I"` |
+| `descEn` | `string` | 否 | v2.2：英文简述 | `""` |
 
 ### 2.8 `constraints[]`
 
@@ -172,6 +180,8 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `label` | `string` | 是 | 短标签 | `"深层文化规范"` |
 | `desc` | `string` | 是 | 说明（非结论） | `"…不预设必然减责。"` |
 | `sourceId` | `string` | 是 | 来源 | `"TODO(PI)"` |
+| `labelEn` | `string` | 否 | v2.2：英文短标签 | `""` |
+| `descEn` | `string` | 否 | v2.2：英文说明 | `""` |
 
 ### 2.9 `biasChecks[]`
 
@@ -180,6 +190,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `id` | `string` | 是 | 项 id | `"bc-001"` |
 | `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？…"` |
 | `jumpTo` | `number` | 是 | 跳转步骤号 | `3` |
+| `labelEn` | `string` | 否 | v2.2：英文文案 | `""` |
 
 ### 2.10 `reviewPrompts[]`
 
@@ -189,6 +200,7 @@ ID 一旦生成不得复用，不得因删除而回收。删除仅标记影响�
 | `label` | `string` | 是 | 文案 | `"是否遗漏了某类事实？"` |
 | `jumpTo` | `number` | 是 | 跳转步骤 | `3` |
 | `kind` | `string` | 是 | 类型 | `"missing-facts"` 等 |
+| `labelEn` | `string` | 否 | v2.2：英文文案 | `""` |
 
 ---
 

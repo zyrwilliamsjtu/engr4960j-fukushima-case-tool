@@ -93,7 +93,6 @@
     op(0, "language-en");
     var root = document.getElementById("app") || document.querySelector(".app-shell") || document.body;
     var whitelist = [];
-    if (window.CASE_DATA) collectTextStrings(window.CASE_DATA, whitelist);
     if (window.FIELDNOTES && window.FIELDNOTES.getEngine) {
       collectTextStrings(window.FIELDNOTES.getEngine().getState(), whitelist);
     }
