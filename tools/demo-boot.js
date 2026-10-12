@@ -4,6 +4,7 @@
 (function () {
   "use strict";
   window.__FN_DEMO_PACK = true;
+  window.__FN_DEMO_AUTO_PRESENT = true;
   var MARKER = "engr4960j-fukushima-demo-pack-v1";
 
   function statePayload(demo) {
@@ -24,7 +25,7 @@
     var result = window.FIELDNOTES.importProjectJson(JSON.stringify(statePayload(demo)));
     if (result && result.ok) {
       window.__FN_DEMO_LOADED = true;
-      /* Stay on intake home; user chooses Continue (same as deliverable UX). */
+      if (window.__fieldnotesApplyDemoDefaults) window.__fieldnotesApplyDemoDefaults();
     }
   }
 

@@ -8843,7 +8843,7 @@ body {
   }
   function setHash(hash){if(location.hash!==hash){try{history.replaceState(null,'',hash);}catch(e){location.hash=hash;}}}
   function hasProgress(){var s=state();return Object.keys(s.items||{}).length>0||(s.relations||[]).length>0||(s.conflicts||[]).length>0;}
-  function enterWorkbook(){view='workbook';setHash('#workbench');render();window.scrollTo(0,0);}
+  function enterWorkbook(){view='workbook';setHash('#workbench');if(window.__FN_DEMO_PACK&&window.__FN_DEMO_AUTO_PRESENT&&!presentation){presentation=JSON.parse(JSON.stringify(engine.getState()));presentationStep=presentation.currentStep||state().currentStep;}render();window.scrollTo(0,0);}
   function renderHome(){
     document.documentElement.lang=locale==='zh'?'zh-CN':'en';
     document.title='Fieldnotes · '+t('homeTitle');
@@ -8983,6 +8983,7 @@ body {
   document.addEventListener('submit',function(event){intake.submit(event);});
   document.addEventListener('fieldnotes-demo-enter',function(){if(window.__FN_DEMO_PACK)enterWorkbook();});
   window.__fieldnotesDemoEnter=function(){if(window.__FN_DEMO_PACK)enterWorkbook();};
+  window.__fieldnotesApplyDemoDefaults=function(){if(!window.__FN_DEMO_PACK)return;locale='en';try{localStorage.setItem('fieldnotes.ui.language','en');}catch(e){}render();};
   bindEngine();render();
 })();
 
