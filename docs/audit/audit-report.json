@@ -1,7 +1,7 @@
 {
   "allowedSkips": [],
   "summary": {
-    "pass": 63,
+    "pass": 70,
     "fail": 0,
     "skip": 0
   },
@@ -19,12 +19,12 @@
     {
       "id": "D2-step-1",
       "status": "pass",
-      "detail": "从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
+      "detail": "从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览"
     },
     {
       "id": "D2-step-2",
       "status": "pass",
-      "detail": "找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
+      "detail": "找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览"
     },
     {
       "id": "D2-step-3",
@@ -34,42 +34,42 @@
     {
       "id": "D2-step-4",
       "status": "pass",
-      "detail": "让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+      "detail": "让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D2-step-5",
       "status": "pass",
-      "detail": "把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+      "detail": "把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D2-step-6",
       "status": "pass",
-      "detail": "让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+      "detail": "让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D2-step-7",
       "status": "pass",
-      "detail": "回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+      "detail": "回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D2-step-8",
       "status": "pass",
-      "detail": "写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
+      "detail": "写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览"
     },
     {
       "id": "D2-step-9",
       "status": "pass",
-      "detail": "把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订"
+      "detail": "把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D2-step-10",
       "status": "pass",
-      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览"
+      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,完成并查看总结 →,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D3-1",
       "status": "pass",
-      "detail": "intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|对比修订|推理总览"
+      "detail": "intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|修订对比|推理总览"
     },
     {
       "id": "D3-2",
@@ -94,7 +94,7 @@
     {
       "id": "D1-1",
       "status": "pass",
-      "detail": "hard=0 soft=7"
+      "detail": "hard=0 soft=8"
     },
     {
       "id": "D1-3",
@@ -184,7 +184,7 @@
     {
       "id": "D5-7",
       "status": "pass",
-      "detail": "btn=true triggered=true file=fukushima-report-material-20261011.md len=3045"
+      "detail": "btn=true triggered=true file=fukushima-report-material-20261012.md len=3045"
     },
     {
       "id": "D5-6",
@@ -225,6 +225,41 @@
       "id": "D6-console",
       "status": "pass",
       "detail": "no window.error"
+    },
+    {
+      "id": "D9-1",
+      "status": "pass",
+      "detail": "summaryNav=true steps=10"
+    },
+    {
+      "id": "D9-2",
+      "status": "pass",
+      "detail": "goto=true sections=10"
+    },
+    {
+      "id": "D9-3",
+      "status": "pass",
+      "detail": "已填写 9 项 · 待补充 4 项"
+    },
+    {
+      "id": "D9-4",
+      "status": "pass",
+      "detail": "no question text to compare"
+    },
+    {
+      "id": "D9-5",
+      "status": "pass",
+      "detail": "getState unchanged on summary"
+    },
+    {
+      "id": "D9-6",
+      "status": "pass",
+      "detail": "exports tpl=true md=true json=true len=3457"
+    },
+    {
+      "id": "D8-i18n",
+      "status": "pass",
+      "detail": "no CJK outside CASE_DATA and user state"
     },
     {
       "id": "D7-1@1410",
@@ -339,7 +374,7 @@
       "persona": "P3",
       "severity": "blue",
       "title": "结论类词语出现在用户槽位标签和形式提醒里",
-      "evidence": "soft hits=7; hard hits=0"
+      "evidence": "soft hits=8; hard hits=0"
     },
     {
       "persona": "P1",
@@ -361,7 +396,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订",
+        "修订对比",
         "推理总览"
       ],
       "inputs": 0,
@@ -379,7 +414,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订",
+        "修订对比",
         "推理总览"
       ],
       "inputs": 0,
@@ -416,7 +451,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -434,7 +469,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -452,7 +487,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -470,7 +505,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -487,7 +522,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订",
+        "修订对比",
         "推理总览"
       ],
       "inputs": 0,
@@ -506,7 +541,7 @@
         "下一步",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -521,10 +556,10 @@
         "添加预防措施",
         "上一步",
         "下一步",
+        "完成并查看总结 →",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "对比修订",
-        "推理总览"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -674,6 +709,54 @@
     {
       "step": 5,
       "action": "type-mine"
+    },
+    {
+      "step": 0,
+      "action": "language-en"
+    },
+    {
+      "step": 1,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 2,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 3,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 4,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 5,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 6,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 7,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 8,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 9,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 10,
+      "action": "i18n-scan-step"
+    },
+    {
+      "step": 0,
+      "action": "language-zh-restore"
     }
   ],
   "keywords": [
@@ -706,6 +789,11 @@
       "where": "i18n.mockBanner",
       "hard": false,
       "text": "仅用于调试，不是福岛事实或本组结论"
+    },
+    {
+      "where": "i18n.summaryIntro",
+      "hard": false,
+      "text": "以下内容全部来自你在 10 步中填写的内容，本工具不生成新的分析结论。"
     },
     {
       "where": "body",

@@ -104,47 +104,47 @@
   function exportReport(state, data, locale) {
     var english = locale === "en";
     function copy(text) { return english ? EN_COPY[text] || text : text; }
-  function human() {
-    return copy("> 本节属报告正文，须由小组成员独立撰写。\n\n");
-  }
+    function human() {
+      return copy("> 本节属报告正文，须由小组成员独立撰写。\n\n");
+    }
 
-  function whyImportant() {
-    return copy("> 「为什么这一步重要」属报告正文，须由小组成员独立撰写。\n\n");
-  }
+    function whyImportant() {
+      return copy("> 「为什么这一步重要」属报告正文，须由小组成员独立撰写。\n\n");
+    }
 
-  function gap(step, what) {
-    return english ? "> ⚠️ Complete manually (step " + step + ": " + STEP_NAME_EN[step] + "): " + what + "\n\n" : "> ⚠️ 需人工补充（来自第 " + step + " 步：" + STEP_NAME[step] + "）：" + what + "\n\n";
-  }
+    function gap(step, what) {
+      return english ? "> ⚠️ Complete manually (step " + step + ": " + STEP_NAME_EN[step] + "): " + what + "\n\n" : "> ⚠️ 需人工补充（来自第 " + step + " 步：" + STEP_NAME[step] + "）：" + what + "\n\n";
+    }
 
-  function note(text) {
-    return (english ? "> Existing fields do not fully match the template: " : "> 工具按现有字段搬入，与模板结构不完全相同：") + text + "\n\n";
-  }
+    function note(text) {
+      return (english ? "> Existing fields do not fully match the template: " : "> 工具按现有字段搬入，与模板结构不完全相同：") + text + "\n\n";
+    }
 
-  function block(text) {
-    if (text == null || text === "") return "";
-    return String(text) + "\n\n";
-  }
+    function block(text) {
+      if (text == null || text === "") return "";
+      return String(text) + "\n\n";
+    }
 
-  function sourceLine(data, sourceId) {
-    var source = (data.sources || []).filter(function (item) {
-      return item.id === sourceId;
-    })[0];
-    if (!source) return "";
-    var line = copy("[来源：") + (source.title || "") + ", " + (source.publisher || "") + ", " + (source.year == null ? "" : source.year) + "]";
-    return line + "\n\n";
-  }
+    function sourceLine(data, sourceId) {
+      var source = (data.sources || []).filter(function (item) {
+        return item.id === sourceId;
+      })[0];
+      if (!source) return "";
+      var line = copy("[来源：") + (source.title || "") + ", " + (source.publisher || "") + ", " + (source.year == null ? "" : source.year) + "]";
+      return line + "\n\n";
+    }
 
-  function factBlocks(data, facts) {
-    if (!facts.length) return "";
-    return facts
-      .map(function (fact) {
-        var extra = "";
-        if (fact.quote) extra += fact.quote + "\n\n";
-        if (fact.locator) extra += fact.locator + "\n\n";
-        return block(fact.text) + sourceLine(data, fact.sourceId) + extra;
-      })
-      .join("");
-  }
+    function factBlocks(data, facts) {
+      if (!facts.length) return "";
+      return facts
+        .map(function (fact) {
+          var extra = "";
+          if (fact.quote) extra += fact.quote + "\n\n";
+          if (fact.locator) extra += fact.locator + "\n\n";
+          return block(fact.text) + sourceLine(data, fact.sourceId) + extra;
+        })
+        .join("");
+    }
 
 
     state = state || { items: {}, relations: [], conflicts: [] };

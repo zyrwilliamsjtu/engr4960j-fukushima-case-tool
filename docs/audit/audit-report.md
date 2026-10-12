@@ -1,6 +1,6 @@
 # 产品审查报告
 
-SUMMARY: PASS=63 FAIL=0 SKIP=0
+SUMMARY: PASS=70 FAIL=0 SKIP=0
 
 ALLOWED_SKIPS: (empty)
 
@@ -14,22 +14,22 @@ ALLOWED_SKIPS: (empty)
 
 - **PASS** `D3-boot` — engine mounted
 - **PASS** `D6-1-boot` — workspace after reset
-- **PASS** `D2-step-1` — 从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览
-- **PASS** `D2-step-2` — 找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览
+- **PASS** `D2-step-1` — 从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
+- **PASS** `D2-step-2` — 找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
 - **PASS** `D2-step-3` — 分清已知与未知。 | inputs=0 buttons=换个角度,查看相关资料,选择相关事实,添加信息缺口,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）
-- **PASS** `D2-step-4` — 让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订
-- **PASS** `D2-step-5` — 把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订
-- **PASS** `D2-step-6` — 让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订
-- **PASS** `D2-step-7` — 回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订
-- **PASS** `D2-step-8` — 写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览
-- **PASS** `D2-step-9` — 把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订
-- **PASS** `D2-step-10` — 想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,对比修订,推理总览
-- **PASS** `D3-1` — intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|对比修订|推理总览
+- **PASS** `D2-step-4` — 让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-5` — 把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-6` — 让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-7` — 回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-8` — 写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
+- **PASS** `D2-step-9` — 把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-10` — 想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,完成并查看总结 →,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D3-1` — intro=谁受到影响？哪些行动值得提出伦理疑问？ buttons=换个角度|添加问题|上一步|下一步|存为「初步」（快照）|存为「复核后」（快照）|修订对比|推理总览
 - **PASS** `D3-2` — hintHidden=1,2,3,4,5
 - **PASS** `D4-1` — found
 - **PASS** `D4-2` — presentation control search
 - **PASS** `D2-variety` — distinct control signatures=10
-- **PASS** `D1-1` — hard=0 soft=7
+- **PASS** `D1-1` — hard=0 soft=8
 - **PASS** `D1-3` — referenceLevel3=null
 - **PASS** `D1-3b` — disabled=true
 - **PASS** `D2-2` — 用问句提出你真正想讨论的问题… | 运营商是否向公众及时说明了风险？
@@ -47,7 +47,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D4-4` — next enabled while form incomplete
 - **PASS** `D1-5` — len=675
 - **PASS** `D5-5` — sections=10
-- **PASS** `D5-7` — btn=true triggered=true file=fukushima-report-material-20261011.md len=3045
+- **PASS** `D5-7` — btn=true triggered=true file=fukushima-report-material-20261012.md len=3045
 - **PASS** `D5-6` — importOk=true items 4->4
 - **PASS** `D6-2` — badImport="pack"
 - **PASS** `D2-6` — 让每个假设有依据。
@@ -56,6 +56,13 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D2-12` — preset prevention=false
 - **PASS** `D2-3` — 正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。
 - **PASS** `D6-console` — no window.error
+- **PASS** `D9-1` — summaryNav=true steps=10
+- **PASS** `D9-2` — goto=true sections=10
+- **PASS** `D9-3` — 已填写 9 项 · 待补充 4 项
+- **PASS** `D9-4` — no question text to compare
+- **PASS** `D9-5` — getState unchanged on summary
+- **PASS** `D9-6` — exports tpl=true md=true json=true len=3457
+- **PASS** `D8-i18n` — no CJK outside CASE_DATA and user state
 - **PASS** `D7-1@1410` — scrollWidth=1395 inner=1410
 - **PASS** `D7-2-hero@1410` — hero=35.955
 - **PASS** `D7-2-field@1410` — field=14
@@ -78,16 +85,16 @@ ALLOWED_SKIPS: (empty)
 
 ## 逐步 DOM 摘要（重置后）
 
-- 步骤 1: 从一个问题开始。 | hintHidden=True | inputs=0 | buttons=['换个角度', '添加问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订', '推理总览'] | intro=谁受到影响？哪些行动值得提出伦理疑问？
-- 步骤 2: 找到讨论的重点。 | hintHidden=True | inputs=0 | buttons=['换个角度', '上一步', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订', '推理总览'] | intro=选择最值得深入分析的问题，并说明理由。
+- 步骤 1: 从一个问题开始。 | hintHidden=True | inputs=0 | buttons=['换个角度', '添加问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比', '推理总览'] | intro=谁受到影响？哪些行动值得提出伦理疑问？
+- 步骤 2: 找到讨论的重点。 | hintHidden=True | inputs=0 | buttons=['换个角度', '上一步', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比', '推理总览'] | intro=选择最值得深入分析的问题，并说明理由。
 - 步骤 3: 分清已知与未知。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '选择相关事实', '添加信息缺口', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）'] | intro=整理相关事实，记录还需要知道的信息。
-- 步骤 4: 让每个假设有依据。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加假设', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订'] | intro=写下暂定假设，说明依据与推断理由。
-- 步骤 5: 把关键词说清楚。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加概念', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订'] | intro=同一个词，他人怎么理解，你们怎么使用？
-- 步骤 6: 让原则回应问题。 | hintHidden=True | inputs=0 | buttons=['选择原则', '换个角度', '查看相关资料', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订'] | intro=选择适用原则，解释它们如何影响你的判断。
-- 步骤 7: 回看，再想一次。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '回到问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订'] | intro=检查前六步，保留观点，也允许自己修订。
-- 步骤 8: 写下自己的判断。 | hintHidden=True | inputs=0 | buttons=['换个角度', '选择核心问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订', '推理总览'] | intro=回答核心问题，并用自己的理由支持它。
-- 步骤 9: 把现实条件考虑进来。 | hintHidden=True | inputs=0 | buttons=['换个角度', '本案没有相关约束', '添加约束', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订'] | intro=当时有哪些选择？这些约束如何影响责任？
-- 步骤 10: 想想更早的一步。 | hintHidden=True | inputs=0 | buttons=['换个角度', '添加预防措施', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '对比修订', '推理总览'] | intro=哪些更早的行动可能避免同类困境？
+- 步骤 4: 让每个假设有依据。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加假设', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=写下暂定假设，说明依据与推断理由。
+- 步骤 5: 把关键词说清楚。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加概念', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=同一个词，他人怎么理解，你们怎么使用？
+- 步骤 6: 让原则回应问题。 | hintHidden=True | inputs=0 | buttons=['选择原则', '换个角度', '查看相关资料', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=选择适用原则，解释它们如何影响你的判断。
+- 步骤 7: 回看，再想一次。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '回到问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=检查前六步，保留观点，也允许自己修订。
+- 步骤 8: 写下自己的判断。 | hintHidden=True | inputs=0 | buttons=['换个角度', '选择核心问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比', '推理总览'] | intro=回答核心问题，并用自己的理由支持它。
+- 步骤 9: 把现实条件考虑进来。 | hintHidden=True | inputs=0 | buttons=['换个角度', '本案没有相关约束', '添加约束', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=当时有哪些选择？这些约束如何影响责任？
+- 步骤 10: 想想更早的一步。 | hintHidden=True | inputs=0 | buttons=['换个角度', '添加预防措施', '上一步', '下一步', '完成并查看总结 →', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=哪些更早的行动可能避免同类困境？
 
 ## 交互清单
 
@@ -127,14 +134,26 @@ ALLOWED_SKIPS: (empty)
 - 步骤 5: pick-term
 - 步骤 5: type-others
 - 步骤 5: type-mine
+- 步骤 0: language-en
+- 步骤 1: i18n-scan-step
+- 步骤 2: i18n-scan-step
+- 步骤 3: i18n-scan-step
+- 步骤 4: i18n-scan-step
+- 步骤 5: i18n-scan-step
+- 步骤 6: i18n-scan-step
+- 步骤 7: i18n-scan-step
+- 步骤 8: i18n-scan-step
+- 步骤 9: i18n-scan-step
+- 步骤 10: i18n-scan-step
+- 步骤 0: language-zh-restore
 
-前 5 步操作次数（含导航）： 1=10, 2=4, 3=7, 4=4, 5=5
+前 5 步操作次数（含导航）： 1=11, 2=5, 3=8, 4=5, 5=6
 
 ## 摩擦点
 
 - yellow P1 填写示例默认收起 — step-hint-panel hidden on steps 1,2,3,4,5,6,7,8,9,10
 - yellow P2 下一步在首屏之下 — next.top > innerHeight 805
-- blue P3 结论类词语出现在用户槽位标签和形式提醒里 — soft hits=7; hard hits=0
+- blue P3 结论类词语出现在用户槽位标签和形式提醒里 — soft hits=8; hard hits=0
 - blue P1 首屏主行动是添加问题，但品牌名 fieldnotes 先于课程任务 — hero=从一个问题开始。
 
 ## 关键词命中（软命中需人工判语境）
@@ -145,6 +164,7 @@ ALLOWED_SKIPS: (empty)
 - [soft] i18n.restoreConfirm: 恢复会替换当前工作记录，建议先导出备份。继续吗？
 - [soft] i18n.resetConfirm: 清空当前记录？建议先导出备份。
 - [soft] i18n.mockBanner: 仅用于调试，不是福岛事实或本组结论
+- [soft] i18n.summaryIntro: 以下内容全部来自你在 10 步中填写的内容，本工具不生成新的分析结论。
 - [soft] body: 形成明确结论
 
 ## 结论槽写入路径

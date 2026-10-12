@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist" / "index.html"
+DEMO_MARKER = "engr4960j-fukushima-demo-pack-v1"
+DEMO_BANNER = "本页为演示用途，含预先填入的示例内容"
 
 # 与 fukushima.js 中 facts 对照，防止 UTF-8/内联损坏
 FACT_SAMPLES = [
@@ -141,6 +143,11 @@ def main() -> int:
         bad("revision-compare selftest hook in deliverable")
     else:
         ok("no revision-compare test hooks leaked into deliverable")
+
+    if DEMO_MARKER in html or DEMO_BANNER in html or "window.DEMO_USER_STATE" in html:
+        bad("deliverable contains demo state or demo banner")
+    else:
+        ok("deliverable contains no demo state")
 
     print("---")
     print(f"SUMMARY: PASS={pass_n} FAIL={fail_n}")

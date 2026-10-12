@@ -26,6 +26,8 @@ const {pathToFileURL}=require('node:url');
   }
   await open('archive-menu');await english('#archive-menu-panel');
   await page.locator('[data-action="archive-menu"]').click();
+  await page.locator('#nav-summary').click();await english('#app');await step(1);
+  await open('present');await english('#app');await open('exit-present');
   for(const sample of [JSON.stringify({stateVersion:'old'}),JSON.stringify({...await page.evaluate(()=>FIELDNOTES.getEngine().getState()),caseId:'wrong'}),'not JSON']){
    await page.locator('#project-file').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from(sample)});
    await page.locator('#modal[open]').waitFor();await english('#modal');await close();
@@ -43,7 +45,13 @@ const {pathToFileURL}=require('node:url');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'English mobile has no overflow.');
   await page.locator('[data-lang="zh"]').first().click();assert.ok((await page.locator('.workbench-toolbar').innerText()).includes('存档'));
   await page.locator('[data-lang="en"]').first().click();await english('.workbench-toolbar');
+  const demo=await browser.newPage();
+  await demo.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href);
+  await demo.locator('[data-lang="en"]').first().click();
+  assert.ok(!/[\p{Script=Han}]/u.test(await demo.locator('[data-demo-banner]').innerText()));
+  await demo.locator('[data-lang="zh"]').first().click();assert.ok((await demo.locator('[data-demo-banner]').innerText()).includes('演示'));
+  await demo.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: English ten steps, hints, populated snapshots, overview/help/case/archive dialogs, import failures, both Markdown exports, library controls, mobile, and Chinese round-trip; original user text preserved.');
+  console.log('PASS: English ten steps, hints, snapshots, summary/report, presentation, overview/help/case/archive dialogs, import failures, both Markdown exports, library controls, mobile, demo banner, and Chinese round-trip; original user text preserved.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

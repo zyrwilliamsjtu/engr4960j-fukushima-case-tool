@@ -72,12 +72,12 @@
   function sourceTag(kind) {
     var text =
       kind === "fact"
-        ? label("事实", "Fact")
+        ? copy("overviewFactTag", "事实", "Fact")
         : kind === "assumption"
-          ? label("我的假设", "My assumption")
+          ? copy("overviewAssumptionTag", "我的假设", "My assumption")
           : kind === "reference"
-            ? label("参考观点", "Reference perspective")
-            : label("我的判断", "My judgment");
+            ? copy("overviewReferenceTag", "参考观点", "Reference perspective")
+            : copy("overviewJudgmentTag", "我的判断", "My judgment");
     return '<span class="tag">' + esc(text) + "</span> ";
   }
 
@@ -99,7 +99,7 @@
       "><h4>" +
       esc(title) +
       "</h4>" +
-      (html || "<p>" + esc(label("这一组还没有记录。", "Nothing in this group yet.")) + "</p>") +
+      (html || "<p>" + esc(copy("overviewEmptyGroup", "这一组还没有记录。", "Nothing in this group yet.")) + "</p>") +
       "</section>"
     );
   }
@@ -116,7 +116,7 @@
             "<span>" +
             esc(text) +
             "</span><br><small>" +
-            esc(label("为什么相关：", "Why it matters: ") + (rel.why || "—")) +
+            esc(copy("overviewWhy", "为什么相关：", "Why it matters: ") + (rel.why || "—")) +
             "</small>"
         );
       })
@@ -148,7 +148,7 @@
             "<span>" +
             esc(item.text || item.id) +
             "</span>" +
-            (basis ? "<br><small>" + esc(label("依据：", "Basis: ") + basis) + "</small>" : "")
+            (basis ? "<br><small>" + esc(copy("overviewBasis", "依据：", "Basis: ") + basis) + "</small>" : "")
         );
       })
       .join("");
@@ -213,12 +213,12 @@
       '<article class="entry-card"><h3>' +
       esc(question.text || question.id) +
       "</h3>" +
-      group(mark ? "overview-group-facts" : "", label("相关事实", "Relevant facts"), facts, false) +
-      group(mark ? "overview-group-gaps" : "", label("信息缺口", "Missing facts"), gaps, false) +
-      group(mark ? "overview-group-assumptions" : "", label("我的假设", "Assumptions"), assumptions, false) +
-      group(mark ? "overview-group-concepts" : "", label("待澄清概念", "Terms to clarify"), concepts, false) +
-      group(mark ? "overview-group-principles" : "", label("原则取舍", "Principles and conflicts"), principles + conflicts, !full) +
-      group(mark ? "overview-group-conclusion" : "", label("结论", "Resolution"), answers, !full) +
+      group(mark ? "overview-group-facts" : "", copy("overviewFacts", "相关事实", "Relevant facts"), facts, false) +
+      group(mark ? "overview-group-gaps" : "", copy("overviewGaps", "信息缺口", "Missing facts"), gaps, false) +
+      group(mark ? "overview-group-assumptions" : "", copy("overviewAssumptions", "合理假设", "Reasonable assumptions"), assumptions, false) +
+      group(mark ? "overview-group-concepts" : "", copy("overviewConcepts", "定义澄清", "Definitional clarification"), concepts, false) +
+      group(mark ? "overview-group-principles" : "", copy("overviewPrinciples", "伦理分析", "Ethical analysis"), principles + conflicts, !full) +
+      group(mark ? "overview-group-conclusion" : "", copy("overviewConclusion", "结论", "Resolution"), answers, !full) +
       "</article>"
     );
   }
@@ -234,16 +234,12 @@
     var factLinks = (state.relations || []).filter(function (rel) {
       return rel.kind === "fact-supports-question";
     }).length;
-    var summary =
-      label("核心问题 ", "Core questions ") +
-      cores.length +
-      label(" 条 · 关联事实 ", " · linked facts ") +
-      factLinks +
-      label(" 条 · 假设 ", " · assumptions ") +
-      itemsOf(state, "A").length +
-      label(" 条 · 待澄清 ", " · terms ") +
-      itemsOf(state, "C").length +
-      label(" 条", "");
+    var summaryTpl = copy("overviewSummary", "核心问题 {core} 条 · 关联事实 {facts} 条 · 假设 {assumptions} 条 · 待澄清 {terms} 条", "Core questions {core} · linked facts {facts} · assumptions {assumptions} · terms {terms}");
+    var summary = summaryTpl
+      .replace("{core}", String(cores.length))
+      .replace("{facts}", String(factLinks))
+      .replace("{assumptions}", String(itemsOf(state, "A").length))
+      .replace("{terms}", String(itemsOf(state, "C").length));
     var notice = cores.length
       ? ""
       : '<p class="hint">' +
@@ -255,7 +251,7 @@
             return renderQuestion(state, data, question, index);
           })
           .join("")
-      : "<p>" + esc(label("还没有伦理问题。请先在第 1 步写下问题。", "No ethical questions yet. Write them in step 1.")) + "</p>";
+      : "<p>" + esc(copy("overviewNoQuestions", "还没有伦理问题。请先在第 1 步写下问题。", "No ethical questions yet. Write them in step 1.")) + "</p>";
     return (
       '<div id="reasoning-overview" class="revision-compare" data-readonly="true">' +
       '<p class="revision-summary" data-testid="overview-summary">' +
