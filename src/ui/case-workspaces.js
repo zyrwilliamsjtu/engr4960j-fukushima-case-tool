@@ -17,6 +17,7 @@
         typeof pack.meta.builtAt !== 'string' || arrays.some(function (key) { return !Array.isArray(pack[key]); })) return false;
     if (pack.meta.dataVersion === '2.1' && !Array.isArray(pack.assessments)) return false;
     if (pack.assessments !== undefined && !Array.isArray(pack.assessments)) return false;
+    if(pack.caseMaterials!==undefined&&(!Array.isArray(pack.caseMaterials)||pack.caseMaterials.length>21||pack.caseMaterials.some(function(doc){return !doc||typeof doc.id!=='string'||typeof doc.name!=='string'||!['brief','text','pdf','image'].includes(doc.kind)||typeof doc.sourceId!=='string'||(doc.text!==undefined&&typeof doc.text!=='string')||(doc.dataUrl!==undefined&&(typeof doc.dataUrl!=='string'||!/^data:(application\/pdf|image\/(png|jpeg|webp));base64,[A-Za-z0-9+/=]+$/.test(doc.dataUrl)));})))return false;
     var ids = new Set();
     if (arrays.concat(pack.assessments ? ['assessments'] : []).filter(function (key) { return key !== 'steps'; }).some(function (key) {
       return pack[key].some(function (entry) {
@@ -25,6 +26,7 @@
       });
     })) return false;
     var sources = new Set(pack.sources.map(function (s) { return s.id; }));
+    if((pack.caseMaterials||[]).some(function(doc){return !sources.has(doc.sourceId)||(['text','brief'].includes(doc.kind)?typeof doc.text!=='string':typeof doc.dataUrl!=='string');}))return false;
     if (pack.timeline.concat(pack.facts, pack.assessments || []).some(function (entry) {
       return ['quote', 'locator', 'note'].some(function (key) { return entry[key] !== undefined && typeof entry[key] !== 'string'; }) ||
         (entry.confidence !== undefined && !['high', 'medium', 'low'].includes(entry.confidence));
@@ -88,7 +90,7 @@
     metadataSaved = saveCatalog();
     return true;
   }
-  function create(title) {
+  function create(title, intake) {
     if (typeof title !== 'string' || !title.trim()) throw new Error('A case name is required');
     var pack = clone(template);
     var id = 'case-' + Date.now().toString(36);
@@ -97,6 +99,11 @@
     pack.facts = []; pack.timeline = [];
     if (pack.assessments) pack.assessments = [];
     pack.sources = template.sources.filter(function (source) { return pack.principles.some(function (p) { return p.sourceId === source.id; }); });
+    if(intake){
+      pack.caseMaterials=clone(intake.files||[]);
+      if(intake.brief&&intake.brief.trim())pack.caseMaterials.unshift({id:'material-brief',name:'Case brief',kind:'brief',text:intake.brief.trim(),size:0});
+      pack.caseMaterials.forEach(function(doc,i){doc.sourceId='src-intake-'+i;pack.sources.push({id:doc.sourceId,title:doc.name,publisher:'',year:0,url:''});});
+    }
     // Case-specific interpretive references must not leak into a new case.
     pack.steps.forEach(function (step) { step.referenceLevel3 = null; });
     packs[id] = pack;
@@ -124,6 +131,13 @@
     pack.sources.forEach(function (s) { ids.add(s.id); });
     pack.principles.forEach(function (p) { ids.add(p.id); });
     return ids;
+  }
+  function materialFact(text,sourceId,category){
+    if(active===template.meta.id||!text.trim()||!['material','individual','organization'].includes(category))return false;
+    var pack=packs[active],doc=(pack.caseMaterials||[]).find(function(d){return d.sourceId===sourceId;});if(!doc)return false;
+    var id='f-'+category+'-excerpt-'+Date.now().toString(36);while(pack.facts.some(function(f){return f.id===id;}))id+='-1';
+    pack.facts.push({id:id,text:text.trim(),categories:[category],sourceId:sourceId,note:''});
+    var savedState=runtime.getState();if(runtime.flush)runtime.flush();metadataSaved=saveCatalog();runtime=createRuntime(pack,active,{state:savedState});return id;
   }
   function validateAnalysisPayload(payload, pack) {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
@@ -202,7 +216,7 @@
   window.FieldnotesCases = {
     getData: function () { return packs[active]; }, getRuntime: function () { return runtime; },
     list: function () { return Object.values(packs).map(function (pack) { return { id: pack.meta.id, title: pack.meta.title }; }); },
-    select: select, create: create, addFact: addFact, importProject: importProject, exportProject: exportProject,
+    select: select, create: create, addFact: addFact, materialFact:materialFact, importProject: importProject, exportProject: exportProject,
     validateAnalysisPayload: validateAnalysisPayload,
     isCustom: function () { return active !== template.meta.id; },
     getSaveStatus: function () { return metadataSaved ? (runtime.getSaveStatus ? runtime.getSaveStatus() : 'unknown') : 'memory'; },
