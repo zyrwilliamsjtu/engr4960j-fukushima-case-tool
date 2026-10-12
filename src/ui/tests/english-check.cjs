@@ -47,11 +47,9 @@ const {pathToFileURL}=require('node:url');
   await page.locator('[data-lang="en"]').first().click();await english('.workbench-toolbar');
   const demo=await browser.newPage();
   await demo.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href+'#workbench');
-  await demo.locator('[data-lang="en"]').first().click();
-  assert.ok(!/[\p{Script=Han}]/u.test(await demo.locator('[data-demo-banner]').innerText()));
-  await demo.locator('[data-lang="zh"]').first().click();assert.ok((await demo.locator('[data-demo-banner]').innerText()).includes('演示'));
+  assert.equal(await demo.locator('[data-demo-banner]').count(), 0);
   await demo.close();
   assert.deepEqual(errors,[]);
-  console.log('PASS: English ten steps, hints, snapshots, summary/report, presentation, overview/help/case/archive dialogs, import failures, both Markdown exports, library controls, mobile, demo banner, and Chinese round-trip; original user text preserved.');
+  console.log('PASS: English ten steps, hints, snapshots, summary/report, presentation, overview/help/case/archive dialogs, import failures, both Markdown exports, library controls, mobile, demo build without top banner, and Chinese round-trip; original user text preserved.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

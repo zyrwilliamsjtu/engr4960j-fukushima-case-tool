@@ -8,4 +8,4 @@
 | `demo-summary-n` | > 0 | > 0 | Unchanged |
 | `demo-summary-brief` | replay closed, chars < 8000 | same | Unchanged |
 
-New assertions: `demo-member-q1`, `demo-member-fact`, `demo-banner-source`, `demo-step9-content`, `demo-step10-content`, `demo-step8-placeholder`.
+New assertions: `demo-member-q1`, `demo-member-fact`, `demo-step9-content`, `demo-step10-content`, `demo-step8-placeholder`, `demo-no-top-banner` (sticky banner removed per product request).

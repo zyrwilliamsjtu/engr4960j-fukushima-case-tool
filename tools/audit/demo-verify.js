@@ -97,13 +97,7 @@
     if (nav10) nav10.click();
     await wait(300);
     check("demo-step10-content", document.querySelectorAll("#workspace .entry-card").length >= 3, "step10 cards");
-    var ban = document.querySelector("[data-demo-banner]");
-    check(
-      "demo-banner-source",
-      !!(ban && /partly provided by a group member/i.test(ban.getAttribute("data-banner-en") || "")),
-      "banner-en attr"
-    );
-    check("demo-banner", !!document.querySelector("[data-demo-banner]") && /DEMO BUILD/i.test(document.body.innerText), "banner marker");
+    check("demo-no-top-banner", !document.querySelector("[data-demo-banner]"), "no sticky banner");
     window.__DEMO_AUDIT__ = checks;
     var el = document.createElement("pre");
     el.id = "DEMO_AUDIT_JSON";
