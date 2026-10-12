@@ -24,8 +24,7 @@
     var result = window.FIELDNOTES.importProjectJson(JSON.stringify(statePayload(demo)));
     if (result && result.ok) {
       window.__FN_DEMO_LOADED = true;
-      if (window.__fieldnotesDemoEnter) window.__fieldnotesDemoEnter();
-      else document.dispatchEvent(new Event("fieldnotes-demo-enter"));
+      /* Stay on intake home; user chooses Continue (same as deliverable UX). */
     }
   }
 
