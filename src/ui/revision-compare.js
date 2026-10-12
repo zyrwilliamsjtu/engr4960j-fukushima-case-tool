@@ -71,7 +71,8 @@
     return result;
   }
 
-  function summaryLine(diff) {
+  function summaryLine(diff, locale) {
+    if(locale==='en')return 'Added ' + diff.added.length + ' / Modified ' + diff.modified.length + ' / Deleted ' + diff.deleted.length;
     return '新增 ' + diff.added.length + ' 条 / 修改 ' + diff.modified.length + ' 条 / 删除 ' + diff.deleted.length + ' 条';
   }
 
@@ -94,28 +95,28 @@
     }
     var diff = comparePayloads(payloadOf(leftSnap), payloadOf(rightSnap));
     var html = '<div class="revision-compare" data-testid="revision-compare"><p class="revision-summary" data-testid="revision-summary">' +
-      escapeHtml(summaryLine(diff)) + '</p><div class="revision-columns">';
+      escapeHtml(summaryLine(diff, locale)) + '</p><div class="revision-columns">';
     html += '<section><h4>' + (locale === 'zh' ? '初步' : 'Initial') + '</h4><p><small>' + escapeHtml(leftSnap.createdAt || '') + '</small></p></section>';
     html += '<section><h4>' + (locale === 'zh' ? '复核后' : 'Reviewed') + '</h4><p><small>' + escapeHtml(rightSnap.createdAt || '') + '</small></p></section></div>';
     html += '<ul class="revision-diff-list">';
     diff.added.forEach(function (row) {
-      html += '<li><strong>新增</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.after.text || row.after.word || '') + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Added':'新增') + '</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.after.text || row.after.word || '') + '</li>';
     });
     diff.deleted.forEach(function (row) {
-      html += '<li><strong>删除</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.before.text || row.before.word || '') + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Deleted':'删除') + '</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.before.text || row.before.word || '') + '</li>';
     });
     diff.modified.forEach(function (row) {
-      html += '<li><strong>已修改</strong> ' + escapeHtml(row.id);
+      html += '<li><strong>' + (locale==='en'?'Modified':'已修改') + '</strong> ' + escapeHtml(row.id);
       row.fields.forEach(function (f) {
         html += '<div class="revision-field"><span>' + escapeHtml(f.key) + '</span><del>' + escapeHtml(JSON.stringify(f.before)) + '</del><ins>' + escapeHtml(JSON.stringify(f.after)) + '</ins></div>';
       });
       html += '</li>';
     });
     diff.relationAdded.forEach(function (r) {
-      html += '<li><strong>关联+</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Link added':'关联+') + '</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
     });
     diff.relationDeleted.forEach(function (r) {
-      html += '<li><strong>关联−</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Link removed':'关联−') + '</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
     });
     html += '</ul></div>';
     return html;

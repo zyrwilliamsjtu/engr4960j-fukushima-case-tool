@@ -299,6 +299,15 @@ input:focus,textarea:focus,select:focus {
   line-height:1.55;
   font-weight:500
 }
+.step-class {
+  flex:none;
+  font-size:13px;
+  line-height:1.2;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#ffffff22;
+  color:inherit
+}
 .step-nav>.icon {
   width:14px;
   height:14px;
@@ -1246,7 +1255,7 @@ legend {
   border-top:1px solid #bac9dd
 }
 .step-footer .button {
-  font-size:12px;
+  font-size:14px;
   padding:11px 17px
 }
 .review-toggle {
@@ -2102,6 +2111,7 @@ dialog::backdrop {
 }
 .top-actions {
   width:100%;
+  flex-wrap:wrap;
   justify-content:space-between;
   gap:7px
 }
@@ -4193,7 +4203,7 @@ body {
     materials:['资料与依据','Evidence library'], materialPurpose:['查资料，选依据，写下为什么。','Read, select, explain why.'], materialPurposeSub:['把与问题有关的材料带回分析，判断由你完成。','Bring relevant material into your analysis. The judgment stays yours.'], evidenceSteps:['查看原文 → 关联问题 → 写下理由','Read the source → Link a question → Explain why'], selectedFacts:['你选用的事实','Facts you selected'], browseFacts:['选择相关事实','Choose relevant facts'], factsAvailable:['条可供查阅','available to explore'], evidenceEmpty:['从资料中选择与问题相关的事实','Select facts relevant to your questions'], evidenceEmptySub:['关联问题并说明理由后，事实会出现在这里。','Link a question and explain why. Your selected facts will appear here.'], categoryEmpty:['还没有选用这一类事实','No selected facts in this category'], sourceDetails:['原文与出处','Source & original wording'], sourceLocation:['章节 / 页码','Section / page'], verificationPending:['待复核原文','Source review pending'], recordedSource:['已有核验记录','Review recorded'], verificationNote:['资料备注','Material notes'], confidence:['资料包置信度','Confidence recorded in the pack'], confidenceHigh:['高','High'], confidenceMedium:['中','Medium'], confidenceLow:['低','Low'], allFacts:['全部事实','All facts'], filterFacts:['筛选事实类别','Filter fact categories'], factSelectionHint:['选择一条事实，关联到你提出的问题，并写下它为什么重要。','Choose a fact, link it to your question, and explain why it matters.'], noFactsYet:['先加入一条来自材料的事实','Add a fact from your material'], noFactsYetSub:['记录内容和出处，再决定它与哪个问题相关。','Record the wording and source, then decide which question it informs.'],
     principleSettings:['关联与优先级','Connections & priority'], caseWorkshop:['工程伦理工作本','Ethics workbook'], more:['更多','More'], markReviewed:['标记已复核','Mark reviewed'], choosePrinciples:['选择原则','Choose principles'], principlesEmpty:['从一条相关原则开始','Choose a relevant principle'], principlesEmptySub:['打开原则库，选择适用于本案的条目。','Open the library and select what applies to your case.'],
     caseShort:['福岛 · 第一核电站','Fukushima Daiichi'], recovery:['下载原始存档','Download original archive'], changeCount:['项变化','changes'], from:['起点','From'], to:['终点','To'], associationKind:['关联类型','Link type'], confirm:['确认','Confirm'], saveUnknown:['保存状态由逻辑层管理','Saving is managed by the runtime'], biasChecklist:['遗漏与偏见检查','Omissions & bias checklist'],
-    workbook:['分析工作台','Workbook'], overview:['推理总览','Reasoning map'], revisions:['修订对比','Revisions'], help:['使用指南','Guide'], export:['导出','Export'], present:['课堂展示','Present'], exitPresent:['返回编辑','Back to editing'], language:['语言','Language'],
+    workbook:['分析工作台','Workbook'], overview:['推理总览','Reasoning map'], overviewClass:['课堂视图','Class view'], overviewFull:['完整视图','Full view'], overviewNoQuestions:['还没有伦理问题。请先在第 1 步写下问题。','No ethical questions yet. Write them in step 1.'], overviewFacts:['相关事实','Relevant facts'], overviewGaps:['信息缺口','Missing facts'], overviewAssumptions:['合理假设','Reasonable assumptions'], overviewConcepts:['定义澄清','Definitional clarification'], overviewPrinciples:['伦理分析','Ethical analysis'], overviewConclusion:['结论','Resolution'], overviewWhy:['为什么相关：','Why it matters: '], overviewBasis:['依据：','Basis: '], overviewEmptyGroup:['这一组还没有记录。','Nothing in this group yet.'], overviewFactTag:['事实','Fact'], overviewAssumptionTag:['我的假设','My assumption'], overviewReferenceTag:['参考观点','Reference perspective'], overviewJudgmentTag:['我的判断','My judgment'], revisions:['修订对比','Revisions'], help:['使用指南','Guide'], export:['导出','Export'], present:['课堂展示','Present'], exitPresent:['返回编辑','Back to editing'], language:['语言','Language'],
     caseTitle:['案例分析工作台','Case analysis workspace'], caseSub:['工程伦理 · 十步分析','ENGINEERING ETHICS · TEN STEPS'], course:['ENGR4960J · 全球工程伦理','ENGR4960J · Global Engineering Ethics'], offline:['离线工作簿','Offline workbook'], yourReason:['由你提出问题，也由你作出判断。','Your questions. Your reasoning. Your judgment.'],
     cases:['案例','Cases'], switchCase:['选择案例','Choose a case'], newCase:['新建案例','New case'], caseName:['案例名称','Case name'], caseNameHint:['给你要讨论的案例起个名字','Name the case you want to explore'], createCase:['创建并开始','Create & start'], activeCase:['当前案例','Current case'], caseSaved:['每个案例的记录独立保存。','Each case keeps its own records.'], addFact:['添加事实','Add a fact'], factText:['事实记录','Fact record'], factHint:['记录来自材料的事实，判断留在分析区。','Record a fact from your material. Keep judgments in the analysis.'], sourceTitle:['来源名称与定位','Source title & location'], sourceHint:['文章、报告或访谈名称；章节或页码','Article, report or interview; section or page'], sourceYear:['年份','Year'], sourceUrl:['来源链接（选填）','Source URL (optional)'], categories:['事实类别（可多选）','Fact categories (select one or more)'], factSaved:['事实已加入案例材料','Fact added to case materials'], factNeedCategory:['请选择至少一个事实类别。','Select at least one fact category.'], caseMaterialsHint:['加入自己的材料，再说明它为什么与问题相关。','Bring your material, then explain why it matters to a question.'], tenSteps:['十步，形成你的判断','Ten steps. Your judgment.'],
     discover:['理解情境','Understand'], deliberate:['展开分析','Deliberate'], act:['判断与行动','Decide & act'], classSteps:['课堂展示 · 步骤 01–05','IN CLASS · STEPS 01–05'], allSteps:['分析步骤','THE TEN STEPS'],
@@ -4221,7 +4231,7 @@ body {
     timeline:['时间线','Timeline'], sources:['来源目录','Sources'], glossary:['术语提示','Terms to explore'], sourceTranslation:['界面译文；来源原文保留','UI translation; source wording retained'], methodBasis:['Chapter 2 · 10-step case analysis','Chapter 2 · 10-step case analysis'], countNote:['正文练习采用 5 个问题、2 个重点；附录 II 为 3 个问题、1 个重点。数量是引导，不限制跳步。','Chapter 2 exercises use 5 questions and 2 focal issues; Appendix II uses 3 and 1. Counts guide the work; they never lock navigation.'],
     noData:['资料尚未补入','Materials are not supplied yet'], noDataSub:['资料更新后会在这里显示，界面不生成案例事实。','Verified material will appear here when provided. The UI does not invent case facts.'],
     firstSnapshot:['保存初步快照','Save initial snapshot'], secondSnapshot:['保存复核后快照','Save reviewed snapshot'], initial:['初步','Initial'], revised:['复核后','Reviewed'], snapshotEmpty:['给思考的变化留下一个位置。','Make room for a change of mind.'], snapshotSub:['保存初步记录，修改后再保存复核记录。两份快照不会随日常编辑改变。','Save an initial record, then a reviewed record. Snapshots stay independent of everyday edits.'], restore:['恢复此快照','Restore this snapshot'], restoreConfirm:['恢复会替换当前工作记录，建议先导出备份。继续吗？','Restoring replaces your working records. Export a backup first. Continue?'], snapshotReplace:['这个位置已有快照。要用当前记录替换吗？','This slot already has a snapshot. Replace it with your current records?'], changeReason:['修改原因（可跳过）','Reason for the change (optional)'], changes:['变化','changes'], noChanges:['两份快照中的条目与关联没有变化。','No differences in entries or links between these snapshots.'], added:['新增','Added'], deleted:['删除','Removed'], modified:['修改','Changed'], before:['原先','Before'], after:['现在','After'],
-    overviewEmpty:['先提出一个问题，再逐步连接依据。','Start with a question. Connect your evidence as you go.'], overviewSub:['这里整理你的记录，不替你补全推理。','This view organizes your records; it does not fill in the reasoning.'], assumptions:['假设','Assumptions'], concepts:['概念澄清','Concepts'], links:['关联','links'],
+    overviewEmpty:['尚未选定核心问题。请先在第 2 步从伦理问题中选出 1–2 条作为分析焦点。','No core question yet. In step 2, choose 1–2 ethical questions as the focus.'], overviewSub:['这里整理你的记录，不替你补全推理。','This view organizes your records; it does not fill in the reasoning.'], assumptions:['假设','Assumptions'], concepts:['概念澄清','Concepts'], links:['关联','links'],
     notes:['小组讨论','Team discussion'], discussion:['讨论笔记','Discussion note'], reservation:['保留意见','Reservation'], author:['署名','Name'], authorHint:['成员名字 / 首字母','Name / initials'], noteHint:['记录讨论或尚未达成共识的观点…','Record a discussion or an unresolved perspective…'], addNote:['记录讨论','Add a discussion note'],
     jsonExport:['保存 JSON 工程','Save JSON project'], jsonImport:['载入 JSON 工程','Load JSON project'], markdown:['导出 Markdown 素材','Export Markdown notes'], exportDisclaimer:['本文件为分析素材。案例分析正文与自我反思报告须由小组成员独立撰写，禁止 AI 代笔。','These are analysis materials. Group members must independently write the case analysis and self-reflection; AI must not ghostwrite them.'],
     exportReminder:['以下是形式提醒，不影响继续导出。','These are form reminders. You may still export.'], continueExport:['继续导出','Export anyway'], importConfirm:['载入将替换当前工作区；请确认已经备份。','Loading replaces your current workspace. Confirm you have a backup.'], imported:['工程已载入','Project loaded'], invalidImport:['无法载入：文件不兼容或关联不完整。当前草稿未被覆盖。','Cannot load: incompatible file or broken references. Your draft was not replaced.'],
@@ -4802,7 +4812,7 @@ body {
       getState: getState,
       dispatch: uiDispatch,
       validateStep: function (step) {
-        return root.AppLogic.validateStep(step, getState());
+        return logicInstance.validateStep(step);
       },
       subscribe: function (listener) {
         return store.subscribe(listener);
@@ -5175,7 +5185,7 @@ body {
       var listEl=host.querySelector('.library-results'), oldList=listEl&&listEl.clientHeight?listEl.scrollTop:savedListScroll, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
       var allData=filtered(), total=allData.length, pages=Math.max(1,Math.ceil(total/pageSize));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*pageSize,(page+1)*pageSize);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
       var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
-      host.innerHTML='<div class="library-shell '+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">中文</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">EN</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div><div class="library-pagination">'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*pageSize+1:0)+'–'+Math.min((page+1)*pageSize,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      host.innerHTML='<div class="library-shell '+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(bi('中文','ZH'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">EN</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div><div class="library-pagination">'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*pageSize+1:0)+'–'+Math.min((page+1)*pageSize,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
@@ -5301,7 +5311,8 @@ body {
     return result;
   }
 
-  function summaryLine(diff) {
+  function summaryLine(diff, locale) {
+    if(locale==='en')return 'Added ' + diff.added.length + ' / Modified ' + diff.modified.length + ' / Deleted ' + diff.deleted.length;
     return '新增 ' + diff.added.length + ' 条 / 修改 ' + diff.modified.length + ' 条 / 删除 ' + diff.deleted.length + ' 条';
   }
 
@@ -5324,28 +5335,28 @@ body {
     }
     var diff = comparePayloads(payloadOf(leftSnap), payloadOf(rightSnap));
     var html = '<div class="revision-compare" data-testid="revision-compare"><p class="revision-summary" data-testid="revision-summary">' +
-      escapeHtml(summaryLine(diff)) + '</p><div class="revision-columns">';
+      escapeHtml(summaryLine(diff, locale)) + '</p><div class="revision-columns">';
     html += '<section><h4>' + (locale === 'zh' ? '初步' : 'Initial') + '</h4><p><small>' + escapeHtml(leftSnap.createdAt || '') + '</small></p></section>';
     html += '<section><h4>' + (locale === 'zh' ? '复核后' : 'Reviewed') + '</h4><p><small>' + escapeHtml(rightSnap.createdAt || '') + '</small></p></section></div>';
     html += '<ul class="revision-diff-list">';
     diff.added.forEach(function (row) {
-      html += '<li><strong>新增</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.after.text || row.after.word || '') + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Added':'新增') + '</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.after.text || row.after.word || '') + '</li>';
     });
     diff.deleted.forEach(function (row) {
-      html += '<li><strong>删除</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.before.text || row.before.word || '') + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Deleted':'删除') + '</strong> ' + escapeHtml(row.id) + ' — ' + escapeHtml(row.before.text || row.before.word || '') + '</li>';
     });
     diff.modified.forEach(function (row) {
-      html += '<li><strong>已修改</strong> ' + escapeHtml(row.id);
+      html += '<li><strong>' + (locale==='en'?'Modified':'已修改') + '</strong> ' + escapeHtml(row.id);
       row.fields.forEach(function (f) {
         html += '<div class="revision-field"><span>' + escapeHtml(f.key) + '</span><del>' + escapeHtml(JSON.stringify(f.before)) + '</del><ins>' + escapeHtml(JSON.stringify(f.after)) + '</ins></div>';
       });
       html += '</li>';
     });
     diff.relationAdded.forEach(function (r) {
-      html += '<li><strong>关联+</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Link added':'关联+') + '</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
     });
     diff.relationDeleted.forEach(function (r) {
-      html += '<li><strong>关联−</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
+      html += '<li><strong>' + (locale==='en'?'Link removed':'关联−') + '</strong> ' + escapeHtml(r.from + ' → ' + r.to) + '</li>';
     });
     html += '</ul></div>';
     return html;
@@ -5360,6 +5371,602 @@ body {
     findSnapshotByLabel: findSnapshotByLabel
   };
 })(typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : this);
+
+</script>
+  <script>
+/**
+ * 推理总览：只读。不写入状态，不新增字段。
+ */
+(function (root) {
+  "use strict";
+
+  var scope = "class";
+  var readState = function () {
+    return { items: {}, relations: [], conflicts: [] };
+  };
+  var readData = function () {
+    return { facts: [], sources: [], principles: [] };
+  };
+  var readLocale = function () {
+    return "zh";
+  };
+
+  function esc(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function zh() {
+    return readLocale() !== "en";
+  }
+
+  function label(zhText, enText) {
+    return zh() ? zhText : enText;
+  }
+
+  function copy(key, zhText, enText) {
+    var pairs = root.FieldnotesI18n && root.FieldnotesI18n.pairs;
+    if (pairs && pairs[key]) return zh() ? pairs[key][0] : pairs[key][1];
+    return label(zhText, enText);
+  }
+
+  function itemsOf(state, type) {
+    return Object.keys(state.items || {})
+      .map(function (id) {
+        return state.items[id];
+      })
+      .filter(function (item) {
+        return item && item.type === type;
+      });
+  }
+
+  function linked(state, questionId, kind) {
+    return (state.relations || []).filter(function (rel) {
+      if (kind && rel.kind !== kind) return false;
+      return rel.to === questionId || rel.from === questionId;
+    });
+  }
+
+  function factRecord(state, data, id) {
+    var fromCase = (data.facts || []).filter(function (fact) {
+      return fact.id === id;
+    })[0];
+    return fromCase || (state.items || {})[id] || null;
+  }
+
+  function principleName(data, id) {
+    var found = (data.principles || []).filter(function (item) {
+      return item.id === id;
+    })[0];
+    if (!found) return id || "";
+    return zh() ? found.name : found.nameEn || found.name;
+  }
+
+  function sourceTag(kind) {
+    var text =
+      kind === "fact"
+        ? label("事实", "Fact")
+        : kind === "assumption"
+          ? label("我的假设", "My assumption")
+          : kind === "reference"
+            ? label("参考观点", "Reference perspective")
+            : label("我的判断", "My judgment");
+    return '<span class="tag">' + esc(text) + "</span> ";
+  }
+
+  function jump(step, body) {
+    return (
+      '<button type="button" class="button small quiet" data-action="navigate" data-step="' +
+      step +
+      '">' +
+      body +
+      "</button>"
+    );
+  }
+
+  function group(testId, title, html, hidden) {
+    if (hidden) return "";
+    return (
+      "<section" +
+      (testId ? ' data-testid="' + testId + '"' : "") +
+      "><h4>" +
+      esc(title) +
+      "</h4>" +
+      (html || "<p>" + esc(label("这一组还没有记录。", "Nothing in this group yet.")) + "</p>") +
+      "</section>"
+    );
+  }
+
+  function renderQuestion(state, data, question, index) {
+    var facts = linked(state, question.id, "fact-supports-question")
+      .map(function (rel) {
+        var fact = factRecord(state, data, rel.from === question.id ? rel.to : rel.from);
+        if (!fact) return "";
+        var text = fact.text || fact.id;
+        return jump(
+          3,
+          sourceTag("fact") +
+            "<span>" +
+            esc(text) +
+            "</span><br><small>" +
+            esc(label("为什么相关：", "Why it matters: ") + (rel.why || "—")) +
+            "</small>"
+        );
+      })
+      .join("");
+
+    var gaps = itemsOf(state, "M")
+      .filter(function (item) {
+        return linked(state, question.id).some(function (rel) {
+          return rel.from === item.id || rel.to === item.id;
+        }) || itemsOf(state, "Q").filter(function (q) { return q.isCore; }).length <= 1;
+      })
+      .map(function (item) {
+        return jump(3, sourceTag("judgment") + "<span>" + esc(item.text || item.id) + "</span>");
+      })
+      .join("");
+
+    var assumptions = itemsOf(state, "A")
+      .map(function (item) {
+        var basis = (item.basisRefs || [])
+          .map(function (id) {
+            var hit = factRecord(state, data, id) || (state.items || {})[id];
+            return hit ? hit.text || hit.word || hit.title || id : id;
+          })
+          .filter(Boolean)
+          .join(" · ");
+        return jump(
+          4,
+          sourceTag("assumption") +
+            "<span>" +
+            esc(item.text || item.id) +
+            "</span>" +
+            (basis ? "<br><small>" + esc(label("依据：", "Basis: ") + basis) + "</small>" : "")
+        );
+      })
+      .join("");
+
+    var concepts = itemsOf(state, "C")
+      .map(function (item) {
+        var bits = [item.word, item.others, item.mine].filter(Boolean).join(" / ");
+        return jump(5, sourceTag("judgment") + "<span>" + esc(bits || item.id) + "</span>");
+      })
+      .join("");
+
+    var principles = itemsOf(state, "PA")
+      .filter(function (item) {
+        return (
+          !item.appliesTo ||
+          !item.appliesTo.length ||
+          item.appliesTo.indexOf(question.id) >= 0
+        );
+      })
+      .map(function (item) {
+        var name = item.principleId ? principleName(data, item.principleId) : item.text;
+        return jump(6, sourceTag(item.principleId ? "reference" : "judgment") + "<span>" + esc(name || item.id) + "</span>" + (item.principleId && item.text ? "<br><small>" + esc(item.text) + "</small>" : ""));
+      })
+      .join("");
+
+    var conflicts = (state.conflicts || [])
+      .filter(function (row) {
+        return !row.questionId || row.questionId === question.id;
+      })
+      .map(function (row) {
+        var line =
+          principleName(data, row.principleA) +
+          " ↔ " +
+          principleName(data, row.principleB) +
+          (row.priority ? " · " + row.priority : "") +
+          (row.reason ? " · " + row.reason : "");
+        return jump(6, sourceTag("judgment") + "<span>" + esc(line) + "</span>");
+      })
+      .join("");
+
+    var answers = (state.relations || [])
+      .filter(function (rel) {
+        return rel.kind === "resolution-answers-question" && rel.to === question.id;
+      })
+      .map(function (rel) {
+        var answer = (state.items || {})[rel.from];
+        if (!answer) return "";
+        return jump(
+          8,
+          sourceTag("judgment") +
+            "<span>" +
+            esc(answer.text || "—") +
+            "</span>" +
+            (answer.reason ? "<br><small>" + esc(answer.reason) + "</small>" : "")
+        );
+      })
+      .join("");
+
+    var mark = index === 0;
+    var full = scope === "full";
+    return (
+      '<article class="entry-card"><h3>' +
+      esc(question.text || question.id) +
+      "</h3>" +
+      group(mark ? "overview-group-facts" : "", label("相关事实", "Relevant facts"), facts, false) +
+      group(mark ? "overview-group-gaps" : "", label("信息缺口", "Missing facts"), gaps, false) +
+      group(mark ? "overview-group-assumptions" : "", label("我的假设", "Assumptions"), assumptions, false) +
+      group(mark ? "overview-group-concepts" : "", label("待澄清概念", "Terms to clarify"), concepts, false) +
+      group(mark ? "overview-group-principles" : "", label("原则取舍", "Principles and conflicts"), principles + conflicts, !full) +
+      group(mark ? "overview-group-conclusion" : "", label("结论", "Resolution"), answers, !full) +
+      "</article>"
+    );
+  }
+
+  function renderPanel(state, data) {
+    state = state || { items: {}, relations: [], conflicts: [] };
+    data = data || { facts: [], sources: [], principles: [] };
+    var questions = itemsOf(state, "Q");
+    var cores = questions.filter(function (item) {
+      return item.isCore;
+    });
+    var heads = cores.length ? cores : questions;
+    var factLinks = (state.relations || []).filter(function (rel) {
+      return rel.kind === "fact-supports-question";
+    }).length;
+    var summary =
+      label("核心问题 ", "Core questions ") +
+      cores.length +
+      label(" 条 · 关联事实 ", " · linked facts ") +
+      factLinks +
+      label(" 条 · 假设 ", " · assumptions ") +
+      itemsOf(state, "A").length +
+      label(" 条 · 待澄清 ", " · terms ") +
+      itemsOf(state, "C").length +
+      label(" 条", "");
+    var notice = cores.length
+      ? ""
+      : '<p class="hint">' +
+        esc(copy("overviewEmpty", "尚未选定核心问题。请先在第 2 步从伦理问题中选出 1–2 条作为分析焦点。", "No core question yet. In step 2, choose 1–2 ethical questions as the focus.")) +
+        "</p>";
+    var body = heads.length
+      ? heads
+          .map(function (question, index) {
+            return renderQuestion(state, data, question, index);
+          })
+          .join("")
+      : "<p>" + esc(label("还没有伦理问题。请先在第 1 步写下问题。", "No ethical questions yet. Write them in step 1.")) + "</p>";
+    return (
+      '<div id="reasoning-overview" class="revision-compare" data-readonly="true">' +
+      '<p class="revision-summary" data-testid="overview-summary">' +
+      esc(summary) +
+      "</p>" +
+      '<div data-testid="overview-scope" data-value="' +
+      scope +
+      '">' +
+      '<button type="button" class="button small' +
+      (scope === "class" ? " primary" : " quiet") +
+      '" data-overview-scope="class">' +
+      esc(copy("overviewClass", "课堂视图", "Class view")) +
+      "</button>" +
+      '<button type="button" class="button small' +
+      (scope === "full" ? " primary" : " quiet") +
+      '" data-overview-scope="full">' +
+      esc(copy("overviewFull", "完整视图", "Full view")) +
+      "</button></div>" +
+      notice +
+      body +
+      "</div>"
+    );
+  }
+
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest("[data-overview-scope]");
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+    scope = button.getAttribute("data-overview-scope") === "full" ? "full" : "class";
+    var host = document.getElementById("reasoning-overview");
+    if (!host) return;
+    host.outerHTML = renderPanel(readState(), readData());
+  });
+
+  root.ReasoningOverview = {
+    renderPanel: renderPanel,
+    setReaders: function (stateFn, dataFn, localeFn) {
+      if (stateFn) readState = stateFn;
+      if (dataFn) readData = dataFn;
+      if (localeFn) readLocale = localeFn;
+    },
+    getScope: function () {
+      return scope;
+    },
+    setScope: function (value) {
+      scope = value === "full" ? "full" : "class";
+    }
+  };
+})(typeof globalThis !== "undefined" ? globalThis : window);
+
+</script>
+  <script>
+/**
+ * 按作业报告模板分区的素材导出。只搬运用户已写文本，不代写分析。
+ */
+(function (root) {
+  "use strict";
+
+  var DISCLAIMER =
+    "> 本文件为分析素材。案例分析正文与自我反思报告须由小组成员独立撰写，禁止 AI 代笔。";
+
+  var CHAPTERS = [
+    "Case introduction",
+    "Identifying Ethical Issues",
+    "Narrowing the Focus",
+    "Determining Relevant and Missing Facts",
+    "Reasonable Assumptions",
+    "Undertaking Definitional Clarification",
+    "Step 6. Applying Ethical Principles",
+    "Step 7. Review process",
+    "Step 8. Solving Ethical Issues",
+    "Step 9. Identifying practical constraints",
+    "Step 10. Avoiding/Predicting Ethical Issues in the future",
+    "Self-Reflection report",
+    "References"
+  ];
+
+  var STEP_NAME = {
+    1: "识别伦理问题",
+    2: "聚焦",
+    3: "确定相关事实",
+    4: "作出合理假设",
+    5: "定义澄清",
+    6: "进行伦理分析",
+    7: "回顾过程",
+    8: "解决问题",
+    9: "识别实践约束",
+    10: "避免伦理问题"
+  };
+
+  function listItems(state, type) {
+    return Object.keys(state.items || {})
+      .map(function (id) {
+        return state.items[id];
+      })
+      .filter(function (item) {
+        return item && (!type || item.type === type);
+      });
+  }
+
+  function factsFor(state, data, category) {
+    var linkedIds = {};
+    (state.relations || []).forEach(function (rel) {
+      if (rel.kind === "fact-supports-question") linkedIds[rel.from] = true;
+    });
+    return (data.facts || []).filter(function (fact) {
+      if (!linkedIds[fact.id]) return false;
+      var cats = fact.categories || [];
+      if (!category) return cats.indexOf("material") < 0 && cats.indexOf("individual") < 0 && cats.indexOf("organization") < 0;
+      return cats.indexOf(category) >= 0;
+    });
+  }
+
+  var STEP_NAME_EN = ["", "Identify ethical issues", "Narrow the focus", "Determine relevant facts", "Make reasonable assumptions", "Clarify definitions", "Conduct ethical analysis", "Review the process", "Resolve the issue", "Consider practical constraints", "Avoid ethical problems"];
+  var EN_COPY = {
+  "本节属报告正文，须由小组成员独立撰写。": "Group members must write this report section themselves.",
+  "「为什么这一步重要」属报告正文，须由小组成员独立撰写。": "Group members must explain why this step matters themselves.",
+  "案例分析素材": "Case analysis materials",
+  "工具把伦理问题记成问句列表，并可选填涉及主体。模板分成公司、工程师、其他三类，并要求说明谁如何受影响。请按模板自行归类，下面是原记录。": "The tool stores questions and optional actors. The template groups issues by company, engineers and others, and asks who is affected and how. Organize your original records yourself.",
+  "列出伦理问题（问句），并说明受影响的主体。": "List ethical questions and identify the people affected.",
+  "按公司、工程师、其他分组，并写明至少三类利益相关方如何受影响。": "Group issues by company, engineers and others. Explain how at least three stakeholder groups are affected.",
+  "工具用一段「为什么优先讨论」记录聚焦理由。模板还分开要求直接/间接原因、严重性、范围、长短期后果。": "The tool stores a focus reason in one field. The template separately asks for direct and indirect causes, severity, scope, and short- and long-term consequences.",
+  "从伦理问题中选出分析重点，并写明为什么重要。": "Choose a focal ethical question and explain why it matters.",
+  "把聚焦理由拆成直接/间接原因、严重性、范围、长短期后果。": "Expand the focus reason into causes, severity, scope, and short- and long-term consequences.",
+  "补上模板要求的日期、地点等一般事实。这些不是单独字段。": "Add general facts such as dates and locations. The tool has no separate fields for them.",
+  "写入物质/工程类相关事实，并说明为何与问题相关。": "Add material or engineering facts and explain their relevance.",
+  "写入关于个人的相关事实。": "Add relevant facts about individuals.",
+  "写入关于组织的相关事实。": "Add relevant facts about organizations.",
+  "下列已关联事实没有落入物质/个人/组织三类。": "The following linked facts have no material, individual or organizational category.",
+  "列出仍然缺失、但会影响分析的事实。": "List missing facts that could affect the analysis.",
+  "工具记录假设正文和依据条目。模板还要求先写出为作出假设而提出的问题。": "The tool stores assumptions and supporting references. The template also asks for the question leading to each assumption.",
+  "针对缺失事实写下合理假设，并说明推断理由。": "State reasonable assumptions about missing facts and explain the inference.",
+  "为每条假设补上模板中的「为作出假设而提出的问题」。": "Add the question leading to each assumption.",
+  "工具记录术语、他人理解、本组用法。模板还要求定义、澄清，以及该词为何与本案相关。": "The tool stores terms, other interpretations and your usage. The template also asks for definitions, clarification and case relevance.",
+  "澄清带价值含义的术语：他人如何理解，本组如何使用。": "Clarify value-laden terms: how others understand them and how your group uses them.",
+  "补上该术语为何与本案相关。工具没有单独的相关性字段。": "Explain why the term matters to this case. The tool has no separate relevance field.",
+  "列出与待决问题相关的原则，并写明为何适用。": "List relevant ethical principles and explain their applicability.",
+  "说明为什么有些附录原则没有纳入（排除理由）。": "Explain why some appendix principles were excluded.",
+  "若原则冲突，写明冲突双方、如何取舍，以及该优先关系是仅本案还是更普遍。": "If principles conflict, identify both sides, explain your priority, and state whether it is case-specific or general.",
+  "写下回顾时发现、但前面步骤没有记录的问题、事实、概念或原则。": "Record issues, facts, concepts or principles discovered during review that earlier steps omitted.",
+  "工具对核心问题有一段回答和一段简要理由。模板要求短期方案与长期方案分开写。": "The tool stores an answer and a brief reason for each core question. The template separates short- and long-term solutions.",
+  "针对第 2 步选定的问题写下你的解决办法和简要理由。": "Write your solution and brief reasoning for the question selected in step 2.",
+  "把解决办法分成短期方案和长期方案；并补上回顾之后才发现的问题。": "Separate short- and long-term solutions and address questions discovered during review.",
+  "工具把现实约束记成一条记录（约束是什么、当时还有哪些选择、是否减轻责任）。模板分成技术工程、法规、文化、其他四类。下面不替你归类。": "The tool stores each constraint, alternatives and its effect on responsibility. The template groups constraints into technical, regulatory, cultural and other categories. Categorize these records yourself.",
+  "列出可能影响责任判断的现实约束，并写明当时的可行选择。": "List practical constraints affecting responsibility and the alternatives feasible at the time.",
+  "按技术与工程、法规、文化、其他四类重新整理这些约束。": "Organize constraints into technical and engineering, regulatory, cultural and other categories.",
+  "工具记录一条预防措施。模板还要求同时写出工程方案、政府/法律方案和其他方案。": "The tool stores preventive measures. The template also asks for engineering, governmental or legal, and other approaches.",
+  "基于前面的步骤，写下这些伦理问题本可以如何被避免。": "Based on earlier steps, explain how these ethical problems could have been avoided.",
+  "为每条预防思路补上工程方案、政府/法律方案和其他方案。": "Add engineering, governmental or legal, and other approaches to each preventive idea.",
+  "按 APA 第 7 版另列至少 10 条参考文献。工具里的来源信息只附在事实后面，不生成文献表。": "Prepare at least 10 references in APA 7 style. The tool appends source information to facts but does not generate a bibliography.",
+  "> 本节属报告正文，须由小组成员独立撰写。\n\n": "> Group members must write this report section themselves.\n\n",
+  "> 「为什么这一步重要」属报告正文，须由小组成员独立撰写。\n\n": "> Group members must explain why this step matters themselves.\n\n",
+  "[来源：": "[Source: "
+};
+
+  function exportReport(state, data, locale) {
+    var english = locale === "en";
+    function copy(text) { return english ? EN_COPY[text] || text : text; }
+  function human() {
+    return copy("> 本节属报告正文，须由小组成员独立撰写。\n\n");
+  }
+
+  function whyImportant() {
+    return copy("> 「为什么这一步重要」属报告正文，须由小组成员独立撰写。\n\n");
+  }
+
+  function gap(step, what) {
+    return english ? "> ⚠️ Complete manually (step " + step + ": " + STEP_NAME_EN[step] + "): " + what + "\n\n" : "> ⚠️ 需人工补充（来自第 " + step + " 步：" + STEP_NAME[step] + "）：" + what + "\n\n";
+  }
+
+  function note(text) {
+    return (english ? "> Existing fields do not fully match the template: " : "> 工具按现有字段搬入，与模板结构不完全相同：") + text + "\n\n";
+  }
+
+  function block(text) {
+    if (text == null || text === "") return "";
+    return String(text) + "\n\n";
+  }
+
+  function sourceLine(data, sourceId) {
+    var source = (data.sources || []).filter(function (item) {
+      return item.id === sourceId;
+    })[0];
+    if (!source) return "";
+    var line = copy("[来源：") + (source.title || "") + ", " + (source.publisher || "") + ", " + (source.year == null ? "" : source.year) + "]";
+    return line + "\n\n";
+  }
+
+  function factBlocks(data, facts) {
+    if (!facts.length) return "";
+    return facts
+      .map(function (fact) {
+        var extra = "";
+        if (fact.quote) extra += fact.quote + "\n\n";
+        if (fact.locator) extra += fact.locator + "\n\n";
+        return block(fact.text) + sourceLine(data, fact.sourceId) + extra;
+      })
+      .join("");
+  }
+
+
+    state = state || { items: {}, relations: [], conflicts: [] };
+    data = data || { facts: [], sources: [], principles: [] };
+    var reportTitle = data.meta && data.meta.title;
+    if (english && data.meta && data.meta.id === "fukushima" && reportTitle === "福岛第一核电站事故") reportTitle = "Fukushima Daiichi nuclear accident";
+    var questions = listItems(state, "Q");
+    var cores = questions.filter(function (item) {
+      return item.isCore;
+    });
+    var lines = ["# " + (reportTitle || copy("案例分析素材")), "", english ? "> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them." : DISCLAIMER, ""];
+
+    lines.push("## " + CHAPTERS[0], "", human());
+
+    lines.push("## " + CHAPTERS[1], "", whyImportant());
+    lines.push(
+      note(copy("工具把伦理问题记成问句列表，并可选填涉及主体。模板分成公司、工程师、其他三类，并要求说明谁如何受影响。请按模板自行归类，下面是原记录。"))
+    );
+    if (!questions.length) lines.push(gap(1, copy("列出伦理问题（问句），并说明受影响的主体。")));
+    questions.forEach(function (item) {
+      lines.push(block(item.text));
+      if (item.actors && item.actors.length) lines.push(block(item.actors.join(english ? ", " : "，")));
+    });
+    lines.push(gap(1, copy("按公司、工程师、其他分组，并写明至少三类利益相关方如何受影响。")));
+
+    lines.push("## " + CHAPTERS[2], "", whyImportant());
+    lines.push(note(copy("工具用一段「为什么优先讨论」记录聚焦理由。模板还分开要求直接/间接原因、严重性、范围、长短期后果。")));
+    if (!cores.length) lines.push(gap(2, copy("从伦理问题中选出分析重点，并写明为什么重要。")));
+    cores.forEach(function (item) {
+      lines.push(block(item.text));
+      lines.push(block(item.focusReason));
+    });
+    lines.push(gap(2, copy("把聚焦理由拆成直接/间接原因、严重性、范围、长短期后果。")));
+
+    lines.push("## " + CHAPTERS[3], "", whyImportant());
+    lines.push("### General Facts", "", gap(3, copy("补上模板要求的日期、地点等一般事实。这些不是单独字段。")));
+    lines.push("### Material Facts", "", factBlocks(data, factsFor(state, data, "material")) || gap(3, copy("写入物质/工程类相关事实，并说明为何与问题相关。")));
+    lines.push("### Facts Regarding Individuals", "", factBlocks(data, factsFor(state, data, "individual")) || gap(3, copy("写入关于个人的相关事实。")));
+    lines.push("### Facts Regarding Organizations", "", factBlocks(data, factsFor(state, data, "organization")) || gap(3, copy("写入关于组织的相关事实。")));
+    var uncategorized = factBlocks(data, factsFor(state, data, null));
+    if (uncategorized) lines.push(note(copy("下列已关联事实没有落入物质/个人/组织三类。")), uncategorized);
+    lines.push("### Missing Facts", "");
+    var gaps = listItems(state, "M");
+    if (!gaps.length) lines.push(gap(3, copy("列出仍然缺失、但会影响分析的事实。")));
+    gaps.forEach(function (item) {
+      lines.push(block(item.text));
+    });
+
+    lines.push("## " + CHAPTERS[4], "", whyImportant());
+    lines.push(note(copy("工具记录假设正文和依据条目。模板还要求先写出为作出假设而提出的问题。")));
+    var assumptions = listItems(state, "A");
+    if (!assumptions.length) lines.push(gap(4, copy("针对缺失事实写下合理假设，并说明推断理由。")));
+    assumptions.forEach(function (item) {
+      lines.push(block(item.text));
+      if (item.basisRefs && item.basisRefs.length) lines.push(block(item.basisRefs.join(english ? ", " : "，")));
+    });
+    lines.push(gap(4, copy("为每条假设补上模板中的「为作出假设而提出的问题」。")));
+
+    lines.push("## " + CHAPTERS[5], "", whyImportant());
+    lines.push(note(copy("工具记录术语、他人理解、本组用法。模板还要求定义、澄清，以及该词为何与本案相关。")));
+    var concepts = listItems(state, "C");
+    if (!concepts.length) lines.push(gap(5, copy("澄清带价值含义的术语：他人如何理解，本组如何使用。")));
+    concepts.forEach(function (item) {
+      if (item.word) lines.push(block(item.word));
+      if (item.others) lines.push(block(item.others));
+      if (item.mine) lines.push(block(item.mine));
+    });
+    lines.push(gap(5, copy("补上该术语为何与本案相关。工具没有单独的相关性字段。")));
+
+    lines.push("## " + CHAPTERS[6], "", whyImportant());
+    var principles = listItems(state, "PA");
+    if (!principles.length) lines.push(gap(6, copy("列出与待决问题相关的原则，并写明为何适用。")));
+    principles.forEach(function (item) {
+      var name = item.principleId || "";
+      var found = (data.principles || []).filter(function (row) {
+        return row.id === item.principleId;
+      })[0];
+      if (found) name = english ? found.nameEn || found.name : found.name;
+      if (name) lines.push(block(name));
+      if (item.text) lines.push(block(item.text));
+    });
+    lines.push(gap(6, copy("说明为什么有些附录原则没有纳入（排除理由）。")));
+    lines.push("### Conflicts Between Principles", "");
+    if (!(state.conflicts || []).length) lines.push(gap(6, copy("若原则冲突，写明冲突双方、如何取舍，以及该优先关系是仅本案还是更普遍。")));
+    (state.conflicts || []).forEach(function (row) {
+      ["principleA", "principleB", "supportsA", "supportsB", "priority", "reason", "scope"].forEach(function (key) {
+        if (row[key]) lines.push(block(String(row[key])));
+      });
+    });
+
+    lines.push("## " + CHAPTERS[7], "", whyImportant());
+    lines.push(gap(7, copy("写下回顾时发现、但前面步骤没有记录的问题、事实、概念或原则。")));
+
+    lines.push("## " + CHAPTERS[8], "", whyImportant());
+    lines.push(note(copy("工具对核心问题有一段回答和一段简要理由。模板要求短期方案与长期方案分开写。")));
+    var answers = listItems(state, "R");
+    if (!answers.length) lines.push(gap(8, copy("针对第 2 步选定的问题写下你的解决办法和简要理由。")));
+    answers.forEach(function (item) {
+      if (item.text) lines.push(block(item.text));
+      if (item.reason) lines.push(block(item.reason));
+    });
+    lines.push(gap(8, copy("把解决办法分成短期方案和长期方案；并补上回顾之后才发现的问题。")));
+
+    lines.push("## " + CHAPTERS[9], "", whyImportant());
+    lines.push(note(copy("工具把现实约束记成一条记录（约束是什么、当时还有哪些选择、是否减轻责任）。模板分成技术工程、法规、文化、其他四类。下面不替你归类。")));
+    var constraints = listItems(state, "RC");
+    if (!constraints.length) lines.push(gap(9, copy("列出可能影响责任判断的现实约束，并写明当时的可行选择。")));
+    constraints.forEach(function (item) {
+      if (item.text) lines.push(block(item.text));
+      if (item.alternatives) lines.push(block(item.alternatives));
+      if (item.mitigationJudgment) lines.push(block(item.mitigationJudgment));
+    });
+    lines.push(gap(9, copy("按技术与工程、法规、文化、其他四类重新整理这些约束。")));
+
+    lines.push("## " + CHAPTERS[10], "", whyImportant());
+    lines.push(note(copy("工具记录一条预防措施。模板还要求同时写出工程方案、政府/法律方案和其他方案。")));
+    var preventions = listItems(state, "AV");
+    if (!preventions.length) lines.push(gap(10, copy("基于前面的步骤，写下这些伦理问题本可以如何被避免。")));
+    preventions.forEach(function (item) {
+      lines.push(block(item.text));
+    });
+    lines.push(gap(10, copy("为每条预防思路补上工程方案、政府/法律方案和其他方案。")));
+
+    lines.push("## " + CHAPTERS[11], "", human());
+    lines.push("## " + CHAPTERS[12], "", gap(3, copy("按 APA 第 7 版另列至少 10 条参考文献。工具里的来源信息只附在事实后面，不生成文献表。")));
+
+    return lines.join("\n");
+  }
+
+  root.TemplateExport = {
+    DISCLAIMER: DISCLAIMER,
+    CHAPTERS: CHAPTERS,
+    exportReport: exportReport
+  };
+})(typeof globalThis !== "undefined" ? globalThis : window);
 
 </script>
   <script>
@@ -5439,6 +6046,7 @@ body {
   function materialText(value){return esc(value).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');}
   function t(key){return I.pairs[key]?I.pairs[key][locale==='zh'?0:1]:key;}
   function bi(zh,en){return locale==='zh'?zh:en;}
+  function caseName(pack){return pack.id==='fukushima' && pack.title==='福岛第一核电站事故'?bi(pack.title,'Fukushima Daiichi nuclear accident'):pack.title;}
   function title(step){return I.titles[step-1][locale==='zh'?0:1];}
   function state(){return presentation||engine.getState();}
   function rows(type,s){return Object.values((s||state()).items).filter(function(it){return !type||it.type===type;});}
@@ -5517,7 +6125,7 @@ body {
     return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(source.publisher)+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(entry.locator)+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(entry.note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(entry.note)+'</p>':'')+(source&&source.note?'<p class="source-note">'+esc(source.note)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step){
-    return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(step===x.id?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(step===x.id?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('')+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
+    return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(step===x.id?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(step===x.id?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(x.presentInClass?'<span class="step-class">'+esc(bi('课堂','Class'))+'</span>':'')+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('')+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
   }
   function toolsDialog(){
     openDialog('more','<div class="tools-list">'+button('newCase','cases','','folder')+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','','download')+labeledButton(bi('载入存档（JSON）','Import archive (JSON)'),'import','','folder')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','','note')+button('method','method','','help')+button('reset','reset','danger','trash')+'</div>');
@@ -5529,11 +6137,24 @@ body {
   function casesDialog(){
     openDialog('switchCase','<div class="case-list">'+cases.list().map(function(pack){
       var selected=pack.id===data.meta.id;
-      return '<button class="case-option '+(selected?'selected':'')+'" data-action="select-case" data-id="'+esc(pack.id)+'">'+icon('folder')+'<span>'+esc(pack.title)+'</span>'+(selected?icon('check'):icon('arrow'))+'</button>';
+      return '<button class="case-option '+(selected?'selected':'')+'" data-action="select-case" data-id="'+esc(pack.id)+'">'+icon('folder')+'<span>'+esc(caseName(pack))+'</span>'+(selected?icon('check'):icon('arrow'))+'</button>';
     }).join('')+'</div><p class="hint case-list-hint">'+esc(t('caseSaved'))+'</p><form id="case-form"><label class="field"><span>'+esc(t('newCase'))+'</span><input name="title" maxlength="100" required placeholder="'+esc(t('caseNameHint'))+'" aria-label="'+esc(t('caseName'))+'"></label><div class="modal-actions"><button class="button primary" type="submit">'+icon('plus')+esc(t('createCase'))+'</button></div></form>');
   }
   function factDialog(){
     openDialog('addFact','<form id="fact-form"><label class="field"><span>'+esc(t('factText'))+'</span><textarea name="text" maxlength="10000" required placeholder="'+esc(t('factHint'))+'"></textarea></label><fieldset><legend>'+esc(t('categories'))+'</legend>'+['material','individual','organization'].map(function(category){return '<label class="check"><input name="category" type="checkbox" value="'+category+'">'+esc(t(category))+'</label>';}).join('')+'</fieldset><label class="field"><span>'+esc(t('sourceTitle'))+'</span><input name="source" maxlength="1000" required placeholder="'+esc(t('sourceHint'))+'"></label><div class="two-columns"><label class="field"><span>'+esc(t('sourceYear'))+'</span><input name="year" type="number" min="1" max="9999" required value="'+new Date().getFullYear()+'"></label><label class="field"><span>'+esc(t('sourceUrl'))+'</span><input name="url" type="url" maxlength="2000" placeholder="https://…"></label></div><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
+  }
+  function reasoningOverviewDialog(){
+    if(modal.open)modal.close();
+    modal.className='';
+    delete modal.dataset.revisionPanel;
+    var body='';
+    if(window.ReasoningOverview){
+      window.ReasoningOverview.setReaders(function(){return state();},function(){return data;},function(){return locale;});
+      if(window.ReasoningOverview.setScope)window.ReasoningOverview.setScope('class');
+      body=window.ReasoningOverview.renderPanel(state(), data);
+    }
+    modalContent.innerHTML='<div class="modal-head"><h2 id="modal-title">'+esc(bi('推理总览','Reasoning overview'))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;
+    modal.showModal();
   }
   function revisionCompareDialog(){
     if(modal.open)modal.close();
@@ -5541,7 +6162,7 @@ body {
     modal.dataset.revisionPanel='1';
     var body='';
     if(window.RevisionCompare){
-      body='<div class="revision-tools">'+labeledButton('存为「初步」（快照）','snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
+      body='<div class="revision-tools">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
     }
     modalContent.innerHTML='<div class="modal-head"><h2 id="modal-title">'+esc(bi('对比修订','Revision compare'))+'</h2>'+button('close','close','icon-button quiet','close','aria-label="'+esc(t('close'))+'"')+'</div>'+body;
     modal.showModal();
@@ -5555,17 +6176,22 @@ body {
   function closeArchiveMenu(){archiveMenuOpen=false;syncArchiveMenuDom();}
   function toggleArchiveMenu(){archiveMenuOpen=!archiveMenuOpen;syncArchiveMenuDom();}
   function workbenchToolbar(){
-    return '<div class="workbench-toolbar">'+labeledButton('存为「初步」（快照）','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton('对比修订','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">存档 ▾</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+labeledButton('导出存档（JSON）','download-json','small quiet','download','data-testid="archive-export-json"')+labeledButton('载入存档（JSON）','import','small quiet','folder','data-testid="archive-import-json"')+labeledButton('导出素材（Markdown）','download-md','small quiet','note','data-testid="archive-export-md"')+'</div></span>'+labeledButton('帮助','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
+    return '<div class="workbench-toolbar">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+labeledButton(bi('对比修订','Compare revisions'),'revision-compare-open','primary small','history','data-testid="revision-compare-open"')+labeledButton(bi('推理总览','Reasoning overview'),'reasoning-overview-open','small quiet','map','data-testid="reasoning-overview-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">'+esc(bi('存档','Archive'))+' ▾</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','small quiet','download','data-testid="archive-export-json"')+labeledButton(bi('载入存档（JSON）','Import archive (JSON)'),'import','small quiet','folder','data-testid="archive-import-json"')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','small quiet','note','data-testid="archive-export-md"')+labeledButton(bi('导出报告素材（按模板分区）','Export report materials (template)'),'download-template-md','small quiet','note','data-testid="archive-export-template-md"')+'</div></span>'+labeledButton(bi('帮助','Help'),'method','small quiet','help','data-testid="toolbar-help"')+'</div>';
   }
   function methodDialog(){
     var step=current(),own=rows().some(function(x){return x.step===step&&!!(x.text||x.word);})||(step===2&&rows('Q').some(function(x){return x.focusReason;}))||(step===7&&rows().some(function(x){return x.review;}));
     var revision='';
     if(window.RevisionCompare){
-      revision='<div class="revision-tools">'+labeledButton('存为「初步」（快照）','snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton('存为「复核后」（快照）','snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
+      revision='<div class="revision-tools">'+labeledButton(bi('存为「初步」（快照）','Save initial snapshot'),'snapshot-initial','small','history','data-testid="dialog-snapshot-initial"')+labeledButton(bi('存为「复核后」（快照）','Save reviewed snapshot'),'snapshot-reviewed','small','history','data-testid="dialog-snapshot-reviewed"')+window.RevisionCompare.renderPanel(state(), locale)+'</div>';
     }
     openDialog('method','<p class="hint">'+esc(t('countNote'))+'</p>'+warningBlock(step)+revision+'<div class="method-reference">'+button('reference','reference','','book',(!own||!data.steps[step-1].referenceLevel3?'disabled':'')+' title="'+esc(t('referenceLocked'))+'"')+'<p class="hint">'+esc(t('referenceLocked'))+'</p></div>'+((cases.recoveryData()||(engine.recoveryData&&engine.recoveryData()))?button('recovery','recovery','','download'):'')+'<p class="hint">'+esc(t('helpBody'))+'</p>');
   }
   function importFailDialog(message){
+    if(message && typeof message==='object'){
+      var importErrors={json:'Unable to parse JSON.',version:'Version mismatch: stateVersion must be "2.0".',caseId:'The archive belongs to a different case.',structure:'Invalid archive structure or field types.',integrity:'A relation or conflict refers to a missing record.',pack:'Invalid case package or unsupported built-in package import.',preview:'The archive contains incompatible fields.'};
+      message=locale==='en'?(importErrors[message.code]||t('invalidImport')):(message.message||t('invalidImport'));
+    }
+    if(locale==='en' && /[\u3400-\u9fff]/.test(message||''))message=t('invalidImport');
     openDialog('jsonImport','<p class="modal-message">'+esc(message)+'</p><p class="hint">'+esc(bi('载入已取消，当前草稿未被覆盖。','Import cancelled; current draft was not changed.'))+'</p><div class="modal-actions">'+labeledButton(bi('先下载当前存档备份','Back up current archive'),'backup-json','primary','download')+button('close','close','quiet')+'</div>');
   }
   function comparable(value){var copy=JSON.parse(JSON.stringify(value||{}));delete copy.createdAt;delete copy.updatedAt;delete copy.review;return copy;}
@@ -5582,6 +6208,7 @@ body {
     return values.join('\n\n')||x.id||'—';
   }
   function render(){
+    document.querySelector('.skip-link').textContent=bi('跳到工作区','Skip to workspace');
     if(composing)return;
     var active=document.activeElement,focusId=active&&active.id,selection=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null,scroll=window.scrollY,step=current(),s=state();
     var disclosures={};app.querySelectorAll('details[id]').forEach(function(el){disclosures[el.id]=el.open;});
@@ -5589,7 +6216,7 @@ body {
     var saveStatus=cases.getSaveStatus();
     var type=addType[step],hasRecords=type&&rows(type[0]).length>0;
     var add=type&&step!==3?(step===6?button('choosePrinciples','materials','primary small','plus','data-tab="principles"'):hasRecords?button(type[1],'add','primary small','plus','data-type="'+type[0]+'" data-step="'+step+'"'):''):'';
-    app.innerHTML='<div class="app-shell">'+sidebar(step)+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions"><div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">中文</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">EN</button></div>'+button('cases','cases','material-button','folder')+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+workbenchToolbar()+'</main></div></div>';
+    app.innerHTML='<div class="app-shell">'+sidebar(step)+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions"><div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(bi('中文','ZH'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">EN</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+workbenchToolbar()+'</main></div></div>';
     app.querySelectorAll('details[id]').forEach(function(el){if(Object.prototype.hasOwnProperty.call(disclosures,el.id))el.open=disclosures[el.id];});
     if(focusId){var found=document.getElementById(focusId);if(found){found.focus({preventScroll:true});if(selection&&found.setSelectionRange)try{found.setSelectionRange(selection[0],selection[1]);}catch(e){}}}window.scrollTo(0,scroll);
   }
@@ -5614,7 +6241,7 @@ body {
     openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><label class="field basis-search"><span>'+esc(bi('查找依据（已选资料优先显示）','Find a basis (selected material first)'))+'</span><input id="basis-search" type="search" placeholder="'+esc(bi('搜索内容或来源…','Search wording or sources…'))+'"></label><fieldset><legend>'+esc(t('basis'))+'</legend><div class="basis-options">'+refs.map(function(x){return '<label class="check" data-basis-text="'+esc([display(x)||x.title||'',x.sourceId?sourceName(x.sourceId):'',x.quote||'',x.locator||''].join(' ').toLocaleLowerCase())+'"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+(selected.has(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</div></fieldset><p id="basis-count" class="basis-count" role="status">'+selected.size+' '+esc(bi('项依据已选','references selected'))+'</p><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
     if(rel)modal.querySelector('[name="gap"]').value=rel.to;
   }
-  function exportMarkdown(){var s=state(),text='# '+data.meta.title+'\n\n'+MD_TOP+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
+  function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+labeledButton(bi('导出存档（JSON）','Export archive (JSON)'),'download-json','primary','download')+labeledButton(bi('导出素材（Markdown）','Export notes (Markdown)'),'download-md','','note')+'</div>');}
   function onClick(event){var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
@@ -5627,8 +6254,11 @@ body {
     if(action==='add-fact')factDialog();
     if(action==='method')methodDialog();
     if(action==='revision-compare-open'){closeArchiveMenu();revisionCompareDialog();}
+    if(action==='reasoning-overview-open'){closeArchiveMenu();reasoningOverviewDialog();}
     if(action==='archive-menu')toggleArchiveMenu();
     if(action==='review-step')dispatch('SET_STATUS',{step:current(),status:state().stepStatus[current()]==='checked'?'draft':'checked'});
+    if(action==='present'){presentation=JSON.parse(JSON.stringify(engine.getState()));presentationStep=state().currentStep;if(modal.open)modal.close();render();window.scrollTo(0,0);}
+    if(action==='exit-present'){presentation=null;if(modal.open)modal.close();render();}
     if(action==='navigate'){view='workbook';if(modal.open)modal.close();var target=Math.max(1,Math.min(10,Number(el.dataset.step)));if(presentation){presentationStep=target;render();}else dispatch('NAVIGATE',{step:target});window.scrollTo(0,0);if(el.dataset.id)setTimeout(function(){var item=document.getElementById('entry-'+el.dataset.id);if(item)item.scrollIntoView({block:'center',behavior:'smooth'});},0);}
     if(action==='language'){locale=el.dataset.lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();if(modal.open)modal.close();}
     if(action==='add'){dispatch('ADD_ITEM',{type:el.dataset.type,step:Number(el.dataset.step),fields:el.dataset.type==='C'?{word:'',others:'',mine:''}:el.dataset.type==='PA'?{order:rows('PA').length+1}:undefined});var items=rows(el.dataset.type),last=items[items.length-1];setTimeout(function(){var input=document.querySelector('[data-item="'+last.id+'"]');if(input)input.focus();},0);}
@@ -5652,9 +6282,10 @@ body {
     if(action==='export')exportDialog();
     if(action==='download-json'){closeArchiveMenu();download(cases.exportProject(),jsonArchiveName(),'application/json');modal.close();}
     if(action==='download-md'){closeArchiveMenu();download(exportMarkdown(),mdArchiveName(),'text/markdown;charset=utf-8');modal.close();}
+    if(action==='download-template-md'){closeArchiveMenu();var report=window.TemplateExport?window.TemplateExport.exportReport(state(), data, locale):'';download(report,'fukushima-report-material-'+archiveStamp(false)+'.md','text/markdown;charset=utf-8');modal.close();}
     if(action==='backup-json')download(cases.exportProject(),jsonArchiveName(),'application/json');
-    if(action==='snapshot-initial'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_INITIAL:'初步');toast(bi('已存为「初步」快照 · ','Saved initial snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
-    if(action==='snapshot-reviewed'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_REVIEWED:'复核后');toast(bi('已存为「复核后」快照 · ','Saved reviewed snapshot · ')+new Date().toLocaleString());if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
+    if(action==='snapshot-initial'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_INITIAL:'初步');toast(bi('已存为「初步」快照 · ','Saved initial snapshot · ')+new Date().toLocaleString(locale==='en'?'en-GB':'zh-CN'));if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
+    if(action==='snapshot-reviewed'){engine.createSnapshot(window.RevisionCompare?window.RevisionCompare.LABEL_REVIEWED:'复核后');toast(bi('已存为「复核后」快照 · ','Saved reviewed snapshot · ')+new Date().toLocaleString(locale==='en'?'en-GB':'zh-CN'));if(modal.open&&modal.dataset.revisionPanel==='1')revisionCompareDialog();}
     if(action==='import'){closeArchiveMenu();modal.close();document.getElementById('project-file').click();}
     if(action==='recovery')download(cases.recoveryData()||engine.recoveryData(),data.meta.id+'-original-archive.json','application/json');
     if(action==='reset')confirmAction(t('resetConfirm'),function(){dispatch('RESET',{});toast(t('resetDone'));});
@@ -5682,7 +6313,7 @@ body {
   document.addEventListener('dragstart',function(e){var el=e.target.closest('[data-drag]');if(el&&!presentation){dragId=el.dataset.drag;e.dataTransfer.setData('text/plain',dragId);}});
   document.addEventListener('dragover',function(e){if(e.target.closest('[data-drag]'))e.preventDefault();});
   document.addEventListener('drop',function(e){var el=e.target.closest('[data-drag]');if(!el||!dragId||presentation)return;e.preventDefault();var list=rows('PA').sort(function(a,b){return(a.order||0)-(b.order||0);}),from=list.findIndex(function(x){return x.id===dragId;}),to=list.findIndex(function(x){return x.id===el.dataset.drag;});if(from>=0&&to>=0){var row=list.splice(from,1)[0];list.splice(to,0,row);list.forEach(function(x,i){dispatch('UPDATE_ITEM',{id:x.id,fields:{order:i+1}});});}dragId=null;});
-  document.getElementById('project-file').addEventListener('change',function(e){var file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>5*1024*1024){toast(t('fileLarge'));return;}var reader=new FileReader();reader.onload=function(){var before=JSON.stringify(engine.getState()),text=reader.result,parsed;try{parsed=JSON.parse(text);}catch(err){importFailDialog(bi('无法解析 JSON。','Invalid JSON.'));return;}var bundled=parsed&&parsed.format==='fieldnotes-project-v1',payload=bundled?parsed.state:parsed,pack=bundled?parsed.caseData:data,checked=pack&&cases.validateAnalysisPayload?cases.validateAnalysisPayload(payload,pack):{ok:false,message:t('invalidImport')};if(!checked.ok){if(JSON.stringify(engine.getState())!==before)toast(bi('状态异常：请刷新页面。','State mismatch; refresh the page.'));importFailDialog(checked.message||t('invalidImport'));return;}confirmAction(t('importConfirm'),function(){var result=cases.importProject(text);if(result.ok){if(result.compatMode)toast(bi('当前使用兼容模式，部分保护能力不可用。','Compatibility mode: some protections are unavailable.'));attachCase();toast(t('imported'));view='workbook';render();}else importFailDialog(result.message||t('invalidImport'));});};reader.onerror=function(){toast(t('invalidImport'));};reader.readAsText(file);});
+  document.getElementById('project-file').addEventListener('change',function(e){var file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>5*1024*1024){toast(t('fileLarge'));return;}var reader=new FileReader();reader.onload=function(){var before=JSON.stringify(engine.getState()),text=reader.result,parsed;try{parsed=JSON.parse(text);}catch(err){importFailDialog(bi('无法解析 JSON。','Invalid JSON.'));return;}var bundled=parsed&&parsed.format==='fieldnotes-project-v1',payload=bundled?parsed.state:parsed,pack=bundled?parsed.caseData:data,checked=pack&&cases.validateAnalysisPayload?cases.validateAnalysisPayload(payload,pack):{ok:false,message:t('invalidImport')};if(!checked.ok){if(JSON.stringify(engine.getState())!==before)toast(bi('状态异常：请刷新页面。','State mismatch; refresh the page.'));importFailDialog(checked);return;}confirmAction(t('importConfirm'),function(){var result=cases.importProject(text);if(result.ok){if(result.compatMode)toast(bi('当前使用兼容模式，部分保护能力不可用。','Compatibility mode: some protections are unavailable.'));attachCase();toast(t('imported'));view='workbook';render();}else importFailDialog(result);});};reader.onerror=function(){toast(t('invalidImport'));};reader.readAsText(file);});
   window.addEventListener('pagehide',function(){if(engine.flush)engine.flush();});
   window.FIELDNOTES={mount:function(runtime){cases.mount(runtime);engine=runtime;workingEngine=runtime;presentation=null;bindEngine();render();},getEngine:function(){return engine;},getLocale:function(){return locale;},getCases:function(){return cases;},snapshotChanges:snapshotChanges,importProjectJson:function(text){var result=cases.importProject(text);if(result.ok){engine=cases.getRuntime();workingEngine=engine;bindEngine();}return result;},exportMarkdown:exportMarkdown};
   library=window.FieldnotesLibrary.create({modal:modal,host:modalContent,escape:esc,t:t,icon:icon,materialText:materialText,
