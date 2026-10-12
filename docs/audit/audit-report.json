@@ -1015,9 +1015,7 @@
       "text": "形成明确结论"
     }
   ],
-  "errors": [
-    "Uncaught TypeError: CT is not a function"
-  ],
+  "errors": [],
   "viewports": [
     {
       "innerWidth": 1410,

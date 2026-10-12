@@ -7,7 +7,7 @@ const {pathToFileURL}=require('node:url');
  try{
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(pathToFileURL(path.resolve(__dirname,'../../..',process.env.FIELDNOTES_HTML||'dist/index.html')).href);
+  await page.goto(pathToFileURL(path.resolve(__dirname,'../../..',process.env.FIELDNOTES_HTML||'dist/index.html')).href+'#workbench');
   await page.locator('[data-lang="en"]').first().click();
   const english=async(selector)=>{
    const texts=await page.locator(selector).evaluateAll(els=>els.filter(e=>e.getClientRects().length).flatMap(e=>[e.innerText,...[e,...e.querySelectorAll('*')].flatMap(n=>['title','aria-label','placeholder'].map(k=>n.getAttribute(k)||''))]));
@@ -46,7 +46,7 @@ const {pathToFileURL}=require('node:url');
   await page.locator('[data-lang="zh"]').first().click();assert.ok((await page.locator('.workbench-toolbar').innerText()).includes('存档'));
   await page.locator('[data-lang="en"]').first().click();await english('.workbench-toolbar');
   const demo=await browser.newPage();
-  await demo.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href);
+  await demo.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href+'#workbench');
   assert.equal(await demo.locator('[data-demo-banner]').count(), 0);
   await demo.close();
   assert.deepEqual(errors,[]);

@@ -30,18 +30,39 @@
   }
   async function run() {
     for (var i = 0; i < 120; i++) {
-      if (document.querySelector('[data-testid="home-screen"]') && document.querySelector('[data-testid="home-continue"]')) break;
+      var eng =
+        window.FIELDNOTES && window.FIELDNOTES.getEngine && window.FIELDNOTES.getEngine();
+      var demoReady =
+        eng &&
+        (function () {
+          var q = Object.values(eng.getState().items).find(function (it) {
+            return it.id === "Q-1-01";
+          });
+          return !!(q && q.text === MEMBER_Q);
+        })();
+      if (demoReady && document.getElementById("nav-step-1")) break;
+      if (demoReady && window.__fieldnotesDemoEnter) window.__fieldnotesDemoEnter();
       await wait(100);
     }
-    check("demo-home", !!document.querySelector('[data-testid="home-screen"]'), "home");
+    check(
+      "demo-home",
+      !!(document.querySelector('[data-testid="home-screen"]') || document.getElementById("nav-step-1")),
+      "landed"
+    );
     check(
       "demo-no-home-hint",
       !document.querySelector('[data-testid="home-demo-hint"]'),
       "no demo hint"
     );
-    var cont = document.querySelector('[data-testid="home-continue"]');
-    if (cont) cont.click();
-    else if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    if (!document.getElementById("nav-step-1")) {
+      var cont = document.querySelector('[data-testid="home-continue"]');
+      if (cont) cont.click();
+      else if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+      for (var k = 0; k < 30; k++) {
+        if (document.getElementById("nav-step-1")) break;
+        await wait(100);
+      }
+    }
     var nav1 = document.getElementById("nav-step-1");
     if (nav1) nav1.click();
     for (var j = 0; j < 40; j++) {

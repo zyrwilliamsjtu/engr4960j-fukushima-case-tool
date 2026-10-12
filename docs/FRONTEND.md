@@ -180,3 +180,14 @@ v4 保留完整中英文十步及弹窗截图；v5 与 v5-dist 各保留原文�
 同期修复第 7 步调用英文助手时将对象误当函数的问题（CT().biasLabel → CT.biasLabel）。此前进入记录会抛出异常；已用真实浏览器回归复核保存、草稿、刷新与只读保护。
 
 验证入口：timeline-library-check.cjs（时间精度、双语、四屏宽、数据/状态不变），library-check.cjs（引用、搜索、来源、手机），material-review-check.cjs，review-layout-check.cjs。UI 截图在 frontend-qa-library-timeline-v2 与 frontend-qa-library-timeline-final，仅为界面验证材料。
+
+## 2026-10-12：案例准备看板与总结阅读改版
+首页默认提供新案例准备：案例名/背景、点击或拖放文本、PDF、图片文件，再进入分析；已有案例与演示资料仍可明确选择。仅提供文件时以文件名作为案例名。文件上限 20 个、合计 2 MB，界面会明确拒绝超额/不支持的格式。文本可直接阅读；PDF 依靠浏览器原生预览，图片原样显示，不自动提取事实或生成分析。
+
+`FieldnotesIntake.create(ctx)` 的 render/click/input/submit 管理未提交准备内容，语言切换保留文本与文件。`FieldnotesCases.create(title,{brief,files})` 在自建案例包增加可选 caseMaterials 数组（id/name/kind/text 或 dataUrl/size/sourceId）；不增加冻结分析状态字段。对应 sources 使用 year=0（未知发表年），不将上传年误写为发表年。自建案例目录持久化，导出项目 JSON 包含原材料；import 验证 MIME、格式、来源引用与字段，兼容旧包。浏览器空间不足沿用 memory 状态提醒，仍可导出保存。
+
+每步的“查看案例材料”入口与资料库新增 Case materials 标签提供背景/原文件回看；手工摘录、明确分类后调用 materialFact 添加事实，来源沿用原文件。阅读或摘录不自动关联问题；引用仍需自己选问题、说明相关理由。第 4 步可使用已摘录事实作为依据，第 7 步沿引用回查。无需联网或智能体。
+
+SummaryReport 保留只读行为：头部指标、左侧问题/实际关联事实/原则、右侧只显示一次的判断与导出；结论标注已记录的问题关联或全案未关联。假设与全案原则、待补充、十步回放默认折叠，减少重复阅读。各问题仅显示实际关联的原则，不将全部假设/第一条结论重复分配给所有问题。
+
+验证：intake-summary-check.cjs 实测拖放/点击、三种文件、超限/不支持格式拒绝、背景保留、十步入口、明确摘录、来源追踪、无自动分析/关联、刷新、跨浏览器存档、中英四屏宽、总结只读与不重复判断；cases-check、browser-check、library-check、english-check 和隔离浏览器 demo-verify 通过。页面 QA 在 frontend-qa-intake-summary-final-v2，仅是虚构 QA 内容，不是课程 AI 聊天截图或案例结论。

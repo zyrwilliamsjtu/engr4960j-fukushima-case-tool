@@ -2594,6 +2594,57 @@ body {
 .summary-arg h3 {font-size:20px;margin:0 0 8px;}
 .summary-brief {font-size:18px;}
 
+/* Preparation dashboard and calm report reading surface. */
+.home-shell{background:radial-gradient(ellipse at 3% 8%,#dce6d2 0,transparent 55%),#f3f2e9;color:#183a3c;}
+.home-main{max-width:1260px;padding:32px 44px 64px;}
+.intake-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:58px;}
+.intake-brand{font-family:var(--font-heading,var(--font));font-size:27px;font-weight:800;color:#183a3c;text-decoration:none;letter-spacing:-1px;}
+.intake-brand span{display:block;font-size:11px;font-weight:500;letter-spacing:.05em;margin-top:4px;color:#667b70;}
+.intake-top .language-switch{background:#e0e7d7;border-color:#c6d0be;color:#193d3f;}
+.intake-top .language-switch button{color:inherit;}.intake-top .language-switch .selected{background:#193d3f;color:#fff;}
+.intake-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:66px;align-items:start;}
+.intake-intro{padding-top:30px;}.intake-kicker{font-size:12px;font-weight:700;letter-spacing:.15em;color:#528169;}
+.intake-intro h1{font-size:clamp(32px,3.8vw,49px);line-height:1.24;letter-spacing:-1.8px;margin:22px 0;overflow-wrap:anywhere;}
+.intake-intro>p{font-size:17px;line-height:1.8;max-width:29em;color:#637469;}
+.intake-path{margin-top:42px;display:grid;gap:24px;}.intake-path>div{display:flex;gap:18px;align-items:center;}
+.intake-path>div>span{font-size:12px;font-weight:700;border:1px solid #b9cbb8;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;color:#47745b;}
+.intake-path strong{font-size:15px;display:block;}.intake-path small{font-size:12px;color:#768478;display:block;margin-top:4px;}
+.intake-intro .intake-local{font-size:12px;margin-top:42px;letter-spacing:.03em;}
+.intake-board{border:1px solid #d3ddcc;border-radius:22px;background:#fcfcf7;box-shadow:0 18px 58px #233e2a0c;overflow:hidden;}
+.intake-tabs{display:flex;padding:12px;background:#e9eddf;border-bottom:1px solid #d6dfcf;gap:8px;}
+.intake-tabs button{flex:1;border:0;border-radius:11px;background:transparent;padding:12px;font:600 14px var(--font);color:#768176;cursor:pointer;}
+.intake-tabs [aria-pressed="true"]{background:#1c4344;color:#edf5dc;box-shadow:0 3px 7px #203a3019;}
+#intake-form,.intake-existing{padding:28px 30px;}.intake-heading{display:flex;gap:14px;align-items:center;margin-bottom:25px;}
+.intake-step{background:#e9eed5;color:#527155;font-size:16px;padding:12px;border-radius:12px;}.intake-heading h2,.intake-existing h2{font-size:20px;margin:0 0 6px;letter-spacing:-.4px;}
+.intake-heading p{font-size:13px;color:#758073;margin:0;}.intake-board .field{margin:18px 0;}.intake-board .field>span{font-size:13px;color:#3d5846;}.intake-board .field small{font-weight:400;font-size:11px;color:#909588;margin-left:8px;}
+.intake-board input,.intake-board textarea{background:#f5f7ef;border:1px solid #d5ddce;font-size:14px;padding:13px 14px;line-height:1.6;color:#25443e;border-radius:10px;max-width:100%;}
+.intake-board textarea{resize:vertical;min-height:94px;}.intake-board input:focus,.intake-board textarea:focus{outline:2px solid #91b593;outline-offset:2px;}
+.intake-drop{display:flex;flex-direction:column;gap:7px;align-items:center;justify-content:center;text-align:center;border:1px dashed #9eb29d;border-radius:14px;background:#edf2e6;padding:20px 12px;position:relative;cursor:pointer;}
+.intake-drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}.intake-drop:focus-within{outline:2px solid #54836a;outline-offset:3px;}.intake-drop.dragging{background:#dbeacc;border-color:#3b7d58;}
+.intake-upload-icon{font-size:27px;line-height:1;color:#4e7c5d;}.intake-drop strong{font-size:14px;}.intake-drop>span:not(.intake-upload-icon){font-size:10px;color:#7b8877;}.intake-drop small{font-size:11px;color:#7b8877;}
+.intake-files{display:grid;gap:7px;margin-top:12px;}.intake-files>div{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e0e6d9;border-radius:10px;font-size:13px;min-width:0;}.intake-files>div>span:nth-child(2){flex:1;overflow-wrap:anywhere;min-width:0;}.intake-files small{display:block;font-size:10px;color:#8a9281;margin-top:2px;}.intake-file-type{font-size:9px;font-weight:700;color:#577956;background:#e8ecd9;padding:6px;border-radius:5px;}.intake-files button{border:0;background:transparent;font-size:21px;color:#637669;cursor:pointer;}
+#intake-feedback{font-size:12px;color:#a05235;min-height:16px;margin:12px 0;}.intake-bottom{display:flex;gap:14px;align-items:center;justify-content:space-between;border-top:1px solid #e4e9dc;padding-top:18px;}.intake-bottom p{font-size:11px;color:#788370;line-height:1.7;max-width:19em;margin:0;}.intake-bottom .home-primary{font-size:14px;min-height:44px;background:#214f4b;color:white;white-space:nowrap;border:0;}
+.intake-existing .home-case{background:#f2f5e9;border-color:#d5dfcb;}.intake-existing .home-case.is-selected{border-color:#507e58;background:#e2edda;box-shadow:inset 3px 0 #3c7154;}.intake-existing .home-case-badge{color:#6f8b61;}.intake-existing .intake-bottom{margin-top:26px;}
+.dossier-text{font:14px/1.9 var(--font);white-space:pre-wrap;overflow-wrap:anywhere;background:#f8f9f1;border:1px solid #d6dfce;border-radius:12px;padding:20px;max-height:440px;overflow:auto;}
+.dossier-detail>h3{font-size:22px;overflow-wrap:anywhere;}.dossier-preview{width:100%;height:440px;border:1px solid #ced8c6;border-radius:12px;}.dossier-image{max-width:100%;max-height:440px;object-fit:contain;display:block;margin-bottom:12px;}
+#material-excerpt-form{margin-top:28px;border-top:1px solid #ced8c6;padding-top:18px;}#material-excerpt-form h4{font-size:17px;margin:0 0 8px;}#material-excerpt-form p{font-size:13px;line-height:1.8;color:#75806d;}#material-excerpt-form textarea{width:100%;box-sizing:border-box;font-size:14px;}#material-excerpt-form>div{display:flex;gap:10px;justify-content:space-between;margin-top:12px;flex-wrap:wrap;}
+.case-dossier-strip{background:#e6ecdb;border:1px solid #d4ddc6;border-radius:12px;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:13px 18px;margin-bottom:20px;}.case-dossier-strip strong{font-size:14px;}.case-dossier-strip p{font-size:12px;margin:3px 0 0;color:#758170;}.case-dossier-strip .button{font-size:12px;}
+.summary-layout{display:block;padding:28px 32px 56px;}.summary-report{max-width:1190px;margin:0 auto;font-size:15px;color:#304941;}.summary-header{background:#193f40;color:#f6f5e9;border-radius:20px;padding:32px 34px;margin-bottom:30px;}.summary-eyebrow{font-size:10px;letter-spacing:.13em;font-weight:700;color:#718f73;}.summary-header .summary-eyebrow{color:#b9cb9c;}.summary-header h1{font-size:32px;letter-spacing:-.8px;margin:10px 0 6px;line-height:1.2;}.summary-case-title{color:#c5d3c3;font-size:14px;margin:0;line-height:1.6;}.summary-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border-top:1px solid #48635a;margin-top:24px;padding-top:21px;}.summary-metrics>div{display:flex;align-items:baseline;gap:10px;}.summary-metrics strong{font-size:28px;font-weight:500;color:#e2edb8;}.summary-metrics span{font-size:11px;color:#b5c7ba;}
+.summary-reading-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:25px;align-items:start;}.summary-main-column,.summary-side-column{min-width:0;}.summary-section-head{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:12px;}.summary-section-head h2{font-size:20px;margin:0;}.summary-section-head small{font-size:10px;color:#8a927e;}.summary-edit{font-size:11px;color:#5b8072;white-space:nowrap;text-decoration:none;}
+.summary-arg{margin:12px 0 18px;padding:0;border:1px solid #ccd8c4;border-radius:16px;background:#f9fbf3;overflow:hidden;}.summary-arg>summary{display:flex;gap:14px;padding:20px;align-items:flex-start;list-style:none;cursor:pointer;}.summary-arg>summary::-webkit-details-marker{display:none;}.summary-question-index{font-size:12px;color:#779272;background:#e6eddb;border-radius:8px;padding:8px;}.summary-arg>summary>div{flex:1;min-width:0;}.summary-arg h3{font-size:19px;margin:6px 0 9px;line-height:1.6;overflow-wrap:anywhere;}.summary-arg summary small{font-size:10px;color:#809079;}.summary-chevron{font-size:20px;color:#7b9479;}.summary-arg[open] .summary-chevron{transform:rotate(45deg);}.summary-argument-body{border-top:1px solid #e0e7d6;padding:20px 22px;background:#fffef8;}.summary-argument-body h4{font-size:14px;margin:0;color:#567559;}.summary-evidence-list{list-style:none;counter-reset:evidence;padding:0;margin:0;}.summary-evidence{counter-increment:evidence;position:relative;margin:0 0 18px;padding:0 0 18px;border-bottom:1px solid #e5e9dc;}.summary-evidence>p{font-size:14px;line-height:1.9;white-space:pre-wrap;margin:8px 0;}.summary-evidence small{font-size:10px;color:#8c9580;line-height:1.7;display:block;}.summary-relevance{border-left:2px solid #99b68c;background:#f1f5e8;padding:9px 12px;margin:10px 0;}.summary-relevance span{font-size:10px;color:#71916c;}.summary-relevance p{font-size:12px;line-height:1.7;margin:3px 0;white-space:pre-wrap;}.summary-principle-block{margin-top:18px;}.summary-principle strong{font-size:13px;}.summary-principle p,.summary-conflict p{font-size:13px;line-height:1.8;white-space:pre-wrap;}.summary-conflict{background:#f2ebd8;padding:10px 14px;border-radius:9px;}.summary-conflict span{font-size:10px;color:#a38643;}.summary-more>summary{font-size:12px;color:#577b62;cursor:pointer;margin-bottom:15px;}
+.summary-conclusion-panel{background:#e7eedb;border:1px solid #cad8bc;border-radius:16px;padding:24px;}.summary-conclusion-panel h2{font-size:22px;margin:9px 0;}.summary-scope-note{font-size:11px;color:#829071;line-height:1.7;margin-bottom:22px;}.summary-resolution{margin-top:20px;padding-top:15px;border-top:1px solid #cbd9bd;}.summary-resolution>p{font-size:17px;line-height:1.9;white-space:pre-wrap;}.summary-resolution>div{background:#f5f8ed;padding:12px 14px;border-radius:10px;margin:12px 0;}.summary-resolution>div>span{font-size:10px;color:#7a936b;}.summary-resolution>div>p{font-size:13px;line-height:1.8;white-space:pre-wrap;margin:4px 0;}.summary-empty{font-size:13px;line-height:1.8;color:#87947c;list-style:none;}.summary-empty-card{padding:24px;border:1px dashed #b3c2a8;border-radius:14px;}.summary-empty-card h3{font-size:18px;}
+.summary-handoff{padding:22px;background:#f5f4e9;border:1px solid #dcdcc9;border-radius:16px;margin-top:18px;}.summary-handoff h3{font-size:16px;margin:0 0 16px;}.summary-export-row{display:grid;gap:9px;margin:0;}.summary-export-row .button{justify-content:flex-start;font-size:12px;white-space:normal;}.summary-handoff>p{font-size:11px;line-height:1.8;color:#87917c;margin:16px 0 0;}
+.summary-context,.summary-gap-panel,.summary-full-replay{border:1px solid #d4decb;border-radius:12px;background:#f4f7ed;margin:20px 0;}.summary-context>summary,.summary-gap-panel>summary,.summary-full-replay>summary{padding:17px 20px;font-size:14px;font-weight:600;cursor:pointer;}.summary-context[open]{padding-bottom:15px;}.summary-context h4,.summary-context ul{margin:14px 22px;}.summary-context li p{font-size:13px;line-height:1.8;white-space:pre-wrap;}.summary-context li small{font-size:10px;color:#8c977c;}.summary-context li{margin-bottom:16px;font-size:13px;}.summary-gap-panel>summary,.summary-full-replay>summary{display:flex;justify-content:space-between;gap:12px;}.summary-gap-panel b{font-size:11px;padding:2px 8px;border-radius:5px;background:#e5e9d5;}.summary-gap-list{padding:0 24px 12px 40px;font-size:13px;line-height:1.8;}.summary-gap-list a{color:#6a7e65;}.summary-gap-list li{margin:7px 0;}.summary-full-replay>summary small{font-size:11px;color:#87957c;font-weight:400;}.summary-full-replay .summary-step{margin:14px 18px;border-color:#d9e1d2;background:#fffef8;}.summary-step h3{font-size:17px;}.summary-entry-text{font-size:14px;line-height:1.8;}.summary-entry .tag{font-size:10px;}.summary-entry>a{font-size:11px;}.summary-overview{padding:0 18px;}.summary-redline{border:0;margin:24px 0 0;padding:0;color:#96a18b;font-size:11px;line-height:1.8;}
+@media(max-width:1040px){.intake-layout{gap:28px;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);}.home-main{padding:24px;}.summary-reading-grid{grid-template-columns:minmax(0,1fr);}.summary-side-column{display:grid;grid-template-columns:1fr 1fr;gap:18px;}.summary-handoff{margin-top:0;}}
+@media(max-width:680px){.home-main{padding:20px 16px 40px;}.intake-top{margin-bottom:26px;}.intake-brand{font-size:24px;}.intake-brand span{font-size:9px;}.intake-layout{grid-template-columns:1fr;gap:22px;}.intake-intro{padding-top:0;}.intake-intro h1{font-size:32px;margin:16px 0;}.intake-intro>p{font-size:14px;}.intake-path,.intake-local{display:none!important;}#intake-form,.intake-existing{padding:22px 18px;}.intake-bottom{align-items:flex-start;flex-direction:column;}.intake-bottom p{max-width:none;}.intake-bottom .home-primary{width:100%;}.summary-layout{padding:20px 16px 40px;}.summary-header{padding:24px 20px;}.summary-header h1{font-size:27px;}.summary-metrics{grid-template-columns:1fr 1fr;gap:14px;}.summary-metrics strong{font-size:25px;}.summary-side-column{display:block;}.summary-handoff{margin-top:18px;}.summary-section-head{flex-wrap:wrap;}.summary-arg>summary{padding:17px 14px;gap:9px;}.summary-arg h3{font-size:17px;}.summary-argument-body{padding:17px 16px;}.summary-gap-panel>summary,.summary-full-replay>summary{padding:15px;}.case-dossier-strip{padding:12px;gap:10px;flex-wrap:wrap;}.dossier-preview{height:360px;}}
+@media print{.summary-report details>*{display:block!important;}.summary-reading-grid{display:block;}.summary-handoff,.summary-edit{display:none!important;}.summary-arg,.summary-conclusion-panel{break-inside:avoid;}.summary-header{background:#fff;color:#183a3c;border:1px solid #bdcdb8;}.summary-header *{color:inherit!important;}}
+:root{--font:"Segoe UI","Microsoft YaHei",sans-serif;}
+.main-shell:has(.summary-layout){background:linear-gradient(135deg,#e9efdf,#f0f1e9 70%);}
+.main-shell:has(.summary-layout)>.topbar{background:#e9efdf;border-bottom-color:#d2dcc8;}
+.summary-metrics span,.summary-edit,.summary-relevance span,.summary-scope-note,.summary-handoff>p,.summary-section-head small,.summary-arg summary small{font-size:12px;}
+.summary-evidence small,.summary-eyebrow{font-size:11px;}
+.summary-resolution-question{display:block;font-size:12px;color:#7b936b;line-height:1.7;}
+
 </style>
 </head>
 <body>
@@ -5551,6 +5602,7 @@ body {
         typeof pack.meta.builtAt !== 'string' || arrays.some(function (key) { return !Array.isArray(pack[key]); })) return false;
     if (pack.meta.dataVersion === '2.1' && !Array.isArray(pack.assessments)) return false;
     if (pack.assessments !== undefined && !Array.isArray(pack.assessments)) return false;
+    if(pack.caseMaterials!==undefined&&(!Array.isArray(pack.caseMaterials)||pack.caseMaterials.length>21||pack.caseMaterials.some(function(doc){return !doc||typeof doc.id!=='string'||typeof doc.name!=='string'||!['brief','text','pdf','image'].includes(doc.kind)||typeof doc.sourceId!=='string'||(doc.text!==undefined&&typeof doc.text!=='string')||(doc.dataUrl!==undefined&&(typeof doc.dataUrl!=='string'||!/^data:(application\/pdf|image\/(png|jpeg|webp));base64,[A-Za-z0-9+/=]+$/.test(doc.dataUrl)));})))return false;
     var ids = new Set();
     if (arrays.concat(pack.assessments ? ['assessments'] : []).filter(function (key) { return key !== 'steps'; }).some(function (key) {
       return pack[key].some(function (entry) {
@@ -5559,6 +5611,7 @@ body {
       });
     })) return false;
     var sources = new Set(pack.sources.map(function (s) { return s.id; }));
+    if((pack.caseMaterials||[]).some(function(doc){return !sources.has(doc.sourceId)||(['text','brief'].includes(doc.kind)?typeof doc.text!=='string':typeof doc.dataUrl!=='string');}))return false;
     if (pack.timeline.concat(pack.facts, pack.assessments || []).some(function (entry) {
       return ['quote', 'locator', 'note'].some(function (key) { return entry[key] !== undefined && typeof entry[key] !== 'string'; }) ||
         (entry.confidence !== undefined && !['high', 'medium', 'low'].includes(entry.confidence));
@@ -5622,7 +5675,7 @@ body {
     metadataSaved = saveCatalog();
     return true;
   }
-  function create(title) {
+  function create(title, intake) {
     if (typeof title !== 'string' || !title.trim()) throw new Error('A case name is required');
     var pack = clone(template);
     var id = 'case-' + Date.now().toString(36);
@@ -5631,6 +5684,11 @@ body {
     pack.facts = []; pack.timeline = [];
     if (pack.assessments) pack.assessments = [];
     pack.sources = template.sources.filter(function (source) { return pack.principles.some(function (p) { return p.sourceId === source.id; }); });
+    if(intake){
+      pack.caseMaterials=clone(intake.files||[]);
+      if(intake.brief&&intake.brief.trim())pack.caseMaterials.unshift({id:'material-brief',name:'Case brief',kind:'brief',text:intake.brief.trim(),size:0});
+      pack.caseMaterials.forEach(function(doc,i){doc.sourceId='src-intake-'+i;pack.sources.push({id:doc.sourceId,title:doc.name,publisher:'',year:0,url:''});});
+    }
     // Case-specific interpretive references must not leak into a new case.
     pack.steps.forEach(function (step) { step.referenceLevel3 = null; });
     packs[id] = pack;
@@ -5658,6 +5716,13 @@ body {
     pack.sources.forEach(function (s) { ids.add(s.id); });
     pack.principles.forEach(function (p) { ids.add(p.id); });
     return ids;
+  }
+  function materialFact(text,sourceId,category){
+    if(active===template.meta.id||!text.trim()||!['material','individual','organization'].includes(category))return false;
+    var pack=packs[active],doc=(pack.caseMaterials||[]).find(function(d){return d.sourceId===sourceId;});if(!doc)return false;
+    var id='f-'+category+'-excerpt-'+Date.now().toString(36);while(pack.facts.some(function(f){return f.id===id;}))id+='-1';
+    pack.facts.push({id:id,text:text.trim(),categories:[category],sourceId:sourceId,note:''});
+    var savedState=runtime.getState();if(runtime.flush)runtime.flush();metadataSaved=saveCatalog();runtime=createRuntime(pack,active,{state:savedState});return id;
   }
   function validateAnalysisPayload(payload, pack) {
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
@@ -5736,7 +5801,7 @@ body {
   window.FieldnotesCases = {
     getData: function () { return packs[active]; }, getRuntime: function () { return runtime; },
     list: function () { return Object.values(packs).map(function (pack) { return { id: pack.meta.id, title: pack.meta.title }; }); },
-    select: select, create: create, addFact: addFact, importProject: importProject, exportProject: exportProject,
+    select: select, create: create, addFact: addFact, materialFact:materialFact, importProject: importProject, exportProject: exportProject,
     validateAnalysisPayload: validateAnalysisPayload,
     isCustom: function () { return active !== template.meta.id; },
     getSaveStatus: function () { return metadataSaved ? (runtime.getSaveStatus ? runtime.getSaveStatus() : 'unknown') : 'memory'; },
@@ -5943,6 +6008,7 @@ body {
     function relations(id){return state().relations.filter(function(r){return r.from===id&&r.kind==='fact-supports-question';});}
     function chosen(id){return items('PA').some(function(x){return x.principleId===id;});}
     function records(){
+      if(tab==='dossier')return data().caseMaterials||[];
       if(tab==='facts')return ctx.facts();
       if(tab==='principles')return data().principles;
       if(tab==='sources')return data().sources;
@@ -5950,6 +6016,7 @@ body {
       return data().valueWords;
     }
     function name(x){
+      if(tab==='dossier')return x.kind==='brief'?bi('案例背景','Case context'):x.name;
       var loc=ctx.locale();
       if(tab==='principles')return ctx.principleName(x.id);
       if(tab==='sources')return mt(x,'title');
@@ -5964,6 +6031,7 @@ body {
         (tab!=='principles'||category==='all'||x.group===category);
     });}
     function metadata(x){
+      if(tab==='dossier')return x.kind==='brief'?bi('背景','Context'):x.kind.toUpperCase();
       if(tab==='facts')return x.categories.map(function(c){return t(c);}).join(' · ');
       if(tab==='principles')return t(x.group);
       if(tab==='sources')return [mt(x,'publisher'),x.year].filter(Boolean).join(' · ');
@@ -6022,6 +6090,7 @@ body {
         '<div class="library-relations">'+relations(x.id).map(function(r){var q=state().items[r.to];return '<article><div><strong>'+e(q?q.text||q.id:r.to)+'</strong><p>'+e(r.why)+'</p></div>'+button(ctx.icon('close'),'unlink','icon-button quiet','data-id="'+e(r.id)+'" aria-label="'+e(t('remove'))+'"')+'</article>';}).join('')+'</div></section>';
     }
     function detail(x){
+      if(x&&tab==='dossier')return '<div class="library-detail-inner dossier-detail"><span class="tag">'+e(metadata(x))+'</span><h3>'+e(name(x))+'</h3>'+ (x.kind==='pdf'?'<iframe class="dossier-preview" title="'+e(x.name)+'" src="'+e(x.dataUrl)+'"></iframe>':x.kind==='image'?'<img class="dossier-image" src="'+e(x.dataUrl)+'" alt="'+e(x.name)+'">':'<pre class="dossier-text">'+e(x.text||'')+'</pre>')+(x.dataUrl?'<a class="library-source-link" href="'+e(x.dataUrl)+'" download="'+e(x.name)+'">'+e(bi('下载原文件','Download original'))+' ↗</a>':'')+(!ctx.readonly()?'<form id="material-excerpt-form" data-source="'+e(x.sourceId)+'"><h4>'+e(bi('挑出值得分析的一条信息','Select a detail worth analyzing'))+'</h4><p>'+e(bi('自行摘录或概括，再加入事实库。下一步仍需说明与问题的关联。','Write an excerpt or summary to add to your fact library. Explain its relevance when linking it to a question.'))+'</p><textarea name="excerpt" rows="3" maxlength="10000" required placeholder="'+e(bi('粘贴相关原文，或写下你的概括…','Paste a relevant excerpt or write your summary…'))+'"></textarea><div><select name="category" aria-label="'+e(t('categories'))+'">'+['material','individual','organization'].map(function(c){return '<option value="'+c+'">'+e(t(c))+'</option>';}).join('')+'</select><button class="button primary" type="submit">'+e(bi('加入事实库','Add to fact library'))+'</button></div></form>':'')+'</div>';
       if(!x)return '<div class="library-welcome">'+ctx.icon('book')+'<h3>'+e(bi('从一条资料开始','Start with one material'))+'</h3><p>'+e(bi('选择左侧资料，查看原文与出处，再判断它是否有助于你的问题。','Select a material, check its source, and decide whether it informs your question.'))+'</p></div>';
       var html=(ctx.locale()==='en'?'<div class="material-language-tools">'+button(e(originalReading?'Show English':'Show original wording'),'original','quiet small','aria-pressed="'+originalReading+'"')+'</div>':'')+'<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
       if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(read(x,'text'))+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 可核对原文',originalReading?'Original wording':'English translation · check the source'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
@@ -6035,13 +6104,13 @@ body {
       var active=document.activeElement, id=active&&active.id, caret=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;
       var listEl=host.querySelector('.library-results'), oldList=listEl&&listEl.clientHeight?listEl.scrollTop:savedListScroll, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
       var allData=filtered(), total=allData.length, size=tab==='timeline'?Math.max(1,total):pageSize, pages=Math.max(1,Math.ceil(total/size));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*size,(page+1)*size);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
-      var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
-      host.innerHTML='<div class="library-shell '+(tab==='timeline'?'is-timeline ':'')+''+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results '+(tab==='timeline'?'library-timeline-results':'')+'">'+list(listData)+'</div><div class="library-pagination" '+(tab==='timeline'?'hidden':'')+'>'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*size+1:0)+'–'+Math.min((page+1)*size,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];if((data().caseMaterials||[]).length)tabs.unshift('dossier');
+      host.innerHTML='<div class="library-shell '+(tab==='timeline'?'is-timeline ':'')+''+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='dossier'?(data().caseMaterials||[]).length:k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(k==='dossier'?bi('案例材料','Case materials'):t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results '+(tab==='timeline'?'library-timeline-results':'')+'">'+list(listData)+'</div><div class="library-pagination" '+(tab==='timeline'?'hidden':'')+'>'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*size+1:0)+'–'+Math.min((page+1)*size,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
     function open(nextTab,id){originalReading=false;
-      if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
+      if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;tab=(data().caseMaterials||[]).length?'dossier':'facts';query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;page=Math.max(0,Math.floor(filtered().findIndex(function(x){return x.id===id;})/pageSize));mobileReading=true;}
       if(modal.open)modal.close();modal.className='library-dialog';refresh();modal.showModal();host.querySelector('#library-search').focus({preventScroll:true});
@@ -6078,7 +6147,7 @@ body {
       if(event.target.dataset.libField==='linked'){linkedOnly=event.target.checked;page=0;mobileReading=false;refresh('select');}
       if(event.target.id==='library-target'){var d=drafts[selected.facts], rel=relations(selected.facts).find(function(r){return r.to===event.target.value;});var unassigned=!d.target&&d.dirty?d.why:'';d.reasons[d.target]={why:d.why,dirty:d.dirty};d.target=event.target.value;var prior=d.reasons[d.target];d.why=prior?prior.why:rel?rel.why:unassigned;d.dirty=prior?prior.dirty:!!unassigned;refresh();}
     });
-    host.addEventListener('submit',function(event){var form=event.target;if(form.id!=='library-link-form')return;event.preventDefault();event.stopPropagation();if(ctx.readonly())return;
+    host.addEventListener('submit',function(event){var form=event.target;if(form.id==='material-excerpt-form'){event.preventDefault();event.stopPropagation();if(ctx.readonly())return;var excerpt=form.querySelector('textarea').value.trim();if(!excerpt)return;var saved=ctx.materialFact(excerpt,form.dataset.source,form.querySelector('select').value);if(saved){tab='facts';selected.facts=saved;query=saved;page=0;refresh('read');ctx.toast(bi('已加入事实库；引用时请填写关联理由。','Added to facts. Explain relevance when linking it.'));}return;}if(form.id!=='library-link-form')return;event.preventDefault();event.stopPropagation();if(ctx.readonly())return;
       var fd=new FormData(form), target=String(fd.get('target')||''), why=String(fd.get('why')||'').trim();if(!why){var input=form.querySelector('textarea');input.setCustomValidity(bi('请写下你认为相关的理由。','Explain why you consider it relevant.'));input.reportValidity();return;}if(!items('Q').some(function(q){return q.id===target;}))return;
       ctx.dispatch('LINK',{from:form.dataset.id,to:target,kind:'fact-supports-question',why:why});var d=drafts[form.dataset.id];d.target=target;d.why=why;d.dirty=false;d.reasons[target]={why:why,dirty:false};refresh();ctx.toast(bi('引用已保存，可以继续浏览。','Link saved. Keep browsing.'));
     });
@@ -6674,7 +6743,7 @@ body {
       var found = (data.principles || []).find(function (p) {
         return p.id === it.principleId;
       });
-      if (found) entry(6, found.name, "reference", it.id);
+      if (found) entry(6, ctx.principleName ? ctx.principleName(found) : found.name, "reference", it.id);
       if (it.text) entry(6, it.text, "judgment", it.id);
     });
     (state.conflicts || []).forEach(function (c) {
@@ -6727,90 +6796,18 @@ body {
     var factRels = (state.relations || []).filter(function (r) {
       return r.kind === "fact-supports-question";
     });
-    var cards = questions
-      .map(function (q) {
-        var facts = factRels.filter(function (r) {
-          return r.to === q.id;
-        });
-        var shown = facts.slice(0, 2);
-        var rest = facts.slice(2);
-        function factLine(rel) {
-          var fact = (data.facts || []).find(function (f) {
-            return f.id === rel.from;
-          });
-          var wording = fact ? (ctx.factText ? ctx.factText(fact) : fact.text) : rel.from;
-          var src = fact && ctx.sourceName ? ctx.sourceName(fact.sourceId) : "";
-          return (
-            "<li><p>" +
-            esc(wording) +
-            "</p><p>" +
-            esc(t("overviewWhy")) +
-            esc(rel.why || "") +
-            (src ? " · " + esc(src) : "") +
-            "</p></li>"
-          );
-        }
-        var factHtml = shown.map(factLine).join("");
-        if (!facts.length) factHtml = "<li>" + esc(t("summaryNoFact")) + "</li>";
-        var more = rest.length
-          ? "<details><summary>" +
-            esc(t("summaryMoreFacts")) +
-            "</summary><ul>" +
-            rest.map(factLine).join("") +
-            "</ul></details>"
-          : "";
-        var assumptionHtml = assumptions.length
-          ? assumptions
-              .slice(0, 2)
-              .map(function (a) {
-                return "<li>" + esc(a.text || "") + (a.basisRefs && a.basisRefs.length ? " · " + esc(a.basisRefs.join(", ")) : "") + "</li>";
-              })
-              .join("")
-          : "<li>" + esc(gapLine(4, title(4), t("summaryNeedAssumptions"))) + "</li>";
-        var principleHtml = principles.length
-          ? principles
-              .slice(0, 2)
-              .map(function (p) {
-                var found = (data.principles || []).find(function (row) {
-                  return row.id === p.principleId;
-                });
-                return "<li>" + esc((found && (ctx.principleName ? ctx.principleName(found) : found.name)) || p.text || p.id) + "</li>";
-              })
-              .join("")
-          : "<li>" + esc(gapLine(6, title(6), t("summaryNeedPrinciples"))) + "</li>";
-        var conclusion = resolutions.length
-          ? "<p>" + esc(resolutions[0].text || "") + (resolutions[0].reason ? " · " + esc(resolutions[0].reason) : "") + "</p>"
-          : "<p>" + esc(gapLine(8, title(8), t("summaryNeedResolution"))) + "</p>";
-        return (
-          '<article class="summary-arg" data-testid="summary-argument">' +
-          "<h3>" +
-          esc(q.text || "") +
-          "</h3><h4>" +
-          esc(t("summaryFacts")) +
-          "</h4><ul>" +
-          factHtml +
-          "</ul>" +
-          more +
-          "<h4>" +
-          esc(t("summaryAssumptions")) +
-          "</h4><ul>" +
-          assumptionHtml +
-          "</ul><h4>" +
-          esc(t("summaryPrinciples")) +
-          "</h4><ul>" +
-          principleHtml +
-          "</ul><h4>" +
-          esc(t("summaryYourConclusion")) +
-          "</h4>" +
-          conclusion +
-          "</article>"
-        );
-      })
-      .join("");
-    if (!questions.length) {
-      cards = '<article class="summary-arg" data-testid="summary-argument"><p>' + esc(gapLine(1, title(1), t("summaryNeedQuestions"))) + "</p></article>";
-    }
-
+    function bi(zh,en){return ctx.locale==='en'?en:zh;}
+    function edit(step,label,id){return '<a class="summary-edit" href="#" data-action="navigate" data-step="'+step+'" '+(id?'data-id="'+esc(id)+'"':'')+'>'+esc(label)+' ↗</a>';}
+    function principleTitle(p){var row=(data.principles||[]).find(function(x){return x.id===p.principleId;});return row?(ctx.principleName?ctx.principleName(row):row.name):(p.text||p.id);}
+    var cards=questions.map(function(q,index){
+      var facts=factRels.filter(function(r){return r.to===q.id;});
+      function factLine(rel){var f=(data.facts||[]).find(function(x){return x.id===rel.from;});return '<li class="summary-evidence"><p>'+esc(f?(ctx.factText?ctx.factText(f):f.text):rel.from)+'</p><div class="summary-relevance"><span>'+esc(bi('关联理由','Relevance'))+'</span><p>'+esc(rel.why||'—')+'</p></div>'+(f&&ctx.sourceName?'<small>'+esc(ctx.sourceName(f.sourceId))+'</small>':'')+'</li>';}
+      var selected=principles.filter(function(p){return (p.appliesTo||[]).includes(q.id);});
+      var conflicts=(state.conflicts||[]).filter(function(c){return c.questionId===q.id;});
+      return '<details class="summary-arg" data-testid="summary-argument" '+(index===0?'open':'')+'><summary><span class="summary-question-index">'+String(index+1).padStart(2,'0')+'</span><div><span class="summary-eyebrow">'+esc(q.isCore?bi('核心问题','Core question'):bi('分析问题','Question'))+'</span><h3>'+esc(q.text||'')+'</h3><small>'+facts.length+' '+esc(bi('条依据','evidence links'))+' · '+selected.length+' '+esc(bi('项关联原则','linked principles'))+'</small></div><span class="summary-chevron">＋</span></summary><div class="summary-argument-body"><section><div class="summary-section-head"><h4>'+esc(t('summaryFacts'))+'</h4>'+edit(3,bi('补充依据','Edit evidence'))+'</div><ol class="summary-evidence-list">'+(facts.length?facts.slice(0,2).map(factLine).join(''):'<li class="summary-empty">'+esc(t('summaryNoFact'))+'</li>')+'</ol>'+(facts.length>2?'<details class="summary-more"><summary>'+esc(t('summaryMoreFacts'))+' · '+(facts.length-2)+'</summary><ol class="summary-evidence-list">'+facts.slice(2).map(factLine).join('')+'</ol></details>':'')+'</section><section class="summary-principle-block"><div class="summary-section-head"><h4>'+esc(t('summaryPrinciples'))+'</h4>'+edit(6,bi('查看取舍','Edit tradeoffs'))+'</div>'+ (selected.length?selected.map(function(p){return '<div class="summary-principle"><strong>'+esc(principleTitle(p))+'</strong><p>'+esc(p.text||bi('尚未填写适用理由','No applicability reason yet'))+'</p></div>';}).join(''):'<p class="summary-empty">'+esc(bi('尚未明确关联到此问题的原则。','No principles explicitly linked to this question yet.'))+'</p>')+conflicts.map(function(c){return '<div class="summary-conflict"><span>'+esc(bi('原则取舍','Tradeoff'))+'</span><p>'+esc(c.reason||c.priority||bi('待填写理由','Reason still needed'))+'</p></div>';}).join('')+'</section></div></details>';
+    }).join('')||'<div class="summary-empty-card"><h3>'+esc(t('summaryNeedQuestions'))+'</h3>'+edit(1,bi('提出第一个问题','Write your first question'))+'</div>';
+    var conclusions=resolutions.length?resolutions.map(function(r){var rels=(state.relations||[]).filter(function(link){return link.kind==='resolution-answers-question'&&link.from===r.id;});var labels=rels.map(function(link){return state.items[link.to];}).filter(Boolean).map(function(q){return q.text;});return '<article class="summary-resolution"><span class="summary-resolution-question">'+esc(labels.length?labels.join(' / '):bi('全案判断 · 未关联到单一问题','Case-wide · no single question linked'))+'</span><p>'+esc(r.text||'—')+'</p>'+(r.reason?'<div><span>'+esc(bi('理由','Reason'))+'</span><p>'+esc(r.reason)+'</p></div>':'')+edit(8,bi('修改判断','Edit judgment'),r.id)+'</article>';}).join(''):'<div class="summary-empty"><p>'+esc(t('summaryNeedResolution'))+'</p>'+edit(8,bi('形成自己的判断','Write your judgment'))+'</div>';
+    var assumptionsHtml=assumptions.map(function(a){return '<li><p>'+esc(a.text||'')+'</p>'+(a.basisRefs&&a.basisRefs.length?'<small>'+a.basisRefs.length+' '+esc(bi('项依据','references'))+'</small>':'')+'</li>';}).join('');
     var htmlSections = "";
     for (var step = 1; step <= 10; step++) {
       var body = byStep[step].join("");
@@ -6850,36 +6847,9 @@ body {
       .replace("{r}", String(resolutions.length))
       .replace("{g}", String(gaps.length));
 
-    return (
-      '<div class="summary-report summary-brief" data-readonly="true">' +
-      '<blockquote class="summary-redline">' +
-      esc(t("summaryRedline")) +
-      "</blockquote>" +
-      '<header class="summary-header"><h1>' +
-      esc(t("summaryReport")) +
-      '</h1><p class="hint">' +
-      esc(t("summaryIntro")) +
-      "</p><p class=\"summary-completeness\" data-testid=\"summary-completeness\">" +
-      esc(counts) +
-      " · " +
-      esc(t("summaryFilled").replace("{n}", String(filled)).replace("{m}", String(gaps.length))) +
-      "</p></header>" +
-      cards +
-      (gaps.length ? '<ul class="summary-gap-list">' + gapList + "</ul>" : "") +
-      '<p class="hint">' +
-      esc(t("summaryReplayNote")) +
-      "</p>" +
-      '<div class="summary-export-row">' +
-      ctx.exportButtons +
-      "</div>" +
-      '<details class="summary-full-replay"><summary>' +
-      esc(t("summaryReplay")) +
-      "</summary>" +
-      htmlSections +
-      '<div class="summary-overview">' +
-      overviewHtml +
-      "</div></details></div>"
-    );
+    var caseTitle=ctx.caseTitle||data.meta.title;
+    return '<div class="summary-report summary-brief" data-readonly="true"><header class="summary-header"><span class="summary-eyebrow">'+esc(bi('分析手记 / SYNTHESIS','YOUR ANALYSIS / SYNTHESIS'))+'</span><h1>'+esc(t('summaryReport'))+'</h1><p class="summary-case-title">'+esc(caseTitle)+'</p><div class="summary-metrics" data-testid="summary-completeness">'+[[questions.length,bi('问题','Questions')],[factRels.length,bi('依据','Evidence links')],[principles.length,bi('原则','Principles')],[gaps.length,bi('待补充步骤','Steps with gaps')]].map(function(m){return '<div><strong>'+m[0]+'</strong><span>'+esc(m[1])+'</span></div>';}).join('')+'</div></header><div class="summary-reading-grid"><div class="summary-main-column"><div class="summary-section-head"><h2>'+esc(bi('问题与论证','Questions & reasoning'))+'</h2><small>'+esc(bi('只呈现已记录的关联','Showing your recorded links'))+'</small></div>'+cards+'<details class="summary-context"><summary>'+esc(bi('全案假设与原则清单','Case-wide assumptions & principles'))+'</summary><h4>'+esc(t('summaryAssumptions'))+'</h4><ul>'+ (assumptionsHtml||'<li>'+esc(t('summaryNeedAssumptions'))+'</li>')+'</ul><h4>'+esc(t('summaryPrinciples'))+'</h4><ul>'+principles.map(function(p){return '<li><strong>'+esc(principleTitle(p))+'</strong><p>'+esc(p.text||'—')+'</p></li>';}).join('')+'</ul></details></div><aside class="summary-side-column"><section class="summary-conclusion-panel"><span class="summary-eyebrow">'+esc(bi('本组判断','YOUR JUDGMENT'))+'</span><h2>'+esc(t('summaryYourConclusion'))+'</h2><p class="summary-scope-note">'+esc(bi('按你记录的问题关联展示，未关联的保留为全案判断。','Question links follow your records. Unlinked judgments stay case-wide.'))+'</p>'+conclusions+'</section><section class="summary-handoff"><h3>'+esc(bi('带走你的分析','Take your analysis with you'))+'</h3><div class="summary-export-row">'+ctx.exportButtons+'</div><p>'+esc(t('summaryReplayNote'))+'</p></section></aside></div>'+ (gaps.length?'<details class="summary-gap-panel"><summary><span>'+esc(bi('下一轮可以补充什么','What to revisit next'))+'</span><b>'+gaps.length+'</b></summary><ul class="summary-gap-list">'+gapList+'</ul></details>':'')+'<details class="summary-full-replay"><summary><span>'+esc(t('summaryReplay'))+'</span><small>10 '+esc(bi('个步骤','steps'))+'</small></summary>'+htmlSections+'<div class="summary-overview">'+overviewHtml+'</div></details><p class="summary-redline">'+esc(t('summaryRedline'))+'</p></div>';
+
   }
 
   root.SummaryReport = { render: render };
@@ -7330,142 +7300,45 @@ body {
 
 </script>
   <script>
-/**
- * Landing view: product intro and case choice. Same SPA as the workbook.
- */
-(function (root) {
-  "use strict";
+/* Preparation dashboard. Existing cases remain an explicit alternative. */
+(function(root){'use strict';
+ function existing(ctx){var e=ctx.esc,t=ctx.t;return '<div class="intake-existing"><h2>'+e(t('homePickCase'))+'</h2><div class="home-case-list">'+ctx.packs.map(function(p){return '<button type="button" class="home-case '+(p.id===ctx.activeId?'is-selected':'')+'" data-action="select-case" data-id="'+e(p.id)+'" data-testid="'+(p.id===ctx.courseId?'home-case-course':'home-case-custom')+'" aria-pressed="'+(p.id===ctx.activeId)+'"><span class="home-case-badge">'+e(t(p.id===ctx.courseId?'homeCourseBadge':'homeCustomBadge'))+'</span><strong>'+e(p.title)+'</strong></button>';}).join('')+'</div><div class="intake-bottom"><p>'+e(ctx.hasProgress?t('homeProgress').replace('{n}',ctx.step):t('homeLead'))+'</p><button type="button" class="button primary home-primary" data-action="'+(ctx.hasProgress?'home-continue':'home-start')+'" data-testid="'+(ctx.hasProgress?'home-continue':'home-start')+'">'+e(t(ctx.hasProgress?'homeContinue':'homeStart'))+' →</button></div></div>';}
+ function render(ctx){var e=ctx.esc,bi=function(a,b){return ctx.locale==='en'?b:a;};return '<div class="home-screen" data-testid="home-screen"><header class="intake-top"><a class="intake-brand" href="#home">fieldnotes<span>'+e(bi('工程伦理 · 案例工作室','Engineering ethics · Case studio'))+'</span></a><div class="language-switch"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(ctx.locale==='zh')+'" class="'+(ctx.locale==='zh'?'selected':'')+'">'+e(ctx.locale==='en'?'ZH':'中文')+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(ctx.locale==='en')+'" class="'+(ctx.locale==='en'?'selected':'')+'">EN</button></div></header><div class="intake-layout"><section class="intake-intro"><span class="intake-kicker">'+e(bi('从材料出发','BEGIN WITH THE EVIDENCE'))+'</span><h1>'+e(bi('把复杂案例，\n一步步想清楚。','A complex case.\nA clearer way to think.')).replace(/\\n/g,'<br>')+'</h1><p>'+e(bi('一个让你整理材料、提出问题、形成判断的思考工作台。','A workspace to organize evidence, ask questions and build your own judgment.'))+'</p><div class="intake-path">'+[[bi('准备案例','Prepare'),bi('背景与原始材料','Context & sources')],[bi('十步推敲','Explore'),bi('事实、概念与原则','Facts, concepts & principles')],[bi('汇成论证','Synthesize'),bi('结论与尚待回答的问题','Judgments & open questions')]].map(function(pair,i){return '<div><span>0'+(i+1)+'</span><div><strong>'+e(pair[0])+'</strong><small>'+e(pair[1])+'</small></div></div>';}).join('')+'</div><p class="intake-local">'+e(bi('离线可用 · 双语界面 · 本地保存','Offline · Bilingual · Saved locally'))+'</p>'+(ctx.demo?'<p class="home-demo-note" data-testid="home-demo-hint">'+e(ctx.t('homeDemoHint'))+'</p>':'')+'</section>'+ctx.intakeHtml+'</div></div>';}
+ root.FieldnotesHome={render:render,existing:existing};
+})(window);
 
-  function mark() {
-    return (
-      '<svg class="home-mark" width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-      '<rect x="4" y="4" width="64" height="64" rx="16" stroke="currentColor" stroke-width="2"/>' +
-      '<path d="M20 46V26h10c6 0 10 3 10 8s-4 8-10 8H26v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-      '<path d="M44 26h8M44 36h8M44 46h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-      "</svg>"
-    );
+</script>
+  <script>
+/* Case preparation holds files as sources, never as automatically accepted facts. */
+(function(){'use strict';
+ function create(ctx){
+  var mode=null,title='',brief='',files=[],busy=false,error='';
+  function bi(a,b){return ctx.locale()==='en'?b:a;}function e(x){return ctx.escape(x);}
+  function render(existing){if(mode===null||(window.__FN_DEMO_PACK&&existing))mode=existing?'existing':'new';
+   return '<section class="intake-board"><div class="intake-tabs"><button type="button" data-intake="new" aria-pressed="'+(mode==='new')+'">'+e(bi('准备新案例','New case'))+'</button><button type="button" data-intake="existing" aria-pressed="'+(mode==='existing')+'">'+e(bi('已有案例','Existing cases'))+'</button></div>'+(mode==='existing'?ctx.existing():
+    '<form id="intake-form"><div class="intake-heading"><span class="intake-step">01</span><div><h2>'+e(bi('先把案例放到桌面上','Bring your case to the table'))+'</h2><p>'+e(bi('写下背景，或带上你的小组材料。','Add context or bring your group’s source files.'))+'</p></div></div><label class="field"><span>'+e(bi('案例名称','Case name'))+'</span><input id="intake-title" data-intake-field="title" maxlength="180" value="'+e(title)+'" placeholder="'+e(bi('例如：自动驾驶事故中的责任分配','e.g. Responsibility in an autonomous driving accident'))+'"></label><label class="field"><span>'+e(bi('背景与讨论范围','Context & scope'))+' <small>'+e(bi('可选','Optional'))+'</small></span><textarea id="intake-brief" data-intake-field="brief" rows="3" maxlength="30000" placeholder="'+e(bi('发生了什么？涉及哪些人？你想讨论什么？','What happened? Who is affected? What do you want to explore?'))+'">'+e(brief)+'</textarea></label><label class="intake-drop" data-intake-drop><input id="intake-files" type="file" multiple accept=".txt,.md,.csv,.json,.pdf,.png,.jpg,.jpeg,.webp"><span class="intake-upload-icon">↥</span><strong>'+e(bi('拖入材料，或点击选择','Drop files here, or browse'))+'</strong><span>PDF · TXT · MD · CSV · JSON · PNG · JPG · WEBP</span><small>'+e(bi('本地保存 · 合计最多 2 MB','Saved locally · Up to 2 MB in total'))+'</small></label><div class="intake-files">'+files.map(function(f){return '<div><span class="intake-file-type">'+e(f.kind.toUpperCase())+'</span><span>'+e(f.name)+'<small>'+Math.ceil(f.size/1024)+' KB</small></span><button type="button" data-intake="remove" data-id="'+e(f.id)+'" aria-label="'+e(bi('移除 ','Remove ')+f.name)+'">×</button></div>';}).join('')+'</div><p id="intake-feedback" role="status">'+e(error||(busy?bi('正在读取材料…','Reading files…'):''))+'</p><div class="intake-bottom"><p>'+e(bi('材料会跟随十步分析，判断由你来写。','Your materials follow all ten steps. The judgment is yours.'))+'</p><button type="submit" class="button primary home-primary" '+(busy?'disabled':'')+'>'+e(bi('开始分析','Start analysis'))+' →</button></div></form>')+'</section>';
   }
-
-  function render(ctx) {
-    var t = ctx.t;
-    var esc = ctx.esc;
-    var packs = ctx.packs || [];
-    var courseId = ctx.courseId;
-    var activeId = ctx.activeId;
-    var has = ctx.hasProgress;
-    var primary = has ? "home-continue" : "home-start";
-    var primaryKey = has ? "homeContinue" : "homeStart";
-    var cards =
-      '<article class="home-card"><h2>' +
-      esc(t("homeCanTitle")) +
-      "</h2><ul><li>" +
-      esc(t("homeCan1")) +
-      "</li><li>" +
-      esc(t("homeCan2")) +
-      "</li><li>" +
-      esc(t("homeCan3")) +
-      "</li></ul></article>" +
-      '<article class="home-card home-card-limit"><h2>' +
-      esc(t("homeCantTitle")) +
-      "</h2><ul><li>" +
-      esc(t("homeCant1")) +
-      "</li><li>" +
-      esc(t("homeCant2")) +
-      "</li><li>" +
-      esc(t("homeCant3")) +
-      "</li><li>" +
-      esc(t("homeCant4")) +
-      "</li></ul></article>";
-    var cases = packs
-      .map(function (pack) {
-        var course = pack.id === courseId;
-        var selected = pack.id === activeId;
-        return (
-          '<button type="button" class="home-case ' +
-          (course ? "is-course " : "is-custom ") +
-          (selected ? "is-selected" : "") +
-          '" data-action="select-case" data-id="' +
-          esc(pack.id) +
-          '" data-testid="' +
-          (course ? "home-case-course" : "home-case-custom") +
-          '" aria-pressed="' +
-          (selected ? "true" : "false") +
-          '"><span class="home-case-badge">' +
-          esc(course ? t("homeCourseBadge") : t("homeCustomBadge")) +
-          '</span><strong>' +
-          esc(pack.title) +
-          "</strong></button>"
-        );
-      })
-      .join("");
-    var actions =
-      '<button type="button" class="button primary home-primary" data-action="' +
-      (has ? "home-continue" : "home-start") +
-      '" data-testid="' +
-      primary +
-      '">' +
-      esc(t(primaryKey)) +
-      "</button>";
-    if (has) {
-      actions +=
-        '<p class="home-progress">' +
-        esc(t("homeProgress").replace("{n}", String(ctx.step || 1))) +
-        '</p><button type="button" class="button quiet" data-action="home-start-fresh" data-testid="home-start-fresh">' +
-        esc(t("homeStartFresh")) +
-        "</button>";
-    }
-    var demo = ctx.demo
-      ? '<p class="home-demo-note" data-testid="home-demo-hint">' + esc(t("homeDemoHint")) + "</p>"
-      : "";
-    return (
-      '<div class="home-screen" data-testid="home-screen">' +
-      '<header class="home-hero"><div class="home-mark-wrap">' +
-      mark() +
-      '</div><p class="home-kicker">fieldnotes</p><h1>' +
-      esc(t("homeTitle")) +
-      '</h1><p class="home-tagline">' +
-      esc(t("homeTagline")) +
-      '</p><p class="home-lead">' +
-      esc(t("homeLead")) +
-      "</p></header>" +
-      '<div class="home-grid">' +
-      cards +
-      "</div>" +
-      '<section class="home-enter"><h2>' +
-      esc(t("homeEnterTitle")) +
-      "</h2>" +
-      demo +
-      actions +
-      "</section>" +
-      '<section class="home-cases" data-testid="home-cases"><h2>' +
-      esc(t("homePickCase")) +
-      '</h2><div class="home-case-list">' +
-      cases +
-      "</div></section>" +
-      '<footer class="home-foot"><div class="language-switch" role="group" aria-label="' +
-      esc(t("language")) +
-      '"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="' +
-      (ctx.locale === "zh") +
-      '" class="' +
-      (ctx.locale === "zh" ? "selected" : "") +
-      '">' +
-      esc(t("langZh")) +
-      '</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="' +
-      (ctx.locale === "en" ? "true" : "false") +
-      '" class="' +
-      (ctx.locale === "en" ? "selected" : "") +
-      '">' +
-      esc(t("langEn")) +
-      "</button></div><p>" +
-      esc(t("homeLocalOnly")) +
-      "</p><p>dataVersion " +
-      esc(ctx.dataVersion || "") +
-      "</p></footer></div>"
-    );
+  async function load(input){if(busy)return;error='';var incoming=Array.from(input);if(!incoming.length)return;var total=files.reduce(function(n,f){return n+f.size;},0)+incoming.reduce(function(n,f){return n+f.size;},0);
+   if(total>2*1024*1024||files.length+incoming.length>20){error=bi('最多 20 个文件，合计不超过 2 MB。请选择较小的文件或粘贴相关片段。','Choose up to 20 files, totaling 2 MB. Use smaller files or paste relevant excerpts.');ctx.render();return;}
+   busy=true;ctx.render();var added=[];
+   try{for(var file of incoming){var ext=file.name.split('.').pop().toLowerCase(),kind=/^(txt|md|csv|json)$/.test(ext)?'text':ext==='pdf'?'pdf':/^(png|jpg|jpeg|webp)$/.test(ext)?'image':'';if(!kind)throw new Error(bi('不支持此文件格式：','Unsupported file: ')+file.name);
+    var doc={id:'material-'+Date.now().toString(36)+'-'+added.length,name:file.name,size:file.size,kind:kind};
+    if(kind==='text')doc.text=await file.text();else doc.dataUrl=await new Promise(function(resolve,reject){var reader=new FileReader();reader.onload=function(){resolve(reader.result);};reader.onerror=function(){reject(new Error(bi('文件读取失败','File could not be read')));};reader.readAsDataURL(file);});
+    if(doc.dataUrl&&!/^data:(application\/pdf|image\/(png|jpeg|webp));base64,/.test(doc.dataUrl))throw new Error(bi('文件类型不匹配：','File type does not match: ')+file.name);added.push(doc);}
+    files=files.concat(added);
+   }catch(err){error=err.message;}finally{busy=false;ctx.render();}
   }
-
-  root.FieldnotesHome = { render: render, markBytes: mark().length };
-})(typeof globalThis !== "undefined" ? globalThis : window);
+  function click(event){if(event.target.closest('[data-lang]'))error='';var el=event.target.closest('[data-intake]');if(!el)return false;event.preventDefault();if(el.dataset.intake==='remove')files=files.filter(function(f){return f.id!==el.dataset.id;});else mode=el.dataset.intake;error='';ctx.render();return true;}
+  function input(event){var k=event.target.dataset.intakeField;if(k==='title')title=event.target.value;if(k==='brief')brief=event.target.value;}
+  function submit(event){if(event.target.id!=='intake-form')return false;event.preventDefault();if(busy)return true;var name=title.trim()||(files[0]&&files[0].name.replace(/\.[^.]+$/,''));if(!name){error=bi('请输入案例名称，或先添加材料文件。','Enter a case name or add a source file first.');ctx.render();document.getElementById('intake-title').focus();return true;}ctx.start(name,{brief:brief,files:files});title='';brief='';files=[];mode='existing';return true;}
+  document.addEventListener('change',function(ev){if(ev.target.id==='intake-files')load(ev.target.files);});
+  document.addEventListener('dragover',function(ev){var zone=ev.target.closest('[data-intake-drop]');if(zone){ev.preventDefault();zone.classList.add('dragging');}});
+  document.addEventListener('dragleave',function(ev){var zone=ev.target.closest('[data-intake-drop]');if(zone&&!zone.contains(ev.relatedTarget))zone.classList.remove('dragging');});
+  document.addEventListener('drop',function(ev){var zone=ev.target.closest('[data-intake-drop]');if(zone){ev.preventDefault();load(ev.dataTransfer.files);}});
+  return {render:render,click:click,input:input,submit:submit};
+ }
+ window.FieldnotesIntake={create:create};
+})();
 
 </script>
   <script>
@@ -7479,7 +7352,7 @@ body {
   else if(location.hash==='#summary')view='summary';
   var composing=false;
   var archiveMenuOpen=false;
-  var library, reviewWorkspace, tipIndexes={}, tipOpen={};
+  var library, reviewWorkspace, intake, homeContext, tipIndexes={}, tipOpen={};
   var app=document.getElementById('app'), modal=document.getElementById('modal'), modalContent=document.getElementById('modal-content');
   var paths={more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z',search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z'};
   function icon(name){return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(paths[name]||paths.note)+'"/></svg>';}
@@ -7582,7 +7455,7 @@ body {
     var saveStatus=cases.getSaveStatus(),overview='';
     if(window.ReasoningOverview){window.ReasoningOverview.setReaders(function(){return state();},function(){return data;},function(){return locale;});if(window.ReasoningOverview.setScope)window.ReasoningOverview.setScope('full');overview=window.ReasoningOverview.renderPanel(state(),data);}
     var exports=lt('exportReportTemplate','download-template-md','primary','note','data-testid="summary-export-template"')+lt('exportMarkdownNotes','download-md','','note','data-testid="summary-export-md"')+lt('exportArchiveJson','download-json','','download','data-testid="summary-export-json"');
-    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports,factText:packFactText,sourceName:sourceName,principleName:function(p){return CT()?CT().principleName(p,locale):p.name;}}):'';
+    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,locale:locale,caseTitle:caseName(data.meta),esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports,factText:packFactText,sourceName:sourceName,principleName:function(p){return CT()?CT().principleName(p,locale):p.name;}}):'';
     app.innerHTML='<div class="app-shell">'+sidebar(current(),'summary')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('summaryReport'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout summary-layout">'+summaryBody+'</main></div></div>';
   }
   function toolsDialog(){
@@ -7667,10 +7540,13 @@ body {
     document.documentElement.lang=locale==='zh'?'zh-CN':'en';
     document.title='Fieldnotes · '+t('homeTitle');
     var skipLink=document.querySelector('.skip-link');if(skipLink)skipLink.textContent=t('skipLink');
-    var body=window.FieldnotesHome?window.FieldnotesHome.render({t:t,esc:esc,locale:locale,packs:cases.list().map(function(pack){var title=pack.title;if(pack.id===window.CASE_DATA.meta.id&&locale==='en')title=CT()?CT().metaTitle(window.CASE_DATA.meta,'en'):(window.CASE_DATA.meta.titleEn||title);return {id:pack.id,title:title};}),courseId:window.CASE_DATA.meta.id,activeId:data.meta.id,hasProgress:hasProgress(),step:state().currentStep,demo:!!window.__FN_DEMO_PACK,dataVersion:data.meta.dataVersion}):'';
+    homeContext={t:t,esc:esc,locale:locale,packs:cases.list().map(function(pack){var title=pack.title;if(pack.id===window.CASE_DATA.meta.id&&locale==='en')title=CT()?CT().metaTitle(window.CASE_DATA.meta,'en'):(window.CASE_DATA.meta.titleEn||title);return {id:pack.id,title:title};}),courseId:window.CASE_DATA.meta.id,activeId:data.meta.id,hasProgress:hasProgress(),step:state().currentStep,demo:!!window.__FN_DEMO_PACK};
+    homeContext.intakeHtml=intake.render(homeContext.hasProgress||cases.isCustom());
+    var body=window.FieldnotesHome.render(homeContext);
     app.innerHTML='<div class="app-shell home-shell"><main id="home" class="home-main" tabindex="-1">'+body+'</main></div>';
   }
   function homeButton(){return '<button type="button" class="button material-button" data-action="goto-home" data-testid="goto-home">'+esc(t('homeNav'))+'</button>';}
+  function caseDossierBar(){var docs=data.caseMaterials||[];if(!docs.length)return '';return '<div class="case-dossier-strip"><div><strong>'+esc(caseName(data.meta))+'</strong><p>'+docs.length+' '+esc(locale==='en'?'source materials available throughout your analysis':'份案例材料，随时回看与摘录')+'</p></div><button class="button quiet small" data-action="materials" data-tab="dossier">'+icon('folder')+esc(locale==='en'?'Case materials':'查看案例材料')+'</button></div>';}
   function render(){
     if(composing)return;
     if(view==='home'){renderHome();return;}
@@ -7681,7 +7557,7 @@ body {
     var saveStatus=cases.getSaveStatus();
     var type=addType[step],hasRecords=type&&rows(type[0]).length>0;
     var add=type&&step!==3?(step===6?button('choosePrinciples','materials','primary small','plus','data-tab="principles"'):hasRecords?button(type[1],'add','primary small','plus','data-type="'+type[0]+'" data-step="'+step+'"'):''):'';
-    app.innerHTML='<div class="app-shell">'+sidebar(step,'workbook')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+((step===10&&!presentation)?'<div class="summary-goto-row">'+lt('gotoSummary','goto-summary','primary','arrow','data-testid="goto-summary"')+'</div>':'')+workbenchToolbar()+'</main></div></div>';
+    app.innerHTML='<div class="app-shell">'+sidebar(step,'workbook')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+caseDossierBar()+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>'+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+((step===10&&!presentation)?'<div class="summary-goto-row">'+lt('gotoSummary','goto-summary','primary','arrow','data-testid="goto-summary"')+'</div>':'')+workbenchToolbar()+'</main></div></div>';
     app.querySelectorAll('details[id]').forEach(function(el){if(Object.prototype.hasOwnProperty.call(disclosures,el.id))el.open=disclosures[el.id];});
     if(focusId){var found=document.getElementById(focusId);if(found){found.focus({preventScroll:true});if(selection&&found.setSelectionRange)try{found.setSelectionRange(selection[0],selection[1]);}catch(e){}}}window.scrollTo(0,scroll);
   }
@@ -7709,7 +7585,7 @@ body {
   function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+packFactText(f)+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+lt('exportArchiveJson','download-json','primary','download')+lt('exportMarkdownNotes','download-md','','note')+'</div>');}
-  function onClick(event){if(reviewWorkspace.click(event))return;var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
+  function onClick(event){if(intake.click(event)||reviewWorkspace.click(event))return;var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
     if(presentation && ['review-step','add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open','archive-menu'].includes(action))return;
     if(action==='step-hint'){var tipStep=current();if(tipOpen[tipStep])tipIndexes[tipStep]=((tipIndexes[tipStep]||0)+1)%window.FieldnotesGuidance[tipStep-1].length;tipOpen[tipStep]=true;render();}
     if(action==='hide-hint'){tipOpen[current()]=false;render();document.getElementById('step-hint-toggle').focus({preventScroll:true});}
@@ -7784,15 +7660,19 @@ body {
   document.addEventListener('drop',function(e){var el=e.target.closest('[data-drag]');if(!el||!dragId||presentation)return;e.preventDefault();var list=rows('PA').sort(function(a,b){return(a.order||0)-(b.order||0);}),from=list.findIndex(function(x){return x.id===dragId;}),to=list.findIndex(function(x){return x.id===el.dataset.drag;});if(from>=0&&to>=0){var row=list.splice(from,1)[0];list.splice(to,0,row);list.forEach(function(x,i){dispatch('UPDATE_ITEM',{id:x.id,fields:{order:i+1}});});}dragId=null;});
   document.getElementById('project-file').addEventListener('change',function(e){var file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>5*1024*1024){toast(t('fileLarge'));return;}var reader=new FileReader();reader.onload=function(){var before=JSON.stringify(engine.getState()),text=reader.result,parsed;try{parsed=JSON.parse(text);}catch(err){importFailDialog(t('invalidJsonMsg'));return;}var bundled=parsed&&parsed.format==='fieldnotes-project-v1',payload=bundled?parsed.state:parsed,pack=bundled?parsed.caseData:data,checked=pack&&cases.validateAnalysisPayload?cases.validateAnalysisPayload(payload,pack):{ok:false,message:t('invalidImport')};if(!checked.ok){if(JSON.stringify(engine.getState())!==before)toast(t('stateMismatchMsg'));importFailDialog(I.importErrorMessage(checked.code,locale));return;}confirmAction(t('importConfirm'),function(){var result=cases.importProject(text);if(result.ok){if(result.compatMode)toast(t('compatModeToast'));attachCase();toast(t('imported'));view='workbook';render();}else importFailDialog(I.importErrorMessage(result.code,locale));});};reader.onerror=function(){toast(t('invalidImport'));};reader.readAsText(file);});
   window.addEventListener('pagehide',function(){if(engine.flush)engine.flush();});
-  window.FIELDNOTES={mount:function(runtime){cases.mount(runtime);engine=runtime;workingEngine=runtime;presentation=null;bindEngine();render();},getEngine:function(){return engine;},getLocale:function(){return locale;},getCases:function(){return cases;},snapshotChanges:snapshotChanges,importProjectJson:function(text){var result=cases.importProject(text);if(result.ok){engine=cases.getRuntime();workingEngine=engine;bindEngine();}return result;},exportMarkdown:exportMarkdown};
+  window.FIELDNOTES={mount:function(runtime){cases.mount(runtime);engine=runtime;workingEngine=runtime;presentation=null;bindEngine();render();},getEngine:function(){return engine;},getLocale:function(){return locale;},getCases:function(){return cases;},snapshotChanges:snapshotChanges,importProjectJson:function(text){var result=cases.importProject(text);if(result.ok){engine=cases.getRuntime();workingEngine=engine;bindEngine();render();}return result;},exportMarkdown:exportMarkdown};
   library=window.FieldnotesLibrary.create({modal:modal,host:modalContent,escape:esc,t:t,icon:icon,materialText:materialText,
     locale:function(){return locale;},data:function(){return data;},state:state,facts:facts,principleName:principleName,words:I.words,
     custom:function(){return cases.isCustom();},readonly:function(){return !!presentation;},dispatch:dispatch,toast:toast,
     navigate:function(step){view='workbook';dispatch('NAVIGATE',{step:step});window.scrollTo(0,0);},addFact:factDialog,
+    materialFact:function(text,sourceId,category){var id=cases.materialFact(text,sourceId,category);if(id){engine=cases.getRuntime();workingEngine=engine;data=cases.getData();bindEngine();render();}return id;},
     language:function(lang){locale=lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();}
   });
   reviewWorkspace=window.FieldnotesReview.create({state:state,data:function(){return data;},locale:function(){return locale;},escape:esc,principleName:principleName,readonly:function(){return !!presentation;},dispatch:dispatch,render:render,toast:toast});
   document.addEventListener('input',reviewWorkspace.input);
+  intake=window.FieldnotesIntake.create({locale:function(){return locale;},escape:esc,render:render,existing:function(){return window.FieldnotesHome.existing(homeContext);},start:function(title,materials){cases.create(title,materials);attachCase();enterWorkbook();if(cases.getSaveStatus()==='memory')toast(t('memory'));}});
+  document.addEventListener('input',intake.input);
+  document.addEventListener('submit',function(event){intake.submit(event);});
   bindEngine();render();
 })();
 

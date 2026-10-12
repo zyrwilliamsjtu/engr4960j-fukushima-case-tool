@@ -217,10 +217,6 @@ ALLOWED_SKIPS: (empty)
 - ANSWER 只创建空的 R 条目（text:""），不写入判断句。
 - 自建案例在装载时把 referenceLevel3 置空。
 
-## 页面错误
-
-- Uncaught TypeError: CT is not a function
-
 ## 无法由本脚本代替的人工项
 
 - 投影后排可读性、7–8 分钟口播是否走得完、引导例句是否像答案、导出是否够填 Template_3.tex。

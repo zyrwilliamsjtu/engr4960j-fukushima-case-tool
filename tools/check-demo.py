@@ -106,7 +106,7 @@ def main() -> int:
     cmd = [
         str(br),
         "--headless=new",
-        "--virtual-time-budget=30000",
+        "--virtual-time-budget=45000",
         "--disable-gpu",
         "--no-first-run",
         "--allow-file-access-from-files",

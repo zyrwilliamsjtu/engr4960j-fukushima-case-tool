@@ -17,7 +17,7 @@ const original = cases.exportProject();
 const caseId = cases.create('Bridge design');
 assert.notEqual(caseId, 'fukushima');
 assert.equal(cases.getData().facts.length, 0);
-assert.equal(cases.getData().meta.dataVersion, '2.1');
+assert.equal(cases.getData().meta.dataVersion, '2.2');
 assert.equal(cases.getData().assessments.length, 0, 'New cases never inherit report judgments.');
 assert.equal(cases.getData().principles.length, 33);
 assert.ok(cases.getData().steps.every(s => s.referenceLevel3 === null));

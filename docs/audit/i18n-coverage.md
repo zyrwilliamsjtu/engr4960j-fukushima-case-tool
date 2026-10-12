@@ -45,4 +45,5 @@ Auto-generated. Registry: `tools/audit/i18n-views.js`.
 - `src/ui/revision-compare.js`
 - `src/ui/summary-report.js`
 - `src/ui/template-export.js`
+- `src/ui/timeline-view.js`
 - `src/ui/workbench.js`
