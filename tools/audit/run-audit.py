@@ -285,6 +285,18 @@ def main() -> int:
     browser = browsers[0]
     print("Browser:", browser)
     print("ALLOWED_SKIPS: (empty)")
+    i18n_scan = subprocess.run(
+        ["node", str(ROOT / "tools" / "audit" / "i18n-render-entry-scan.js")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    print(i18n_scan.stdout, end="")
+    if i18n_scan.returncode != 0:
+        print(i18n_scan.stderr, end="")
+        return i18n_scan.returncode
     case_en = subprocess.run(
         ["node", str(ROOT / "tools" / "audit" / "case-en-verify.js")],
         cwd=ROOT,
@@ -299,7 +311,16 @@ def main() -> int:
     if case_en.returncode != 0:
         return case_en.returncode
     build = subprocess.run(
-        [sys.executable, str(BUILD), "--extra-js", "tools/audit/audit.js", "--out", "dist/_audit.html"],
+        [
+            sys.executable,
+            str(BUILD),
+            "--extra-js",
+            "tools/audit/i18n-views.js",
+            "--extra-js",
+            "tools/audit/audit.js",
+            "--out",
+            "dist/_audit.html",
+        ],
         cwd=ROOT,
         capture_output=True,
         text=True,

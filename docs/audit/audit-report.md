@@ -1,6 +1,6 @@
 # 产品审查报告
 
-SUMMARY: PASS=70 FAIL=0 SKIP=0
+SUMMARY: PASS=90 FAIL=0 SKIP=0
 
 ALLOWED_SKIPS: (empty)
 
@@ -20,7 +20,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D2-step-4` — 让每个假设有依据。 | inputs=0 buttons=换个角度,查看相关资料,添加假设,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
 - **PASS** `D2-step-5` — 把关键词说清楚。 | inputs=0 buttons=换个角度,查看相关资料,添加概念,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
 - **PASS** `D2-step-6` — 让原则回应问题。 | inputs=0 buttons=选择原则,换个角度,查看相关资料,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
-- **PASS** `D2-step-7` — 回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
+- **PASS** `D2-step-7` — 回看，再想一次。 | inputs=0 buttons=换个角度,查看相关资料,回到第 1 步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
 - **PASS** `D2-step-8` — 写下自己的判断。 | inputs=0 buttons=换个角度,选择核心问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
 - **PASS** `D2-step-9` — 把现实条件考虑进来。 | inputs=0 buttons=换个角度,本案没有相关约束,添加约束,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比
 - **PASS** `D2-step-10` — 想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,完成并查看总结 →,存为「初步」（快照）,存为「复核后」（快照）,修订对比
@@ -62,7 +62,27 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D9-4` — no question text to compare
 - **PASS** `D9-5` — getState unchanged on summary
 - **PASS** `D9-6` — exports tpl=true md=true json=true len=3457
-- **PASS** `D8-i18n` — no CJK outside CASE_DATA and user state
+- **PASS** `D8-i18n-step-1` — ok
+- **PASS** `D8-i18n-step-2` — ok
+- **PASS** `D8-i18n-step-3` — ok
+- **PASS** `D8-i18n-step-4` — ok
+- **PASS** `D8-i18n-step-5` — ok
+- **PASS** `D8-i18n-step-6` — ok
+- **PASS** `D8-i18n-step-7-review` — ok
+- **PASS** `D8-i18n-step-8` — ok
+- **PASS** `D8-i18n-step-9` — ok
+- **PASS** `D8-i18n-step-10` — ok
+- **PASS** `D8-i18n-summary` — ok
+- **PASS** `D8-i18n-overview-class` — ok
+- **PASS** `D8-i18n-overview-full` — ok
+- **PASS** `D8-i18n-materials` — ok
+- **PASS** `D8-i18n-archive-menu` — ok
+- **PASS** `D8-i18n-method-dialog` — ok
+- **PASS** `D8-i18n-tools-dialog` — ok
+- **PASS** `D8-i18n-revision-compare` — ok
+- **PASS** `D8-i18n-import-fail-toast` — ok
+- **PASS** `D8-i18n-chrome` — ok
+- **PASS** `D8-i18n` — I18N_COVERAGE covered=20 uncovered=1
 - **PASS** `D7-1@1410` — scrollWidth=1395 inner=1410
 - **PASS** `D7-2-hero@1410` — hero=35.955
 - **PASS** `D7-2-field@1410` — field=14
@@ -91,7 +111,7 @@ ALLOWED_SKIPS: (empty)
 - 步骤 4: 让每个假设有依据。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加假设', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=写下暂定假设，说明依据与推断理由。
 - 步骤 5: 把关键词说清楚。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '添加概念', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=同一个词，他人怎么理解，你们怎么使用？
 - 步骤 6: 让原则回应问题。 | hintHidden=True | inputs=0 | buttons=['选择原则', '换个角度', '查看相关资料', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=选择适用原则，解释它们如何影响你的判断。
-- 步骤 7: 回看，再想一次。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '回到问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=检查前六步，保留观点，也允许自己修订。
+- 步骤 7: 回看，再想一次。 | hintHidden=True | inputs=0 | buttons=['换个角度', '查看相关资料', '回到第 1 步', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=检查前六步，保留观点，也允许自己修订。
 - 步骤 8: 写下自己的判断。 | hintHidden=True | inputs=0 | buttons=['换个角度', '选择核心问题', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比', '推理总览'] | intro=回答核心问题，并用自己的理由支持它。
 - 步骤 9: 把现实条件考虑进来。 | hintHidden=True | inputs=0 | buttons=['换个角度', '本案没有相关约束', '添加约束', '上一步', '下一步', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=当时有哪些选择？这些约束如何影响责任？
 - 步骤 10: 想想更早的一步。 | hintHidden=True | inputs=0 | buttons=['换个角度', '添加预防措施', '上一步', '下一步', '完成并查看总结 →', '存为「初步」（快照）', '存为「复核后」（快照）', '修订对比'] | intro=哪些更早的行动可能避免同类困境？
@@ -135,19 +155,29 @@ ALLOWED_SKIPS: (empty)
 - 步骤 5: type-others
 - 步骤 5: type-mine
 - 步骤 0: language-en
-- 步骤 1: i18n-scan-step
-- 步骤 2: i18n-scan-step
-- 步骤 3: i18n-scan-step
-- 步骤 4: i18n-scan-step
-- 步骤 5: i18n-scan-step
-- 步骤 6: i18n-scan-step
-- 步骤 7: i18n-scan-step
-- 步骤 8: i18n-scan-step
-- 步骤 9: i18n-scan-step
-- 步骤 10: i18n-scan-step
+- 步骤 0: i18n-view-step-1
+- 步骤 0: i18n-view-step-2
+- 步骤 0: i18n-view-step-3
+- 步骤 0: i18n-view-step-4
+- 步骤 0: i18n-view-step-5
+- 步骤 0: i18n-view-step-6
+- 步骤 0: i18n-view-step-7-review
+- 步骤 0: i18n-view-step-8
+- 步骤 0: i18n-view-step-9
+- 步骤 0: i18n-view-step-10
+- 步骤 0: i18n-view-summary
+- 步骤 0: i18n-view-overview-class
+- 步骤 0: i18n-view-overview-full
+- 步骤 0: i18n-view-materials
+- 步骤 0: i18n-view-archive-menu
+- 步骤 0: i18n-view-method-dialog
+- 步骤 0: i18n-view-tools-dialog
+- 步骤 0: i18n-view-revision-compare
+- 步骤 0: i18n-view-import-fail-toast
+- 步骤 0: i18n-view-chrome
 - 步骤 0: language-zh-restore
 
-前 5 步操作次数（含导航）： 1=11, 2=5, 3=8, 4=5, 5=6
+前 5 步操作次数（含导航）： 1=10, 2=4, 3=7, 4=4, 5=5
 
 ## 摩擦点
 
@@ -171,6 +201,10 @@ ALLOWED_SKIPS: (empty)
 
 - ANSWER 只创建空的 R 条目（text:""），不写入判断句。
 - 自建案例在装载时把 referenceLevel3 置空。
+
+## 页面错误
+
+- Uncaught TypeError: CT is not a function
 
 ## 无法由本脚本代替的人工项
 

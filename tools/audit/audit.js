@@ -88,15 +88,17 @@
     return false;
   }
 
-  function auditEnglishUi() {
-    click("#lang-en");
-    op(0, "language-en");
-    var root = document.getElementById("app") || document.querySelector(".app-shell") || document.body;
+  function i18nWhitelist() {
     var whitelist = [];
     if (window.FIELDNOTES && window.FIELDNOTES.getEngine) {
       collectTextStrings(window.FIELDNOTES.getEngine().getState(), whitelist);
     }
+    return whitelist;
+  }
+
+  function cjkLeaksInRoot(root, whitelist) {
     var leaks = [];
+    if (!root) return leaks;
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
     var node;
     while ((node = walker.nextNode())) {
@@ -105,22 +107,60 @@
         if (leaks.indexOf(run) < 0) leaks.push(run);
       });
     }
-    for (var step = 1; step <= 10; step++) {
-      click("#nav-step-" + step);
-      op(step, "i18n-scan-step");
-    }
-    walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-    while ((node = walker.nextNode())) {
-      cjkRuns(node.textContent).forEach(function (run) {
-        if (runWhitelisted(run, whitelist)) return;
-        if (leaks.indexOf(run) < 0) leaks.push(run);
-      });
-    }
+    return leaks;
+  }
+
+  function auditEnglishUi() {
+    try {
+      localStorage.setItem("fieldnotes.ui.language", "en");
+    } catch (e) {}
+    click("#lang-en");
+    op(0, "language-en");
+    var api = { click: click };
+    var whitelist = i18nWhitelist();
+    var registry = (window.I18nAuditViews && window.I18nAuditViews.registry) || [];
+    var covered = 0;
+    var uncovered = 0;
+    registry.forEach(function (view) {
+      if (!view.covered) {
+        uncovered++;
+        return;
+      }
+      covered++;
+      try {
+        if (view.open) view.open(api);
+      } catch (err) {
+        errors.push("i18n-open-" + view.id + ": " + err);
+      }
+      op(0, "i18n-view-" + view.id);
+      var root =
+        document.getElementById("modal") && document.getElementById("modal").open
+          ? document.getElementById("modal-content") || document.getElementById("modal")
+          : document.getElementById("app") || document.querySelector(".app-shell") || document.body;
+      var leaks = cjkLeaksInRoot(root, whitelist);
+      if (document.getElementById("modal") && document.getElementById("modal").open) {
+        cjkLeaksInRoot(document.getElementById("app"), whitelist).forEach(function (r) {
+          if (leaks.indexOf(r) < 0) leaks.push(r);
+        });
+      }
+      check(
+        "D8-i18n-" + view.id,
+        leaks.length === 0,
+        leaks.length ? view.id + ": " + leaks.slice(0, 12).join(" | ") : "ok"
+      );
+    });
+    window.__I18N_COVERAGE__ = { covered: covered, uncovered: uncovered };
+    var undocumented = registry.filter(function (v) {
+      return !v.covered && !(v.reason && String(v.reason).trim());
+    });
     check(
       "D8-i18n",
-      leaks.length === 0,
-      leaks.length ? leaks.slice(0, 20).join(" | ") : "no CJK outside CASE_DATA and user state"
+      undocumented.length === 0,
+      "I18N_COVERAGE covered=" + covered + " uncovered=" + uncovered
     );
+    try {
+      localStorage.setItem("fieldnotes.ui.language", "zh");
+    } catch (e2) {}
     click("#lang-zh");
     op(0, "language-zh-restore");
   }
