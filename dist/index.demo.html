@@ -8821,6 +8821,7 @@ body {
   function closeArchiveMenu(){archiveMenuOpen=false;syncArchiveMenuDom();}
   function toggleArchiveMenu(){archiveMenuOpen=!archiveMenuOpen;syncArchiveMenuDom();}
   function workbenchToolbar(){
+    if(!window.__FN_DEV_TOOLBAR)return '';
     return '<div class="workbench-toolbar">'+lt('saveSnapshotInitial','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+lt('saveSnapshotReviewed','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+lt('revisions','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+lt('overview','reasoning-overview-open','small quiet','map','data-testid="reasoning-overview-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">'+esc(t('archiveMenu'))+'</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+lt('exportArchiveJson','download-json','small quiet','download','data-testid="archive-export-json"')+lt('importArchiveJson','import','small quiet','folder','data-testid="archive-import-json"')+lt('exportMarkdownNotes','download-md','small quiet','note','data-testid="archive-export-md"')+lt('exportReportTemplate','download-template-md','small quiet','note','data-testid="archive-export-template-md"')+'</div></span>'+lt('help','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
   }
   function methodDialog(){
@@ -8990,6 +8991,7 @@ body {
   document.addEventListener('fieldnotes-demo-enter',function(){if(window.__FN_DEMO_PACK)enterWorkbook();});
   window.__fieldnotesDemoEnter=function(){if(window.__FN_DEMO_PACK)enterWorkbook();};
   window.__fieldnotesApplyDemoDefaults=function(){if(!window.__FN_DEMO_PACK)return;locale='en';try{localStorage.setItem('fieldnotes.ui.language','en');}catch(e){}render();};
+  window.__fieldnotesEnableDevToolbar=function(on){window.__FN_DEV_TOOLBAR=on!==false;render();};
   bindEngine();render();
 })();
 

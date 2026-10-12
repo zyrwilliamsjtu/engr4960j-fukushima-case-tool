@@ -19,6 +19,7 @@ const {pathToFileURL}=require('node:url');
   for(let n=1;n<=10;n++){await step(n);await page.locator('#step-hint-toggle').click();await english('#app');}
   await step(1);await open('add');await page.locator('textarea[data-field="text"]').fill('Should the fictional QA team disclose uncertainty?');
   await page.evaluate(()=>{const e=FIELDNOTES.getEngine(),q=Object.values(e.getState().items)[0];e.dispatch({type:'UPDATE_ITEM',payload:{id:q.id,fields:{isCore:true,focusReason:'Fictional QA focus reason.'}}});e.createSnapshot('初步');e.dispatch({type:'UPDATE_ITEM',payload:{id:q.id,fields:{text:'Should the fictional QA team publish the limitation?'}}});e.createSnapshot('复核后');});
+  await page.evaluate(()=>{window.__fieldnotesEnableDevToolbar&&window.__fieldnotesEnableDevToolbar(true);});
   for(const action of ['revision-compare-open','reasoning-overview-open','method','cases','tools']){
    await open(action);await english('#modal');
    if(action==='reasoning-overview-open'){await page.locator('[data-overview-scope]').last().click();await english('#modal');}
@@ -26,6 +27,7 @@ const {pathToFileURL}=require('node:url');
   }
   await open('archive-menu');await english('#archive-menu-panel');
   await page.locator('[data-action="archive-menu"]').click();
+  await page.evaluate(()=>{window.__fieldnotesEnableDevToolbar&&window.__fieldnotesEnableDevToolbar(false);});
   await page.locator('#nav-summary').click();await english('#app');await step(1);
   await open('present');await english('#app');await open('exit-present');
   for(const sample of [JSON.stringify({stateVersion:'old'}),JSON.stringify({...await page.evaluate(()=>FIELDNOTES.getEngine().getState()),caseId:'wrong'}),'not JSON']){
@@ -43,8 +45,7 @@ const {pathToFileURL}=require('node:url');
   await page.locator('[data-lib="close"]').click();
   await step(1);await page.setViewportSize({width:390,height:900});await english('#app');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'English mobile has no overflow.');
-  await page.locator('[data-lang="zh"]').first().click();assert.ok((await page.locator('.workbench-toolbar').innerText()).includes('存档'));
-  await page.locator('[data-lang="en"]').first().click();await english('.workbench-toolbar');
+  assert.equal(await page.locator('.workbench-toolbar').count(), 0, 'dev toolbar hidden for users');
   const demo=await browser.newPage();
   await demo.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href+'#workbench');
   assert.equal(await demo.locator('[data-demo-banner]').count(), 0);
