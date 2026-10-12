@@ -2716,6 +2716,28 @@ body {
 .intake-files>div{background:#dce8fa;border-color:#b6ccec;}.intake-file-type{background:#c4d6f4;border-color:#afc7ec;color:#456aa7;}.intake-files small{color:#7890b2;}.intake-bottom{border-top-color:#b7cbea;}.intake-bottom p{color:#6f87ac;}
 .intake-existing .home-case{background:#d7e3f7;border-color:#b4c8e8;}.intake-existing .home-case:hover{background:#cbddf6;}.intake-existing .home-case.is-selected{background:#bfcff0;border-color:#799acd;box-shadow:inset 3px 0 #496fb6;}.intake-existing .home-case-badge{color:#6383b3;}
 
+/* Step 3 has two sections, not two competing page columns. */
+:root[data-step="3"] .entries{display:flex!important;flex-direction:column;gap:17px;}
+:root[data-step="3"] .evidence-intro{width:100%;box-sizing:border-box;background:#dce7f6;border-color:#becfe8;gap:18px;align-items:center;}
+:root[data-step="3"] .evidence-intro h3,:root[data-step="3"] .step3-gap-section h3{display:flex;align-items:center;gap:10px;margin:0;font-size:18px;color:#36577f;}
+.stage-section-count{display:inline-grid;place-items:center;min-width:25px;height:24px;padding:0 7px;box-sizing:border-box;border-radius:7px;background:#c7d9f3;color:#4d6f9f;font-size:11px;font-weight:600;}
+:root[data-step="3"] .evidence-intro p{color:#7790b2;font-size:12px;margin-top:6px;line-height:1.7;}
+:root[data-step="3"] .record-stack{width:100%;min-width:0;}
+:root[data-step="3"] .record-stack>.step-record{border-color:#c4d4e9;background:#eaf1fa;}
+:root[data-step="3"] .record-stack>.step-record[open]{border-color:#9ab7dc;background:#f3f7fd;}
+:root[data-step="3"] .record-stack>.step-record[open]>summary{background:#dce8f8;border-bottom-color:#c5d6ee;}
+:root[data-step="3"] .record-kind{color:#7890b0;}:root[data-step="3"] .record-preview{color:#3e5a80;}
+:root[data-step="3"] .record-stack .fact-card{background:#f5f8fe;}
+:root[data-step="3"] .fact-card>p{font-size:17px;line-height:1.85;color:#345276;max-width:82ch;}
+:root[data-step="3"] .relation{background:#e4edf9;border-color:#c7d8ed;}
+:root[data-step="3"] .relation strong{color:#56769c;}:root[data-step="3"] .relation p{color:#45688f;font-size:15px;line-height:1.8;}
+.step3-gap-section{margin-top:8px;padding:20px;background:#f2f0e5;border:1px solid #dfdcc9;border-radius:14px;min-width:0;}
+.step3-gap-section>.section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 17px;}
+:root[data-step="3"] .step3-gap-section h3{color:#7e7354;}.step3-gap-section .stage-section-count{background:#e6dfc7;color:#8c7e50;}.step3-gap-section .section-heading p{font-size:12px;color:#9a927c;margin:6px 0 0;line-height:1.7;}
+.step3-gap-list{display:grid;grid-template-columns:minmax(0,1fr);gap:13px;}.step3-gap-list>.step-record{background:#f8f6ed;border-color:#dfd9c5;}.step3-gap-list>.step-record[open]>summary{background:#eae4d1;border-bottom-color:#dcd5bf;}:root[data-step="3"] .step3-gap-list .record-kind{color:#9b8e6c;}:root[data-step="3"] .step3-gap-list .record-position{background:#e8e0c8;color:#9b8852;}.step3-gap-list>.step-record>.entry-card{background:#fffdf3;}.step3-gap-list>.entry-card{background:#faf8ee;border-color:#ddd6c0;border-top-color:#b5a16e;box-shadow:none;}.step3-gap-list .gap-prompt{margin:0;border-color:#d7cfb6;background:#f7f4e8;color:#a19473;}
+@media(min-width:1200px){.step3-gap-list{grid-template-columns:repeat(2,minmax(0,1fr));}.step3-gap-list>.step-record[open]{grid-column:1/-1;}.step3-gap-list>.gap-prompt{grid-column:1/-1;}}
+@media(max-width:680px){:root[data-step="3"] .evidence-intro{align-items:flex-start;flex-wrap:wrap;gap:12px;}:root[data-step="3"] .evidence-intro>div{flex:1;}:root[data-step="3"] .evidence-intro>.button{width:100%;justify-content:center;}.step3-gap-section{padding:16px;}.step3-gap-section>.section-heading{gap:10px;align-items:flex-start;flex-wrap:wrap;}:root[data-step="3"] .fact-card>p{font-size:16px;}.step3-gap-section .button{font-size:12px;}}
+
 </style></head>
 <body>
   <a class="skip-link" href="#workspace">跳到工作区 / Skip to workspace</a>
@@ -8782,11 +8804,11 @@ body {
     if(step===1){list=rows('Q');html=list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'question')+field(it,'text','question','questionHint')+optionalActors(it)+'</article>';}).join('');return html||empty('emptyQuestions','emptyQuestionsSub',presentation?'':button('addQuestion','add','primary','plus','data-type="Q" data-step="1"'));}
     if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+(presentation?'':'<details class="entry-details" id="focus-edit-'+esc(it.id)+'"><summary>'+esc(bi('调整问题措辞','Refine the question'))+'</summary>'+field(it,'text','question','questionHint')+'</details>'):'')+'</article>';}).join(''):empty('focusEmpty','focusEmptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
     if(step===3){var selectedFacts=facts().filter(function(f){return s.relations.some(function(r){return r.from===f.id;});});
-      html='<div class="evidence-intro"><span class="evidence-icon">'+icon('book')+'</span><div><h3>'+esc(t('selectedFacts'))+'</h3><p>'+facts().length+' '+esc(t('factsAvailable'))+' · '+esc(t('factSelectionHint'))+'</p></div>'+button('browseFacts','materials','primary small','plus','data-tab="facts"')+'</div>';
+      html='<div class="evidence-intro"><span class="evidence-icon">'+icon('book')+'</span><div><h3>'+esc(t('selectedFacts'))+'<span class="stage-section-count">'+selectedFacts.length+'</span></h3><p>'+facts().length+' '+esc(t('factsAvailable'))+' · '+esc(t('factSelectionHint'))+'</p></div>'+button('browseFacts','materials','primary small','plus','data-tab="facts"')+'</div>';
       html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(packFactText(it))+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
       if(cases.isCustom())html+='<div class="section-heading"><p class="hint">'+esc(t('caseMaterialsHint'))+'</p>'+button('addFact','add-fact','small','plus')+'</div>';
-      list=rows('M');html+='<div class="section-heading"><h3>'+esc(t('missing'))+'</h3>'+(presentation?'':button('addGap','add','small','plus','data-type="M" data-step="3"'))+'</div>';
-      return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'missing')+field(it,'text','missing','gapHint')+relationList(it.id)+connectButton(it)+'</article>';}).join(''):'<p class="gap-prompt">'+esc(t('gapHint'))+'</p>');}
+      list=rows('M');html+='<section class="step3-gap-section"><div class="section-heading"><div><h3>'+esc(t('missing'))+'<span class="stage-section-count">'+list.length+'</span></h3><p>'+esc(bi('把尚未明确的信息单独记下。','Keep what is still unknown separate.'))+'</p></div>'+(presentation?'':button('addGap','add','small','plus','data-type="M" data-step="3"'))+'</div><div class="step3-gap-list">';
+      return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'missing')+field(it,'text','missing','gapHint')+relationList(it.id)+connectButton(it)+'</article>';}).join(''):'<p class="gap-prompt">'+esc(t('gapHint'))+'</p>')+'</div></section>';}
     if(step===4){list=rows('A');return list.length?list.map(function(it){var refs=(it.basisRefs||[]).map(function(id){return state().items[id]||data.facts.find(function(f){return f.id===id;})||data.sources.find(function(f){return f.id===id;});}).filter(Boolean);return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'assumption')+field(it,'text','assumption','assumptionHint')+'<div class="basis-box"><div class="basis-heading"><span class="section-label">'+esc(t('basis'))+' <b>'+refs.length+'</b></span>'+(presentation?'':button('basis','basis','small quiet','link','data-id="'+esc(it.id)+'"'))+'</div>'+(refs.length?'<details class="basis-reading" id="basis-reading-'+esc(it.id)+'"><summary>'+esc(bi('回看依据与推断理由','Read references & inference reason'))+'</summary><ul>'+refs.map(function(x){return '<li>'+esc(display(x)||x.title)+'</li>';}).join('')+'</ul>'+relationList(it.id)+'</details>':'<p class="basis-empty">'+esc(bi('选择一项依据，说明推断从何而来。','Choose supporting material and explain your inference.'))+'</p>')+'</div></article>';}).join(''):empty();}
     if(step===5){list=rows('C');html='<div class="word-shelf"><span>'+esc(t('candidateWords'))+'</span>'+data.valueWords.map(function(w,idx){var word=CT()?CT().valueWord(w,locale):(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word);return '<button type="button" class="word-chip" data-action="concept" data-word="'+esc(word)+'" '+(presentation?'disabled':'')+'>'+esc(word)+icon('plus')+'</button>';}).join('')+'</div>';
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'concept')+field(it,'word','word','wordHint',true)+'<div class="two-columns">'+field(it,'others','others','othersHint')+field(it,'mine','mine','mineHint')+'</div></article>';}).join(''):empty());}
@@ -8952,12 +8974,14 @@ body {
     if(step===7||(!presentation&&step!==3))return html;
     var template=document.createElement('template');template.innerHTML=html;
     var cards=Array.from(template.content.querySelectorAll('article.entry-card,article.fact-card')).filter(function(card){return !card.closest('.analysis-extra')&&(presentation||card.classList.contains('fact-card'));});
+    var factNumber=0,gapNumber=0;
     cards.forEach(function(card,index){
       var titleNode=card.querySelector('h3,.read-field p'),preview=titleNode?titleNode.textContent:card.querySelector('p')?card.querySelector('p').textContent:'';
       var identity=card.id||card.dataset.drag||'record-'+index;
       var wrapper=document.createElement('details');wrapper.className='step-record';wrapper.id='stage-'+step+'-'+identity;wrapper.dataset.stepRecord='';if(index===0)wrapper.open=true;
       var caption=card.querySelector('.entry-label');
-      wrapper.innerHTML='<summary><span class="record-position">'+String(index+1).padStart(2,'0')+'</span><div><span class="record-kind">'+esc(caption?caption.textContent:step===3?t('facts'):title(step))+'</span><p class="record-preview">'+esc(preview.slice(0,260)||t('empty'))+'</p></div><span class="record-disclosure" aria-hidden="true">'+icon('down')+'</span></summary>';
+      var number=step===3?(card.classList.contains('fact-card')?++factNumber:++gapNumber):index+1;
+      wrapper.innerHTML='<summary><span class="record-position">'+String(number).padStart(2,'0')+'</span><div><span class="record-kind">'+esc(caption?caption.textContent:step===3?t('facts'):title(step))+'</span><p class="record-preview">'+esc(preview.slice(0,260)||t('empty'))+'</p></div><span class="record-disclosure" aria-hidden="true">'+icon('down')+'</span></summary>';
       card.replaceWith(wrapper);wrapper.appendChild(card);
     });
     template.content.querySelectorAll('.fact-grid').forEach(function(grid){grid.classList.add('record-stack');});

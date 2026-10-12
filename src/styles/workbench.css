@@ -2706,3 +2706,25 @@ body {
 .intake-drop{background:linear-gradient(130deg,#c6d9f6,#d3e1f8);border-color:#7f9fd3;}.intake-drop:hover,.intake-drop.dragging{background:#b9cff1;border-color:#496fb5;}.intake-drop strong{color:#355683;}.intake-drop>span:not(.intake-upload-icon),.intake-drop small{color:#6b86af;}.intake-upload-icon{background:#b4cbf0;border-color:#9bb9e8;color:#3d64ae;}
 .intake-files>div{background:#dce8fa;border-color:#b6ccec;}.intake-file-type{background:#c4d6f4;border-color:#afc7ec;color:#456aa7;}.intake-files small{color:#7890b2;}.intake-bottom{border-top-color:#b7cbea;}.intake-bottom p{color:#6f87ac;}
 .intake-existing .home-case{background:#d7e3f7;border-color:#b4c8e8;}.intake-existing .home-case:hover{background:#cbddf6;}.intake-existing .home-case.is-selected{background:#bfcff0;border-color:#799acd;box-shadow:inset 3px 0 #496fb6;}.intake-existing .home-case-badge{color:#6383b3;}
+
+/* Step 3 has two sections, not two competing page columns. */
+:root[data-step="3"] .entries{display:flex!important;flex-direction:column;gap:17px;}
+:root[data-step="3"] .evidence-intro{width:100%;box-sizing:border-box;background:#dce7f6;border-color:#becfe8;gap:18px;align-items:center;}
+:root[data-step="3"] .evidence-intro h3,:root[data-step="3"] .step3-gap-section h3{display:flex;align-items:center;gap:10px;margin:0;font-size:18px;color:#36577f;}
+.stage-section-count{display:inline-grid;place-items:center;min-width:25px;height:24px;padding:0 7px;box-sizing:border-box;border-radius:7px;background:#c7d9f3;color:#4d6f9f;font-size:11px;font-weight:600;}
+:root[data-step="3"] .evidence-intro p{color:#7790b2;font-size:12px;margin-top:6px;line-height:1.7;}
+:root[data-step="3"] .record-stack{width:100%;min-width:0;}
+:root[data-step="3"] .record-stack>.step-record{border-color:#c4d4e9;background:#eaf1fa;}
+:root[data-step="3"] .record-stack>.step-record[open]{border-color:#9ab7dc;background:#f3f7fd;}
+:root[data-step="3"] .record-stack>.step-record[open]>summary{background:#dce8f8;border-bottom-color:#c5d6ee;}
+:root[data-step="3"] .record-kind{color:#7890b0;}:root[data-step="3"] .record-preview{color:#3e5a80;}
+:root[data-step="3"] .record-stack .fact-card{background:#f5f8fe;}
+:root[data-step="3"] .fact-card>p{font-size:17px;line-height:1.85;color:#345276;max-width:82ch;}
+:root[data-step="3"] .relation{background:#e4edf9;border-color:#c7d8ed;}
+:root[data-step="3"] .relation strong{color:#56769c;}:root[data-step="3"] .relation p{color:#45688f;font-size:15px;line-height:1.8;}
+.step3-gap-section{margin-top:8px;padding:20px;background:#f2f0e5;border:1px solid #dfdcc9;border-radius:14px;min-width:0;}
+.step3-gap-section>.section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 17px;}
+:root[data-step="3"] .step3-gap-section h3{color:#7e7354;}.step3-gap-section .stage-section-count{background:#e6dfc7;color:#8c7e50;}.step3-gap-section .section-heading p{font-size:12px;color:#9a927c;margin:6px 0 0;line-height:1.7;}
+.step3-gap-list{display:grid;grid-template-columns:minmax(0,1fr);gap:13px;}.step3-gap-list>.step-record{background:#f8f6ed;border-color:#dfd9c5;}.step3-gap-list>.step-record[open]>summary{background:#eae4d1;border-bottom-color:#dcd5bf;}:root[data-step="3"] .step3-gap-list .record-kind{color:#9b8e6c;}:root[data-step="3"] .step3-gap-list .record-position{background:#e8e0c8;color:#9b8852;}.step3-gap-list>.step-record>.entry-card{background:#fffdf3;}.step3-gap-list>.entry-card{background:#faf8ee;border-color:#ddd6c0;border-top-color:#b5a16e;box-shadow:none;}.step3-gap-list .gap-prompt{margin:0;border-color:#d7cfb6;background:#f7f4e8;color:#a19473;}
+@media(min-width:1200px){.step3-gap-list{grid-template-columns:repeat(2,minmax(0,1fr));}.step3-gap-list>.step-record[open]{grid-column:1/-1;}.step3-gap-list>.gap-prompt{grid-column:1/-1;}}
+@media(max-width:680px){:root[data-step="3"] .evidence-intro{align-items:flex-start;flex-wrap:wrap;gap:12px;}:root[data-step="3"] .evidence-intro>div{flex:1;}:root[data-step="3"] .evidence-intro>.button{width:100%;justify-content:center;}.step3-gap-section{padding:16px;}.step3-gap-section>.section-heading{gap:10px;align-items:flex-start;flex-wrap:wrap;}:root[data-step="3"] .fact-card>p{font-size:16px;}.step3-gap-section .button{font-size:12px;}}
