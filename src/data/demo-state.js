@@ -1,6 +1,6 @@
 /**
- * 课堂演示用示例用户状态（stateVersion 2.0）。仅用于 dist/index.demo.html。
- * 语气为「本组示例分析」，非标准答案；第 8 步结论与自我反思正文不预填。
+ * Demo user state (stateVersion 2.0) for dist/index.demo.html only.
+ * Sample group-style analysis in English — not a model answer. Step 8 conclusions empty.
  */
 (function () {
   "use strict";
@@ -8,11 +8,11 @@
     demoPackId: "engr4960j-fukushima-demo-pack-v1",
     stateVersion: "2.0",
     caseId: "fukushima",
-    currentStep: 6,
+    currentStep: 3,
     startedAt: "2026-03-01T08:00:00.000Z",
     updatedAt: "2026-03-01T10:30:00.000Z",
     authorship: {
-      notes: ["本组示例：以下记录仅供演示填写方式，不代表课程结论。"],
+      notes: ["Group sample: records below illustrate how we use the tool, not course conclusions."],
       reservations: []
     },
     stepStatus: {
@@ -32,11 +32,11 @@
         id: "Q-1-01",
         type: "Q",
         step: 1,
-        text: "本组示例：在震后早期，TEPCO 是否应在信息仍不完整时，更主动地向周边居民说明厂址风险？",
-        actors: ["周边居民", "TEPCO 现场与总部人员"],
+        text: "Should TEPCO have communicated site risks to nearby residents more proactively while information was still incomplete?",
+        actors: ["Nearby residents", "TEPCO site and headquarters staff"],
         isCore: true,
         focusReason:
-          "本组示例：这个问题同时涉及公众知情与组织披露节奏，且与后续应急决策直接相连。",
+          "Our group prioritizes this because it links public disclosure timing to emergency decisions we track in later steps.",
         createdAt: "2026-03-01T08:05:00.000Z",
         updatedAt: "2026-03-01T08:20:00.000Z"
       },
@@ -44,19 +44,49 @@
         id: "Q-1-02",
         type: "Q",
         step: 1,
-        text: "本组示例：当现场指令与工程师对安全的判断不一致时，个人应如何行动？",
-        actors: ["现场工程师", "上级管理者"],
+        text: "When field instructions conflict with an engineer's safety judgment, how should the individual act?",
+        actors: ["Field engineers", "Supervisors"],
         isCore: true,
         focusReason:
-          "本组示例：我们想比较组织压力与个人专业判断之间的张力，不预设哪一方必然正确。",
+          "We want to compare organizational pressure with professional judgment without assuming either side is automatically right.",
         createdAt: "2026-03-01T08:06:00.000Z",
         updatedAt: "2026-03-01T08:21:00.000Z"
+      },
+      "Q-1-03": {
+        id: "Q-1-03",
+        type: "Q",
+        step: 1,
+        text: "Did regulatory arrangements before the accident adequately separate nuclear promotion from safety oversight?",
+        actors: ["NISA", "METI", "Operators"],
+        isCore: false,
+        createdAt: "2026-03-01T08:07:00.000Z",
+        updatedAt: "2026-03-01T08:07:00.000Z"
+      },
+      "Q-1-04": {
+        id: "Q-1-04",
+        type: "Q",
+        step: 1,
+        text: "Should tsunami and seismic design margins have been updated faster once post-2002 reassessments exceeded the original licensing basis?",
+        actors: ["Design engineers", "Regulators"],
+        isCore: false,
+        createdAt: "2026-03-01T08:08:00.000Z",
+        updatedAt: "2026-03-01T08:08:00.000Z"
+      },
+      "Q-1-05": {
+        id: "Q-1-05",
+        type: "Q",
+        step: 1,
+        text: "Were evacuation and public messaging feasible given earthquake and tsunami damage to communications?",
+        actors: ["Local residents", "Government responders"],
+        isCore: false,
+        createdAt: "2026-03-01T08:09:00.000Z",
+        updatedAt: "2026-03-01T08:09:00.000Z"
       },
       "M-3-01": {
         id: "M-3-01",
         type: "M",
         step: 3,
-        text: "本组示例：震后最初 72 小时内，各机组氢气风险是否已被同一信息渠道汇总给决策层？",
+        text: "Within the first 72 hours, was hydrogen risk across units summarized through one decision channel?",
         createdAt: "2026-03-01T08:40:00.000Z",
         updatedAt: "2026-03-01T08:40:00.000Z"
       },
@@ -64,7 +94,7 @@
         id: "M-3-02",
         type: "M",
         step: 3,
-        text: "本组示例：当时对外发布的信息，与内部工程判断之间是否存在可核实的时间差记录？",
+        text: "Is there a verifiable timeline gap between public statements and internal engineering assessments?",
         createdAt: "2026-03-01T08:41:00.000Z",
         updatedAt: "2026-03-01T08:41:00.000Z"
       },
@@ -72,7 +102,7 @@
         id: "A-4-01",
         type: "A",
         step: 4,
-        text: "本组示例：我们暂时假设，早期部分对外表述反映的是「当时掌握的信息」，而非事后完整图景。",
+        text: "We tentatively assume early external wording reflected what was known at the time, not the full later picture.",
         basisRefs: ["M-3-02", "f-org-001"],
         createdAt: "2026-03-01T09:00:00.000Z",
         updatedAt: "2026-03-01T09:05:00.000Z"
@@ -81,7 +111,7 @@
         id: "A-4-02",
         type: "A",
         step: 4,
-        text: "本组示例：我们暂时假设，现场人员在缺乏按培训场景准备的设备时，仍需要在有限信息下连续决策。",
+        text: "We tentatively assume personnel had to decide under incomplete information when equipment was not arranged for the actual scenario.",
         basisRefs: ["M-3-01", "f-mat-002"],
         createdAt: "2026-03-01T09:01:00.000Z",
         updatedAt: "2026-03-01T09:06:00.000Z"
@@ -90,9 +120,9 @@
         id: "C-5-01",
         type: "C",
         step: 5,
-        word: "责任",
-        others: "本组示例：他人可能先想到法律追责或事后问责。",
-        mine: "本组示例：我们在分析里用「责任」指角色在特定时刻应履行的信息与安全义务。",
+        word: "Responsibility",
+        others: "Others may mean legal liability or post hoc blame.",
+        mine: "In our analysis, responsibility means information and safety duties at a specific decision moment.",
         createdAt: "2026-03-01T09:10:00.000Z",
         updatedAt: "2026-03-01T09:10:00.000Z"
       },
@@ -100,9 +130,9 @@
         id: "C-5-02",
         type: "C",
         step: 5,
-        word: "安全",
-        others: "本组示例：公众讨论里「安全」有时指即时人身风险，有时指长期环境风险。",
-        mine: "本组示例：我们在此步区分运行安全、辐射防护与信息透明带来的社会安全感。",
+        word: "Safety",
+        others: "Public discussion sometimes mixes immediate health risk with long-term environmental risk.",
+        mine: "We separate operational safety, radiological protection, and social trust from transparent updates.",
         createdAt: "2026-03-01T09:11:00.000Z",
         updatedAt: "2026-03-01T09:11:00.000Z"
       },
@@ -112,7 +142,7 @@
         step: 6,
         principleId: "p-basic-1",
         appliesTo: ["Q-1-01"],
-        text: "本组示例：公众安全原则提示我们，信息延迟本身可能构成对公众的风险暴露。",
+        text: "Public safety suggests delayed information can itself expose people to foreseeable harm.",
         order: 1,
         createdAt: "2026-03-01T09:30:00.000Z",
         updatedAt: "2026-03-01T09:30:00.000Z"
@@ -123,7 +153,7 @@
         step: 6,
         principleId: "p-basic-6",
         appliesTo: ["Q-1-01"],
-        text: "本组示例：真实披露原则要求区分「尚未确认」与「刻意隐瞒」，我们仍在讨论其边界。",
+        text: "Truthful disclosure requires separating 'not yet confirmed' from deliberate withholding — we still debate the boundary.",
         order: 2,
         createdAt: "2026-03-01T09:31:00.000Z",
         updatedAt: "2026-03-01T09:31:00.000Z"
@@ -134,7 +164,7 @@
         step: 6,
         principleId: "p-emp-1",
         appliesTo: ["Q-1-02"],
-        text: "本组示例：员工伦理原则提醒我们，服从合法指令与拒绝明显不当指令可能同时出现。",
+        text: "Employee ethics reminds us that following lawful orders and refusing clearly unsafe orders can both arise.",
         order: 3,
         createdAt: "2026-03-01T09:32:00.000Z",
         updatedAt: "2026-03-01T09:32:00.000Z"
@@ -143,11 +173,11 @@
         id: "RC-9-01",
         type: "RC",
         step: 9,
-        text: "本组示例：极端灾害与通信中断压缩了决策窗口，但不自动免除说明义务。",
+        text: "Extreme disaster and communication loss compressed the decision window but does not automatically remove disclosure duties.",
         alternatives:
-          "本组示例：我们讨论的分支包括：更早分层发布已知信息、并行启动外部独立核实、以及限制措辞但保持更新频率。",
+          "Branches we discuss: earlier layered release of known facts, parallel independent verification, and frequent updates with careful wording.",
         mitigationJudgment:
-          "本组示例：约束存在，但仍需逐条说明哪些行动在当时的知识与资源条件下仍属可行。",
+          "Constraints exist, but we still need to say which actions were feasible with knowledge and resources available then.",
         createdAt: "2026-03-01T10:00:00.000Z",
         updatedAt: "2026-03-01T10:05:00.000Z"
       },
@@ -155,7 +185,7 @@
         id: "AV-10-01",
         type: "AV",
         step: 10,
-        text: "本组示例：在设计阶段把极端外部事件与场内多重失效联动的演练制度化。",
+        text: "Institutionalize drills that combine extreme external events with multiple on-site failures.",
         createdAt: "2026-03-01T10:10:00.000Z",
         updatedAt: "2026-03-01T10:10:00.000Z"
       },
@@ -163,7 +193,7 @@
         id: "AV-10-02",
         type: "AV",
         step: 10,
-        text: "本组示例：建立跨部门、可对外复述的信息确认流程，减少「口径不一致」带来的信任损失。",
+        text: "Use a cross-department confirmation path for public statements to reduce inconsistent messaging.",
         createdAt: "2026-03-01T10:11:00.000Z",
         updatedAt: "2026-03-01T10:11:00.000Z"
       },
@@ -171,7 +201,7 @@
         id: "AV-10-03",
         type: "AV",
         step: 10,
-        text: "本组示例：为工程师保留在紧急状态下上报专业异议的明确通道与保护预期。",
+        text: "Give engineers a clear channel to raise professional dissent during emergencies with explicit protection expectations.",
         createdAt: "2026-03-01T10:12:00.000Z",
         updatedAt: "2026-03-01T10:12:00.000Z"
       }
@@ -182,7 +212,7 @@
         kind: "fact-supports-question",
         from: "f-mat-001",
         to: "Q-1-01",
-        why: "本组示例：六台机组同址事实帮助我们讨论风险是否在厂内多点累积。",
+        why: "Six units on one site helps us discuss whether risk accumulated across multiple reactors.",
         createdAt: "2026-03-01T08:30:00.000Z"
       },
       {
@@ -190,7 +220,7 @@
         kind: "fact-supports-question",
         from: "f-mat-002",
         to: "Q-1-02",
-        why: "本组示例：现场即兴应对与设备缺口，说明个人判断常发生在不完整信息下。",
+        why: "Improvised response and equipment gaps show decisions made with incomplete information.",
         createdAt: "2026-03-01T08:31:00.000Z"
       },
       {
@@ -198,7 +228,7 @@
         kind: "fact-supports-question",
         from: "f-mat-003",
         to: "Q-1-01",
-        why: "本组示例：我们用这条材料事实比较不同机组状态，避免把事故叙述成单点事件。",
+        why: "Unit-level conditions keep us from treating the accident as a single-point story.",
         createdAt: "2026-03-01T08:32:00.000Z"
       },
       {
@@ -206,7 +236,7 @@
         kind: "fact-supports-question",
         from: "f-ind-001",
         to: "Q-1-02",
-        why: "本组示例：个人层面的记录有助于讨论「谁当时知道什么」，而非只谈抽象组织。",
+        why: "Individual records help ask who knew what, not only abstract organization labels.",
         createdAt: "2026-03-01T08:33:00.000Z"
       },
       {
@@ -214,7 +244,7 @@
         kind: "fact-supports-question",
         from: "f-ind-002",
         to: "Q-1-01",
-        why: "本组示例：个人行动与信息接收顺序，可能影响公众是否被及时告知。",
+        why: "Order of information receipt may affect whether the public was told promptly.",
         createdAt: "2026-03-01T08:34:00.000Z"
       },
       {
@@ -222,7 +252,7 @@
         kind: "fact-supports-question",
         from: "f-ind-003",
         to: "Q-1-02",
-        why: "本组示例：我们用它比较不同角色在链式指令中的位置，尚未得出统一结论。",
+        why: "We compare roles in command chains without settling on one correct action yet.",
         createdAt: "2026-03-01T08:35:00.000Z"
       },
       {
@@ -230,7 +260,7 @@
         kind: "fact-supports-question",
         from: "f-org-001",
         to: "Q-1-01",
-        why: "本组示例：运营方身份事实为讨论披露主体与责任归属提供起点。",
+        why: "Operator identity anchors who bears disclosure responsibilities.",
         createdAt: "2026-03-01T08:36:00.000Z"
       },
       {
@@ -238,7 +268,7 @@
         kind: "fact-supports-question",
         from: "f-org-003",
         to: "Q-1-01",
-        why: "本组示例：组织层信息协调问题，与「是否主动说明风险」直接相关。",
+        why: "Coordination problems relate directly to whether risks were explained proactively.",
         createdAt: "2026-03-01T08:37:00.000Z"
       },
       {
@@ -246,7 +276,7 @@
         kind: "fact-supports-question",
         from: "f-org-008",
         to: "Q-1-02",
-        why: "本组示例：组织响应结构影响现场个人能否暂停或升级某项操作。",
+        why: "Response structure affects whether an individual can pause or escalate an action.",
         createdAt: "2026-03-01T08:38:00.000Z"
       },
       {
@@ -254,7 +284,7 @@
         kind: "assumption-fills-gap",
         from: "A-4-01",
         to: "M-3-02",
-        why: "本组示例：在缺少完整时间线时，我们暂用这一假设推进讨论，并标记需回看。",
+        why: "We use this assumption to move discussion forward and flag it for step 7 review.",
         createdAt: "2026-03-01T09:02:00.000Z"
       },
       {
@@ -262,7 +292,7 @@
         kind: "assumption-fills-gap",
         from: "A-4-02",
         to: "M-3-01",
-        why: "本组示例：假设依据来自已关联事实与缺口条目，仍待第 7 步复核。",
+        why: "Basis links to cited facts and gaps; still tentative.",
         createdAt: "2026-03-01T09:03:00.000Z"
       }
     ],
@@ -272,11 +302,11 @@
         questionId: "Q-1-02",
         principleA: "p-basic-1",
         principleB: "p-emp-1",
-        supportsA: "本组示例：公众安全视角要求尽快降低可预见伤害。",
-        supportsB: "本组示例：员工伦理也涉及遵守指挥链与避免擅自行动带来的混乱。",
-        priority: "本组示例：我们倾向先并列呈现冲突，再在结论步给出本组判断。",
+        supportsA: "Public safety pushes toward reducing foreseeable harm quickly.",
+        supportsB: "Employee ethics also involves command discipline and avoiding chaotic unilateral action.",
+        priority: "We present the conflict side by side before giving our group judgment in step 8.",
         scope: "case",
-        reason: "本组示例：说明冲突为何在本问题情境下无法被简单消去。"
+        reason: "The tension is specific to this scenario and not easy to eliminate by wording alone."
       }
     ],
     snapshots: [],

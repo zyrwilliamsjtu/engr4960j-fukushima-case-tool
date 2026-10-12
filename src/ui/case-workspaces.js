@@ -13,7 +13,7 @@
   function validPack(pack) {
     try {
     if (!pack || !pack.meta || !/^[a-z0-9][a-z0-9-]{0,100}$/.test(pack.meta.id) ||
-        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || !['2.0', '2.1'].includes(pack.meta.dataVersion) ||
+        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || !['2.0', '2.1', '2.2'].includes(pack.meta.dataVersion) ||
         typeof pack.meta.builtAt !== 'string' || arrays.some(function (key) { return !Array.isArray(pack[key]); })) return false;
     if (pack.meta.dataVersion === '2.1' && !Array.isArray(pack.assessments)) return false;
     if (pack.assessments !== undefined && !Array.isArray(pack.assessments)) return false;

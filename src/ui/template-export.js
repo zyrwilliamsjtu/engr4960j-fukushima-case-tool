@@ -141,7 +141,11 @@
           var extra = "";
           if (fact.quote) extra += fact.quote + "\n\n";
           if (fact.locator) extra += fact.locator + "\n\n";
-          return block(fact.text) + sourceLine(data, fact.sourceId) + extra;
+          var factText =
+            english && root.FieldnotesCaseText
+              ? root.FieldnotesCaseText.fact(fact, "en")
+              : fact.text;
+          return block(factText) + sourceLine(data, fact.sourceId) + extra;
         })
         .join("");
     }
@@ -150,7 +154,7 @@
     state = state || { items: {}, relations: [], conflicts: [] };
     data = data || { facts: [], sources: [], principles: [] };
     var reportTitle = data.meta && data.meta.title;
-    if (english && data.meta && data.meta.id === "fukushima" && reportTitle === "福岛第一核电站事故") reportTitle = "Fukushima Daiichi nuclear accident";
+    if (english && data.meta && root.FieldnotesCaseText) reportTitle = root.FieldnotesCaseText.metaTitle(data.meta, "en");
     var questions = listItems(state, "Q");
     var cores = questions.filter(function (item) {
       return item.isCore;

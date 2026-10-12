@@ -109,7 +109,10 @@
       .map(function (rel) {
         var fact = factRecord(state, data, rel.from === question.id ? rel.to : rel.from);
         if (!fact) return "";
-        var text = fact.text || fact.id;
+        var text =
+          root.FieldnotesCaseText && readLocale() === "en"
+            ? root.FieldnotesCaseText.fact(fact, "en") || fact.id
+            : fact.text || fact.id;
         return jump(
           3,
           sourceTag("fact") +

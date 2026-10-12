@@ -25,6 +25,7 @@
       return data().valueWords;
     }
     function name(x){
+      var loc=ctx.locale();
       if(tab==='principles')return ctx.principleName(x.id);
       if(tab==='sources')return mt(x,'title');
       if(tab==='timeline')return mt(x,'event');

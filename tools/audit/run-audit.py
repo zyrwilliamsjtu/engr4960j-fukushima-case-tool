@@ -285,6 +285,19 @@ def main() -> int:
     browser = browsers[0]
     print("Browser:", browser)
     print("ALLOWED_SKIPS: (empty)")
+    case_en = subprocess.run(
+        ["node", str(ROOT / "tools" / "audit" / "case-en-verify.js")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    print(case_en.stdout, end="")
+    if case_en.stderr:
+        print(case_en.stderr, end="")
+    if case_en.returncode != 0:
+        return case_en.returncode
     build = subprocess.run(
         [sys.executable, str(BUILD), "--extra-js", "tools/audit/audit.js", "--out", "dist/_audit.html"],
         cwd=ROOT,

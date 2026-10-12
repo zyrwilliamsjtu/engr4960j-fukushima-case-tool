@@ -134,7 +134,7 @@ else fail("draft ids missing in CASE_DATA");
 if (extra.length === 0) pass("no extra ids beyond draft");
 else fail("extra ids not in draft");
 
-if (d.meta.dataVersion === "2.1") pass("dataVersion 2.1");
+if (d.meta.dataVersion === "2.2") pass("dataVersion 2.2");
 else fail("dataVersion " + d.meta.dataVersion);
 
 function normalizeText(s) {

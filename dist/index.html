@@ -2509,1781 +2509,2211 @@ body {
   <noscript>请启用 JavaScript / Enable JavaScript to use this offline workbook.</noscript>
   <script>
 /**
- * 福岛案例静态数据（契约 v2.1，dataVersion 2.1）
- * 原则库已填入；事实与时间线仍为占位，由 PI 查证后替换。
+ * Fukushima case static data (contract v2.2, dataVersion 2.2).
+ * Chinese fields are authoritative; English ...En fields are optional display overlays.
  */
 (function () {
+  'use strict';
   var principles = [
     {
-      id: "p-basic-1",
-      group: "basic",
-      name: "公众安全",
-      nameEn:
-        "keep members of the public safe from serious negative consequences resulting from their development and implementation of technology",
-      desc: "使公众免受技术开发与实施所致严重负面后果",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-1",
+      "group": "basic",
+      "name": "公众安全",
+      "nameEn": "keep members of the public safe from serious negative consequences resulting from their development and implementation of technology",
+      "desc": "使公众免受技术开发与实施所致严重负面后果",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Keep members of the public safe from serious negative consequences resulting from their development and implementation of technology."
     },
     {
-      id: "p-basic-2",
-      group: "basic",
-      name: "基本人权",
-      nameEn:
-        "ensure that fundamental human rights are not negatively impacted as a result of their work with technology",
-      desc: "确保基本人权不因技术工作受负面影响",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-2",
+      "group": "basic",
+      "name": "基本人权",
+      "nameEn": "ensure that fundamental human rights are not negatively impacted as a result of their work with technology",
+      "desc": "确保基本人权不因技术工作受负面影响",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Ensure that fundamental human rights are not negatively impacted as a result of their work with technology."
     },
     {
-      id: "p-basic-3",
-      group: "basic",
-      name: "环境保护",
-      nameEn:
-        "avoid damage to the environment and living beings that would result in serious negative consequences, including long-term ones, to human life",
-      desc: "避免对环境与生物造成危及人类生命的严重损害",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-3",
+      "group": "basic",
+      "name": "环境保护",
+      "nameEn": "avoid damage to the environment and living beings that would result in serious negative consequences, including long-term ones, to human life",
+      "desc": "避免对环境与生物造成危及人类生命的严重损害",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Avoid damage to the environment and living beings that would result in serious negative consequences, including long-term ones, to human life."
     },
     {
-      id: "p-basic-4",
-      group: "basic",
-      name: "胜任能力",
-      nameEn: "engage only in engineering activities they are competent to carry out",
-      desc: "只从事自己有能力胜任的工程活动",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-4",
+      "group": "basic",
+      "name": "胜任能力",
+      "nameEn": "engage only in engineering activities they are competent to carry out",
+      "desc": "只从事自己有能力胜任的工程活动",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Engage only in engineering activities they are competent to carry out."
     },
     {
-      id: "p-basic-5",
-      group: "basic",
-      name: "决策依据",
-      nameEn:
-        "base their engineering decisions on scientific principles and mathematical analyses and seek to avoid the influence of extraneous factors",
-      desc: "决策基于科学与数学分析，避免无关因素",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-5",
+      "group": "basic",
+      "name": "决策依据",
+      "nameEn": "base their engineering decisions on scientific principles and mathematical analyses and seek to avoid the influence of extraneous factors",
+      "desc": "决策基于科学与数学分析，避免无关因素",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Base their engineering decisions on scientific principles and mathematical analyses and seek to avoid the influence of extraneous factors."
     },
     {
-      id: "p-basic-6",
-      group: "basic",
-      name: "真实披露",
-      nameEn:
-        "keep the public informed of their decisions, which have the potential to seriously affect the public, and to be truthful and complete in their disclosures",
-      desc: "告知可能严重影响公众的决策，披露真实完整",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-6",
+      "group": "basic",
+      "name": "真实披露",
+      "nameEn": "keep the public informed of their decisions, which have the potential to seriously affect the public, and to be truthful and complete in their disclosures",
+      "desc": "告知可能严重影响公众的决策，披露真实完整",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Keep the public informed of their decisions, which have the potential to seriously affect the public, and to be truthful and complete in their disclosures."
     },
     {
-      id: "p-basic-7",
-      group: "basic",
-      name: "尊重非道德文化价值",
-      nameEn:
-        "understand and respect the nonmoral cultural values of those they encounter in fulfilling their engineering duties",
-      desc: "理解并尊重履职中遇到的非道德性文化价值",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-7",
+      "group": "basic",
+      "name": "尊重非道德文化价值",
+      "nameEn": "understand and respect the nonmoral cultural values of those they encounter in fulfilling their engineering duties",
+      "desc": "理解并尊重履职中遇到的非道德性文化价值",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Understand and respect the nonmoral cultural values of those they encounter in fulfilling their engineering duties."
     },
     {
-      id: "p-basic-8",
-      group: "basic",
-      name: "拒绝违规文化实践",
-      nameEn:
-        "endeavor to refuse to participate in engineering activities that are claimed to reflect cultural practices but that violate basic ethical principles for global engineering",
-      desc: "拒绝参与以文化为名却违反全球工程伦理的活动",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-basic-8",
+      "group": "basic",
+      "name": "拒绝违规文化实践",
+      "nameEn": "endeavor to refuse to participate in engineering activities that are claimed to reflect cultural practices but that violate basic ethical principles for global engineering",
+      "desc": "拒绝参与以文化为名却违反全球工程伦理的活动",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Endeavor to refuse to participate in engineering activities that are claimed to reflect cultural practices but that violate basic ethical principles for global engineering."
     },
     {
-      id: "p-org-1",
-      group: "organization",
-      name: "避免不必要伤害",
-      nameEn: "avoid producing unnecessary harms to those in and outside of their organizations",
-      desc: "避免对组织内外造成不必要的伤害",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-1",
+      "group": "organization",
+      "name": "避免不必要伤害",
+      "nameEn": "avoid producing unnecessary harms to those in and outside of their organizations",
+      "desc": "避免对组织内外造成不必要的伤害",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Avoid producing unnecessary harms to those in and outside of their organizations."
     },
     {
-      id: "p-org-2",
-      group: "organization",
-      name: "公平对待利益相关方",
-      nameEn: "ensure that all stakeholders of their organizations are treated fairly and justly",
-      desc: "确保组织利益相关方受到公平公正对待",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-2",
+      "group": "organization",
+      "name": "公平对待利益相关方",
+      "nameEn": "ensure that all stakeholders of their organizations are treated fairly and justly",
+      "desc": "确保组织利益相关方受到公平公正对待",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Ensure that all stakeholders of their organizations are treated fairly and justly."
     },
     {
-      id: "p-org-3",
-      group: "organization",
-      name: "遵守法律法规",
-      nameEn: "ensure that all relevant laws and regulations are followed within their organizations",
-      desc: "确保组织内遵守相关法律法规",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-3",
+      "group": "organization",
+      "name": "遵守法律法规",
+      "nameEn": "ensure that all relevant laws and regulations are followed within their organizations",
+      "desc": "确保组织内遵守相关法律法规",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Ensure that all relevant laws and regulations are followed within their organizations."
     },
     {
-      id: "p-org-4",
-      group: "organization",
-      name: "免受歧视与骚扰",
-      nameEn: "protect members of their organizations against internal discrimination and harassment",
-      desc: "保护组织成员免受内部歧视与骚扰",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-4",
+      "group": "organization",
+      "name": "免受歧视与骚扰",
+      "nameEn": "protect members of their organizations against internal discrimination and harassment",
+      "desc": "保护组织成员免受内部歧视与骚扰",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Protect members of their organizations against internal discrimination and harassment."
     },
     {
-      id: "p-org-5",
-      group: "organization",
-      name: "基于功绩的人事决定",
-      nameEn: "make all hiring, compensation, promotion, and termination decisions based on merit",
-      desc: "招聘薪酬晋升解聘均基于功绩",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-5",
+      "group": "organization",
+      "name": "基于功绩的人事决定",
+      "nameEn": "make all hiring, compensation, promotion, and termination decisions based on merit",
+      "desc": "招聘薪酬晋升解聘均基于功绩",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Make all hiring, compensation, promotion, and termination decisions based on merit."
     },
     {
-      id: "p-org-6",
-      group: "organization",
-      name: "履行合同",
-      nameEn: "ensure that all legitimate corporate contracts are upheld",
-      desc: "确保合法公司合同得到履行",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-org-6",
+      "group": "organization",
+      "name": "履行合同",
+      "nameEn": "ensure that all legitimate corporate contracts are upheld",
+      "desc": "确保合法公司合同得到履行",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Ensure that all legitimate corporate contracts are upheld."
     },
     {
-      id: "p-emp-1",
-      group: "employee",
-      name: "服从合法指令",
-      nameEn: "obey all legitimate, job-related directives",
-      desc: "服从一切合法且与工作相关的指令",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-1",
+      "group": "employee",
+      "name": "服从合法指令",
+      "nameEn": "obey all legitimate, job-related directives",
+      "desc": "服从一切合法且与工作相关的指令",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Obey all legitimate, job-related directives."
     },
     {
-      id: "p-emp-2",
-      group: "employee",
-      name: "达到行业水准",
-      nameEn: "perform their contracted duties on at least an industry-standard level",
-      desc: "以不低于行业标准履行合同职责",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-2",
+      "group": "employee",
+      "name": "达到行业水准",
+      "nameEn": "perform their contracted duties on at least an industry-standard level",
+      "desc": "以不低于行业标准履行合同职责",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Perform their contracted duties on at least an industry-standard level."
     },
     {
-      id: "p-emp-3",
-      group: "employee",
-      name: "保守机密",
-      nameEn:
-        "uphold the principle of confidentiality in relation to knowledge gained in present and past employment",
-      desc: "对现职与前职所获知识保守机密",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-3",
+      "group": "employee",
+      "name": "保守机密",
+      "nameEn": "uphold the principle of confidentiality in relation to knowledge gained in present and past employment",
+      "desc": "对现职与前职所获知识保守机密",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Uphold the principle of confidentiality in relation to knowledge gained in present and past employment."
     },
     {
-      id: "p-emp-4",
-      group: "employee",
-      name: "不损害组织",
-      nameEn: "avoid actions that harm the corporation in acting on behalf of the organization",
-      desc: "代表组织行事时避免损害组织",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-4",
+      "group": "employee",
+      "name": "不损害组织",
+      "nameEn": "avoid actions that harm the corporation in acting on behalf of the organization",
+      "desc": "代表组织行事时避免损害组织",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Avoid actions that harm the corporation in acting on behalf of the organization."
     },
     {
-      id: "p-emp-5",
-      group: "employee",
-      name: "诚实",
-      nameEn: "be honest in their business relationships with others",
-      desc: "在商业关系中保持诚实",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-5",
+      "group": "employee",
+      "name": "诚实",
+      "nameEn": "be honest in their business relationships with others",
+      "desc": "在商业关系中保持诚实",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Be honest in their business relationships with others."
     },
     {
-      id: "p-emp-6",
-      group: "employee",
-      name: "执行伦理原则",
-      nameEn: "enforce all organizational and employee ethical principles, when in positions of authority",
-      desc: "身处权力岗位时执行组织与员工伦理原则",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-emp-6",
+      "group": "employee",
+      "name": "执行伦理原则",
+      "nameEn": "enforce all organizational and employee ethical principles, when in positions of authority",
+      "desc": "身处权力岗位时执行组织与员工伦理原则",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Enforce all organizational and employee ethical principles, when in positions of authority."
     },
     {
-      id: "p-inv-1",
-      group: "involvement",
-      name: "公共参与",
-      nameEn:
-        "Principle of public participation—Engineers should seriously consider participating in public policy discussions regarding future applications of technology.",
-      desc: "认真考虑参与技术未来应用的公共政策讨论",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-inv-1",
+      "group": "involvement",
+      "name": "公共参与",
+      "nameEn": "Principle of public participation—Engineers should seriously consider participating in public policy discussions regarding future applications of technology.",
+      "desc": "认真考虑参与技术未来应用的公共政策讨论",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Principle of public participation—Engineers should seriously consider participating in public policy discussions regarding future applications of technology.."
     },
     {
-      id: "p-inv-2",
-      group: "involvement",
-      name: "公众教育",
-      nameEn:
-        "Principle of public education—Engineers should seriously consider helping the public to understand the applications of technologies in broader social, global contexts.",
-      desc: "认真考虑帮助公众理解技术的社会全球语境",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-inv-2",
+      "group": "involvement",
+      "name": "公众教育",
+      "nameEn": "Principle of public education—Engineers should seriously consider helping the public to understand the applications of technologies in broader social, global contexts.",
+      "desc": "认真考虑帮助公众理解技术的社会全球语境",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Principle of public education—Engineers should seriously consider helping the public to understand the applications of technologies in broader social, global contexts.."
     },
     {
-      id: "p-inv-3",
-      group: "involvement",
-      name: "工程投入",
-      nameEn:
-        "Principle of engineering engagement—Engineers should seriously consider becoming involved in helping to improve the technological futures of those less fortunate than themselves, on a voluntary basis.",
-      desc: "认真考虑自愿改善处境不如己者的技术未来",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-inv-3",
+      "group": "involvement",
+      "name": "工程投入",
+      "nameEn": "Principle of engineering engagement—Engineers should seriously consider becoming involved in helping to improve the technological futures of those less fortunate than themselves, on a voluntary basis.",
+      "desc": "认真考虑自愿改善处境不如己者的技术未来",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Principle of engineering engagement—Engineers should seriously consider becoming involved in helping to improve the technological futures of those less fortunate than themselves, on a voluntary basis.."
     },
     {
-      id: "p-right-1",
-      group: "rights",
-      name: "免受不必要伤害",
-      nameEn: "be protected from unnecessary harm in their employment",
-      desc: "在受雇中免受不必要的伤害",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-1",
+      "group": "rights",
+      "name": "免受不必要伤害",
+      "nameEn": "be protected from unnecessary harm in their employment",
+      "desc": "在受雇中免受不必要的伤害",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Be protected from unnecessary harm in their employment."
     },
     {
-      id: "p-right-2",
-      group: "rights",
-      name: "公平公正对待",
-      nameEn: "fair and just treatment by employers",
-      desc: "受雇主公平公正对待",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-2",
+      "group": "rights",
+      "name": "公平公正对待",
+      "nameEn": "fair and just treatment by employers",
+      "desc": "受雇主公平公正对待",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Fair and just treatment by employers."
     },
     {
-      id: "p-right-3",
-      group: "rights",
-      name: "不受歧视与骚扰",
-      nameEn: "not be subjected to discrimination or harassment in their employment",
-      desc: "在受雇中不受歧视或骚扰",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-3",
+      "group": "rights",
+      "name": "不受歧视与骚扰",
+      "nameEn": "not be subjected to discrimination or harassment in their employment",
+      "desc": "在受雇中不受歧视或骚扰",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Not be subjected to discrimination or harassment in their employment."
     },
     {
-      id: "p-right-4",
-      group: "rights",
-      name: "基于功绩对待",
-      nameEn: "be treated by their employers based on merit",
-      desc: "受雇主基于功绩的对待",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-4",
+      "group": "rights",
+      "name": "基于功绩对待",
+      "nameEn": "be treated by their employers based on merit",
+      "desc": "受雇主基于功绩的对待",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Be treated by their employers based on merit."
     },
     {
-      id: "p-right-5",
-      group: "rights",
-      name: "合同得到履行",
-      nameEn: "have their contracts honored",
-      desc: "合同得到履行",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-5",
+      "group": "rights",
+      "name": "合同得到履行",
+      "nameEn": "have their contracts honored",
+      "desc": "合同得到履行",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Have their contracts honored."
     },
     {
-      id: "p-right-6",
-      group: "rights",
-      name: "不服从非法指令",
-      nameEn: "disobey illegitimate employment directives",
-      desc: "不服从不合法的雇佣指令",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-6",
+      "group": "rights",
+      "name": "不服从非法指令",
+      "nameEn": "disobey illegitimate employment directives",
+      "desc": "不服从不合法的雇佣指令",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Disobey illegitimate employment directives."
     },
     {
-      id: "p-right-7",
-      group: "rights",
-      name: "举报权",
-      nameEn:
-        "blow the whistle (externally or internally) if, in their professional judgments, the physical safety of the public will be endangered as a result of their failures to act",
-      desc: "专业判断公众安全将受威胁时有权举报",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-7",
+      "group": "rights",
+      "name": "举报权",
+      "nameEn": "blow the whistle (externally or internally) if, in their professional judgments, the physical safety of the public will be endangered as a result of their failures to act",
+      "desc": "专业判断公众安全将受威胁时有权举报",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Blow the whistle (externally or internally) if, in their professional judgments, the physical safety of the public will be endangered as a result of their failures to act."
     },
     {
-      id: "p-right-8",
-      group: "rights",
-      name: "获得必要资源",
-      nameEn: "obtain the resources necessary to perform their assigned tasks competently",
-      desc: "获得胜任任务所需的资源",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-8",
+      "group": "rights",
+      "name": "获得必要资源",
+      "nameEn": "obtain the resources necessary to perform their assigned tasks competently",
+      "desc": "获得胜任任务所需的资源",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Obtain the resources necessary to perform their assigned tasks competently."
     },
     {
-      id: "p-right-9",
-      group: "rights",
-      name: "告知公众",
-      nameEn:
-        "inform the public of engineering decisions that have the potential to seriously harm the physical welfare of the public",
-      desc: "就可能严重损害公众福祉的决策告知公众",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-9",
+      "group": "rights",
+      "name": "告知公众",
+      "nameEn": "inform the public of engineering decisions that have the potential to seriously harm the physical welfare of the public",
+      "desc": "就可能严重损害公众福祉的决策告知公众",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Inform the public of engineering decisions that have the potential to seriously harm the physical welfare of the public."
     },
     {
-      id: "p-right-10",
-      group: "rights",
-      name: "公平报酬与知识产权",
-      nameEn:
-        "fair compensation for their work, including the right to share equitably in gains resulting from their contributions to intellectual property",
-      desc: "获公平报酬并公平分享知识产权收益",
-      sourceId: "src-textbook-appendix-I"
+      "id": "p-right-10",
+      "group": "rights",
+      "name": "公平报酬与知识产权",
+      "nameEn": "fair compensation for their work, including the right to share equitably in gains resulting from their contributions to intellectual property",
+      "desc": "获公平报酬并公平分享知识产权收益",
+      "sourceId": "src-textbook-appendix-I",
+      "descEn": "Fair compensation for their work, including the right to share equitably in gains resulting from their contributions to intellectual property."
     }
   ];
 
   var steps = [
     {
-      id: 1,
-      key: "identify",
-      name: "识别伦理问题",
-      presentInClass: true,
-      intro:
-        "列出与本案例相关的伦理问题。教材建议以问句形式表述，便于后续聚焦与分析。",
-      prompts: [
+      "id": 1,
+      "key": "identify",
+      "name": "识别伦理问题",
+      "presentInClass": true,
+      "intro": "列出与本案例相关的伦理问题。教材建议以问句形式表述，便于后续聚焦与分析。",
+      "prompts": [
         {
-          text: "你能否把每条伦理关切写成问句（含「是否/应该」或问号）？",
-          source: "textbook"
+          "text": "你能否把每条伦理关切写成问句（含「是否/应该」或问号）？",
+          "source": "textbook",
+          "textEn": "Can you phrase each ethical concern as a question (using whether/should or a question mark)?"
         },
         {
-          text: "TODO(PI): 补引导问题",
-          source: "team"
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      fields: [
+      "fields": [
         {
-          key: "issues",
-          type: "list",
-          label: "伦理问题",
-          min: 5,
-          minSource: "textbook",
-          itemSchema: ["text:question", "actor:optional"],
-          hint: "建议问句形式；涉及主体选填"
+          "key": "issues",
+          "type": "list",
+          "label": "伦理问题",
+          "min": 5,
+          "minSource": "textbook",
+          "itemSchema": [
+            "text:question",
+            "actor:optional"
+          ],
+          "hint": "建议问句形式；涉及主体选填",
+          "labelEn": "Ethical issues",
+          "hintEn": "See textbook for field guidance (English hint pending).",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "minItems", level: "suggest", refSource: "textbook" },
-        { id: "mustBeQuestion", level: "suggest", refSource: "textbook" }
+      "checks": [
+        {
+          "id": "minItems",
+          "level": "suggest",
+          "refSource": "textbook"
+        },
+        {
+          "id": "mustBeQuestion",
+          "level": "suggest",
+          "refSource": "textbook"
+        }
       ],
-      referenceLevel1: ["timeline", "sources"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「问句形式」的说明（正文待 PI 摘录）。"
+      "referenceLevel1": [
+        "timeline",
+        "sources"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「问句形式」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Identify ethical issues",
+      "introEn": "List ethical issues for this case. The textbook suggests phrasing them as questions for later focus and analysis."
     },
     {
-      id: 2,
-      key: "focus",
-      name: "聚焦",
-      presentInClass: true,
-      intro: "从第 1 步的问题中选出 2 条作为核心问题，并说明理由。",
-      prompts: [
+      "id": 2,
+      "key": "focus",
+      "name": "聚焦",
+      "presentInClass": true,
+      "intro": "从第 1 步的问题中选出 2 条作为核心问题，并说明理由。",
+      "prompts": [
         {
-          text: "选 2 条时，完整性是否优于广度？",
-          source: "textbook"
-        },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
-        {
-          key: "chosen",
-          type: "multiSelect",
-          label: "选定的核心问题",
-          min: 2,
-          max: 2,
-          from: "items.Q"
+          "text": "选 2 条时，完整性是否优于广度？",
+          "source": "textbook",
+          "textEn": "When choosing two issues, is depth more important than breadth?"
         },
         {
-          key: "focusReasons",
-          type: "list",
-          label: "每条选定问题的理由",
-          itemSchema: ["questionRef", "reason:textarea"]
-        },
-        {
-          key: "rewriteNote",
-          type: "textarea",
-          label: "改写以涵盖子问题（选填）",
-          rows: 3
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "exactSelect", level: "suggest", refSource: "textbook" },
-        { id: "reasonNonEmpty", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "chosen",
+          "type": "multiSelect",
+          "label": "选定的核心问题",
+          "min": 2,
+          "max": 2,
+          "from": "items.Q",
+          "labelEn": "Selected core questions"
+        },
+        {
+          "key": "focusReasons",
+          "type": "list",
+          "label": "每条选定问题的理由",
+          "itemSchema": [
+            "questionRef",
+            "reason:textarea"
+          ],
+          "labelEn": "Reason for each selected question"
+        },
+        {
+          "key": "rewriteNote",
+          "type": "textarea",
+          "label": "改写以涵盖子问题（选填）",
+          "rows": 3,
+          "labelEn": "Rewrite to cover subquestions (optional)"
+        }
       ],
-      referenceLevel1: [],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「完整性优于广度」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "exactSelect",
+          "level": "suggest",
+          "refSource": "textbook"
+        },
+        {
+          "id": "reasonNonEmpty",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「完整性优于广度」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Narrow the focus",
+      "introEn": "Choose two issues from step 1 as core questions and explain why they matter."
     },
     {
-      id: 3,
-      key: "facts",
-      name: "相关事实",
-      presentInClass: true,
-      intro:
-        "整理与核心问题相关的事实：物质/技术、个人、组织，并记录缺失事实。分类为启发式，可重叠多标签。",
-      prompts: [
+      "id": 3,
+      "key": "facts",
+      "name": "相关事实",
+      "presentInClass": true,
+      "intro": "整理与核心问题相关的事实：物质/技术、个人、组织，并记录缺失事实。分类为启发式，可重叠多标签。",
+      "prompts": [
         {
-          text: "三类分类是启发式的——同一条事实可否同时属于多个类别？",
-          source: "textbook"
-        },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
-        {
-          key: "factEntries",
-          type: "bucketedFacts",
-          label: "相关事实与缺失",
-          buckets: ["material", "individual", "organization", "missing"],
-          allowMultiTag: true
+          "text": "三类分类是启发式的——同一条事实可否同时属于多个类别？",
+          "source": "textbook",
+          "textEn": "The three categories are heuristic—can one fact belong to more than one category?"
         },
         {
-          key: "evidenceLinks",
-          type: "relation",
-          label: "事实与问题的关联",
-          targets: "Q",
-          require: "why"
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "minPerBucket", level: "suggest", refSource: "team" },
-        { id: "minMissing", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "factEntries",
+          "type": "bucketedFacts",
+          "label": "相关事实与缺失",
+          "buckets": [
+            "material",
+            "individual",
+            "organization",
+            "missing"
+          ],
+          "allowMultiTag": true,
+          "labelEn": "Relevant facts and missing information"
+        },
+        {
+          "key": "evidenceLinks",
+          "type": "relation",
+          "label": "事实与问题的关联",
+          "targets": "Q",
+          "require": "why",
+          "labelEn": "Links between facts and questions"
+        }
       ],
-      referenceLevel1: ["facts"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「三类为启发式、可重叠」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "minPerBucket",
+          "level": "suggest",
+          "refSource": "team"
+        },
+        {
+          "id": "minMissing",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [
+        "facts"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「三类为启发式、可重叠」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Determine relevant and missing facts",
+      "introEn": "Separate relevant facts (material, individual, organizational) from missing information."
     },
     {
-      id: 4,
-      key: "assumptions",
-      name: "合理假设",
-      presentInClass: true,
-      intro: "在信息不完整处作出合理假设，并为每条假设记录依据。",
-      prompts: [
+      "id": 4,
+      "key": "assumptions",
+      "name": "合理假设",
+      "presentInClass": true,
+      "intro": "在信息不完整处作出合理假设，并为每条假设记录依据。",
+      "prompts": [
         {
-          text: "假设能否是「开放式」的？依据应指向哪些条目或来源？",
-          source: "textbook"
-        },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
-        {
-          key: "assumptions",
-          type: "assumption",
-          label: "合理假设",
-          require: "basis"
+          "text": "假设能否是「开放式」的？依据应指向哪些条目或来源？",
+          "source": "textbook",
+          "textEn": "Can an assumption stay open-ended? What entries or sources should support it?"
         },
         {
-          key: "assumptionLinks",
-          type: "relation",
-          label: "假设与信息缺口",
-          targets: "M",
-          require: "why"
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "basisRequired", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "assumptions",
+          "type": "assumption",
+          "label": "合理假设",
+          "require": "basis",
+          "labelEn": "Reasonable assumptions"
+        },
+        {
+          "key": "assumptionLinks",
+          "type": "relation",
+          "label": "假设与信息缺口",
+          "targets": "M",
+          "require": "why",
+          "labelEn": "Assumptions and information gaps"
+        }
       ],
-      referenceLevel1: ["facts"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「假设不能开放式」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "basisRequired",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [
+        "facts"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「假设不能开放式」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Make reasonable assumptions",
+      "introEn": "State reasonable assumptions where information is missing; link each to supporting material and inference reasons."
     },
     {
-      id: 5,
-      key: "clarify",
-      name: "定义澄清",
-      presentInClass: true,
-      intro: "澄清价值含义词：他人可能如何理解，以及你打算如何在分析中使用。",
-      prompts: [
+      "id": 5,
+      "key": "clarify",
+      "name": "定义澄清",
+      "presentInClass": true,
+      "intro": "澄清价值含义词：他人可能如何理解，以及你打算如何在分析中使用。",
+      "prompts": [
         {
-          text: "至少澄清 2 个词；可从候选词中选，也可自建。",
-          source: "textbook"
+          "text": "至少澄清 2 个词；可从候选词中选，也可自建。",
+          "source": "textbook",
+          "textEn": "Clarify at least two terms; pick from candidates or add your own."
         },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
         {
-          key: "clarifications",
-          type: "clarify",
-          label: "概念澄清",
-          cols: ["others", "mine"],
-          min: 2,
-          minSource: "textbook",
-          allowCustomWord: true
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "minItems", level: "suggest", refSource: "textbook" },
-        { id: "bothColsNonEmpty", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "clarifications",
+          "type": "clarify",
+          "label": "概念澄清",
+          "cols": [
+            "others",
+            "mine"
+          ],
+          "min": 2,
+          "minSource": "textbook",
+          "allowCustomWord": true,
+          "labelEn": "Definitional clarification"
+        }
       ],
-      referenceLevel1: ["glossary"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「价值含义词」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "minItems",
+          "level": "suggest",
+          "refSource": "textbook"
+        },
+        {
+          "id": "bothColsNonEmpty",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [
+        "glossary"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「价值含义词」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Undertake definitional clarification",
+      "introEn": "Clarify value-laden terms: how others might read them and how your team uses them here."
     },
     {
-      id: 6,
-      key: "analysis",
-      name: "伦理分析",
-      presentInClass: false,
-      intro:
-        "选择适用原则，处理原则冲突（四问），排序并说明理由；可自建原则。",
-      prompts: [
+      "id": 6,
+      "key": "analysis",
+      "name": "伦理分析",
+      "presentInClass": false,
+      "intro": "选择适用原则，处理原则冲突（四问），排序并说明理由；可自建原则。",
+      "prompts": [
         {
-          text: "选了 ≥2 条原则时，它们在本案某问题上是否冲突？",
-          source: "textbook"
-        },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
-        {
-          key: "selectedPrinciples",
-          type: "multiSelect",
-          label: "适用原则",
-          from: "principles",
-          min: 3,
-          minSource: "textbook"
+          "text": "选了 ≥2 条原则时，它们在本案某问题上是否冲突？",
+          "source": "textbook",
+          "textEn": "If you selected two or more principles, do they conflict on a question in this case?"
         },
         {
-          key: "principleConflicts",
-          type: "conflict",
-          label: "原则冲突",
-          questions: 4
-        },
-        {
-          key: "principleOrder",
-          type: "rankList",
-          label: "原则优先级",
-          allowTie: true
-        },
-        {
-          key: "orderReason",
-          type: "textarea",
-          label: "排序理由",
-          rows: 4
-        },
-        {
-          key: "principleGap",
-          type: "textarea",
-          label: "是否有原则不足",
-          rows: 3
-        },
-        {
-          key: "customPrinciples",
-          type: "list",
-          label: "自建原则（选填）",
-          itemSchema: ["name", "desc"]
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "minPrinciples", level: "suggest", refSource: "textbook" },
-        { id: "conflictReasonIfNeeded", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "selectedPrinciples",
+          "type": "multiSelect",
+          "label": "适用原则",
+          "from": "principles",
+          "min": 3,
+          "minSource": "textbook",
+          "labelEn": "Principles applied"
+        },
+        {
+          "key": "principleConflicts",
+          "type": "conflict",
+          "label": "原则冲突",
+          "questions": 4,
+          "labelEn": "Principle conflicts"
+        },
+        {
+          "key": "principleOrder",
+          "type": "rankList",
+          "label": "原则优先级",
+          "allowTie": true,
+          "labelEn": "Principle priorities"
+        },
+        {
+          "key": "orderReason",
+          "type": "textarea",
+          "label": "排序理由",
+          "rows": 4,
+          "labelEn": "Ordering rationale"
+        },
+        {
+          "key": "principleGap",
+          "type": "textarea",
+          "label": "是否有原则不足",
+          "rows": 3,
+          "labelEn": "Principles not yet covered"
+        },
+        {
+          "key": "customPrinciples",
+          "type": "list",
+          "label": "自建原则（选填）",
+          "itemSchema": [
+            "name",
+            "desc"
+          ],
+          "labelEn": "Custom principles (optional)"
+        }
       ],
-      referenceLevel1: ["principles"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「原则冲突与层级」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "minPrinciples",
+          "level": "suggest",
+          "refSource": "textbook"
+        },
+        {
+          "id": "conflictReasonIfNeeded",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [
+        "principles"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「原则冲突与层级」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Conduct ethical analysis",
+      "introEn": "Select applicable principles, explain relevance, and examine conflicts and priorities."
     },
     {
-      id: 7,
-      key: "review",
-      name: "过程回顾",
-      presentInClass: false,
-      intro: "回显第 1–6 步内容，按复核提示检查，标记需修订项并记录修改原因。",
-      prompts: [
+      "id": 7,
+      "key": "review",
+      "name": "过程回顾",
+      "presentInClass": false,
+      "intro": "回显第 1–6 步内容，按复核提示检查，标记需修订项并记录修改原因。",
+      "prompts": [
         {
-          text: "案例分析是迭代过程——哪些条目需要回到上游修改？",
-          source: "textbook"
-        },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
-        {
-          key: "reviewPanel",
-          type: "review",
-          label: "前序步骤回显",
-          source: "steps1to6"
+          "text": "案例分析是迭代过程——哪些条目需要回到上游修改？",
+          "source": "textbook",
+          "textEn": "Analysis is iterative—which entries should you revisit upstream?"
         },
         {
-          key: "biasReview",
-          type: "checkList",
-          label: "偏见自查",
-          from: "biasChecks"
-        },
-        {
-          key: "reviewPromptActions",
-          type: "checkList",
-          label: "复核提示",
-          from: "reviewPrompts"
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "allReviewTouched", level: "suggest", refSource: "team" },
-        { id: "revisionJumpAvailable", level: "suggest", refSource: "team" }
+      "fields": [
+        {
+          "key": "reviewPanel",
+          "type": "review",
+          "label": "前序步骤回显",
+          "source": "steps1to6",
+          "labelEn": "Earlier steps (read-only)"
+        },
+        {
+          "key": "biasReview",
+          "type": "checkList",
+          "label": "偏见自查",
+          "from": "biasChecks",
+          "labelEn": "Bias self-check"
+        },
+        {
+          "key": "reviewPromptActions",
+          "type": "checkList",
+          "label": "复核提示",
+          "from": "reviewPrompts",
+          "labelEn": "Review prompts"
+        }
       ],
-      referenceLevel1: ["biasChecks"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对「迭代过程」的说明（正文待 PI 摘录）。"
+      "checks": [
+        {
+          "id": "allReviewTouched",
+          "level": "suggest",
+          "refSource": "team"
+        },
+        {
+          "id": "revisionJumpAvailable",
+          "level": "suggest",
+          "refSource": "team"
+        }
+      ],
+      "referenceLevel1": [
+        "biasChecks"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对「迭代过程」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Review the process",
+      "introEn": "Review steps 1–6, mark items to revisit, and record why you changed or kept your entries."
     },
     {
-      id: 8,
-      key: "conclusion",
-      name: "得出结论",
-      presentInClass: false,
-      intro:
-        "针对第 2 步选定的每个核心问题，分别写出结论与理由。程序不提供措辞建议。",
-      prompts: [
+      "id": 8,
+      "key": "conclusion",
+      "name": "得出结论",
+      "presentInClass": false,
+      "intro": "针对第 2 步选定的每个核心问题，分别写出结论与理由。程序不提供措辞建议。",
+      "prompts": [
         {
-          text: "每条核心问题是否都有对应的结论与理由？",
-          source: "textbook"
+          "text": "每条核心问题是否都有对应的结论与理由？",
+          "source": "textbook",
+          "textEn": "Does each core question have a matching conclusion and reason?"
         },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
         {
-          key: "resolutions",
-          type: "list",
-          label: "结论与理由",
-          itemSchema: ["questionRef", "conclusion:textarea", "reason:textarea"]
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [
-        { id: "conclusionAndReason", level: "suggest", refSource: "textbook" }
+      "fields": [
+        {
+          "key": "resolutions",
+          "type": "list",
+          "label": "结论与理由",
+          "itemSchema": [
+            "questionRef",
+            "conclusion:textarea",
+            "reason:textarea"
+          ],
+          "labelEn": "Conclusion and justification"
+        }
       ],
-      referenceLevel1: [],
-      referenceLevel3: null,
-      state: "todo"
+      "checks": [
+        {
+          "id": "conclusionAndReason",
+          "level": "suggest",
+          "refSource": "textbook"
+        }
+      ],
+      "referenceLevel1": [],
+      "referenceLevel3": null,
+      "state": "todo",
+      "nameEn": "Resolve the issue",
+      "introEn": "For each core question from step 2, write your judgment and brief justification. The tool does not suggest wording."
     },
     {
-      id: 9,
-      key: "constraints",
-      name: "现实约束与责任判断",
-      presentInClass: false,
-      intro:
-        "识别现实约束并做责任判断：约束是什么、当时有何选择、是否减轻责任及理由。可勾选预置提示词或声明本案无相关约束。",
-      prompts: [
+      "id": 9,
+      "key": "constraints",
+      "name": "现实约束与责任判断",
+      "presentInClass": false,
+      "intro": "识别现实约束并做责任判断：约束是什么、当时有何选择、是否减轻责任及理由。可勾选预置提示词或声明本案无相关约束。",
+      "prompts": [
         {
-          text: "约束存在是否必然意味着责任减轻？",
-          source: "textbook"
+          "text": "约束存在是否必然意味着责任减轻？",
+          "source": "textbook",
+          "textEn": "Does a constraint automatically reduce responsibility?"
         },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
         {
-          key: "constraintJudgments",
-          type: "list",
-          label: "约束条目（三问）",
-          itemSchema: [
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
+        }
+      ],
+      "fields": [
+        {
+          "key": "constraintJudgments",
+          "type": "list",
+          "label": "约束条目（三问）",
+          "itemSchema": [
             "whatAndWho:textarea",
             "alternatives:textarea",
             "mitigationJudgment:textarea"
-          ]
+          ],
+          "labelEn": "Constraint entry (three questions)"
         },
         {
-          key: "presetHints",
-          type: "multiSelect",
-          label: "预置约束提示（可多选可不选）",
-          from: "constraints"
+          "key": "presetHints",
+          "type": "multiSelect",
+          "label": "预置约束提示（可多选可不选）",
+          "from": "constraints",
+          "labelEn": "Preset constraint prompts (optional)"
         },
         {
-          key: "noRelevantConstraints",
-          type: "checkList",
-          label: "本案声明",
-          options: [{ id: "none", label: "本案没有相关约束" }]
+          "key": "noRelevantConstraints",
+          "type": "checkList",
+          "label": "本案声明",
+          "options": [
+            {
+              "id": "none",
+              "label": "本案没有相关约束"
+            }
+          ],
+          "labelEn": "Statement for this case"
         }
       ],
-      checks: [
-        { id: "threeQuestionsComplete", level: "suggest", refSource: "team" },
-        { id: "presetOrNone", level: "suggest", refSource: "team" }
+      "checks": [
+        {
+          "id": "threeQuestionsComplete",
+          "level": "suggest",
+          "refSource": "team"
+        },
+        {
+          "id": "presetOrNone",
+          "level": "suggest",
+          "refSource": "team"
+        }
       ],
-      referenceLevel1: ["glossary"],
-      referenceLevel3: {
-        type: "text",
-        source: "textbook",
-        body: "教材对 excusing / mitigating conditions 与「约束的现实性」的说明（正文待 PI 摘录）。"
+      "referenceLevel1": [
+        "glossary"
+      ],
+      "referenceLevel3": {
+        "type": "text",
+        "source": "textbook",
+        "body": "教材对 excusing / mitigating conditions 与「约束的现实性」的说明（正文待 PI 摘录）。",
+        "bodyEn": "Textbook explanation for this step (awaiting instructor excerpt in English).",
+        "noteEnReview": "needs-manual-review"
       },
-      state: "todo"
+      "state": "todo",
+      "nameEn": "Identify practical constraints",
+      "introEn": "Record practical constraints, feasible alternatives at the time, and whether they affect responsibility."
     },
     {
-      id: 10,
-      key: "avoid",
-      name: "避免问题",
-      presentInClass: false,
-      intro: "列出未来类似情境中应避免的问题或失误模式。",
-      prompts: [
-        { text: "至少列出 3 条可操作的「应避免」事项。", source: "textbook" },
-        { text: "TODO(PI): 补引导问题", source: "team" }
-      ],
-      fields: [
+      "id": 10,
+      "key": "avoid",
+      "name": "避免问题",
+      "presentInClass": false,
+      "intro": "列出未来类似情境中应避免的问题或失误模式。",
+      "prompts": [
         {
-          key: "avoidItems",
-          type: "list",
-          label: "应避免的问题",
-          min: 3,
-          minSource: "textbook",
-          itemSchema: ["text"]
+          "text": "至少列出 3 条可操作的「应避免」事项。",
+          "source": "textbook",
+          "textEn": "List at least three actionable items to avoid similar problems."
+        },
+        {
+          "text": "TODO(PI): 补引导问题",
+          "source": "team",
+          "textEn": "Instructor placeholder: guided question to be supplied.",
+          "noteEnReview": "needs-manual-review"
         }
       ],
-      checks: [{ id: "minItems", level: "suggest", refSource: "textbook" }],
-      referenceLevel1: [],
-      referenceLevel3: null,
-      state: "todo"
+      "fields": [
+        {
+          "key": "avoidItems",
+          "type": "list",
+          "label": "应避免的问题",
+          "min": 3,
+          "minSource": "textbook",
+          "itemSchema": [
+            "text"
+          ],
+          "labelEn": "Problems to avoid"
+        }
+      ],
+      "checks": [
+        {
+          "id": "minItems",
+          "level": "suggest",
+          "refSource": "textbook"
+        }
+      ],
+      "referenceLevel1": [],
+      "referenceLevel3": null,
+      "state": "todo",
+      "nameEn": "Avoid ethical problems",
+      "introEn": "Propose preventive actions that could reduce similar ethical risks in the future."
     }
   ];
 
   window.CASE_DATA = {
-    meta: {
-      id: "fukushima",
-      title: "福岛第一核电站事故",
-      dataVersion: "2.1",
-      dataUpdatedAt: "2026-10-11",
-      builtAt: "2026-10-11"
+    "meta": {
+      "id": "fukushima",
+      "title": "福岛第一核电站事故",
+      "dataVersion": "2.2",
+      "dataUpdatedAt": "2026-10-12",
+      "builtAt": "2026-10-11",
+      "titleEn": "Fukushima Daiichi Nuclear Accident"
     },
-    sources: [
+    "sources": [
       {
-        id: "src-textbook-appendix-I",
-        title: "Global Engineering Ethics, Appendix I: Principles Reviewed",
-        publisher: "Elsevier",
-        year: 2017,
-        url: "",
-        accessedAt: "",
-        note: ""
+        "id": "src-textbook-appendix-I",
+        "title": "Global Engineering Ethics, Appendix I: Principles Reviewed",
+        "publisher": "Elsevier",
+        "year": 2017,
+        "url": "",
+        "accessedAt": "",
+        "note": "",
+        "titleEn": "Global Engineering Ethics, Appendix I: Principles Reviewed"
       },
       {
-        id: "src-001",
-        title: "THE FUKUSHIMA DAIICHI ACCIDENT — REPORT BY THE DIRECTOR GENERAL",
-        publisher: "International Atomic Energy Agency (IAEA)",
-        year: 2015,
-        url: "https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1710-ReportByTheDG-Web.pdf",
-        accessedAt: "2026-10-11",
-        note: ""
+        "id": "src-001",
+        "title": "THE FUKUSHIMA DAIICHI ACCIDENT — REPORT BY THE DIRECTOR GENERAL",
+        "publisher": "International Atomic Energy Agency (IAEA)",
+        "year": 2015,
+        "url": "https://www-pub.iaea.org/MTCD/Publications/PDF/Pub1710-ReportByTheDG-Web.pdf",
+        "accessedAt": "2026-10-11",
+        "note": "",
+        "titleEn": "THE FUKUSHIMA DAIICHI ACCIDENT — REPORT BY THE DIRECTOR GENERAL"
       },
       {
-        id: "src-002",
-        title: "The Fukushima Daiichi Accident — Technical Volume 1/5: Description and Context of the Accident",
-        publisher: "IAEA",
-        year: 2015,
-        url: "https://www-pub.iaea.org/MTCD/Publications/PDF/AdditionalVolumes/P1710/Pub1710-TV1-Web.pdf",
-        accessedAt: "2026-10-11",
-        note: ""
+        "id": "src-002",
+        "title": "The Fukushima Daiichi Accident — Technical Volume 1/5: Description and Context of the Accident",
+        "publisher": "IAEA",
+        "year": 2015,
+        "url": "https://www-pub.iaea.org/MTCD/Publications/PDF/AdditionalVolumes/P1710/Pub1710-TV1-Web.pdf",
+        "accessedAt": "2026-10-11",
+        "note": "",
+        "titleEn": "The Fukushima Daiichi Accident — Technical Volume 1/5: Description and Context of the Accident"
       },
       {
-        id: "src-003",
-        title: "The Fukushima Daiichi Accident（书目页 STI/PUB/1710）",
-        publisher: "IAEA",
-        year: 2015,
-        url: "https://www.iaea.org/publications/10962/the-fukushima-daiichi-accident",
-        accessedAt: "2026-10-11",
-        note: "仅书目元数据，未取正文——不得作为事实依据"
+        "id": "src-003",
+        "title": "The Fukushima Daiichi Accident（书目页 STI/PUB/1710）",
+        "publisher": "IAEA",
+        "year": 2015,
+        "url": "https://www.iaea.org/publications/10962/the-fukushima-daiichi-accident",
+        "accessedAt": "2026-10-11",
+        "note": "仅书目元数据，未取正文——不得作为事实依据",
+        "titleEn": "The Fukushima Daiichi Accident (catalog STI/PUB/1710)",
+        "noteEn": "Bibliographic metadata only; not used as factual evidence."
       },
       {
-        id: "src-004",
-        title: "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission（NAIIC 英文摘要版）",
-        publisher: "National Diet of Japan / NAIIC",
-        year: 2012,
-        url: "",
-        accessedAt: "2026-10-11",
-        note: "PI 提供本地 PDF（PI 已存档）"
+        "id": "src-004",
+        "title": "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission（NAIIC 英文摘要版）",
+        "publisher": "National Diet of Japan / NAIIC",
+        "year": 2012,
+        "url": "",
+        "accessedAt": "2026-10-11",
+        "note": "PI 提供本地 PDF（PI 已存档）",
+        "titleEn": "Official Report of the Fukushima Nuclear Accident Independent Investigation Commission (NAIIC summary, English)",
+        "noteEn": "Local PDF provided by instructor (archived)."
       },
       {
-        id: "src-005",
-        title: "TEPCO 事故相关附件（120620e0106：地震动评价与历史安全评估档案等）",
-        publisher: "Tokyo Electric Power Company (TEPCO)",
-        year: 2012,
-        url: "",
-        accessedAt: "2026-10-11",
-        note: "PI 提供本地 PDF（PI 已存档）"
+        "id": "src-005",
+        "title": "TEPCO 事故相关附件（120620e0106：地震动评价与历史安全评估档案等）",
+        "publisher": "Tokyo Electric Power Company (TEPCO)",
+        "year": 2012,
+        "url": "",
+        "accessedAt": "2026-10-11",
+        "note": "PI 提供本地 PDF（PI 已存档）",
+        "titleEn": "TEPCO accident-related attachments (120620e0106: seismic evaluation archives, etc.)",
+        "noteEn": "Local PDF provided by instructor (archived)."
       }
     ],
-    timeline: [
+    "timeline": [
       {
-        id: "tl-001",
-        date: "2011-03-11",
-        event: "东日本大震灾（Great East Japan Earthquake）发生。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "The Great East Japan Earthquake occurred on 11 March 2011.",
-        confidence: "high",
-        note: "核验：✅",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-001",
+        "date": "2011-03-11",
+        "event": "东日本大震灾（Great East Japan Earthquake）发生。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "The Great East Japan Earthquake occurred on 11 March 2011.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "The Great East Japan Earthquake occurred on 11 March 2011."
       },
       {
-        id: "tl-002",
-        date: "2011-03-11",
-        event: "地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres.",
-        confidence: "medium",
-        note: "核验：✅；核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011）",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-002",
+        "date": "2011-03-11",
+        "event": "地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres.",
+        "confidence": "medium",
+        "note": "核验：✅；核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011）",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres."
       },
       {
-        id: "tl-003",
-        date: "2011-03-11 14:46 JST",
-        event: "主震发生于 JST 2011-03-11 14:46（星期五）。",
-        sourceId: "src-002",
-        locator: "§1.1.1 Main occurrences",
-        quote: "The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan.",
-        confidence: "high",
-        note: "核验：✅",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-003",
+        "date": "2011-03-11 14:46 JST",
+        "event": "主震发生于 JST 2011-03-11 14:46（星期五）。",
+        "sourceId": "src-002",
+        "locator": "§1.1.1 Main occurrences",
+        "quote": "The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan."
       },
       {
-        id: "tl-006",
-        date: "2011-03-11 及之后",
-        event: "1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
-        confidence: "medium",
-        note: "核验：✅；具体时刻未获取（Executive Summary 未给出分机组时刻链）",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-006",
+        "date": "2011-03-11 及之后",
+        "event": "1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
+        "confidence": "medium",
+        "note": "核验：✅；具体时刻未获取（Executive Summary 未给出分机组时刻链）",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached."
       },
       {
-        id: "tl-007",
-        date: "2011-03-11 及之后",
-        event: "1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
-        confidence: "medium",
-        note: "核验：✅；Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-007",
+        "date": "2011-03-11 及之后",
+        "event": "1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
+        "confidence": "medium",
+        "note": "核验：✅；Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel."
       },
       {
-        id: "tl-008",
-        date: "2011-03-11 及之后",
-        event: "放射性物质释入大气并沉积于陆地与海洋，亦有直接向海释放。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "Radionuclides were released from the plant to the atmosphere and were deposited on land and on the ocean. There were also direct releases into the sea.",
-        confidence: "medium",
-        note: "核验：✅；具体时刻未获取",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-008",
+        "date": "2011-03-11 及之后",
+        "event": "放射性物质释入大气并沉积于陆地与海洋，亦有直接向海释放。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "Radionuclides were released from the plant to the atmosphere and were deposited on land and on the ocean. There were also direct releases into the sea.",
+        "confidence": "medium",
+        "note": "核验：✅；具体时刻未获取",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "Radionuclides were released from the plant to the atmosphere and were deposited on land and on the ocean. There were also direct releases into the sea."
       },
       {
-        id: "tl-009",
-        date: "2011-03-11 及之后",
-        event: "厂址半径 20 km 及部分指定区域人员被疏散；20–30 km 先 shelter 后建议自愿撤离。",
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "People within a radius of 20 km of the site and in other designated areas were evacuated, and those within a radius of 20–30 km were instructed to shelter before later being advised to voluntarily evacuate.",
-        confidence: "high",
-        note: "核验：✅；分阶段扩展见 DG「Emergency preparedness」段（如 2 km→20 km）",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-009",
+        "date": "2011-03-11 及之后",
+        "event": "厂址半径 20 km 及部分指定区域人员被疏散；20–30 km 先 shelter 后建议自愿撤离。",
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "People within a radius of 20 km of the site and in other designated areas were evacuated, and those within a radius of 20–30 km were instructed to shelter before later being advised to voluntarily evacuate.",
+        "confidence": "high",
+        "note": "核验：✅；分阶段扩展见 DG「Emergency preparedness」段（如 2 km→20 km）",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "People within a radius of 20 km of the site and in other designated areas were evacuated, and those within a radius of 20–30 km were instructed to shelter before later being advised to voluntarily evacuate."
       },
       {
-        id: "tl-011",
-        date: "2011-03-11 及之后",
-        event: "1–5 号机组经历长时间全厂断电（SBO）；1、2 号超过 9 天，3、4 号超过 14 天。",
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "Units 1–5 of the Fukushima Daiichi NPP experienced extended station blackout (SBO) events, which exceeded nine days in Units 1 and 2, and 14 days in Units 3 and 4.",
-        confidence: "high",
-        note: "核验：✅；Unit 1：15:37 失 AC、15:42 宣布 SBO（§1.3.2）；结束日未在本表展开",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-011",
+        "date": "2011-03-11 及之后",
+        "event": "1–5 号机组经历长时间全厂断电（SBO）；1、2 号超过 9 天，3、4 号超过 14 天。",
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "Units 1–5 of the Fukushima Daiichi NPP experienced extended station blackout (SBO) events, which exceeded nine days in Units 1 and 2, and 14 days in Units 3 and 4.",
+        "confidence": "high",
+        "note": "核验：✅；Unit 1：15:37 失 AC、15:42 宣布 SBO（§1.3.2）；结束日未在本表展开",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "Units 1–5 of the Fukushima Daiichi NPP experienced extended station blackout (SBO) events, which exceeded nine days in Units 1 and 2, and 14 days in Units 3 and 4."
       },
       {
-        id: "tl-012",
-        date: "2011-03-11 及之后",
-        event: "1–3 号机组 RPV 最终 breach，放射性物质经可控 vent 或 confinement 失效释出。",
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units, and radioactive material escaped from the reactors. The radioactive material confined in the primary containment vessels (PCVs) was further released directly to the environment either in a controlled manner, i.e. by venting of the reactors’ PCVs, or in an uncontrolled manner upon damage and failure of the confinement structures.",
-        confidence: "medium",
-        note: "核验：✅；具体时刻未获取",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-012",
+        "date": "2011-03-11 及之后",
+        "event": "1–3 号机组 RPV 最终 breach，放射性物质经可控 vent 或 confinement 失效释出。",
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units, and radioactive material escaped from the reactors. The radioactive material confined in the primary containment vessels (PCVs) was further released directly to the environment either in a controlled manner, i.e. by venting of the reactors’ PCVs, or in an uncontrolled manner upon damage and failure of the confinement structures.",
+        "confidence": "medium",
+        "note": "核验：✅；具体时刻未获取",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units, and radioactive material escaped from the reactors. The radioactive material confined in the primary containment vessels (PCVs) was further released directly to the environment either in a controlled manner, i.e. by venting of the reactors’ PCVs, or in an uncontrolled manner upon damage and failure of the confinement structures."
       },
       {
-        id: "tl-013",
-        date: "2011-03-11 及之后",
-        event: "为降低照射，20 km 内及周边指定区域疏散，食品与饮用水分销/消费受限。",
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "In order to reduce radiation exposures, people within a radius of 20 km of the site, as well as other specified areas, were evacuated, and restrictions were placed on the distribution and consumption of food and drinking water.",
-        confidence: "medium",
-        note: "核验：✅；具体时刻未获取",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-013",
+        "date": "2011-03-11 及之后",
+        "event": "为降低照射，20 km 内及周边指定区域疏散，食品与饮用水分销/消费受限。",
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "In order to reduce radiation exposures, people within a radius of 20 km of the site, as well as other specified areas, were evacuated, and restrictions were placed on the distribution and consumption of food and drinking water.",
+        "confidence": "medium",
+        "note": "核验：✅；具体时刻未获取",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "In order to reduce radiation exposures, people within a radius of 20 km of the site, as well as other specified areas, were evacuated, and restrictions were placed on the distribution and consumption of food and drinking water."
       },
       {
-        id: "tl-016",
-        date: "2011-03-11 15:37",
-        event: "NAIIC 事故时间轴标注海啸（峰值）到达时刻。",
-        sourceId: "src-004",
-        locator: "事故时间轴（Conclusions 前时间轴图）",
-        quote: "15:37 Tsunami (peak of waves)",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；与 TV1 §1.1.2.5 第二波 15:36–15:37 一致口径",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-016",
+        "date": "2011-03-11 15:37",
+        "event": "NAIIC 事故时间轴标注海啸（峰值）到达时刻。",
+        "sourceId": "src-004",
+        "locator": "事故时间轴（Conclusions 前时间轴图）",
+        "quote": "15:37 Tsunami (peak of waves)",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；与 TV1 §1.1.2.5 第二波 15:36–15:37 一致口径",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "15:37 Tsunami (peak of waves)"
       },
       {
-        id: "tl-017",
-        date: "2011-03-12 15:36",
-        event: "Unit 1 reactor building 发生爆炸（服务楼层）。",
-        sourceId: "src-002",
-        locator: "§1.3.2 Unit 1 sequence",
-        quote: "At 15:36 on 12 March 2011, an explosion occurred on the service floor of the Unit 1 RB",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；补 tl-007 备注中 Unit 1 氢爆时刻",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-017",
+        "date": "2011-03-12 15:36",
+        "event": "Unit 1 reactor building 发生爆炸（服务楼层）。",
+        "sourceId": "src-002",
+        "locator": "§1.3.2 Unit 1 sequence",
+        "quote": "At 15:36 on 12 March 2011, an explosion occurred on the service floor of the Unit 1 RB",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；补 tl-007 备注中 Unit 1 氢爆时刻",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "At 15:36 on 12 March 2011, an explosion occurred on the service floor of the Unit 1 RB"
       },
       {
-        id: "tl-018",
-        date: "2009-07-15",
-        event: "NISA 完成对代表电厂抗震 interim report 的 validity 审查。",
-        sourceId: "src-005",
-        locator: "Attachment 3-14 Main developments regarding the seismic back-check",
-        quote: "July 15, 2009 Review completed",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；耐震回溯检查时间线",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-018",
+        "date": "2009-07-15",
+        "event": "NISA 完成对代表电厂抗震 interim report 的 validity 审查。",
+        "sourceId": "src-005",
+        "locator": "Attachment 3-14 Main developments regarding the seismic back-check",
+        "quote": "July 15, 2009 Review completed",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；耐震回溯检查时间线",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "July 15, 2009 Review completed"
       },
       {
-        id: "tl-019",
-        date: "2008-10 ~ 2008-12",
-        event: "TEPCO 接收 Jogan 海啸研究并进行试算、协调修订海啸评估方法。",
-        sourceId: "src-005",
-        locator: "Attachment 3-15 Principle Chronology of Tsunami Safety Assessment",
-        quote: "Receive Jogan Tsunami research paper in progress from Dr. Satake",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；同页含 Implement trial calculations on Jogan Tsunami（2008-12）",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-019",
+        "date": "2008-10 ~ 2008-12",
+        "event": "TEPCO 接收 Jogan 海啸研究并进行试算、协调修订海啸评估方法。",
+        "sourceId": "src-005",
+        "locator": "Attachment 3-15 Principle Chronology of Tsunami Safety Assessment",
+        "quote": "Receive Jogan Tsunami research paper in progress from Dr. Satake",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；同页含 Implement trial calculations on Jogan Tsunami（2008-12）",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "Receive Jogan Tsunami research paper in progress from Dr. Satake"
       },
       {
-        id: "tl-020",
-        date: "2011-03-11 21:23",
-        event: "下达 3 km 疏散令时，仅约 20% 厂址所在町居民知晓事故。",
-        sourceId: "src-004",
-        locator: "Conclusions — Evacuation issues",
-        quote: "only 20 percent of the residents of the town hosting the plant knew about the accident when evacuation from the 3km zone was ordered at 21:23 on the evening of March 11.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）",
-        infoKnownBy: [],
-        infoKnownWhen: ""
+        "id": "tl-020",
+        "date": "2011-03-11 21:23",
+        "event": "下达 3 km 疏散令时，仅约 20% 厂址所在町居民知晓事故。",
+        "sourceId": "src-004",
+        "locator": "Conclusions — Evacuation issues",
+        "quote": "only 20 percent of the residents of the town hosting the plant knew about the accident when evacuation from the 3km zone was ordered at 21:23 on the evening of March 11.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "infoKnownBy": [],
+        "infoKnownWhen": "",
+        "eventEn": "only 20 percent of the residents of the town hosting the plant knew about the accident when evacuation from the 3km zone was ordered at 21:23 on the evening of March 11."
       }
     ],
-    facts: [
+    "facts": [
       {
-        id: "f-mat-001",
-        text: "福岛第一核电厂址共有六台核电机组（Units 1–6）。",
-        categories: [
+        "id": "f-mat-001",
+        "text": "福岛第一核电厂址共有六台核电机组（Units 1–6）。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.1.2.2 Plant status",
-        quote: "The Fukushima Daiichi NPP (Fig. 1.1–3), which comprises six units [12] with boiling water reactors (BWRs) (see Box 1.1–1), was located 180 km from the epicentre.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-002",
+        "locator": "§1.1.2.2 Plant status",
+        "quote": "The Fukushima Daiichi NPP (Fig. 1.1–3), which comprises six units [12] with boiling water reactors (BWRs) (see Box 1.1–1), was located 180 km from the epicentre.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "The Fukushima Daiichi NPP (Fig. 1.1–3), which comprises six units with boiling water reactors (BWRs) (see Box 1.1–1), was located 180 km from the epicentre.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-002",
-        text: "2011-03-11 海啸淹没厂内主、备电源与最终热阱等设备/结构，**六台机组**均受影响。",
-        categories: [
+        "id": "f-mat-002",
+        "text": "2011-03-11 海啸淹没厂内主、备电源与最终热阱等设备/结构，**六台机组**均受影响。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "They flooded the primary and backup power systems and equipment, as well as the ultimate heat sink systems and structures, of all six units on the site.",
-        confidence: "high",
-        note: "核验：✅；并入原 tl-010 信息"
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "They flooded the primary and backup power systems and equipment, as well as the ultimate heat sink systems and structures, of all six units on the site.",
+        "confidence": "high",
+        "note": "核验：✅；并入原 tl-010 信息",
+        "textEn": "They flooded the primary and backup power systems and equipment, as well as the ultimate heat sink systems and structures, of all six units on the site.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-003",
-        text: "地震在 tsunami 之前已造成场外输电系统损坏。",
-        categories: [
+        "id": "f-mat-003",
+        "text": "地震在 tsunami 之前已造成场外输电系统损坏。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "Compounding the off-site power loss that occurred before the tsunami due to the earthquake damage to the transmission system, the flooding caused the loss of on-site power sources (and/or on-site power distribution systems).",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "Compounding the off-site power loss that occurred before the tsunami due to the earthquake damage to the transmission system, the flooding caused the loss of on-site power sources (and/or on-site power distribution systems).",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "Compounding the off-site power loss that occurred before the tsunami due to the earthquake damage to the transmission system, the flooding caused the loss of on-site power sources (and/or on-site power distribution systems).",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-004",
-        text: "1–3 号机组因长时间失去电力与排热，燃料过热并熔化，RPV 最终 breach。",
-        categories: [
+        "id": "f-mat-004",
+        "text": "1–3 号机组因长时间失去电力与排热，燃料过热并熔化，RPV 最终 breach。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "The reactors of Units 1, 2 and 3 suffered damage as the fuel overheated and melted. The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "The reactors of Units 1, 2 and 3 suffered damage as the fuel overheated and melted. The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "The reactors of Units 1, 2 and 3 suffered damage as the fuel overheated and melted. The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-005",
-        text: "1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。",
-        categories: [
+        "id": "f-mat-005",
+        "text": "1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
-        confidence: "medium",
-        note: "核验：✅；核验⚠️：引文为 Executive Summary **句中片段**（非独立完整句）"
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
+        "confidence": "medium",
+        "note": "核验：✅；核验⚠️：引文为 Executive Summary **句中片段**（非独立完整句）",
+        "textEn": "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-006",
-        text: "设计中的地震/海啸 hazard 主要依据日本历史地震记录与近期海啸证据评估。",
-        categories: [
+        "id": "f-mat-006",
+        "text": "设计中的地震/海啸 hazard 主要依据日本历史地震记录与近期海啸证据评估。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-001",
-        locator: "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
-        quote: "The seismic hazard and tsunami waves considered in the original design were evaluated mainly on the basis of historical seismic records and evidence of recent tsunamis in Japan.",
-        confidence: "high",
-        note: "核验：✅；非 Executive Summary 小节标题"
+        "sourceId": "src-001",
+        "locator": "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
+        "quote": "The seismic hazard and tsunami waves considered in the original design were evaluated mainly on the basis of historical seismic records and evidence of recent tsunamis in Japan.",
+        "confidence": "high",
+        "note": "核验：✅；非 Executive Summary 小节标题",
+        "textEn": "The seismic hazard and tsunami waves considered in the original design were evaluated mainly on the basis of historical seismic records and evidence of recent tsunamis in Japan.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-007",
-        text: "记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。",
-        categories: [
+        "id": "f-mat-007",
+        "text": "记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-001",
-        locator: "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
-        quote: "Both the recorded ground motions and the heights of the tsunami waves significantly exceeded the assumptions of hazards that had been made when the plant was originally designed.",
-        confidence: "medium",
-        note: "核验：✅；核验⚠️：引文为定性表述，**未给出**具体 ground motion / 海啸数值"
+        "sourceId": "src-001",
+        "locator": "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
+        "quote": "Both the recorded ground motions and the heights of the tsunami waves significantly exceeded the assumptions of hazards that had been made when the plant was originally designed.",
+        "confidence": "medium",
+        "note": "核验：✅；核验⚠️：引文为定性表述，**未给出**具体 ground motion / 海啸数值",
+        "textEn": "Both the recorded ground motions and the heights of the tsunami waves significantly exceeded the assumptions of hazards that had been made when the plant was originally designed.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-009",
-        text: "2 号机组 containment venting 未成功，containment 失效并造成放射性释放。",
-        categories: [
+        "id": "f-mat-009",
+        "text": "2 号机组 containment venting 未成功，containment 失效并造成放射性释放。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-001",
-        locator: "NUCLEAR SAFETY CONSIDERATIONS — Fundamental safety functions",
-        quote: "Containment venting for Unit 2 was not successful, and the containment failed, resulting in radioactive releases.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "NUCLEAR SAFETY CONSIDERATIONS — Fundamental safety functions",
+        "quote": "Containment venting for Unit 2 was not successful, and the containment failed, resulting in radioactive releases.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "Containment venting for Unit 2 was not successful, and the containment failed, resulting in radioactive releases.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-010",
-        text: "原始 EP 设计基准最高潮位对应海啸高度为 OP +3.122 m。",
-        categories: [
+        "id": "f-mat-010",
+        "text": "原始 EP 设计基准最高潮位对应海啸高度为 OP +3.122 m。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.2.5.6 Oceanography；Table 1.2–3",
-        quote: "This gave a design basis tsunami height of 3.122 m above the OP level.",
-        confidence: "high",
-        note: "核验：✅；OP = Onahama Port 潮位基准"
+        "sourceId": "src-002",
+        "locator": "§1.2.5.6 Oceanography；Table 1.2–3",
+        "quote": "This gave a design basis tsunami height of 3.122 m above the OP level.",
+        "confidence": "high",
+        "note": "核验：✅；OP = Onahama Port 潮位基准",
+        "textEn": "This gave a design basis tsunami height of 3.122 m above the OP level.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-011",
-        text: "防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。",
-        categories: [
+        "id": "f-mat-011",
+        "text": "防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.1.2.5 Tsunami and station blackout",
-        quote: "the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m [15]. However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant.",
-        confidence: "medium",
-        note: "核验：⚠️ PDF 文本层在 “maximum” 与 “tsunami height of 5.5 m” 之间插入脚注 12，草稿引文作连续句；且 15:36–15:37 为 3/11 第二波海啸，非氢爆"
+        "sourceId": "src-002",
+        "locator": "§1.1.2.5 Tsunami and station blackout",
+        "quote": "the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m [15]. However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant.",
+        "confidence": "medium",
+        "note": "核验：⚠️ PDF 文本层在 “maximum” 与 “tsunami height of 5.5 m” 之间插入脚注 12，草稿引文作连续句；且 15:36–15:37 为 3/11 第二波海啸，非氢爆",
+        "textEn": "the tsunami barrier seawalls, the breakwater, that were designed to protect against a maximum tsunami height of 5.5 m . However, about 10 minutes after the first wave (between 15:36 and 15:37), the second and largest tsunami wave, with a run-up height of 14–15 m, reached the plant.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-012",
-        text: "2002 年 JSCE 方法重评海啸高度为 OP +5.7 m，并采取抬高泵位等对策。",
-        categories: [
+        "id": "f-mat-012",
+        "text": "2002 年 JSCE 方法重评海啸高度为 OP +5.7 m，并采取抬高泵位等对策。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "Table 1.2–4",
-        quote: "Japan Society of Civil Engineers (JSCE) assessment method OP +5.7 m Raise elevation of pumps",
-        confidence: "high",
-        note: "核验：✅；同表另有 Make buildings watertight"
+        "sourceId": "src-002",
+        "locator": "Table 1.2–4",
+        "quote": "Japan Society of Civil Engineers (JSCE) assessment method OP +5.7 m Raise elevation of pumps",
+        "confidence": "high",
+        "note": "核验：✅；同表另有 Make buildings watertight",
+        "textEn": "Japan Society of Civil Engineers (JSCE) assessment method OP +5.7 m Raise elevation of pumps",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-013",
-        text: "1966 年许可基准引用的观测海啸来自 1960 年智利地震海啸。",
-        categories: [
+        "id": "f-mat-013",
+        "text": "1966 年许可基准引用的观测海啸来自 1960 年智利地震海啸。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "Table 1.2–4",
-        quote: "Establishment Permit OP +3.122 m (observed height resulting from Chilean tsunami in 1960)",
-        confidence: "high",
-        note: "核验：✅；Table 1.2–3 Remarks 亦有 24 May 1960 表述"
+        "sourceId": "src-002",
+        "locator": "Table 1.2–4",
+        "quote": "Establishment Permit OP +3.122 m (observed height resulting from Chilean tsunami in 1960)",
+        "confidence": "high",
+        "note": "核验：✅；Table 1.2–3 Remarks 亦有 24 May 1960 表述",
+        "textEn": "Establishment Permit OP +3.122 m (observed height resulting from Chilean tsunami in 1960)",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-014",
-        text: "Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。",
-        categories: [
+        "id": "f-mat-014",
+        "text": "Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "§1.3.2；§1.1.3.3",
-        quote: "All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami",
-        confidence: "medium",
-        note: "核验：⚠️ 草稿引文含 “…” 合并 §1.3.2 与 §1.1.3.3，非单一连续逐字段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）"
+        "sourceId": "src-002",
+        "locator": "§1.3.2；§1.1.3.3",
+        "quote": "All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami",
+        "confidence": "medium",
+        "note": "核验：⚠️ 草稿引文含 “…” 合并 §1.3.2 与 §1.1.3.3，非单一连续逐字段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）",
+        "textEn": "All AC power was lost at 15:37 … TEPCO declared a station blackout at 15:42. … core cooling at Unit 1 was lost when the IC was stopped by the operators just before the tsunami",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-015",
-        text: "2009 年 bathymetric 重评给出 OP +6.1 m（对策含抬高泵位）。",
-        categories: [
+        "id": "f-mat-015",
+        "text": "2009 年 bathymetric 重评给出 OP +6.1 m（对策含抬高泵位）。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-002",
-        locator: "Table 1.2–4",
-        quote: "Latest bathymetric and tidal data on the basis of the JSCE assessment method OP +6.1 m Raise elevation of pumps",
-        confidence: "high",
-        note: "核验：✅；与 f-mat-011 遭遇 run-up 14–15 m 对照；未写释放量"
+        "sourceId": "src-002",
+        "locator": "Table 1.2–4",
+        "quote": "Latest bathymetric and tidal data on the basis of the JSCE assessment method OP +6.1 m Raise elevation of pumps",
+        "confidence": "high",
+        "note": "核验：✅；与 f-mat-011 遭遇 run-up 14–15 m 对照；未写释放量",
+        "textEn": "Latest bathymetric and tidal data on the basis of the JSCE assessment method OP +6.1 m Raise elevation of pumps",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-016",
-        text: "TEPCO 档案：福岛第一 JSCE 评估最大海啸高度 5.7 m（后 6.1 m），应急海水泵安装高度 4 m。",
-        categories: [
+        "id": "f-mat-016",
+        "text": "TEPCO 档案：福岛第一 JSCE 评估最大海啸高度 5.7 m（后 6.1 m），应急海水泵安装高度 4 m。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-005",
-        locator: "Attachment 4-4 Status of TEPCO efforts",
-        quote: "the maximum tsunami height from the JSCE assessment was 5.7m (finally 6.1m), and the emergency seawater pump installation height was 4m.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 口径**；与 IAEA run-up 14–15 m 不同指标"
+        "sourceId": "src-005",
+        "locator": "Attachment 4-4 Status of TEPCO efforts",
+        "quote": "the maximum tsunami height from the JSCE assessment was 5.7m (finally 6.1m), and the emergency seawater pump installation height was 4m.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 口径**；与 IAEA run-up 14–15 m 不同指标",
+        "textEn": "the maximum tsunami height from the JSCE assessment was 5.7m (finally 6.1m), and the emergency seawater pump installation height was 4m.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-017",
-        text: "TEPCO 时间线：2009 年 4 月安全评价给出福岛第一水位 O.P.+5.4~6.1 m。",
-        categories: [
+        "id": "f-mat-017",
+        "text": "TEPCO 时间线：2009 年 4 月安全评价给出福岛第一水位 O.P.+5.4~6.1 m。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-005",
-        locator: "Attachment 3-15 chronology",
-        quote: "Water level : O.P.+5.4~6.1m",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-005",
+        "locator": "Attachment 3-15 chronology",
+        "quote": "Water level : O.P.+5.4~6.1m",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "Water level : O.P.+5.4~6.1m",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-018",
-        text: "1966–1972 建设许可基准引用智利地震，潮位 O.P.+3.122 m。",
-        categories: [
+        "id": "f-mat-018",
+        "text": "1966–1972 建设许可基准引用智利地震，潮位 O.P.+3.122 m。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-005",
-        locator: "Attachment 3-15",
-        quote: "based on the Chilean earthquake, -- Water level: O.P. +3.122m",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-005",
+        "locator": "Attachment 3-15",
+        "quote": "based on the Chilean earthquake, -- Water level: O.P. +3.122m",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "based on the Chilean earthquake, -- Water level: O.P. +3.122m",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-019",
-        text: "TEPCO 地震动评价结论：基岩面地震动与设计基准 Ss **约同量级**。",
-        categories: [
+        "id": "f-mat-019",
+        "text": "TEPCO 地震动评价结论：基岩面地震动与设计基准 Ss **约同量级**。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-005",
-        locator: "Attachment 3-3 (2/20) §3 Conclusion",
-        quote: "the free surface of the base stratum seismic motion and the design basis seismic ground motion Ss are approximately the same level.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 2012 附件口径**"
+        "sourceId": "src-005",
+        "locator": "Attachment 3-3 (2/20) §3 Conclusion",
+        "quote": "the free surface of the base stratum seismic motion and the design basis seismic ground motion Ss are approximately the same level.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 2012 附件口径**",
+        "textEn": "the free surface of the base stratum seismic motion and the design basis seismic ground motion Ss are approximately the same level.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-mat-020",
-        text: "NAIIC：福岛第一记录地震动超过新指引假设，且未到位适当抗震加固。",
-        categories: [
+        "id": "f-mat-020",
+        "text": "NAIIC：福岛第一记录地震动超过新指引假设，且未到位适当抗震加固。",
+        "categories": [
           "material"
         ],
-        sourceId: "src-004",
-        locator: "Summary of Findings — The lack of tsunami countermeasures 前段",
-        quote: "the recorded seismic motion at Fukushima Daiichi exceeded the assumption of the new guideline. It is clear that appropriate anti-seismic reinforcements were not in place at the time of the March 11 earthquake.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Summary of Findings — The lack of tsunami countermeasures 前段",
+        "quote": "the recorded seismic motion at Fukushima Daiichi exceeded the assumption of the new guideline. It is clear that appropriate anti-seismic reinforcements were not in place at the time of the March 11 earthquake.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "the recorded seismic motion at Fukushima Daiichi exceeded the assumption of the new guideline. It is clear that appropriate anti-seismic reinforcements were not in place at the time of the March 11 earthquake.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-001",
-        text: "现场人员需在未按培训场景准备的情况下即兴应对，且常缺合适设备。",
-        categories: [
+        "id": "f-ind-001",
+        "text": "现场人员需在未按培训场景准备的情况下即兴应对，且常缺合适设备。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-001",
-        locator: "Foreword",
-        quote: "They had to improvise a response in circumstances for which they had not been trained, often lacking appropriate equipment.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "quote": "They had to improvise a response in circumstances for which they had not been trained, often lacking appropriate equipment.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "They had to improvise a response in circumstances for which they had not been trained, often lacking appropriate equipment.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-002",
-        text: "尽管运营商人员努力维持控制，1–3 号机组仍发生堆芯损伤。",
-        categories: [
+        "id": "f-ind-002",
+        "text": "尽管运营商人员努力维持控制，1–3 号机组仍发生堆芯损伤。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "Despite the efforts of the operators at the Fukushima Daiichi nuclear power plant to maintain control, the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "Despite the efforts of the operators at the Fukushima Daiichi nuclear power plant to maintain control, the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "Despite the efforts of the operators at the Fukushima Daiichi nuclear power plant to maintain control, the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-003",
-        text: "氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。",
-        categories: [
+        "id": "f-ind-003",
+        "text": "氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
-        confidence: "medium",
-        note: "核验：✅；核验⚠️：句中片段引文；未给出具体人数"
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
+        "confidence": "medium",
+        "note": "核验：✅；核验⚠️：句中片段引文；未给出具体人数",
+        "textEn": "leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-004",
-        text: "地震、海啸后果及辐射水平升高使 on-site response 极其困难。",
-        categories: [
+        "id": "f-ind-004",
+        "text": "地震、海啸后果及辐射水平升高使 on-site response 极其困难。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-001",
-        locator: "EMERGENCY PREPAREDNESS AND RESPONSE",
-        quote: "The consequences of the earthquake and tsunami, and increased radiation levels, made the on-site response extremely difficult.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "EMERGENCY PREPAREDNESS AND RESPONSE",
+        "quote": "The consequences of the earthquake and tsunami, and increased radiation levels, made the on-site response extremely difficult.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "The consequences of the earthquake and tsunami, and increased radiation levels, made the on-site response extremely difficult.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-005",
-        text: "疏散因地震/tsunami 破坏及通信交通问题而存在困难。",
-        categories: [
+        "id": "f-ind-005",
+        "text": "疏散因地震/tsunami 破坏及通信交通问题而存在困难。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-001",
-        locator: "EMERGENCY PREPAREDNESS AND RESPONSE — Protecting the public",
-        quote: "There were difficulties in evacuation due to the damage caused by the earthquake and tsunami and the resulting communication and transportation problems.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "EMERGENCY PREPAREDNESS AND RESPONSE — Protecting the public",
+        "quote": "There were difficulties in evacuation due to the damage caused by the earthquake and tsunami and the resulting communication and transportation problems.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "There were difficulties in evacuation due to the damage caused by the earthquake and tsunami and the resulting communication and transportation problems.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-006",
-        text: "事故造成现场工作人员与周边公众受到辐射照射。",
-        categories: [
+        "id": "f-ind-006",
+        "text": "事故造成现场工作人员与周边公众受到辐射照射。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-002",
-        locator: "§1.1 Summary of the accident",
-        quote: "The radioactive releases resulted in radiological exposure of the workers at the site and the general public residing in the surrounding communities",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-002",
+        "locator": "§1.1 Summary of the accident",
+        "quote": "The radioactive releases resulted in radiological exposure of the workers at the site and the general public residing in the surrounding communities",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "The radioactive releases resulted in radiological exposure of the workers at the site and the general public residing in the surrounding communities",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-007",
-        text: "MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。",
-        categories: [
+        "id": "f-ind-007",
+        "text": "MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-002",
-        locator: "§1.2.6（人员响应段）",
-        quote: "Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations.",
-        confidence: "medium",
-        note: "核验：✅；核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段"
+        "sourceId": "src-002",
+        "locator": "§1.2.6（人员响应段）",
+        "quote": "Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations.",
+        "confidence": "medium",
+        "note": "核验：✅；核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段",
+        "textEn": "Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-008",
-        text: "Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。",
-        categories: [
+        "id": "f-ind-008",
+        "text": "Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-002",
-        locator: "§1.3.2 Unit 1 sequence",
-        quote: "The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded.",
-        confidence: "medium",
-        note: "核验：⚠️ 草稿以 “The operators manually…” 开头；PDF 连续文本为 “…that the operators manually…”（无句首 The operators）"
+        "sourceId": "src-002",
+        "locator": "§1.3.2 Unit 1 sequence",
+        "quote": "The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded.",
+        "confidence": "medium",
+        "note": "核验：⚠️ 草稿以 “The operators manually…” 开头；PDF 连续文本为 “…that the operators manually…”（无句首 The operators）",
+        "textEn": "The operators manually stopped both loops of the IC systems at 15:03, in order to prevent the cool down limit of 55°C/h, set by the plant’s operational limits and conditions (OLCs), from being exceeded.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-009",
-        text: "Site Superintendent 于 00:06 下令准备对 Unit 1（及 Unit 2）vent。",
-        categories: [
+        "id": "f-ind-009",
+        "text": "Site Superintendent 于 00:06 下令准备对 Unit 1（及 Unit 2）vent。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-002",
-        locator: "§1.3.2（2011-03-12）",
-        quote: "At 00:06, the Site Superintendent ordered preparations for venting of Unit 1 (and Unit 2) and a notice was issued at 00:49 identifying an ‘abnormal rise in primary containment vessel pressure’",
-        confidence: "high",
-        note: "核验：✅；角色称谓保留英文"
+        "sourceId": "src-002",
+        "locator": "§1.3.2（2011-03-12）",
+        "quote": "At 00:06, the Site Superintendent ordered preparations for venting of Unit 1 (and Unit 2) and a notice was issued at 00:49 identifying an ‘abnormal rise in primary containment vessel pressure’",
+        "confidence": "high",
+        "note": "核验：✅；角色称谓保留英文",
+        "textEn": "At 00:06, the Site Superintendent ordered preparations for venting of Unit 1 (and Unit 2) and a notice was issued at 00:49 identifying an ‘abnormal rise in primary containment vessel pressure’",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-010",
-        text: "运行人员因各类电源丧失时序不明，无法确知 IC 隔离阀位置。",
-        categories: [
+        "id": "f-ind-010",
+        "text": "运行人员因各类电源丧失时序不明，无法确知 IC 隔离阀位置。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-002",
-        locator: "§1.3.2 脚注 26",
-        quote: "The valve positions were not clear to the operators owing to the uncertain timing and sequence of each type of power loss that would determine the operation of isolation condenser status of isolation valves.",
-        confidence: "high",
-        note: "核验：✅；信息不足的具体描述"
+        "sourceId": "src-002",
+        "locator": "§1.3.2 脚注 26",
+        "quote": "The valve positions were not clear to the operators owing to the uncertain timing and sequence of each type of power loss that would determine the operation of isolation condenser status of isolation valves.",
+        "confidence": "high",
+        "note": "核验：✅；信息不足的具体描述",
+        "textEn": "The valve positions were not clear to the operators owing to the uncertain timing and sequence of each type of power loss that would determine the operation of isolation condenser status of isolation valves.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-011",
-        text: "失去电力后，现场须在缺少有效工具与手册的情况下当场决策。",
-        categories: [
+        "id": "f-ind-011",
+        "text": "失去电力后，现场须在缺少有效工具与手册的情况下当场决策。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-004",
-        locator: "第 14 页事故应对叙述",
-        quote: "The decisions and responses to the accident had to be made on the spot by operational staff at the site, absent valid tools and manuals.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "第 14 页事故应对叙述",
+        "quote": "The decisions and responses to the accident had to be made on the spot by operational staff at the site, absent valid tools and manuals.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "The decisions and responses to the accident had to be made on the spot by operational staff at the site, absent valid tools and manuals.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-012",
-        text: "首相（Prime Minister）亲赴现场指挥堆芯受损处置人员。",
-        categories: [
+        "id": "f-ind-012",
+        "text": "首相（Prime Minister）亲赴现场指挥堆芯受损处置人员。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions — crisis management",
-        quote: "The Prime Minister made his way to the site to direct the workers who were dealing with the damaged core.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；NAIIC 称此为 unprecedented direct intervention"
+        "sourceId": "src-004",
+        "locator": "Conclusions — crisis management",
+        "quote": "The Prime Minister made his way to the site to direct the workers who were dealing with the damaged core.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；NAIIC 称此为 unprecedented direct intervention",
+        "textEn": "The Prime Minister made his way to the site to direct the workers who were dealing with the damaged core.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-013",
-        text: "10 km 内多数居民直至 2011-03-12 05:44 发布撤离令时才得知事故。",
-        categories: [
+        "id": "f-ind-013",
+        "text": "10 km 内多数居民直至 2011-03-12 05:44 发布撤离令时才得知事故。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions — Evacuation issues",
-        quote: "Most residents within 10km of the plant learned about the accident when the evacuation order was issued at 5:44 on March 12",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions — Evacuation issues",
+        "quote": "Most residents within 10km of the plant learned about the accident when the evacuation order was issued at 5:44 on March 12",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "Most residents within 10km of the plant learned about the accident when the evacuation order was issued at 5:44 on March 12",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-014",
-        text: "NAIIC 时间轴：Unit 1 于 19:04 开始海水注入（图表标注）。",
-        categories: [
+        "id": "f-ind-014",
+        "text": "NAIIC 时间轴：Unit 1 于 19:04 开始海水注入（图表标注）。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-004",
-        locator: "事故时间轴（Unit 1 列）",
-        quote: "19:04 Start of seawater injection",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；图表短语，非叙事句"
+        "sourceId": "src-004",
+        "locator": "事故时间轴（Unit 1 列）",
+        "quote": "19:04 Start of seawater injection",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；图表短语，非叙事句",
+        "textEn": "19:04 Start of seawater injection",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-ind-015",
-        text: "vent 决策未确认传达至 METI 高层或官邸（Kantei）。",
-        categories: [
+        "id": "f-ind-015",
+        "text": "vent 决策未确认传达至 METI 高层或官邸（Kantei）。",
+        "categories": [
           "individual"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions",
-        quote: "But there is no confirmation that the venting decision was conveyed to senior members of METI, or to the Kantei.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions",
+        "quote": "But there is no confirmation that the venting decision was conveyed to senior members of METI, or to the Kantei.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "But there is no confirmation that the venting decision was conveyed to senior members of METI, or to the Kantei.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-001",
-        text: "福岛第一核电厂由 Tokyo Electric Power Company（TEPCO）运营。",
-        categories: [
+        "id": "f-org-001",
+        "text": "福岛第一核电厂由 Tokyo Electric Power Company（TEPCO）运营。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "At the Fukushima Daiichi nuclear power plant, operated by the Tokyo Electric Power Company (TEPCO), the earthquake caused damage to the electric power supply lines to the site",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "At the Fukushima Daiichi nuclear power plant, operated by the Tokyo Electric Power Company (TEPCO), the earthquake caused damage to the electric power supply lines to the site",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "At the Fukushima Daiichi nuclear power plant, operated by the Tokyo Electric Power Company (TEPCO), the earthquake caused damage to the electric power supply lines to the site",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-003",
-        text: "东北沿岸五处 NPP 场址：Higashidori、Onagawa、Fukushima Daiichi、Fukushima Daini、Tokai Daini。",
-        categories: [
+        "id": "f-org-003",
+        "text": "东北沿岸五处 NPP 场址：Higashidori、Onagawa、Fukushima Daiichi、Fukushima Daini、Tokai Daini。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-002",
-        locator: "§1.1.1 Main occurrences",
-        quote: "including five NPP sites along Japan’s north-eastern coast: Higashidori, Onagawa, Fukushima Daiichi, Fukushima Daini and Tokai Daini.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-002",
+        "locator": "§1.1.1 Main occurrences",
+        "quote": "including five NPP sites along Japan’s north-eastern coast: Higashidori, Onagawa, Fukushima Daiichi, Fukushima Daini and Tokai Daini.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "including five NPP sites along Japan’s north-eastern coast: Higashidori, Onagawa, Fukushima Daiichi, Fukushima Daini and Tokai Daini.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-004",
-        text: "除福岛第一外，其余受影响场址的运行机组均安全 shut down。",
-        categories: [
+        "id": "f-org-004",
+        "text": "除福岛第一外，其余受影响场址的运行机组均安全 shut down。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-001",
-        locator: "Executive Summary",
-        quote: "The four other nuclear power plants3 along the coast were also affected to different degrees by the earthquake and tsunami. However, all operating reactor units at these plants were safely shut down.",
-        confidence: "high",
-        note: "核验：✅；脚注 3 列出场址名称"
+        "sourceId": "src-001",
+        "locator": "Executive Summary",
+        "quote": "The four other nuclear power plants3 along the coast were also affected to different degrees by the earthquake and tsunami. However, all operating reactor units at these plants were safely shut down.",
+        "confidence": "high",
+        "note": "核验：✅；脚注 3 列出场址名称",
+        "textEn": "The four other nuclear power plants3 along the coast were also affected to different degrees by the earthquake and tsunami. However, all operating reactor units at these plants were safely shut down.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-008",
-        text: "报告编写时（2015 Foreword）逾 10 万人因释放而撤离，许多人仍无法返家。",
-        categories: [
+        "id": "f-org-008",
+        "text": "报告编写时（2015 Foreword）逾 10 万人因释放而撤离，许多人仍无法返家。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-001",
-        locator: "Foreword",
-        quote: "More than 100 000 people were evacuated because of the release of radionuclides to the environment. At the time of writing, in 2015, many of them were still unable to return to their homes.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "quote": "More than 100 000 people were evacuated because of the release of radionuclides to the environment. At the time of writing, in 2015, many of them were still unable to return to their homes.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "More than 100 000 people were evacuated because of the release of radionuclides to the environment. At the time of writing, in 2015, many of them were still unable to return to their homes.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-009",
-        text: "运行方安全管理活动受 NISA 审查批准的安全管理 programme 约束；NISA 按 programme 做季度检查。",
-        categories: [
+        "id": "f-org-009",
+        "text": "运行方安全管理活动受 NISA 审查批准的安全管理 programme 约束；NISA 按 programme 做季度检查。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-002",
-        locator: "§1.2.2.9 Inspections",
-        quote: "The operators’ safety management activities were governed by the operational safety programme that NISA reviewed and approved. NISA conducted quarterly operational safety inspections to check the operators’ compliance with the programme.",
-        confidence: "high",
-        note: "核验：✅；事故前监管—运营商关系"
+        "sourceId": "src-002",
+        "locator": "§1.2.2.9 Inspections",
+        "quote": "The operators’ safety management activities were governed by the operational safety programme that NISA reviewed and approved. NISA conducted quarterly operational safety inspections to check the operators’ compliance with the programme.",
+        "confidence": "high",
+        "note": "核验：✅；事故前监管—运营商关系",
+        "textEn": "The operators’ safety management activities were governed by the operational safety programme that NISA reviewed and approved. NISA conducted quarterly operational safety inspections to check the operators’ compliance with the programme.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-010",
-        text: "2006 指南修订后 NISA 要求 licensees 做 seismic/tsunami「backcheck」；TEPCO 启动重评但在事故前**未完成**。",
-        categories: [
+        "id": "f-org-010",
+        "text": "2006 指南修订后 NISA 要求 licensees 做 seismic/tsunami「backcheck」；TEPCO 启动重评但在事故前**未完成**。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-002",
-        locator: "§1.2.2.8 Requirements for backfitting",
-        quote: "After the 2006 revision of this guide, NISA requested licensees to conduct a ‘backcheck’ of seismic and tsunami hazards. TEPCO started the re-evaluation but had not finished its ‘backcheck’ before the accident at the Fukushima Daiichi NPP.",
-        confidence: "high",
-        note: "核验：✅；内部评估采纳/完成度事实"
+        "sourceId": "src-002",
+        "locator": "§1.2.2.8 Requirements for backfitting",
+        "quote": "After the 2006 revision of this guide, NISA requested licensees to conduct a ‘backcheck’ of seismic and tsunami hazards. TEPCO started the re-evaluation but had not finished its ‘backcheck’ before the accident at the Fukushima Daiichi NPP.",
+        "confidence": "high",
+        "note": "核验：✅；内部评估采纳/完成度事实",
+        "textEn": "After the 2006 revision of this guide, NISA requested licensees to conduct a ‘backcheck’ of seismic and tsunami hazards. TEPCO started the re-evaluation but had not finished its ‘backcheck’ before the accident at the Fukushima Daiichi NPP.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-011",
-        text: "事故前运营商用 2002 共识方法重评海啸，数值高于原设计并采取部分补偿措施，但事故时仍不足。",
-        categories: [
+        "id": "f-org-011",
+        "text": "事故前运营商用 2002 共识方法重评海啸，数值高于原设计并采取部分补偿措施，但事故时仍不足。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-001",
-        locator: "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
-        quote: "Before the accident, the operator had conducted some reassessments of extreme tsunami flood levels, using a consensus based methodology developed in Japan in 2002, which had resulted in values higher than the original design basis estimates. Based on the results, some compensatory measures were taken, but they proved to be insufficient at the time of the accident.",
-        confidence: "high",
-        note: "核验：✅"
+        "sourceId": "src-001",
+        "locator": "NUCLEAR SAFETY CONSIDERATIONS — Vulnerability",
+        "quote": "Before the accident, the operator had conducted some reassessments of extreme tsunami flood levels, using a consensus based methodology developed in Japan in 2002, which had resulted in values higher than the original design basis estimates. Based on the results, some compensatory measures were taken, but they proved to be insufficient at the time of the accident.",
+        "confidence": "high",
+        "note": "核验：✅",
+        "textEn": "Before the accident, the operator had conducted some reassessments of extreme tsunami flood levels, using a consensus based methodology developed in Japan in 2002, which had resulted in values higher than the original design basis estimates. Based on the results, some compensatory measures were taken, but they proved to be insufficient at the time of the accident.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-012",
-        text: "NAIIC 结论：事故系政府、监管与 TEPCO **共谋（collusion）**及治理缺失所致。",
-        categories: [
+        "id": "f-org-012",
+        "text": "NAIIC 结论：事故系政府、监管与 TEPCO **共谋（collusion）**及治理缺失所致。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions — A “manmade” disaster",
-        quote: "The TEPCO Fukushima Nuclear Power Plant accident was the result of collusion between the government, the regulators and TEPCO, and the lack of governance by said parties.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions — A “manmade” disaster",
+        "quote": "The TEPCO Fukushima Nuclear Power Plant accident was the result of collusion between the government, the regulators and TEPCO, and the lack of governance by said parties.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "The TEPCO Fukushima Nuclear Power Plant accident was the result of collusion between the government, the regulators and TEPCO, and the lack of governance by said parties.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-013",
-        text: "NISA 隶属 METI，而 METI 同时推动核电发展。",
-        categories: [
+        "id": "f-org-013",
+        "text": "NISA 隶属 METI，而 METI 同时推动核电发展。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions（Earthquake damage 段）",
-        quote: "NISA was created as part of the Ministry of Economy, Trade & Industry (METI), an organization that has been actively promoting nuclear power.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions（Earthquake damage 段）",
+        "quote": "NISA was created as part of the Ministry of Economy, Trade & Industry (METI), an organization that has been actively promoting nuclear power.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "NISA was created as part of the Ministry of Economy, Trade & Industry (METI), an organization that has been actively promoting nuclear power.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-014",
-        text: "NISA 曾告知运营商无需考虑 SBO，并要求其撰写“无需考虑”的理由报告。",
-        categories: [
+        "id": "f-org-014",
+        "text": "NISA 曾告知运营商无需考虑 SBO，并要求其撰写“无需考虑”的理由报告。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions",
-        quote: "NISA informed the operators that they did not need to consider a possible station blackout (SBO) because the probability was small and other measures were in place. It then asked the operators to write a report that would give the appropriate rationale for why this consideration was unnecessary.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions",
+        "quote": "NISA informed the operators that they did not need to consider a possible station blackout (SBO) because the probability was small and other measures were in place. It then asked the operators to write a report that would give the appropriate rationale for why this consideration was unnecessary.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "NISA informed the operators that they did not need to consider a possible station blackout (SBO) because the probability was small and other measures were in place. It then asked the operators to write a report that would give the appropriate rationale for why this consideration was unnecessary.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-015",
-        text: "事故时 Unit 1–3 所需结构加固**均未实施**；NISA 对拖延给予 tacit consent。",
-        categories: [
+        "id": "f-org-015",
+        "text": "事故时 Unit 1–3 所需结构加固**均未实施**；NISA 对拖延给予 tacit consent。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions",
-        quote: "no part of the required reinforcements had been implemented on Units 1 through 3 by the time of the accident. This was the result of tacit consent by NISA for a significant delay by the operators in completing the reinforcement.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions",
+        "quote": "no part of the required reinforcements had been implemented on Units 1 through 3 by the time of the accident. This was the result of tacit consent by NISA for a significant delay by the operators in completing the reinforcement.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "no part of the required reinforcements had been implemented on Units 1 through 3 by the time of the accident. This was the result of tacit consent by NISA for a significant delay by the operators in completing the reinforcement.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-016",
-        text: "TEPCO 通过 FEPC 积极反对新安全法规并拖延与监管谈判。",
-        categories: [
+        "id": "f-org-016",
+        "text": "TEPCO 通过 FEPC 积极反对新安全法规并拖延与监管谈判。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions（TEPCO perspective 段）",
-        quote: "enough motivation for TEPCO to aggressively oppose new safety regulations and draw out negotiations with regulators via the Federation of Electric Power Companies (FEPC).",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；句中片段；含 enough motivation for 前缀"
+        "sourceId": "src-004",
+        "locator": "Conclusions（TEPCO perspective 段）",
+        "quote": "enough motivation for TEPCO to aggressively oppose new safety regulations and draw out negotiations with regulators via the Federation of Electric Power Companies (FEPC).",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；句中片段；含 enough motivation for 前缀",
+        "textEn": "enough motivation for TEPCO to aggressively oppose new safety regulations and draw out negotiations with regulators via the Federation of Electric Power Companies (FEPC).",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-017",
-        text: "NISA 未向公众披露海啸评估或对运营商指示，亦未保留记录。",
-        categories: [
+        "id": "f-org-017",
+        "text": "NISA 未向公众披露海啸评估或对运营商指示，亦未保留记录。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "The lack of tsunami countermeasures §1",
-        quote: "NISA did not disclose any information to the public on their evaluations or their instructions to reconsider the assumptions used in designing the plant’s tsunami defenses. Nor did NISA keep any records of the information.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "The lack of tsunami countermeasures §1",
+        "quote": "NISA did not disclose any information to the public on their evaluations or their instructions to reconsider the assumptions used in designing the plant’s tsunami defenses. Nor did NISA keep any records of the information.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "NISA did not disclose any information to the public on their evaluations or their instructions to reconsider the assumptions used in designing the plant’s tsunami defenses. Nor did NISA keep any records of the information.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-018",
-        text: "TEPCO 2007 档案称已抬高电机等，**当时理解**厂站安全已获保证。",
-        categories: [
+        "id": "f-org-018",
+        "text": "TEPCO 2007 档案称已抬高电机等，**当时理解**厂站安全已获保证。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-005",
-        locator: "Attachment 4-4",
-        quote: "actions were already taken to increase the elevation of the motors, thus safety had been ensured.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）；**运营商自我评估表述**"
+        "sourceId": "src-005",
+        "locator": "Attachment 4-4",
+        "quote": "actions were already taken to increase the elevation of the motors, thus safety had been ensured.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）；**运营商自我评估表述**",
+        "textEn": "actions were already taken to increase the elevation of the motors, thus safety had been ensured.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-019",
-        text: "2006 年起监管方与 TEPCO 已知海啸致全厂断电及堆芯损伤风险，但未出台法规或防护。",
-        categories: [
+        "id": "f-org-019",
+        "text": "2006 年起监管方与 TEPCO 已知海啸致全厂断电及堆芯损伤风险，但未出台法规或防护。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions",
-        quote: "Since 2006, the regulators and TEPCO were aware of the risk that a total outage of electricity at the Fukushima Daiichi plant might occur if a tsunami were to reach the level of the site.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions",
+        "quote": "Since 2006, the regulators and TEPCO were aware of the risk that a total outage of electricity at the Fukushima Daiichi plant might occur if a tsunami were to reach the level of the site.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "Since 2006, the regulators and TEPCO were aware of the risk that a total outage of electricity at the Fukushima Daiichi plant might occur if a tsunami were to reach the level of the site.",
+        "noteEn": "Source cross-check recorded in the case pack."
       },
       {
-        id: "f-org-020",
-        text: "监管方、METI 与 TEPCO 未能建立评估损害概率、 collateral 损害与公众撤离计划等基本安全要求。",
-        categories: [
+        "id": "f-org-020",
+        "text": "监管方、METI 与 TEPCO 未能建立评估损害概率、 collateral 损害与公众撤离计划等基本安全要求。",
+        "categories": [
           "organization"
         ],
-        sourceId: "src-004",
-        locator: "Conclusions",
-        quote: "The operator (TEPCO), the regulatory bodies (NISA and NSC) and the government body promoting the nuclear power industry (METI), all failed to correctly develop the most basic safety requirements—such as assessing the probability of damage, preparing for containing collateral damage from such a disaster, and developing evacuation plans for the public in the case of a serious radiation release.",
-        confidence: "medium",
-        note: "核验：未做（NAIIC/TEPCO 轮）"
+        "sourceId": "src-004",
+        "locator": "Conclusions",
+        "quote": "The operator (TEPCO), the regulatory bodies (NISA and NSC) and the government body promoting the nuclear power industry (METI), all failed to correctly develop the most basic safety requirements—such as assessing the probability of damage, preparing for containing collateral damage from such a disaster, and developing evacuation plans for the public in the case of a serious radiation release.",
+        "confidence": "medium",
+        "note": "核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "The operator (TEPCO), the regulatory bodies (NISA and NSC) and the government body promoting the nuclear power industry (METI), all failed to correctly develop the most basic safety requirements—such as assessing the probability of damage, preparing for containing collateral damage from such a disaster, and developing evacuation plans for the public in the case of a serious radiation release.",
+        "noteEn": "Source cross-check recorded in the case pack."
       }
     ],
-    // 评估性内容：官方报告或专家的判断与教训总结，非客观事实。
-    assessments: [
+    "assessments": [
       {
-        id: "ev-001",
-        text: "日本曾 widespread assumption 认为此类严重事故 unthinkable；监管与政府未挑战该假设。",
-        sourceId: "src-001",
-        locator: "Foreword",
-        confidence: "high",
-        quote: "A major factor that contributed to the accident was the widespread assumption in Japan that its nuclear power plants were so safe that an accident of this magnitude was simply unthinkable. This assumption was accepted by nuclear power plant operators and was not challenged by regulators or by the Government.",
-        appliesToSteps: [
+        "id": "ev-001",
+        "text": "日本曾 widespread assumption 认为此类严重事故 unthinkable；监管与政府未挑战该假设。",
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "confidence": "high",
+        "quote": "A major factor that contributed to the accident was the widespread assumption in Japan that its nuclear power plants were so safe that an accident of this magnitude was simply unthinkable. This assumption was accepted by nuclear power plant operators and was not challenged by regulators or by the Government.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "IAEA（Yukiya Amano Foreword）；核验：✅"
+        "note": "IAEA（Yukiya Amano Foreword）；核验：✅",
+        "textEn": "A major factor that contributed to the accident was the widespread assumption in Japan that its nuclear power plants were so safe that an accident of this magnitude was simply unthinkable. This assumption was accepted by nuclear power plant operators and was not challenged by regulators or by the Government."
       },
       {
-        id: "ev-002",
-        text: "报告旨在理解发生了什么及原因，以便各国政府、监管与运营商落实 lessons learned。",
-        sourceId: "src-001",
-        locator: "Foreword",
-        confidence: "high",
-        quote: "The report considers human, organizational and technical factors, and aims to provide an understanding of what happened, and why, so that the necessary lessons learned can be acted upon by governments, regulators and nuclear power plant operators throughout the world.",
-        appliesToSteps: [
+        "id": "ev-002",
+        "text": "报告旨在理解发生了什么及原因，以便各国政府、监管与运营商落实 lessons learned。",
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "confidence": "high",
+        "quote": "The report considers human, organizational and technical factors, and aims to provide an understanding of what happened, and why, so that the necessary lessons learned can be acted upon by governments, regulators and nuclear power plant operators throughout the world.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "IAEA；核验：✅"
+        "note": "IAEA；核验：✅",
+        "textEn": "The report considers human, organizational and technical factors, and aims to provide an understanding of what happened, and why, so that the necessary lessons learned can be acted upon by governments, regulators and nuclear power plant operators throughout the world."
       },
       {
-        id: "ev-003",
-        text: "总干事称 IAEA 报告将为 authoritative, factual and balanced assessment，并涵盖 lessons learned。",
-        sourceId: "src-002",
-        locator: "TV1 前言",
-        confidence: "high",
-        quote: "“an authoritative, factual and balanced assessment, addressing the causes and consequences of the accident, as well as lessons learned”.",
-        appliesToSteps: [
+        "id": "ev-003",
+        "text": "总干事称 IAEA 报告将为 authoritative, factual and balanced assessment，并涵盖 lessons learned。",
+        "sourceId": "src-002",
+        "locator": "TV1 前言",
+        "confidence": "high",
+        "quote": "“an authoritative, factual and balanced assessment, addressing the causes and consequences of the accident, as well as lessons learned”.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "IAEA；核验：✅"
+        "note": "IAEA；核验：✅",
+        "textEn": "“an authoritative, factual and balanced assessment, addressing the causes and consequences of the accident, as well as lessons learned”."
       },
       {
-        id: "ev-004",
-        text: "事故暴露日本监管框架 certain weaknesses；职责分散且 authority 不清。",
-        sourceId: "src-001",
-        locator: "Foreword",
-        confidence: "high",
-        quote: "The Fukushima Daiichi accident exposed certain weaknesses in Japan’s regulatory framework. Responsibilities were divided among a number of bodies, and it was not always clear where authority lay.",
-        appliesToSteps: [
+        "id": "ev-004",
+        "text": "事故暴露日本监管框架 certain weaknesses；职责分散且 authority 不清。",
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "confidence": "high",
+        "quote": "The Fukushima Daiichi accident exposed certain weaknesses in Japan’s regulatory framework. Responsibilities were divided among a number of bodies, and it was not always clear where authority lay.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "IAEA；核验：✅"
+        "note": "IAEA；核验：✅",
+        "textEn": "The Fukushima Daiichi accident exposed certain weaknesses in Japan’s regulatory framework. Responsibilities were divided among a number of bodies, and it was not always clear where authority lay."
       },
       {
-        id: "ev-005",
-        text: "事故后日本改革监管体系以更符合国际标准（评估性结论，非第 5 节事实）。",
-        sourceId: "src-001",
-        locator: "Foreword",
-        confidence: "high",
-        quote: "Since the accident, Japan has reformed its regulatory system to better meet international standards. It gave regulators clearer responsibilities and greater authority.",
-        appliesToSteps: [
+        "id": "ev-005",
+        "text": "事故后日本改革监管体系以更符合国际标准（评估性结论，非第 5 节事实）。",
+        "sourceId": "src-001",
+        "locator": "Foreword",
+        "confidence": "high",
+        "quote": "Since the accident, Japan has reformed its regulatory system to better meet international standards. It gave regulators clearer responsibilities and greater authority.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "IAEA；核验：✅"
+        "note": "IAEA；核验：✅",
+        "textEn": "Since the accident, Japan has reformed its regulatory system to better meet international standards. It gave regulators clearer responsibilities and greater authority."
       },
       {
-        id: "ev-006",
-        text: "NAIIC：事故**非**自然灾害，而是「profoundly manmade disaster」。",
-        sourceId: "src-004",
-        locator: "Message from the Chairman",
-        confidence: "medium",
-        quote: "It was a profoundly manmade disaster – that could and should have been foreseen and prevented.",
-        appliesToSteps: [
+        "id": "ev-006",
+        "text": "NAIIC：事故**非**自然灾害，而是「profoundly manmade disaster」。",
+        "sourceId": "src-004",
+        "locator": "Message from the Chairman",
+        "confidence": "medium",
+        "quote": "It was a profoundly manmade disaster – that could and should have been foreseen and prevented.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "NAIIC（Chairman Message）；核验：未做（NAIIC/TEPCO 轮）"
+        "note": "NAIIC（Chairman Message）；核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "It was a profoundly manmade disaster – that could and should have been foreseen and prevented."
       },
       {
-        id: "ev-007",
-        text: "NAIIC：灾难「Made in Japan」，根因含服从权威、不愿质疑等文化因素。",
-        sourceId: "src-004",
-        locator: "Message from the Chairman",
-        confidence: "medium",
-        quote: "this was a disaster “Made in Japan.” Its fundamental causes are to be found in the ingrained conventions of Japanese culture: our reflexive obedience; our reluctance to question authority",
-        appliesToSteps: [
+        "id": "ev-007",
+        "text": "NAIIC：灾难「Made in Japan」，根因含服从权威、不愿质疑等文化因素。",
+        "sourceId": "src-004",
+        "locator": "Message from the Chairman",
+        "confidence": "medium",
+        "quote": "this was a disaster “Made in Japan.” Its fundamental causes are to be found in the ingrained conventions of Japanese culture: our reflexive obedience; our reluctance to question authority",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "NAIIC；核验：未做（NAIIC/TEPCO 轮）"
+        "note": "NAIIC；核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "this was a disaster “Made in Japan.” Its fundamental causes are to be found in the ingrained conventions of Japanese culture: our reflexive obedience; our reluctance to question authority"
       },
       {
-        id: "ev-008",
-        text: "NAIIC：TEPCO 过快把原因归咎于海啸，可能为回避地震相关责任。",
-        sourceId: "src-004",
-        locator: "Conclusions — Earthquake damage",
-        confidence: "medium",
-        quote: "TEPCO was too quick to cite the tsunami as the cause of the nuclear accident and deny that the earthquake caused any damage.",
-        appliesToSteps: [
+        "id": "ev-008",
+        "text": "NAIIC：TEPCO 过快把原因归咎于海啸，可能为回避地震相关责任。",
+        "sourceId": "src-004",
+        "locator": "Conclusions — Earthquake damage",
+        "confidence": "medium",
+        "quote": "TEPCO was too quick to cite the tsunami as the cause of the nuclear accident and deny that the earthquake caused any damage.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "NAIIC；核验：未做（NAIIC/TEPCO 轮）"
+        "note": "NAIIC；核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "TEPCO was too quick to cite the tsunami as the cause of the nuclear accident and deny that the earthquake caused any damage."
       },
       {
-        id: "ev-009",
-        text: "TEPCO 档案：基于 JSCE 保守评估，**当时理解**厂站安全已获保证。",
-        sourceId: "src-005",
-        locator: "Attachment 4-4 (2/9)",
-        confidence: "medium",
-        quote: "Accordingly, TEPCO conducted conservative assessments based on the JSCE methodology and understood that the power station’s safety was ensured at that time.",
-        appliesToSteps: [
+        "id": "ev-009",
+        "text": "TEPCO 档案：基于 JSCE 保守评估，**当时理解**厂站安全已获保证。",
+        "sourceId": "src-005",
+        "locator": "Attachment 4-4 (2/9)",
+        "confidence": "medium",
+        "quote": "Accordingly, TEPCO conducted conservative assessments based on the JSCE methodology and understood that the power station’s safety was ensured at that time.",
+        "appliesToSteps": [
           6,
           7
         ],
-        note: "TEPCO；核验：未做（NAIIC/TEPCO 轮）"
+        "note": "TEPCO；核验：未做（NAIIC/TEPCO 轮）",
+        "textEn": "Accordingly, TEPCO conducted conservative assessments based on the JSCE methodology and understood that the power station’s safety was ensured at that time."
       }
     ],
-    valueWords: [
+    "valueWords": [
       {
-        id: "vw-001",
-        word: "责任",
-        whyVague: "可指法律责任、道德责任或组织分工，需在本案中界定。",
-        sourceId: "TODO(PI)"
+        "id": "vw-001",
+        "word": "责任",
+        "whyVague": "可指法律责任、道德责任或组织分工，需在本案中界定。",
+        "sourceId": "TODO(PI)",
+        "wordEn": "Responsibility",
+        "whyVagueEn": "Legal, moral, and organizational responsibilities may differ."
       },
       {
-        id: "vw-002",
-        word: "安全",
-        whyVague: "可指人身、环境或系统可靠性，标准因语境而异。",
-        sourceId: "TODO(PI)"
+        "id": "vw-002",
+        "word": "安全",
+        "whyVague": "可指人身、环境或系统可靠性，标准因语境而异。",
+        "sourceId": "TODO(PI)",
+        "wordEn": "Safety",
+        "whyVagueEn": "May refer to personal, environmental, or reliability standards depending on context."
       },
       {
-        id: "vw-003",
-        word: "合规",
-        whyVague: "可指满足最低法规或更高行业规范，含义需澄清。",
-        sourceId: "TODO(PI)"
+        "id": "vw-003",
+        "word": "合规",
+        "whyVague": "可指满足最低法规或更高行业规范，含义需澄清。",
+        "sourceId": "TODO(PI)",
+        "wordEn": "Compliance",
+        "whyVagueEn": "May mean minimum legal rules or higher professional standards."
       },
       {
-        id: "vw-004",
-        word: "透明",
-        whyVague: "可指信息公开程度或决策过程可见性，需具体化。",
-        sourceId: "TODO(PI)"
+        "id": "vw-004",
+        "word": "透明",
+        "whyVague": "可指信息公开程度或决策过程可见性，需具体化。",
+        "sourceId": "TODO(PI)",
+        "wordEn": "Transparency",
+        "whyVagueEn": "May mean information disclosure or visibility of decision processes."
       }
     ],
-    principles: principles,
-    constraints: [
+    "constraints": [
       {
-        id: "rch-001",
-        label: "深层文化规范",
-        desc: "组织或行业长期形成的非成文规范，可能塑造决策默认选项。",
-        sourceId: "TODO(PI)"
+        "id": "rch-001",
+        "label": "深层文化规范",
+        "desc": "组织或行业长期形成的非成文规范，可能塑造决策默认选项。",
+        "sourceId": "TODO(PI)",
+        "labelEn": "Deep cultural norms",
+        "descEn": "Long-standing informal norms may shape perceived options."
       },
       {
-        id: "rch-002",
-        label: "组织压力",
-        desc: "来自上级、绩效或团队期望的压力，不预设必然减责。",
-        sourceId: "TODO(PI)"
+        "id": "rch-002",
+        "label": "组织压力",
+        "desc": "来自上级、绩效或团队期望的压力，不预设必然减责。",
+        "sourceId": "TODO(PI)",
+        "labelEn": "Organizational pressure",
+        "descEn": "Pressure does not automatically reduce responsibility."
       },
       {
-        id: "rch-003",
-        label: "信息不对称",
-        desc: "不同主体掌握信息范围与时机不同，需结合当时情境判断。",
-        sourceId: "TODO(PI)"
+        "id": "rch-003",
+        "label": "信息不对称",
+        "desc": "不同主体掌握信息范围与时机不同，需结合当时情境判断。",
+        "sourceId": "TODO(PI)",
+        "labelEn": "Information asymmetry",
+        "descEn": "Different actors knew different facts at different times."
       },
       {
-        id: "rch-004",
-        label: "时间压力",
-        desc: "紧急决策窗口内可选方案受限，须说明当时还有哪些可行选择。",
-        sourceId: "TODO(PI)"
+        "id": "rch-004",
+        "label": "时间压力",
+        "desc": "紧急决策窗口内可选方案受限，须说明当时还有哪些可行选择。",
+        "sourceId": "TODO(PI)",
+        "labelEn": "Time pressure",
+        "descEn": "Explain alternatives feasible within the decision window."
       },
       {
-        id: "rch-005",
-        label: "职业风险",
-        desc: "举报、抗命等可能带来职业后果，与责任判断是否减轻须分开论证。",
-        sourceId: "TODO(PI)"
+        "id": "rch-005",
+        "label": "职业风险",
+        "desc": "举报、抗命等可能带来职业后果，与责任判断是否减轻须分开论证。",
+        "sourceId": "TODO(PI)",
+        "labelEn": "Career risk",
+        "descEn": "Career consequences and ethical duty require separate reasoning."
       }
     ],
-    biasChecks: [
-      { id: "bc-001", label: "是否遗漏了某类事实？（按三分类检查）", jumpTo: 3 },
-      { id: "bc-002", label: "是否有概念仍然模糊？", jumpTo: 5 },
-      { id: "bc-003", label: "假设是否都写了依据？", jumpTo: 4 },
-      { id: "bc-004", label: "前后是否有矛盾？", jumpTo: 7 },
-      { id: "bc-005", label: "是否只站在了一个主体的视角？", jumpTo: 1 }
-    ],
-    reviewPrompts: [
+    "biasChecks": [
       {
-        id: "rp-001",
-        label: "是否遗漏了某类事实？",
-        jumpTo: 3,
-        kind: "missing-facts"
+        "id": "bc-001",
+        "label": "是否遗漏了某类事实？（按三分类检查）",
+        "jumpTo": 3,
+        "labelEn": "Have we overlooked a category of facts?"
       },
       {
-        id: "rp-002",
-        label: "是否有概念仍然模糊？",
-        jumpTo: 5,
-        kind: "vague-concept"
+        "id": "bc-002",
+        "label": "是否有概念仍然模糊？",
+        "jumpTo": 5,
+        "labelEn": "Have we left a key term ambiguous?"
       },
       {
-        id: "rp-003",
-        label: "假设是否都写了依据？",
-        jumpTo: 4,
-        kind: "assumption-basis"
+        "id": "bc-003",
+        "label": "假设是否都写了依据？",
+        "jumpTo": 4,
+        "labelEn": "Are assumptions clearly distinguished from facts?"
       },
       {
-        id: "rp-004",
-        label: "前后是否有矛盾？",
-        jumpTo: 7,
-        kind: "contradiction"
+        "id": "bc-004",
+        "label": "前后是否有矛盾？",
+        "jumpTo": 7,
+        "labelEn": "Does the reasoning contain contradictions?"
       },
       {
-        id: "rp-005",
-        label: "是否只站在了一个主体的视角？",
-        jumpTo: 1,
-        kind: "single-perspective"
+        "id": "bc-005",
+        "label": "是否只站在了一个主体的视角？",
+        "jumpTo": 1,
+        "labelEn": "Have we considered other perspectives?"
       }
     ],
-    steps: steps
+    "reviewPrompts": [
+      {
+        "id": "rp-001",
+        "label": "是否遗漏了某类事实？",
+        "jumpTo": 3,
+        "kind": "missing-facts",
+        "labelEn": "Have we overlooked a category of facts?"
+      },
+      {
+        "id": "rp-002",
+        "label": "是否有概念仍然模糊？",
+        "jumpTo": 5,
+        "kind": "vague-concept",
+        "labelEn": "Have we left a key term ambiguous?"
+      },
+      {
+        "id": "rp-003",
+        "label": "假设是否都写了依据？",
+        "jumpTo": 4,
+        "kind": "assumption-basis",
+        "labelEn": "Are assumptions clearly distinguished from facts?"
+      },
+      {
+        "id": "rp-004",
+        "label": "前后是否有矛盾？",
+        "jumpTo": 7,
+        "kind": "contradiction",
+        "labelEn": "Does the reasoning contain contradictions?"
+      },
+      {
+        "id": "rp-005",
+        "label": "是否只站在了一个主体的视角？",
+        "jumpTo": 1,
+        "kind": "single-perspective",
+        "labelEn": "Have we considered other perspectives?"
+      }
+    ]
   };
+  window.CASE_DATA.principles = principles;
+  window.CASE_DATA.steps = steps;
 })();
 
 </script>
@@ -6294,7 +6724,7 @@ body {
   function validPack(pack) {
     try {
     if (!pack || !pack.meta || !/^[a-z0-9][a-z0-9-]{0,100}$/.test(pack.meta.id) ||
-        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || !['2.0', '2.1'].includes(pack.meta.dataVersion) ||
+        typeof pack.meta.title !== 'string' || !pack.meta.title.trim() || !['2.0', '2.1', '2.2'].includes(pack.meta.dataVersion) ||
         typeof pack.meta.builtAt !== 'string' || arrays.some(function (key) { return !Array.isArray(pack[key]); })) return false;
     if (pack.meta.dataVersion === '2.1' && !Array.isArray(pack.assessments)) return false;
     if (pack.assessments !== undefined && !Array.isArray(pack.assessments)) return false;
@@ -6663,6 +7093,7 @@ body {
       return data().valueWords;
     }
     function name(x){
+      var loc=ctx.locale();
       if(tab==='principles')return ctx.principleName(x.id);
       if(tab==='sources')return mt(x,'title');
       if(tab==='timeline')return mt(x,'event');
@@ -7044,7 +7475,10 @@ body {
       .map(function (rel) {
         var fact = factRecord(state, data, rel.from === question.id ? rel.to : rel.from);
         if (!fact) return "";
-        var text = fact.text || fact.id;
+        var text =
+          root.FieldnotesCaseText && readLocale() === "en"
+            ? root.FieldnotesCaseText.fact(fact, "en") || fact.id
+            : fact.text || fact.id;
         return jump(
           3,
           sourceTag("fact") +
@@ -7334,7 +7768,7 @@ body {
       var rel = (state.relations || []).find(function (r) {
         return r.from === fact.id && r.kind === "fact-supports-question";
       });
-      entry(3, fact.text, "fact", fact.id);
+      entry(3, ctx.factText ? ctx.factText(fact) : fact.text, "fact", fact.id);
       if (rel && rel.why) entry(3, rel.why, "judgment", fact.id);
     });
     itemsOf(state, "M").forEach(function (it) {
@@ -7350,7 +7784,7 @@ body {
           return f.id === refId;
         });
         if (basis) entry(4, basis.text || basis.title, "fact", it.id);
-        else if (fact) entry(4, fact.text, "fact", it.id);
+        else if (fact) entry(4, ctx.factText ? ctx.factText(fact) : fact.text, "fact", it.id);
       });
       var fill = (state.relations || []).find(function (r) {
         return r.from === it.id && r.kind === "assumption-fills-gap";
@@ -7620,7 +8054,11 @@ body {
           var extra = "";
           if (fact.quote) extra += fact.quote + "\n\n";
           if (fact.locator) extra += fact.locator + "\n\n";
-          return block(fact.text) + sourceLine(data, fact.sourceId) + extra;
+          var factText =
+            english && root.FieldnotesCaseText
+              ? root.FieldnotesCaseText.fact(fact, "en")
+              : fact.text;
+          return block(factText) + sourceLine(data, fact.sourceId) + extra;
         })
         .join("");
     }
@@ -7629,7 +8067,7 @@ body {
     state = state || { items: {}, relations: [], conflicts: [] };
     data = data || { facts: [], sources: [], principles: [] };
     var reportTitle = data.meta && data.meta.title;
-    if (english && data.meta && data.meta.id === "fukushima" && reportTitle === "福岛第一核电站事故") reportTitle = "Fukushima Daiichi nuclear accident";
+    if (english && data.meta && root.FieldnotesCaseText) reportTitle = root.FieldnotesCaseText.metaTitle(data.meta, "en");
     var questions = listItems(state, "Q");
     var cores = questions.filter(function (item) {
       return item.isCore;
@@ -7822,6 +8260,110 @@ body {
 
 </script>
   <script>
+/**
+ * CASE_DATA 双语字段选择（只读展示层）。
+ */
+(function (root) {
+  "use strict";
+  var warned = Object.create(null);
+
+  function warnOnce(key, detail) {
+    if (warned[key]) return;
+    warned[key] = true;
+    console.warn("[FieldnotesCaseText] missing English field:", detail);
+  }
+
+  function pick(obj, zhKey, enKey, locale, idHint) {
+    if (!obj) return "";
+    if (locale === "en") {
+      var en = obj[enKey];
+      if (en != null && String(en).trim()) return en;
+      warnOnce(idHint + "." + enKey, idHint + "." + enKey);
+    }
+    return obj[zhKey] != null ? obj[zhKey] : "";
+  }
+
+  function stripVerificationNote(note, locale) {
+    if (!note) return "";
+    if (locale === "en" && /核验|待核|待复核|⚠/.test(note) && !/[A-Za-z]{8,}/.test(note)) {
+      return "";
+    }
+    return note;
+  }
+
+  root.FieldnotesCaseText = {
+    fact: function (fact, locale) {
+      return pick(fact, "text", "textEn", locale, fact && fact.id);
+    },
+    factNote: function (fact, locale) {
+      var n = pick(fact, "note", "noteEn", locale, fact && fact.id);
+      return stripVerificationNote(n, locale) || (locale === "en" ? "" : fact.note || "");
+    },
+    timelineEvent: function (row, locale) {
+      return pick(row, "event", "eventEn", locale, row && row.id);
+    },
+    assessmentText: function (row, locale) {
+      return pick(row, "text", "textEn", locale, row && row.id);
+    },
+    principleDesc: function (p, locale) {
+      return pick(p, "desc", "descEn", locale, p && p.id);
+    },
+    valueWord: function (w, locale) {
+      return pick(w, "word", "wordEn", locale, w && w.id);
+    },
+    valueWhy: function (w, locale) {
+      return pick(w, "whyVague", "whyVagueEn", locale, w && w.id);
+    },
+    constraintLabel: function (c, locale) {
+      return pick(c, "label", "labelEn", locale, c && c.id);
+    },
+    constraintDesc: function (c, locale) {
+      return pick(c, "desc", "descEn", locale, c && c.id);
+    },
+    biasLabel: function (b, locale) {
+      return pick(b, "label", "labelEn", locale, b && b.id);
+    },
+    reviewLabel: function (r, locale) {
+      return pick(r, "label", "labelEn", locale, r && r.id);
+    },
+    stepName: function (step, locale) {
+      return pick(step, "name", "nameEn", locale, "step" + (step && step.id));
+    },
+    stepIntro: function (step, locale) {
+      return pick(step, "intro", "introEn", locale, "step" + (step && step.id));
+    },
+    promptText: function (prompt, locale, stepId, index) {
+      return pick(prompt, "text", "textEn", locale, "step" + stepId + ".prompt" + index);
+    },
+    fieldLabel: function (field, locale, stepId, index) {
+      return pick(field, "label", "labelEn", locale, "step" + stepId + ".field" + index);
+    },
+    fieldHint: function (field, locale, stepId, index) {
+      return pick(field, "hint", "hintEn", locale, "step" + stepId + ".field" + index);
+    },
+    sourceTitle: function (source, locale) {
+      return pick(source, "title", "titleEn", locale, source && source.id);
+    },
+    sourceNote: function (source, locale) {
+      if (locale === "en") {
+        var en = source && source.noteEn;
+        if (en != null && String(en).trim()) return en;
+        if (source && source.note && /[\u4e00-\u9fff]/.test(source.note)) return "";
+      }
+      return (source && source.note) || "";
+    },
+    metaTitle: function (meta, locale) {
+      return pick(meta, "title", "titleEn", locale, "meta.title");
+    },
+    referenceBody: function (ref, locale, stepId) {
+      if (!ref) return "";
+      return pick(ref, "body", "bodyEn", locale, "step" + stepId + ".referenceLevel3");
+    }
+  };
+})(typeof globalThis !== "undefined" ? globalThis : window);
+
+</script>
+  <script>
 /* Guided human review. Reuses review.status/note; no generated analysis or new state fields. */
 (function(){
   'use strict';
@@ -7921,7 +8463,9 @@ body {
   function materialText(value){return esc(value).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');}
   function t(key){return I.pairs[key]?I.pairs[key][locale==='zh'?0:1]:key;}
   function bi(zh,en){return locale==='zh'?zh:en;}
-  function caseName(pack){return pack.id==='fukushima' && pack.title==='福岛第一核电站事故'?bi(pack.title,'Fukushima Daiichi nuclear accident'):pack.title;}
+  function CT(){return window.FieldnotesCaseText;}
+  function caseName(meta){return CT()?CT().metaTitle(meta,locale):(meta&&meta.title)||'';}
+  function packFactText(f){return CT()?CT().fact(f,locale):f.text;}
   function title(step){return I.titles[step-1][locale==='zh'?0:1];}
   function state(){return presentation||engine.getState();}
   function rows(type,s){return Object.values((s||state()).items).filter(function(it){return !type||it.type===type;});}
@@ -7963,12 +8507,12 @@ body {
     if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+field(it,'text','question','questionHint'):'')+'</article>';}).join(''):empty('focusEmpty','focusEmptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
     if(step===3){var selectedFacts=facts().filter(function(f){return s.relations.some(function(r){return r.from===f.id;});});
       html='<div class="evidence-intro"><span class="evidence-icon">'+icon('book')+'</span><div><h3>'+esc(t('selectedFacts'))+'</h3><p>'+facts().length+' '+esc(t('factsAvailable'))+' · '+esc(t('factSelectionHint'))+'</p></div>'+button('browseFacts','materials','primary small','plus','data-tab="facts"')+'</div>';
-      html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(caseText(it,'text'))+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
+      html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(packFactText(it))+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
       if(cases.isCustom())html+='<div class="section-heading"><p class="hint">'+esc(t('caseMaterialsHint'))+'</p>'+button('addFact','add-fact','small','plus')+'</div>';
       list=rows('M');html+='<div class="section-heading"><h3>'+esc(t('missing'))+'</h3>'+(presentation?'':button('addGap','add','small','plus','data-type="M" data-step="3"'))+'</div>';
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'missing')+field(it,'text','missing','gapHint')+relationList(it.id)+connectButton(it)+'</article>';}).join(''):'<p class="gap-prompt">'+esc(t('gapHint'))+'</p>');}
     if(step===4){list=rows('A');return list.length?list.map(function(it){var refs=(it.basisRefs||[]).map(function(id){return state().items[id]||data.facts.find(function(f){return f.id===id;})||data.sources.find(function(f){return f.id===id;});});return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'assumption')+field(it,'text','assumption','assumptionHint')+'<div class="basis-box"><span class="section-label">'+esc(t('basis'))+'</span><p>'+esc(refs.map(function(x){return x?display(x)||x.title:'';}).filter(Boolean).join(' · ')||t('empty'))+'</p>'+relationList(it.id)+(presentation?'':button('basis','basis','small','link','data-id="'+esc(it.id)+'"'))+'</div></article>';}).join(''):empty();}
-    if(step===5){list=rows('C');html='<div class="word-shelf"><span>'+esc(t('candidateWords'))+'</span>'+data.valueWords.map(function(w,idx){return '<button type="button" class="word-chip" data-action="concept" data-word="'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word)+icon('plus')+'</button>';}).join('')+'</div>';
+    if(step===5){list=rows('C');html='<div class="word-shelf"><span>'+esc(t('candidateWords'))+'</span>'+data.valueWords.map(function(w,idx){var word=CT()?CT().valueWord(w,locale):(locale==='zh'?w.word:I.words[idx]?I.words[idx][0]:w.word);return '<button type="button" class="word-chip" data-action="concept" data-word="'+esc(word)+'" '+(presentation?'disabled':'')+'>'+esc(word)+icon('plus')+'</button>';}).join('')+'</div>';
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'concept')+field(it,'word','word','wordHint',true)+'<div class="two-columns">'+field(it,'others','others','othersHint')+field(it,'mine','mine','mineHint')+'</div></article>';}).join(''):empty());}
     if(step===6){list=rows('PA').sort(function(a,b){return (a.order||0)-(b.order||0);});html='';
       html+=list.length?list.map(function(it,idx){return '<article class="entry-card rank-card" draggable="'+(!presentation)+'" data-drag="'+esc(it.id)+'">'+cardHead(it,it.principleId?'principles':'custom')+'<div class="rank-heading"><span class="rank-number">'+(idx+1)+'</span><h3>'+esc(principleName(it.principleId)||it.text||t('custom'))+'</h3>'+(presentation?'':'<div class="rank-controls">'+button('moveUp','rank','icon-button','up','data-id="'+esc(it.id)+'" data-direction="-1" '+(idx===0?'disabled':''))+button('moveDown','rank','icon-button','down','data-id="'+esc(it.id)+'" data-direction="1" '+(idx===list.length-1?'disabled':''))+'</div>')+'</div>'+field(it,'text',it.principleId?'applyWhy':'custom',it.principleId?'applyWhy':'customHint')+'<details class="entry-details" id="principle-meta-'+esc(it.id)+'"><summary>'+esc(t('principleSettings'))+'</summary>'+(presentation?'<p>'+esc((it.appliesTo||[]).map(function(id){return display(s.items[id]);}).join(' · '))+'</p>':'<fieldset><legend>'+esc(t('questionTarget'))+'</legend>'+rows('Q').map(function(q){return '<label class="check"><input type="checkbox" id="applies-'+esc(it.id)+'-'+esc(q.id)+'" data-applies="'+esc(it.id)+'" value="'+esc(q.id)+'" '+((it.appliesTo||[]).includes(q.id)?'checked':'')+'>'+esc(q.text||q.id)+'</label>';}).join('')+'</fieldset>')+'<label class="field"><span>'+esc(t('priority'))+' · '+esc(t('tie'))+'</span>'+(presentation?'<p>'+esc(it.order||idx+1)+'</p>':'<input type="number" id="rank-order-'+esc(it.id)+'" min="1" max="99" data-item="'+esc(it.id)+'" data-field="order" value="'+esc(it.order||idx+1)+'">')+'</label></details></article>';}).join(''):empty();
@@ -7976,7 +8520,7 @@ body {
       return html+state().conflicts.map(function(c){return '<article class="entry-card"><div class="card-head"><strong>'+esc(principleName(c.principleA))+' ↔ '+esc(principleName(c.principleB))+'</strong>'+deleteButton(c,true)+'</div><p class="hint">'+esc(display(s.items[c.questionId]))+'</p><div class="two-columns">'+field(c,'supportsA','supportsA',null,false,'conflict')+field(c,'supportsB','supportsB',null,false,'conflict')+'</div>'+field(c,'priority','coordinate',null,false,'conflict')+field(c,'reason','reason',null,false,'conflict')+(presentation?'<p>'+esc(t(c.scope==='general'?'generalScope':'caseScope'))+'</p>':'<label class="field"><span>'+esc(t('scope'))+'</span><select data-conflict="'+esc(c.id)+'" data-field="scope"><option value="case" '+(c.scope==='case'?'selected':'')+'>'+esc(t('caseScope'))+'</option><option value="general" '+(c.scope==='general'?'selected':'')+'>'+esc(t('generalScope'))+'</option></select></label>')+'</article>';}).join('')+'</details>'; }
     if(step===7)return reviewWorkspace.render();
     if(step===8){list=rows('Q').filter(function(q){return q.isCore;});return list.length?list.map(function(q){var rel=s.relations.find(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}),r=rel?s.items[rel.from]:null;return '<article class="entry-card">'+tag('focus','green')+'<h3>'+esc(q.text||q.id)+'</h3>'+(r?field(r,'text','answer','answer')+field(r,'reason','answerWhy','answerWhy'):(presentation?'<p>'+esc(t('empty'))+'</p>':button('writeAnswer','answer','primary','note','data-id="'+esc(q.id)+'"')))+'</article>';}).join(''):empty('conclusionEmpty','conclusionEmptySub',presentation?'':button('chooseFocus','navigate','primary','back','data-step="2"'));}
-    if(step===9){list=rows('RC');html='<div class="notice">'+icon('help')+'<p>'+esc(t('constraintHint'))+'</p></div><div class="word-shelf">'+data.constraints.map(function(c,idx){return '<button class="word-chip" data-action="constraint" data-text="'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+icon('plus')+'</button>';}).join('')+'</div>'+(presentation?'':button('noConstraints','no-constraints','small quiet','check'));
+    if(step===9){list=rows('RC');html='<div class="notice">'+icon('help')+'<p>'+esc(t('constraintHint'))+'</p></div><div class="word-shelf">'+data.constraints.map(function(c,idx){var lab=CT()?CT().constraintLabel(c,locale):(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label);return '<button class="word-chip" data-action="constraint" data-text="'+esc(lab)+'" '+(presentation?'disabled':'')+'>'+esc(lab)+icon('plus')+'</button>';}).join('')+'</div>'+(presentation?'':button('noConstraints','no-constraints','small quiet','check'));
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'constraint')+((it.checkedIds||[]).includes('none')?'<p>'+esc(t('noConstraints'))+'</p>':field(it,'text','whatWho','whatWho')+field(it,'alternatives','alternatives','alternatives')+field(it,'mitigationJudgment','mitigation','mitigation'))+'</article>';}).join(''):empty());}
     if(step===10){list=rows('AV');return list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'prevention')+field(it,'text','prevention','preventionHint')+optionalActors(it)+'</article>';}).join(''):empty();}
     return html;
@@ -7996,8 +8540,10 @@ body {
   }
   function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?caseText(source,'title'):t('pendingSource');}
   function sourceDetails(entry,context){
-    var source=data.sources.find(function(s){return s.id===entry.sourceId;}),pending=/未做|待核|待复核/.test(entry.note||'');
-    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(entry.note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(caseText(entry,'note'))+'</p>':'')+(source&&source.note?'<p class="source-note">'+esc(caseText(source,'note'))+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
+    var source=data.sources.find(function(s){return s.id===entry.sourceId;}),pending=locale==='zh'&&/未做|待核|待复核/.test(entry.note||'');
+    var note=locale==='en'&&CT()?CT().factNote(entry,locale):caseText(entry,'note');
+    var srcNote=source?(locale==='en'&&CT()?CT().sourceNote(source,locale):caseText(source,'note')):'';
+    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(note)+'</p>':'')+(srcNote?'<p class="source-note">'+esc(srcNote)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';
@@ -8012,7 +8558,7 @@ body {
     var saveStatus=cases.getSaveStatus(),overview='';
     if(window.ReasoningOverview){window.ReasoningOverview.setReaders(function(){return state();},function(){return data;},function(){return locale;});if(window.ReasoningOverview.setScope)window.ReasoningOverview.setScope('full');overview=window.ReasoningOverview.renderPanel(state(),data);}
     var exports=lt('exportReportTemplate','download-template-md','primary','note','data-testid="summary-export-template"')+lt('exportMarkdownNotes','download-md','','note','data-testid="summary-export-md"')+lt('exportArchiveJson','download-json','','download','data-testid="summary-export-json"');
-    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports}):'';
+    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports,factText:packFactText}):'';
     app.innerHTML='<div class="app-shell">'+sidebar(current(),'summary')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('summaryReport'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions"><div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout summary-layout">'+summaryBody+'</main></div></div>';
   }
   function toolsDialog(){
@@ -8124,7 +8670,7 @@ body {
     openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><label class="field basis-search"><span>'+esc(t('basisSearchLabel'))+'</span><input id="basis-search" type="search" placeholder="'+esc(t('basisSearchPh'))+'"></label><fieldset><legend>'+esc(t('basis'))+'</legend><div class="basis-options">'+refs.map(function(x){return '<label class="check" data-basis-text="'+esc([display(x)||x.title||'',x.sourceId?sourceName(x.sourceId):'',x.quote||'',x.locator||''].join(' ').toLocaleLowerCase())+'"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+(selected.has(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</div></fieldset><p id="basis-count" class="basis-count" role="status">'+selected.size+' '+esc(t('basisSelectedCount'))+'</p><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
     if(rel)modal.querySelector('[name="gap"]').value=rel.to;
   }
-  function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
+  function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+packFactText(f)+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+lt('exportArchiveJson','download-json','primary','download')+lt('exportMarkdownNotes','download-md','','note')+'</div>');}
   function onClick(event){if(reviewWorkspace.click(event))return;var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
@@ -8162,7 +8708,7 @@ body {
     if(action==='rank'){var list=rows('PA').sort(function(a,b){return(a.order||0)-(b.order||0);}),idx=list.findIndex(function(x){return x.id===el.dataset.id;}),dest=idx+Number(el.dataset.direction);if(dest>=0&&dest<list.length){var other=list[dest];list[dest]=list[idx];list[idx]=other;list.forEach(function(x,i){dispatch('UPDATE_ITEM',{id:x.id,fields:{order:i+1}});});}}
     if(action==='conflict'){var entries=rows('PA').map(function(it){return{id:it.principleId||it.id,text:principleName(it.principleId)||it.text||t('custom')};});openDialog('addConflict','<form id="conflict-form"><label class="field"><span>'+esc(t('questionTarget'))+'</span><select name="question" required>'+options(rows('Q'))+'</select></label><div class="two-columns"><label class="field"><span>'+esc(t('principleA'))+'</span><select name="a" required>'+options(entries)+'</select></label><label class="field"><span>'+esc(t('principleB'))+'</span><select name="b" required>'+options(entries)+'</select></label></div><button type="submit" class="button primary">'+esc(t('addConflict'))+'</button></form>');}
     if(action==='answer')dispatch('ANSWER',{question:el.dataset.id});
-    if(action==='reference'){if(presentation)return;dispatch('ACCEPT_L3',{step:current()});var ref=data.steps[current()-1].referenceLevel3;openDialog('reference','<p class="notice">'+esc(t('referenceDisclaimer'))+'</p>'+tag('textbook')+'<p>'+esc(!ref||isPending(ref.body)?t('referencePending'):ref.body)+'</p><small>'+esc(t('methodBasis'))+' · '+esc(data.meta.builtAt)+'</small>',true);}
+    if(action==='reference'){if(presentation)return;dispatch('ACCEPT_L3',{step:current()});var ref=data.steps[current()-1].referenceLevel3;var body=CT()?CT().referenceBody(ref,locale,current()):ref&&ref.body;openDialog('reference','<p class="notice">'+esc(t('referenceDisclaimer'))+'</p>'+tag('textbook')+'<p>'+esc(!ref||isPending(ref.body)?t('referencePending'):body)+'</p><small>'+esc(t('methodBasis'))+' · '+esc(data.meta.builtAt)+'</small>',true);}
     if(action==='export')exportDialog();
     if(action==='download-json'){closeArchiveMenu();download(cases.exportProject(),jsonArchiveName(),'application/json');modal.close();}
     if(action==='download-md'){closeArchiveMenu();download(exportMarkdown(),mdArchiveName(),'text/markdown;charset=utf-8');modal.close();}
