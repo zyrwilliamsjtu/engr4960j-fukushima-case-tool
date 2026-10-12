@@ -1,6 +1,10 @@
 (function () {
   "use strict";
   var checks = [];
+  var MEMBER_Q =
+    "Should TEPCO have taken additional precautions to protect those systems and the people who depended on them?";
+  var MEMBER_FACT =
+    "On 11 March 2011, the earthquake caused a loss of off-site power at Fukushima Daiichi. The subsequent tsunami flooded essential equipment, disabling much of the backup power supply and compromising reactor cooling.";
   function check(id, ok, detail) {
     checks.push({ id: id, ok: !!ok, detail: detail || "" });
   }
@@ -24,14 +28,6 @@
     });
     return n;
   }
-  function step8Empty() {
-    var inputs = document.querySelectorAll("#workspace textarea, #workspace input[type=text]");
-    var filled = 0;
-    inputs.forEach(function (el) {
-      if ((el.value || "").trim()) filled++;
-    });
-    return filled === 0;
-  }
   async function run() {
     for (var i = 0; i < 120; i++) {
       if (document.querySelector('[data-testid="home-demo-hint"]') && document.querySelector('[data-testid="home-continue"]')) break;
@@ -53,10 +49,18 @@
       await wait(100);
     }
     check("demo-q-count", countStep1Questions() >= 5, "step1 cards=" + countStep1Questions());
+    var q1 =
+      window.FIELDNOTES &&
+      window.FIELDNOTES.getEngine &&
+      Object.values(window.FIELDNOTES.getEngine().getState().items).find(function (it) {
+        return it.id === "Q-1-01";
+      });
+    check("demo-member-q1", !!(q1 && q1.text === MEMBER_Q), q1 ? q1.text.slice(0, 60) : "missing");
     var nav3 = document.getElementById("nav-step-3");
     if (nav3) nav3.click();
-    await wait(300);
-    check("demo-fact-why", countStep3Why() >= 2, "why relations=" + countStep3Why());
+    await wait(400);
+    check("demo-fact-why", countStep3Why() >= 9, "why relations=" + countStep3Why());
+    check("demo-member-fact", text(document.body).indexOf(MEMBER_FACT) >= 0, "verbatim fact narrative");
     var navSum = document.getElementById("nav-summary");
     if (navSum) navSum.click();
     await wait(400);
@@ -71,9 +75,35 @@
     check("demo-summary-brief", !!(replay && !replay.open) && briefLen < 8000, "chars=" + briefLen + " replayOpen=" + (replay && replay.open));
     var nav8 = document.getElementById("nav-step-8");
     if (nav8) nav8.click();
+    for (var s8 = 0; s8 < 25; s8++) {
+      if (document.querySelector('textarea[data-item="R-8-01"][data-field="text"]')) break;
+      await wait(100);
+    }
+    var rTa = document.querySelector('textarea[data-item="R-8-01"][data-field="text"]');
+    var rText = rTa ? rTa.value : "";
+    if (!rText && window.FIELDNOTES && window.FIELDNOTES.getEngine) {
+      rText = ((window.FIELDNOTES.getEngine().getState().items || {})["R-8-01"] || {}).text || "";
+    }
+    check(
+      "demo-step8-placeholder",
+      /AI DEMO PLACEHOLDER/i.test(rText) && rText.length > 40,
+      rText ? rText.slice(0, 50) : "missing R-8-01"
+    );
+    var nav9 = document.getElementById("nav-step-9");
+    if (nav9) nav9.click();
     await wait(300);
-    check("demo-step8-empty", step8Empty(), "step8 inputs filled check");
-    check("demo-banner", !!document.querySelector("[data-demo-banner]") && /DEMO BUILD/i.test(document.body.innerText), "banner");
+    check("demo-step9-content", text(document.getElementById("workspace") || document.body).length > 80, "step9");
+    var nav10 = document.getElementById("nav-step-10");
+    if (nav10) nav10.click();
+    await wait(300);
+    check("demo-step10-content", document.querySelectorAll("#workspace .entry-card").length >= 3, "step10 cards");
+    var ban = document.querySelector("[data-demo-banner]");
+    check(
+      "demo-banner-source",
+      !!(ban && /partly provided by a group member/i.test(ban.getAttribute("data-banner-en") || "")),
+      "banner-en attr"
+    );
+    check("demo-banner", !!document.querySelector("[data-demo-banner]") && /DEMO BUILD/i.test(document.body.innerText), "banner marker");
     window.__DEMO_AUDIT__ = checks;
     var el = document.createElement("pre");
     el.id = "DEMO_AUDIT_JSON";
