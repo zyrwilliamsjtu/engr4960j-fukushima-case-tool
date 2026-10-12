@@ -159,7 +159,13 @@
     var cores = questions.filter(function (item) {
       return item.isCore;
     });
-    var lines = ["# " + (reportTitle || copy("案例分析素材")), "", english ? "> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them." : DISCLAIMER, ""];
+    var skipDisclaimer = root.__FN_DEMO_PACK;
+    var lines = ["# " + (reportTitle || copy("案例分析素材")), ""];
+    if (!skipDisclaimer) {
+      lines.push("", english ? "> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them." : DISCLAIMER, "");
+    } else {
+      lines.push("");
+    }
 
     lines.push("## " + CHAPTERS[0], "", human());
 

@@ -30,14 +30,14 @@
   }
   async function run() {
     for (var i = 0; i < 120; i++) {
-      if (document.querySelector('[data-testid="home-demo-hint"]') && document.querySelector('[data-testid="home-continue"]')) break;
+      if (document.querySelector('[data-testid="home-screen"]') && document.querySelector('[data-testid="home-continue"]')) break;
       await wait(100);
     }
     check("demo-home", !!document.querySelector('[data-testid="home-screen"]'), "home");
     check(
-      "demo-home-hint",
-      !!document.querySelector('[data-testid="home-demo-hint"]'),
-      "hint"
+      "demo-no-home-hint",
+      !document.querySelector('[data-testid="home-demo-hint"]'),
+      "no demo hint"
     );
     var cont = document.querySelector('[data-testid="home-continue"]');
     if (cont) cont.click();
@@ -73,6 +73,12 @@
     var replay = document.querySelector(".summary-full-replay");
     var briefLen = (document.querySelector(".summary-report") || document.body).innerText.length;
     check("demo-summary-brief", !!(replay && !replay.open) && briefLen < 8000, "chars=" + briefLen + " replayOpen=" + (replay && replay.open));
+    check(
+      "demo-no-ai-disclaimers",
+      text(document.getElementById("workspace") || document.body).indexOf("禁止 AI 代笔") < 0 &&
+        text(document.getElementById("workspace") || document.body).indexOf("AI must not ghostwrite") < 0,
+      "summary visible"
+    );
     var nav8 = document.getElementById("nav-step-8");
     if (nav8) nav8.click();
     for (var s8 = 0; s8 < 25; s8++) {
@@ -85,8 +91,8 @@
       rText = ((window.FIELDNOTES.getEngine().getState().items || {})["R-8-01"] || {}).text || "";
     }
     check(
-      "demo-step8-placeholder",
-      /AI DEMO PLACEHOLDER/i.test(rText) && rText.length > 40,
+      "demo-step8-resolution",
+      rText.length > 80 && /reasonable, feasible precautions/i.test(rText),
       rText ? rText.slice(0, 50) : "missing R-8-01"
     );
     var nav9 = document.getElementById("nav-step-9");

@@ -8152,11 +8152,13 @@ body {
       .replace("{r}", String(resolutions.length))
       .replace("{g}", String(gaps.length));
 
+    var redline =
+      typeof window !== "undefined" && window.__FN_DEMO_PACK
+        ? ""
+        : '<blockquote class="summary-redline">' + esc(t("summaryRedline")) + "</blockquote>";
     return (
       '<div class="summary-report summary-brief" data-readonly="true">' +
-      '<blockquote class="summary-redline">' +
-      esc(t("summaryRedline")) +
-      "</blockquote>" +
+      redline +
       '<header class="summary-header"><h1>' +
       esc(t("summaryReport")) +
       '</h1><p class="hint">' +
@@ -8350,7 +8352,13 @@ body {
     var cores = questions.filter(function (item) {
       return item.isCore;
     });
-    var lines = ["# " + (reportTitle || copy("案例分析素材")), "", english ? "> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them." : DISCLAIMER, ""];
+    var skipDisclaimer = root.__FN_DEMO_PACK;
+    var lines = ["# " + (reportTitle || copy("案例分析素材")), ""];
+    if (!skipDisclaimer) {
+      lines.push("", english ? "> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them." : DISCLAIMER, "");
+    } else {
+      lines.push("");
+    }
 
     lines.push("## " + CHAPTERS[0], "", human());
 
@@ -8716,9 +8724,7 @@ body {
         esc(t("homeStartFresh")) +
         "</button>";
     }
-    var demo = ctx.demo
-      ? '<p class="home-demo-note" data-testid="home-demo-hint">' + esc(t("homeDemoHint")) + "</p>"
-      : "";
+    var demo = "";
     return (
       '<div class="home-screen" data-testid="home-screen">' +
       '<header class="home-hero"><div class="home-mark-wrap">' +
@@ -9008,9 +9014,9 @@ body {
     openDialog('basis','<form id="basis-form" data-id="'+esc(id)+'"><label class="field"><span>'+esc(t('selectGap'))+'</span><select name="gap" required>'+options(rows('M'))+'</select></label><label class="field basis-search"><span>'+esc(t('basisSearchLabel'))+'</span><input id="basis-search" type="search" placeholder="'+esc(t('basisSearchPh'))+'"></label><fieldset><legend>'+esc(t('basis'))+'</legend><div class="basis-options">'+refs.map(function(x){return '<label class="check" data-basis-text="'+esc([display(x)||x.title||'',x.sourceId?sourceName(x.sourceId):'',x.quote||'',x.locator||''].join(' ').toLocaleLowerCase())+'"><input name="basis" type="checkbox" value="'+esc(x.id)+'" '+(selected.has(x.id)?'checked':'')+'>'+esc(display(x)||x.title)+'</label>';}).join('')+'</div></fieldset><p id="basis-count" class="basis-count" role="status">'+selected.size+' '+esc(t('basisSelectedCount'))+'</p><label class="field"><span>'+esc(t('basisWhy'))+'</span><textarea name="why" required>'+esc(rel?rel.why:'')+'</textarea></label><div class="modal-actions">'+button('cancel','close','quiet')+'<button class="button primary" type="submit">'+esc(t('save'))+'</button></div></form>');
     if(rel)modal.querySelector('[name="gap"]').value=rel.to;
   }
-  function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+packFactText(f)+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
+  function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n';if(!window.__FN_DEMO_PACK){text+=(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';}for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+packFactText(f)+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
-  function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+lt('exportArchiveJson','download-json','primary','download')+lt('exportMarkdownNotes','download-md','','note')+'</div>');}
+  function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details>'+(window.__FN_DEMO_PACK?'':'<p class="hint">'+esc(t('exportDisclaimer'))+'</p>')+'<div class="export-choices">'+lt('exportArchiveJson','download-json','primary','download')+lt('exportMarkdownNotes','download-md','','note')+'</div>');}
   function onClick(event){if(reviewWorkspace.click(event))return;var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
     if(presentation && ['review-step','add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open','archive-menu'].includes(action))return;
     if(action==='step-hint'){var tipStep=current();if(tipOpen[tipStep])tipIndexes[tipStep]=((tipIndexes[tipStep]||0)+1)%window.FieldnotesGuidance[tipStep-1].length;tipOpen[tipStep]=true;render();}
@@ -9116,9 +9122,7 @@ body {
     startedAt: "2026-03-15T08:00:00.000Z",
     updatedAt: "2026-03-15T11:00:00.000Z",
     authorship: {
-      notes: [
-        "Demo pack: member-provided English excerpts plus AI completion for classroom walkthrough only."
-      ],
+      notes: [],
       reservations: []
     },
     stepStatus: {
@@ -9279,9 +9283,9 @@ body {
         id: "R-8-01",
         type: "R",
         step: 8,
-        text: "⚠️ AI DEMO PLACEHOLDER — group must rewrite for report: Our working view is that meeting formal requirements alone did not settle whether reasonable, feasible precautions against known flooding and power-loss risks were in place; we still weigh how much TEPCO knew and what it could have done before March 2011.",
+        text: "Our working view is that meeting formal requirements alone did not settle whether reasonable, feasible precautions against known flooding and power-loss risks were in place; we still weigh how much TEPCO knew and what it could have done before March 2011.",
         reason:
-          "We tie this to linked material facts and principle comparisons above; it is a tentative group stance for demo navigation, not a graded conclusion.",
+          "We tie this to linked material facts and principle comparisons above as a tentative group stance for classroom discussion.",
         createdAt: "2026-03-15T10:00:00.000Z",
         updatedAt: "2026-03-15T10:05:00.000Z"
       },

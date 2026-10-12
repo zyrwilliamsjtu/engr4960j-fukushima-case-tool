@@ -82,9 +82,7 @@
         esc(t("homeStartFresh")) +
         "</button>";
     }
-    var demo = ctx.demo
-      ? '<p class="home-demo-note" data-testid="home-demo-hint">' + esc(t("homeDemoHint")) + "</p>"
-      : "";
+    var demo = "";
     return (
       '<div class="home-screen" data-testid="home-screen">' +
       '<header class="home-hero"><div class="home-mark-wrap">' +

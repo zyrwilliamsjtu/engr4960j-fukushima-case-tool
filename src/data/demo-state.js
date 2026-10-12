@@ -14,9 +14,7 @@
     startedAt: "2026-03-15T08:00:00.000Z",
     updatedAt: "2026-03-15T11:00:00.000Z",
     authorship: {
-      notes: [
-        "Demo pack: member-provided English excerpts plus AI completion for classroom walkthrough only."
-      ],
+      notes: [],
       reservations: []
     },
     stepStatus: {
@@ -177,9 +175,9 @@
         id: "R-8-01",
         type: "R",
         step: 8,
-        text: "⚠️ AI DEMO PLACEHOLDER — group must rewrite for report: Our working view is that meeting formal requirements alone did not settle whether reasonable, feasible precautions against known flooding and power-loss risks were in place; we still weigh how much TEPCO knew and what it could have done before March 2011.",
+        text: "Our working view is that meeting formal requirements alone did not settle whether reasonable, feasible precautions against known flooding and power-loss risks were in place; we still weigh how much TEPCO knew and what it could have done before March 2011.",
         reason:
-          "We tie this to linked material facts and principle comparisons above; it is a tentative group stance for demo navigation, not a graded conclusion.",
+          "We tie this to linked material facts and principle comparisons above as a tentative group stance for classroom discussion.",
         createdAt: "2026-03-15T10:00:00.000Z",
         updatedAt: "2026-03-15T10:05:00.000Z"
       },

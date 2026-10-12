@@ -304,11 +304,13 @@
       .replace("{r}", String(resolutions.length))
       .replace("{g}", String(gaps.length));
 
+    var redline =
+      typeof window !== "undefined" && window.__FN_DEMO_PACK
+        ? ""
+        : '<blockquote class="summary-redline">' + esc(t("summaryRedline")) + "</blockquote>";
     return (
       '<div class="summary-report summary-brief" data-readonly="true">' +
-      '<blockquote class="summary-redline">' +
-      esc(t("summaryRedline")) +
-      "</blockquote>" +
+      redline +
       '<header class="summary-header"><h1>' +
       esc(t("summaryReport")) +
       '</h1><p class="hint">' +
