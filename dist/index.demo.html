@@ -9347,9 +9347,6 @@ body {
   var BANNER_EN =
     "⚠️ DEMO BUILD — Sample input partly provided by a group member and partly AI-completed for " +
     "demonstration. NOT a real analysis; must not be used in the report.";
-  var BANNER_ZH =
-    "演示用途：部分内容来自小组成员提供、部分由 AI 补全，非真实分析结论，不得用于报告。";
-
   function showBanner() {
     if (document.querySelector("[data-demo-banner]")) return;
     var banner = document.createElement("div");
@@ -9357,15 +9354,7 @@ body {
     banner.setAttribute("data-demo-banner", "1");
     banner.setAttribute("data-demo-build", "1");
     banner.setAttribute("data-banner-en", BANNER_EN);
-    function updateBanner() {
-      var en = document.documentElement.lang === "en" || document.documentElement.lang === "en-US";
-      banner.textContent = (en ? BANNER_EN : "⚠️ DEMO BUILD — " + BANNER_ZH);
-    }
-    updateBanner();
-    new MutationObserver(updateBanner).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["lang"]
-    });
+    banner.textContent = BANNER_EN;
     document.body.insertBefore(banner, document.body.firstChild);
   }
 
