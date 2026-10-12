@@ -8006,7 +8006,7 @@ body {
                 var found = (data.principles || []).find(function (row) {
                   return row.id === p.principleId;
                 });
-                return "<li>" + esc((found && (ctx.localeName ? ctx.localeName(found) : found.name)) || p.text || p.id) + "</li>";
+                return "<li>" + esc((found && (ctx.principleName ? ctx.principleName(found) : found.name)) || p.text || p.id) + "</li>";
               })
               .join("")
           : "<li>" + esc(gapLine(6, title(6), t("summaryNeedPrinciples"))) + "</li>";
@@ -8814,7 +8814,7 @@ body {
     var saveStatus=cases.getSaveStatus(),overview='';
     if(window.ReasoningOverview){window.ReasoningOverview.setReaders(function(){return state();},function(){return data;},function(){return locale;});if(window.ReasoningOverview.setScope)window.ReasoningOverview.setScope('full');overview=window.ReasoningOverview.renderPanel(state(),data);}
     var exports=lt('exportReportTemplate','download-template-md','primary','note','data-testid="summary-export-template"')+lt('exportMarkdownNotes','download-md','','note','data-testid="summary-export-md"')+lt('exportArchiveJson','download-json','','download','data-testid="summary-export-json"');
-    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports,factText:packFactText,sourceName:sourceName}):'';
+    var summaryBody=window.SummaryReport?window.SummaryReport.render({state:state(),data:data,esc:esc,t:t,stepTitle:title,statusLabel:summaryStatusLabel,sourceTag:summarySourceTag,gapLine:summaryGapLine,overviewHtml:overview,exportButtons:exports,factText:packFactText,sourceName:sourceName,principleName:function(p){return CT()?CT().principleName(p,locale):p.name;}}):'';
     app.innerHTML='<div class="app-shell">'+sidebar(current(),'summary')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('summaryReport'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout summary-layout">'+summaryBody+'</main></div></div>';
   }
   function toolsDialog(){

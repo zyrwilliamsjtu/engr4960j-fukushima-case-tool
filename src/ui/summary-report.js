@@ -228,7 +228,7 @@
                 var found = (data.principles || []).find(function (row) {
                   return row.id === p.principleId;
                 });
-                return "<li>" + esc((found && (ctx.localeName ? ctx.localeName(found) : found.name)) || p.text || p.id) + "</li>";
+                return "<li>" + esc((found && (ctx.principleName ? ctx.principleName(found) : found.name)) || p.text || p.id) + "</li>";
               })
               .join("")
           : "<li>" + esc(gapLine(6, title(6), t("summaryNeedPrinciples"))) + "</li>";
