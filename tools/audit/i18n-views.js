@@ -5,6 +5,7 @@
   "use strict";
   function wb() {
     if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    if (window.__fieldnotesEnableDevToolbar) window.__fieldnotesEnableDevToolbar(true);
   }
 
   window.I18nAuditViews = {

@@ -32,6 +32,7 @@ Auto-generated. Registry: `tools/audit/i18n-views.js`.
 ## UI modules (`src/ui/*.js`)
 
 - `src/ui/applogic-runtime.js`
+- `src/ui/case-intake.js`
 - `src/ui/case-text.js`
 - `src/ui/case-workspaces.js`
 - `src/ui/evidence-library.js`

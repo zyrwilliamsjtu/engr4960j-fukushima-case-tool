@@ -16,6 +16,7 @@ let pageForCapture;
  const page=await context.newPage(), errors=[], external=[];pageForCapture=page;
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(/^https?:/.test(r.url()))external.push(r.url());});
+ await page.addInitScript(()=>{window.__FN_DEV_TOOLBAR=true;});
  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML || 'preview.html')).href+'#workbench');
  await page.waitForSelector('.step-hero');
  const click=async action=>{const scope=await page.locator('#modal').evaluate(el=>el.open)?'#modal ':'';await page.locator(scope+'[data-action="'+action+'"]').first().click();};

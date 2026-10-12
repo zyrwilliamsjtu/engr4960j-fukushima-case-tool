@@ -16,6 +16,8 @@ const {chromium}=require(process.env.FIELDNOTES_PLAYWRIGHT||'playwright'),assert
    const geometry=await p.locator('#workspace').evaluate(el=>{const headings=[...el.querySelectorAll('.entry-card h3,.read-field p,.record-preview')].filter(e=>e.getClientRects().length);return headings.every(e=>e.scrollWidth<=e.clientWidth+1);});assert.ok(geometry,'Readable text fits its container.');
    if(step!==7){assert.ok(await p.locator('[data-step-record]').count()>0);assert.ok(await p.locator('[data-step-record][open]').count()<=1);if(await p.locator('[data-step-record]').count()>1){await p.locator('[data-step-record]>summary').nth(1).press('Enter');await p.waitForTimeout(25);assert.equal(await p.locator('[data-step-record][open]').count(),1);assert.equal(await p.locator('[data-step-record]').nth(1).getAttribute('open'),'');await p.locator('[data-step-record]>summary').first().click();await p.waitForTimeout(25);}}
    assert.equal(await p.locator('.workspace-heading [data-action=add],[data-action=snapshot-initial],#review-step').count(),0,'Presentation does not show editing controls.');
+   assert.equal(await p.locator('.workbench-toolbar').count(),0,'Default UI does not expose developer tools.');
+   if(step===10)assert.equal(await p.locator('.step-footer [data-action=goto-summary]').count(),1,'The last step leads directly to the report.');
    if(lang==='en'&&width===1440&&build==='index.demo.html')await p.screenshot({path:path.join(out,'demo-step-'+String(step).padStart(2,'0')+'.png')});
    if(lang==='zh'&&width===390&&[3,5,9].includes(step)&&build==='index.html')await p.screenshot({path:path.join(out,'formal-mobile-'+step+'.png')});
   }}}

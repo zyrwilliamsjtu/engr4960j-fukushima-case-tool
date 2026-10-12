@@ -5,6 +5,10 @@
 (function () {
   "use strict";
 
+  function enableDevToolbar() {
+    if (window.__fieldnotesEnableDevToolbar) window.__fieldnotesEnableDevToolbar(true);
+  }
+
   var checks = [];
   var frictions = [];
   var steps = [];
@@ -247,6 +251,7 @@
 
   function runStorageFail() {
     if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    enableDevToolbar();
     var status = textOf($(".save-status"));
     var before = errors.length;
     var added = false;
@@ -306,21 +311,27 @@
 
     var home = document.querySelector('[data-testid="home-screen"]');
     check("H-1-home", !!home && !document.getElementById("workspace"), home ? "home visible" : "missing home");
-    check("H-2-copy", !!home && /不生成结论|does not generate conclusions/i.test(home.innerText) && /不联网|does not connect/i.test(home.innerText), "limits");
+    check(
+      "H-2-copy",
+      !!home && /离线|Offline/.test(home.innerText) && /本地|Saved locally|local/i.test(home.innerText),
+      "limits"
+    );
+    click('[data-intake="existing"]');
     var course = document.querySelector('[data-testid="home-case-course"]');
     check(
       "H-3-course",
       !!(course && course.getAttribute("aria-pressed") === "true" && /课程案例|Course case/.test(course.textContent || "")),
       course ? course.textContent.slice(0, 80) : "no course"
     );
-    var homeTitle = document.querySelector(".home-hero h1");
-    var homeLead = document.querySelector(".home-lead");
+    var homeTitle = document.querySelector(".intake-intro h1");
+    var homeLead = document.querySelector(".intake-intro p");
     var titlePx = homeTitle ? parseFloat(getComputedStyle(homeTitle).fontSize) : 0;
     var leadPx = homeLead ? parseFloat(getComputedStyle(homeLead).fontSize) : 0;
     check("H-4-type", titlePx >= 32 && leadPx >= 16, "title=" + titlePx + " lead=" + leadPx);
     var extImg = document.querySelector('img[src^="http"], img[src^="/"], img[src^="src/"]');
-    check("H-5-inline", !!document.querySelector(".home-mark") && !extImg, extImg ? extImg.getAttribute("src") : "inline svg");
+    check("H-5-inline", !!document.querySelector(".intake-path") && !extImg, extImg ? extImg.getAttribute("src") : "inline svg");
     if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    enableDevToolbar();
     check("H-6-enter", !!document.getElementById("workspace") && !!document.getElementById("nav-step-1"), "entered step 1");
 
     var emptyErrors = errors.slice();
@@ -661,7 +672,11 @@
     check("S-2-brief-length", briefText.length > 0 && briefText.length < 8000, "chars=" + briefText.length);
     check(
       "D9-3",
-      !!(completeness && (/已填写\s*\d+\s*项/.test(completeness.textContent || "") || /\d+\s*filled/.test(completeness.textContent || ""))),
+      !!(
+        completeness &&
+        (/Questions|问题/.test(completeness.textContent || "") &&
+          /Evidence|依据/.test(completeness.textContent || ""))
+      ),
       completeness ? completeness.textContent : "no completeness"
     );
     var qField = $("#workspace textarea[data-field='text']");
@@ -701,6 +716,7 @@
     click('[data-testid="goto-home"]');
     check("H-7-back", !!document.querySelector('[data-testid="home-screen"]') && JSON.stringify(window.FIELDNOTES.getEngine().getState()) === beforeHome, "state held");
     if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    enableDevToolbar();
     check("H-8-resume", JSON.stringify(window.FIELDNOTES.getEngine().getState()) === beforeHome && !!document.getElementById("nav-step-1"), "resumed");
 
     auditEnglishUi();

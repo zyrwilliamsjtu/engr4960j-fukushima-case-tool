@@ -7511,9 +7511,15 @@ body {
   function toolsDialog(){
     openDialog('more','<div class="tools-list">'+button('newCase','cases','','folder')+lt('exportArchiveJson','download-json','','download')+lt('importArchiveJson','import','','folder')+lt('exportMarkdownNotes','download-md','','note')+button('method','method','','help')+button('reset','reset','danger','trash')+'</div>');
   }
+  function applyDemoPresentationIfNeeded(){
+    if(window.__FN_DEMO_PACK&&window.__FN_DEMO_AUTO_PRESENT&&!presentation){
+      presentation=JSON.parse(JSON.stringify(engine.getState()));
+      presentationStep=presentation.currentStep||engine.getState().currentStep;
+    }
+  }
   function attachCase(){
     data=cases.getData();engine=cases.getRuntime();workingEngine=engine;
-    presentation=null;view='workbook';bindEngine();render();window.scrollTo(0,0);
+    presentation=null;view='workbook';bindEngine();applyDemoPresentationIfNeeded();render();window.scrollTo(0,0);
   }
   function casesDialog(){
     openDialog('switchCase','<div class="case-list">'+cases.list().map(function(pack){
@@ -7557,6 +7563,7 @@ body {
   function closeArchiveMenu(){archiveMenuOpen=false;syncArchiveMenuDom();}
   function toggleArchiveMenu(){archiveMenuOpen=!archiveMenuOpen;syncArchiveMenuDom();}
   function workbenchToolbar(){
+    if(!window.__FN_DEV_TOOLBAR)return '';
     if(presentation)return '<div class="workbench-toolbar presentation-toolbar"><span>'+icon('screen')+esc(bi('课堂展示 · 只读','Presentation · read only'))+'</span><div>'+lt('overview','reasoning-overview-open','small quiet','map')+lt('gotoSummary','goto-summary','small quiet','arrow')+'</div></div>';
     return '<div class="workbench-toolbar">'+lt('saveSnapshotInitial','snapshot-initial','small quiet','history','data-testid="snapshot-initial"')+lt('saveSnapshotReviewed','snapshot-reviewed','small quiet','history','data-testid="snapshot-reviewed"')+lt('revisions','revision-compare-open','primary small','history','data-testid="revision-compare-open"')+lt('overview','reasoning-overview-open','small quiet','map','data-testid="reasoning-overview-open"')+'<span><button type="button" class="button small quiet" data-action="archive-menu" data-testid="archive-menu" aria-expanded="'+(archiveMenuOpen?'true':'false')+'">'+esc(t('archiveMenu'))+'</button><div id="archive-menu-panel" role="menu"'+(archiveMenuOpen?'':' hidden')+'>'+lt('exportArchiveJson','download-json','small quiet','download','data-testid="archive-export-json"')+lt('importArchiveJson','import','small quiet','folder','data-testid="archive-import-json"')+lt('exportMarkdownNotes','download-md','small quiet','note','data-testid="archive-export-md"')+lt('exportReportTemplate','download-template-md','small quiet','note','data-testid="archive-export-template-md"')+'</div></span>'+lt('help','method','small quiet','help','data-testid="toolbar-help"')+'</div>';
   }
@@ -7586,7 +7593,7 @@ body {
   }
   function setHash(hash){if(location.hash!==hash){try{history.replaceState(null,'',hash);}catch(e){location.hash=hash;}}}
   function hasProgress(){var s=state();return Object.keys(s.items||{}).length>0||(s.relations||[]).length>0||(s.conflicts||[]).length>0;}
-  function enterWorkbook(){view='workbook';setHash('#workbench');if(window.__FN_DEMO_PACK&&window.__FN_DEMO_AUTO_PRESENT&&!presentation){presentation=JSON.parse(JSON.stringify(engine.getState()));presentationStep=presentation.currentStep||state().currentStep;}render();window.scrollTo(0,0);}
+  function enterWorkbook(){view='workbook';setHash('#workbench');applyDemoPresentationIfNeeded();render();window.scrollTo(0,0);}
   function renderHome(){
     document.documentElement.lang=locale==='zh'?'zh-CN':'en';
     document.title='Fieldnotes · '+t('homeTitle');
@@ -7608,7 +7615,7 @@ body {
     var saveStatus=cases.getSaveStatus();
     var type=addType[step],hasRecords=type&&rows(type[0]).length>0;
     var add=!presentation&&type&&step!==3?(step===6?button('choosePrinciples','materials','primary small','plus','data-tab="principles"'):hasRecords?button(type[1],'add','primary small','plus','data-type="'+type[0]+'" data-step="'+step+'"'):''):'';
-    app.innerHTML='<div class="app-shell '+(presentation?'is-presenting':'is-editing')+'">'+sidebar(step,'workbook')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+caseDossierBar()+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+(presentation?'<span class="presentation-step-label">'+String(step).padStart(2,'0')+' / 10</span>':'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>')+button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':''))+'</div>'+((step===10&&!presentation)?'<div class="summary-goto-row">'+lt('gotoSummary','goto-summary','primary','arrow','data-testid="goto-summary"')+'</div>':'')+workbenchToolbar()+'</main></div></div>';
+    app.innerHTML='<div class="app-shell '+(presentation?'is-presenting':'is-editing')+'">'+sidebar(step,'workbook')+'<div class="main-shell"><header class="topbar"><div class="page-identity"><span>'+esc(t('workbook'))+'</span><h2>'+esc(t('caseTitle'))+'</h2></div><div class="top-actions">'+homeButton()+'<div class="save-status '+(saveStatus==='memory'?'warn':'')+'" role="status"><span class="save-indicator"></span>'+esc(t(saveStatus==='memory'?'memory':saveStatus==='saving'?'saving':saveStatus==='unknown'?'saveUnknown':'saved'))+'</div><div class="language-switch" role="group" aria-label="'+esc(t('language'))+'"><button id="lang-zh" data-action="language" data-lang="zh" aria-pressed="'+(locale==='zh')+'" class="'+(locale==='zh'?'selected':'')+'">'+esc(t('langZh'))+'</button><button id="lang-en" data-action="language" data-lang="en" aria-pressed="'+(locale==='en'?'selected':'')+'">'+esc(t('langEn'))+'</button></div>'+button('cases','cases','material-button','folder')+(presentation?button('exitPresent','exit-present','material-button','close'):button('present','present','material-button','screen'))+button('materials','materials','material-button','book')+button('more','tools','icon-button quiet','more','aria-label="'+esc(t('more'))+'"')+'</div></header><main id="workspace" tabindex="-1" class="workspace-layout">'+hero(step)+caseDossierBar()+'<div class="workspace-heading"><div class="workspace-title-group"><h2>'+esc(I.sectionTitles[step-1][locale==='zh'?0:1])+'</h2>'+tipButton(step)+'</div>'+add+'</div>'+stepHint(step)+warningBlock(step)+'<div class="entries">'+simpleInput(step)+'</div><div class="step-footer">'+button('previous','navigate','quiet','back','data-step="'+(step-1)+'" '+(step===1?'disabled':''))+(presentation?'<span class="presentation-step-label">'+String(step).padStart(2,'0')+' / 10</span>':'<button id="review-step" class="review-toggle '+(s.stepStatus[step]==='checked'?'is-reviewed':'')+'" data-action="review-step" aria-pressed="'+(s.stepStatus[step]==='checked')+'">'+icon('check')+esc(t(s.stepStatus[step]==='checked'?'checked':'markReviewed'))+'</button>')+(step===10&&presentation?lt('gotoSummary','goto-summary','primary','arrow'):button('next','navigate','primary','arrow','data-step="'+(step+1)+'" '+(step===10?'disabled':'')))+'</div>'+((step===10&&!presentation)?'<div class="summary-goto-row">'+lt('gotoSummary','goto-summary','primary','arrow','data-testid="goto-summary"')+'</div>':'')+workbenchToolbar()+'</main></div></div>';
     app.querySelectorAll('details[id]').forEach(function(el){if(Object.prototype.hasOwnProperty.call(disclosures,el.id))el.open=disclosures[el.id];});
     if(focusId){var found=document.getElementById(focusId);if(found){found.focus({preventScroll:true});if(selection&&found.setSelectionRange)try{found.setSelectionRange(selection[0],selection[1]);}catch(e){}}}window.scrollTo(0,scroll);
   }
@@ -7743,6 +7750,7 @@ body {
   document.addEventListener('fieldnotes-demo-enter',function(){if(window.__FN_DEMO_PACK)enterWorkbook();});
   window.__fieldnotesDemoEnter=function(){if(window.__FN_DEMO_PACK)enterWorkbook();};
   window.__fieldnotesApplyDemoDefaults=function(){if(!window.__FN_DEMO_PACK)return;locale='en';try{localStorage.setItem('fieldnotes.ui.language','en');}catch(e){}render();};
+  window.__fieldnotesEnableDevToolbar=function(on){window.__FN_DEV_TOOLBAR=on!==false;render();};
   bindEngine();render();
 })();
 

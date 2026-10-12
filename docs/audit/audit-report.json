@@ -29,7 +29,7 @@
     {
       "id": "H-4-type",
       "status": "pass",
-      "detail": "title=40 lead=18"
+      "detail": "title=49 lead=17"
     },
     {
       "id": "H-5-inline",
@@ -214,7 +214,7 @@
     {
       "id": "D5-7",
       "status": "pass",
-      "detail": "btn=true triggered=true file=fukushima-report-material-20261012.md len=3045"
+      "detail": "btn=true triggered=true file=fukushima-report-material-20261012.md len=3046"
     },
     {
       "id": "D5-6",
@@ -274,12 +274,12 @@
     {
       "id": "S-2-brief-length",
       "status": "pass",
-      "detail": "chars=714"
+      "detail": "chars=535"
     },
     {
       "id": "D9-3",
       "status": "pass",
-      "detail": "核心问题 1 · 依据事实 1 · 原则取舍 0 · 结论 0 · 待补充 4 · 已填写 9 项 · 待补充 4 项"
+      "detail": "1问题1依据0原则4待补充步骤"
     },
     {
       "id": "D9-4",

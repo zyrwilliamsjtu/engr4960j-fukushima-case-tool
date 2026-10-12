@@ -16,7 +16,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `H-1-home` — home visible
 - **PASS** `H-2-copy` — limits
 - **PASS** `H-3-course` — 课程案例福岛第一核电站事故
-- **PASS** `H-4-type` — title=40 lead=18
+- **PASS** `H-4-type` — title=49 lead=17
 - **PASS** `H-5-inline` — inline svg
 - **PASS** `H-6-enter` — entered step 1
 - **PASS** `D6-1-boot` — workspace after reset
@@ -53,7 +53,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D4-4` — next enabled while form incomplete
 - **PASS** `D1-5` — len=675
 - **PASS** `D5-5` — sections=10
-- **PASS** `D5-7` — btn=true triggered=true file=fukushima-report-material-20261012.md len=3045
+- **PASS** `D5-7` — btn=true triggered=true file=fukushima-report-material-20261012.md len=3046
 - **PASS** `D5-6` — importOk=true items 4->4
 - **PASS** `D6-2` — badImport="pack"
 - **PASS** `D2-6` — 让每个假设有依据。
@@ -65,8 +65,8 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D9-1` — summaryNav=true steps=10
 - **PASS** `D9-2` — goto=true sections=10
 - **PASS** `S-1-replay-closed` — open=false
-- **PASS** `S-2-brief-length` — chars=714
-- **PASS** `D9-3` — 核心问题 1 · 依据事实 1 · 原则取舍 0 · 结论 0 · 待补充 4 · 已填写 9 项 · 待补充 4 项
+- **PASS** `S-2-brief-length` — chars=535
+- **PASS** `D9-3` — 1问题1依据0原则4待补充步骤
 - **PASS** `D9-4` — no question text to compare
 - **PASS** `D9-5` — getState unchanged on summary
 - **PASS** `D9-6` — exports tpl=true md=true json=true len=3457
