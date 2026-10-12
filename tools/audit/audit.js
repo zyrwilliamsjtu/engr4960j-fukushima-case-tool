@@ -48,6 +48,84 @@
     return el ? (el.textContent || "").replace(/\s+/g, " ").trim() : "";
   }
 
+  var CJK_RE = /[\u3400-\u9dbf\u4e00-\u9fff\uf900-\ufaff]+/g;
+
+  function collectTextStrings(obj, out) {
+    if (obj == null) return;
+    if (typeof obj === "string") {
+      if (obj) out.push(obj);
+      return;
+    }
+    if (Array.isArray(obj)) {
+      obj.forEach(function (x) {
+        collectTextStrings(x, out);
+      });
+      return;
+    }
+    if (typeof obj === "object") {
+      Object.keys(obj).forEach(function (k) {
+        collectTextStrings(obj[k], out);
+      });
+    }
+  }
+
+  function cjkRuns(text) {
+    var runs = [];
+    var m;
+    CJK_RE.lastIndex = 0;
+    while ((m = CJK_RE.exec(text || ""))) {
+      if (m[0]) runs.push(m[0]);
+    }
+    return runs;
+  }
+
+  function runWhitelisted(run, whitelist) {
+    for (var i = 0; i < whitelist.length; i++) {
+      var w = whitelist[i];
+      if (!w) continue;
+      if (w.indexOf(run) >= 0 || run.indexOf(w) >= 0) return true;
+    }
+    return false;
+  }
+
+  function auditEnglishUi() {
+    click("#lang-en");
+    op(0, "language-en");
+    var root = document.getElementById("app") || document.querySelector(".app-shell") || document.body;
+    var whitelist = [];
+    if (window.CASE_DATA) collectTextStrings(window.CASE_DATA, whitelist);
+    if (window.FIELDNOTES && window.FIELDNOTES.getEngine) {
+      collectTextStrings(window.FIELDNOTES.getEngine().getState(), whitelist);
+    }
+    var leaks = [];
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var node;
+    while ((node = walker.nextNode())) {
+      cjkRuns(node.textContent).forEach(function (run) {
+        if (runWhitelisted(run, whitelist)) return;
+        if (leaks.indexOf(run) < 0) leaks.push(run);
+      });
+    }
+    for (var step = 1; step <= 10; step++) {
+      click("#nav-step-" + step);
+      op(step, "i18n-scan-step");
+    }
+    walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    while ((node = walker.nextNode())) {
+      cjkRuns(node.textContent).forEach(function (run) {
+        if (runWhitelisted(run, whitelist)) return;
+        if (leaks.indexOf(run) < 0) leaks.push(run);
+      });
+    }
+    check(
+      "D8-i18n",
+      leaks.length === 0,
+      leaks.length ? leaks.slice(0, 20).join(" | ") : "no CJK outside CASE_DATA and user state"
+    );
+    click("#lang-zh");
+    op(0, "language-zh-restore");
+  }
+
   function stepSummary(n) {
     click("#nav-step-" + n);
     op(n, "navigate");
@@ -503,6 +581,8 @@
 
     if (errors.length) check("D6-console", false, errors.join(" | "));
     else check("D6-console", true, "no window.error");
+
+    auditEnglishUi();
 
     finish({ role: "main", viewport: metrics, opCounts: counts });
   }
