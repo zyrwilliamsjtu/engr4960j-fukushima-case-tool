@@ -2756,6 +2756,14 @@ body {
 @media(max-height:600px){.intake-heading{display:none;}.intake-path,.intake-intro .intake-local{display:none;}.intake-intro h1{font-size:32px;}.intake-top{margin-bottom:10px;}.intake-tabs{padding:7px;}.intake-tabs button{min-height:35px;padding:8px;font-size:12px;}#intake-form,.intake-existing{gap:7px;padding:12px 15px;}.intake-board input,.intake-board textarea{padding:7px 10px;}.intake-board textarea{height:48px;max-height:48px;}.intake-drop{min-height:64px;padding:9px 11px;row-gap:2px;}.intake-upload-icon{width:32px;height:32px;}.intake-bottom .home-primary{min-height:38px;}.intake-files{flex-basis:40px;max-height:40px;}.intake-files>div{min-height:36px;padding-top:3px;padding-bottom:3px;}}
 @media(max-width:680px){.intake-board{max-height:650px;}}
 
+/* Let the preparation card hug its content rather than fill the page. */
+.intake-layout{grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:64px;}.intake-board{height:auto;max-height:100%;max-width:520px;width:100%;justify-self:end;align-self:center;border-radius:18px;box-shadow:0 12px 34px #29477b14,0 2px 6px #29477b09;}
+.intake-bottom{margin-top:4px;}.intake-existing .home-case-list{flex:0 1 auto;max-height:360px;}.intake-existing .intake-bottom{margin-top:4px;}
+.step-reviewed-mark{display:inline-flex;align-items:center;justify-content:center;flex:none;color:var(--accent);}.step-reviewed-mark .icon{width:14px;height:14px;}
+@media(max-width:1040px){.intake-layout{grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:34px;}.intake-intro h1{font-size:36px;}}
+@media(max-width:820px){.intake-layout{grid-template-columns:minmax(0,1fr);max-width:520px;}.intake-board{height:auto;justify-self:center;max-height:100%;}}
+@media(max-width:680px){.intake-board{max-height:100%;border-radius:17px;}}
+
 </style>
 </head>
 <body>
@@ -7562,7 +7570,7 @@ body {
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';
-    var stepsNav=data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';var isActive=activeView==='workbook'&&step===x.id;return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(isActive?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(isActive?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('');
+    var stepsNav=data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';var isActive=activeView==='workbook'&&step===x.id;return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(isActive?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(isActive?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(status==='checked'?'<span class="step-reviewed-mark" title="'+esc(t('checked'))+'" aria-label="'+esc(t('checked'))+'">'+icon('check')+'</span>':status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('');
     var summaryNav='<div class="nav-divider summary-divider"></div><button id="nav-summary" data-testid="nav-summary" class="step-nav summary-nav '+(activeView==='summary'?'active':'')+'" data-action="goto-summary" type="button" '+(activeView==='summary'?'aria-current="page"':'')+'><span class="step-name">'+esc(t('summaryReport'))+'</span></button>';
     return '<aside class="sidebar"><a class="brand" href="#home" data-action="goto-home"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+stepsNav+summaryNav+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
   }
