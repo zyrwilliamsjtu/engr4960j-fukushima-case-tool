@@ -4,10 +4,12 @@
   'use strict';
   function create(ctx) {
     var modal=ctx.modal, host=ctx.host, tab='facts', query='', category='all', source='', linkedOnly=false;
-    var selected={}, drafts={}, caseId=null, composing=false, page=0, pageSize=12, mobileReading=false, savedListScroll=0;
+    var selected={}, drafts={}, caseId=null, composing=false, page=0, pageSize=12, mobileReading=false, savedListScroll=0, originalReading=false;
     function bi(zh,en){return ctx.locale()==='zh'?zh:en;}
     function e(v){return ctx.escape(v);}
     function t(k){return ctx.t(k);}
+    function mt(row,field){return window.FieldnotesMaterials.text(row,field,ctx.locale());}
+    function read(row,field){return window.FieldnotesMaterials.text(row,field,originalReading?'zh':ctx.locale());}
     function data(){return ctx.data();}
     function state(){return ctx.state();}
     function items(type){return Object.values(state().items).filter(function(x){return x.type===type;});}
@@ -24,12 +26,12 @@
     }
     function name(x){
       if(tab==='principles')return ctx.principleName(x.id);
-      if(tab==='sources')return x.title;
-      if(tab==='timeline')return x.event;
+      if(tab==='sources')return mt(x,'title');
+      if(tab==='timeline')return mt(x,'event');
       if(tab==='glossary'){var i=data().valueWords.indexOf(x);return ctx.locale()==='zh'?x.word:(ctx.words[i]||[x.word])[0];}
-      return x.text;
+      return mt(x,'text');
     }
-    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
+    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
     function filtered(){var terms=query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return records().filter(function(x){
       return terms.every(function(term){return searchable(x).includes(term);})&&
         (tab!=='facts'||((category==='all'||x.categories.includes(category))&&(!source||x.sourceId===source)&&(!linkedOnly||relations(x.id).length)))&&
@@ -38,8 +40,8 @@
     function metadata(x){
       if(tab==='facts')return x.categories.map(function(c){return t(c);}).join(' · ');
       if(tab==='principles')return t(x.group);
-      if(tab==='sources')return [x.publisher,x.year].filter(Boolean).join(' · ');
-      if(tab==='timeline')return x.date;
+      if(tab==='sources')return [mt(x,'publisher'),x.year].filter(Boolean).join(' · ');
+      if(tab==='timeline')return mt(x,'date');
       return t('team');
     }
     function filters(){
@@ -48,25 +50,25 @@
         var cats=tab==='facts'?['all','material','individual','organization']:['all','basic','organization','employee','involvement','rights'];
         html='<div class="library-filter-chips" role="group" aria-label="'+e(t('filterFacts'))+'">'+cats.map(function(c){return '<button type="button" id="library-category-'+c+'" data-lib="category" data-category="'+c+'" aria-pressed="'+(category===c)+'" class="'+(category===c?'selected':'')+'">'+e(c==='all'?bi('全部','All'):t(c))+'</button>';}).join('')+'</div>';
       }
-      if(tab==='facts')html+='<div class="library-filter-row"><label class="sr-only" for="library-source">'+e(t('source'))+'</label><select id="library-source" data-lib-field="source"><option value="">'+e(bi('所有来源','All sources'))+'</option>'+data().sources.filter(function(s){return ctx.facts().some(function(f){return f.sourceId===s.id;});}).map(function(s){return '<option value="'+e(s.id)+'" '+(source===s.id?'selected':'')+'>'+e(s.publisher||s.title)+'</option>';}).join('')+'</select><label class="library-linked-filter"><input type="checkbox" data-lib-field="linked" '+(linkedOnly?'checked':'')+'>'+e(bi('已引用','Linked'))+'</label></div>';
+      if(tab==='facts')html+='<div class="library-filter-row"><label class="sr-only" for="library-source">'+e(t('source'))+'</label><select id="library-source" data-lib-field="source"><option value="">'+e(bi('所有来源','All sources'))+'</option>'+data().sources.filter(function(s){return ctx.facts().some(function(f){return f.sourceId===s.id;});}).map(function(s){return '<option value="'+e(s.id)+'" '+(source===s.id?'selected':'')+'>'+e(mt(s,'publisher')||mt(s,'title'))+'</option>';}).join('')+'</select><label class="library-linked-filter"><input type="checkbox" data-lib-field="linked" '+(linkedOnly?'checked':'')+'>'+e(bi('已引用','Linked'))+'</label></div>';
       return html;
     }
     function badge(x){
-      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(x.note)+'">'+e(bi('需复核','Review'))+'</span>':'';
+      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(mt(x,'note'))+'">'+e(bi('需复核','Review'))+'</span>':'';
       var count=tab==='facts'?relations(x.id).length:tab==='principles'&&chosen(x.id)?1:0;
       return warning+(count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
     }
-    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?s.publisher||s.title:tab==='sources'?x.id:tab==='timeline'?x.date:bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
+    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
       '<div class="library-no-results">'+ctx.icon('book')+'<h3>'+e(bi('没有找到匹配资料','No matching materials'))+'</h3><p>'+e(bi('试试更短的词，或清除筛选。','Try fewer words or clear the filters.'))+'</p>'+button(e(bi('清除筛选','Clear filters')),'clear','small')+'</div>';}
     function urlLink(s){return s&&/^https?:\/\//i.test(s.url||'')?'<a class="library-source-link" href="'+e(s.url)+'" target="_blank" rel="noopener noreferrer">'+e(t('readSource'))+' ↗</a>':'';}
     function sourceContent(x){
-      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=x.note||'';
-      return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?s.title:bi('尚未记录来源','No source recorded'))+'</p>'+
-        (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(x.locator)+'</strong></div>':'')+
-        (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(x.quote)+'</p></blockquote>':'')+
+      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=read(x,'note');
+      return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?read(s,'title'):bi('尚未记录来源','No source recorded'))+'</p>'+
+        (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(read(x,'locator'))+'</strong></div>':'')+
+        (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(read(x,'quote'))+'</p></blockquote>':'')+
         (x.confidence?'<span class="library-confidence">'+e(t('confidence'))+' · '+e(t('confidence'+x.confidence[0].toUpperCase()+x.confidence.slice(1)))+'</span>':'')+
         (note?'<p class="source-review '+(pending?'pending':'')+'">'+ctx.materialText(note)+'</p>':'')+
-        (s&&s.note?'<p class="source-note">'+e(s.note)+'</p>':'')+urlLink(s)+'</section>';
+        (s&&s.note?'<p class="source-note">'+e(read(s,'note'))+'</p>':'')+urlLink(s)+'</section>';
     }
     function draft(x){
       if(!drafts[x.id]){var qs=items('Q'), existing=relations(x.id)[0];drafts[x.id]={target:existing?existing.to:qs.length===1?qs[0].id:'',why:existing?existing.why:'',dirty:false,reasons:{}};}
@@ -82,12 +84,12 @@
     }
     function detail(x){
       if(!x)return '<div class="library-welcome">'+ctx.icon('book')+'<h3>'+e(bi('从一条资料开始','Start with one material'))+'</h3><p>'+e(bi('选择左侧资料，查看原文与出处，再判断它是否有助于你的问题。','Select a material, check its source, and decide whether it informs your question.'))+'</p></div>';
-      var html='<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
-      if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(x.text)+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 保留原材料语言','Material summary · original language retained'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
-      if(tab==='principles')html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.desc:x.nameEn)+'</p><blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+e(x.nameEn)+'</p></blockquote><p class="library-reading-note">'+e(t('sourceTranslation'))+'</p>'+sourceContent(x)+(!ctx.readonly()?'<div class="library-principle-action">'+button(ctx.icon(chosen(x.id)?'check':'plus')+e(chosen(x.id)?t('selected'):bi('加入原则比较','Add to comparison')),'principle',chosen(x.id)?'quiet':'primary','data-id="'+e(x.id)+'" '+(chosen(x.id)?'disabled':''))+'<p>'+e(bi('加入后，在第六步写下适用理由与取舍。','Then explain relevance and priorities in step 6.'))+'</p></div>':'');
-      if(tab==='timeline')html+='<time class="library-event-date">'+e(x.date)+'</time><h3 class="library-reading-text">'+ctx.materialText(x.event)+'</h3>'+sourceContent(x);
-      if(tab==='sources'){var count=ctx.facts().filter(function(f){return f.sourceId===x.id;}).length;html+='<h3 class="library-reading-title">'+e(x.title)+'</h3><p class="library-publisher">'+e([x.publisher,x.year].filter(Boolean).join(' · '))+'</p>'+(x.note?'<p class="library-source-caution">'+e(x.note)+'</p>':'')+urlLink(x)+'<div class="library-source-usage"><strong>'+count+'</strong><div><h3>'+e(bi('条资料引用此来源','materials cite this source'))+'</h3><p>'+e(bi('查看摘要、定位和原文，再决定如何使用。','Check summaries, locators and quotations before using them.'))+'</p></div></div>'+(count?button(e(bi('查看相关资料','Browse these materials'))+ctx.icon('arrow'),'source-facts','primary','data-id="'+e(x.id)+'"'):'');}
-      if(tab==='glossary'){var idx=data().valueWords.indexOf(x);html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.whyVague:(ctx.words[idx]||['',x.whyVague])[1])+'</p><div class="library-word-preview"><span>'+e(t('others'))+'</span><span>'+e(t('mine'))+'</span></div><p class="library-reading-note">'+e(bi('这是小组的思考提示，具体定义由你们填写。','This is a team prompt. Write your own definitions.'))+'</p>'+(!ctx.readonly()?button(ctx.icon('plus')+e(bi('去澄清这个词','Clarify this term')),'concept','primary','data-word="'+e(name(x))+'"'):'');}
+      var html=(ctx.locale()==='en'?'<div class="material-language-tools">'+button(e(originalReading?'Show English':'Show original wording'),'original','quiet small','aria-pressed="'+originalReading+'"')+'</div>':'')+'<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
+      if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(read(x,'text'))+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 可核对原文',originalReading?'Original wording':'English translation · check the source'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
+      if(tab==='principles')html+='<h3 class="library-reading-title">'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'</h3><p class="library-principle-desc">'+e(read(x,'desc'))+'</p><blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+e(x.nameEn)+'</p></blockquote><p class="library-reading-note">'+e(t('sourceTranslation'))+'</p>'+sourceContent(x)+(!ctx.readonly()?'<div class="library-principle-action">'+button(ctx.icon(chosen(x.id)?'check':'plus')+e(chosen(x.id)?t('selected'):bi('加入原则比较','Add to comparison')),'principle',chosen(x.id)?'quiet':'primary','data-id="'+e(x.id)+'" '+(chosen(x.id)?'disabled':''))+'<p>'+e(bi('加入后，在第六步写下适用理由与取舍。','Then explain relevance and priorities in step 6.'))+'</p></div>':'');
+      if(tab==='timeline')html+='<time class="library-event-date">'+e(read(x,'date'))+'</time><h3 class="library-reading-text">'+ctx.materialText(read(x,'event'))+'</h3>'+sourceContent(x);
+      if(tab==='sources'){var count=ctx.facts().filter(function(f){return f.sourceId===x.id;}).length;html+='<h3 class="library-reading-title">'+e(read(x,'title'))+'</h3><p class="library-publisher">'+e([mt(x,'publisher'),x.year].filter(Boolean).join(' · '))+'</p>'+(x.note?'<p class="library-source-caution">'+e(read(x,'note'))+'</p>':'')+urlLink(x)+'<div class="library-source-usage"><strong>'+count+'</strong><div><h3>'+e(bi('条资料引用此来源','materials cite this source'))+'</h3><p>'+e(bi('查看摘要、定位和原文，再决定如何使用。','Check summaries, locators and quotations before using them.'))+'</p></div></div>'+(count?button(e(bi('查看相关资料','Browse these materials'))+ctx.icon('arrow'),'source-facts','primary','data-id="'+e(x.id)+'"'):'');}
+      if(tab==='glossary'){var idx=data().valueWords.indexOf(x);html+='<h3 class="library-reading-title">'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'</h3><p class="library-principle-desc">'+e(read(x,'whyVague'))+'</p><div class="library-word-preview"><span>'+e(t('others'))+'</span><span>'+e(t('mine'))+'</span></div><p class="library-reading-note">'+e(bi('这是小组的思考提示，具体定义由你们填写。','This is a team prompt. Write your own definitions.'))+'</p>'+(!ctx.readonly()?button(ctx.icon('plus')+e(bi('去澄清这个词','Clarify this term')),'concept','primary','data-word="'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'"'):'');}
       return '<div class="library-detail-inner">'+html+'</div>';
     }
     function refresh(focus) {
@@ -99,7 +101,7 @@
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
-    function open(nextTab,id){
+    function open(nextTab,id){originalReading=false;
       if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;page=Math.max(0,Math.floor(filtered().findIndex(function(x){return x.id===id;})/pageSize));mobileReading=true;}
@@ -109,14 +111,15 @@
       if(a==='close'){modal.close();return;}
       if(a==='return'||a==='navigate'){modal.close();if(a==='navigate'||tab==='principles')ctx.navigate(a==='navigate'?Number(el.dataset.step):6);return;}
       if(a==='cite'){var form=host.querySelector('.library-relevance');form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});var input=form.querySelector('textarea,button');if(input)input.focus({preventScroll:true});return;}
-      if(a==='language'){ctx.language(el.dataset.lang);refresh();return;}
-      if(a==='tab'){tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='select'){selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
+      if(a==='language'){originalReading=false;ctx.language(el.dataset.lang);refresh();return;}
+      if(a==='original'){originalReading=!originalReading;refresh('read');return;}
+      if(a==='tab'){originalReading=false;tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='select'){originalReading=false;selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
       if(a==='back-list'){mobileReading=false;refresh();return;}
-      if(a==='page-prev'||a==='page-next'){page+=a==='page-next'?1:-1;refresh('select');return;}
-      if(a==='category'){category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='clear'){query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='source-facts'){tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='page-prev'||a==='page-next'){originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
+      if(a==='category'){originalReading=false;category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='clear'){originalReading=false;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='source-facts'){originalReading=false;tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(ctx.readonly())return;
       if(a==='unlink'){ctx.dispatch('UNLINK',{id:el.dataset.id});var d=drafts[selected.facts];if(d&&!d.dirty){d.why='';}refresh();return;}
       if(a==='principle'&&!chosen(el.dataset.id)){ctx.dispatch('ADD_ITEM',{type:'PA',step:6,fields:{principleId:el.dataset.id,appliesTo:[],order:items('PA').length+1}});refresh();ctx.toast(bi('已加入比较，在第六步解释适用理由。','Added. Explain its relevance in step 6.'));return;}
@@ -124,7 +127,7 @@
       if(a==='concept'){modal.close();ctx.dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});ctx.navigate(5);return;}
       if(a==='add-fact'){ctx.addFact();}
     });
-    function searchInput(){query=host.querySelector('#library-search').value;page=0;mobileReading=false;refresh('select');}
+    function searchInput(){originalReading=false;query=host.querySelector('#library-search').value;page=0;mobileReading=false;refresh('select');}
     host.addEventListener('compositionstart',function(event){if(event.target.id==='library-search')composing=true;});
     host.addEventListener('compositionend',function(event){if(event.target.id==='library-search'){composing=false;searchInput();}});
     host.addEventListener('input',function(event){

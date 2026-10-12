@@ -2399,6 +2399,61 @@ body {
   margin-bottom:20px;
 }
 .workbench-toolbar .button {font-size:12px;min-height:34px;background:rgba(255,255,255,.65)}
+.material-language-tools {display:flex;justify-content:flex-end;margin-bottom:10px;}
+.material-language-tools .button {font-size:12px;border:1px solid #cad6c8;background:#edf2e7;}
+.guided-review-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;border:1px solid #c9c5e1;border-radius:16px;background:linear-gradient(110deg,#e7e3f5,#eef0f8);}
+.guided-review-intro h3 {font-size:20px;margin-bottom:5px;}
+.guided-review-intro p {font-size:13px;color:#67718a;line-height:1.65;}
+.guided-review-intro>span {font-size:12px;color:#635184;white-space:nowrap;}
+.guided-review-filters {display:flex;gap:7px;flex-wrap:wrap;margin:14px 0;}
+.guided-review-filters .is-selected {background:#6551a8;color:white;border-color:#6551a8;}
+.guided-review-layout {display:grid;grid-template-columns:minmax(190px,.32fr) minmax(0,1fr);gap:16px;align-items:start;}
+.guided-review-queue {display:grid;gap:8px;max-height:520px;overflow:auto;padding:2px;}
+.guided-review-row {display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:6px;padding:14px;border:1px solid #cbd1e1;background:#e8edf5;border-radius:12px;color:#465c7a;}
+.guided-review-row span,.guided-review-row small {font-size:11px;color:#7a7891;}
+.guided-review-row strong {font-size:13px;line-height:1.65;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;}
+.guided-review-row.selected {border-color:#9483bc;background:#e5dff1;box-shadow:inset 3px 0 #7b60b1;}
+.guided-review-card {padding:22px;border:1px solid #c9c9de;border-radius:17px;background:linear-gradient(140deg,#f5f3fa,#edf1f6);min-width:0;}
+.guided-review-card-head {display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;}
+.guided-review-card-head>span {font-size:11px;color:#8b7ca1;}
+.guided-review-card-head .button {font-size:11px;padding:6px 0;}
+.guided-review-card>h3 {font-size:20px;line-height:1.65;margin-bottom:16px;overflow-wrap:anywhere;}
+.guided-review-field {margin:10px 0;}
+.guided-review-field>span,.guided-review-evidence>span {font-size:11px;color:#7d7b92;}
+.guided-review-field p {font-size:13px;line-height:1.8;margin-top:4px;overflow-wrap:anywhere;}
+.guided-review-evidence {padding:13px 15px;background:#e6ede8;border:1px solid #cdd9cf;border-radius:11px;margin:14px 0;}
+.guided-review-evidence>div {padding-top:9px;}
+.guided-review-evidence p {font-size:13px;line-height:1.7;overflow-wrap:anywhere;}
+.guided-review-evidence .button {font-size:11px;padding:5px 0;}
+.guided-review-missing {font-size:12px;padding:10px;border-radius:9px;background:#f3e8d6;color:#88683c;margin:10px 0;}
+.guided-review-lens {padding:14px 16px;border:1px solid #d8ceb4;background:#f2eddf;border-radius:11px;margin:16px 0;}
+.guided-review-lens p {font-size:14px;color:#736742;line-height:1.75;}
+.guided-review-lens .button {font-size:11px;color:#887243;padding:7px 0 0;}
+.guided-review-decisions {display:flex;gap:8px;flex-wrap:wrap;border:0;padding:0;margin:18px 0 15px;}
+.guided-review-decisions legend {font-size:13px;font-weight:600;margin-bottom:9px;}
+.guided-review-decisions .review-choice {flex:1 1 100px;min-height:44px;font-size:13px;background:#e8e9f1;}
+.guided-review-decisions .choice-checked.selected {color:#255e46;background:#d8eadd;border-color:#6c9f80;}
+.guided-review-decisions .choice-revise.selected {color:#8d5931;background:#f1e2cf;border-color:#bc9870;}
+.guided-review-decisions .choice-discussion.selected {color:#615182;background:#e6dff3;border-color:#9d89bf;}
+.guided-review-card textarea {min-height:84px;font-size:13px;}
+.guided-review-save {display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.guided-review-save small {font-size:11px;color:#888397;}
+.guided-review-save .button {min-height:44px;}
+#review-feedback {color:#9a593c;font-size:12px;min-height:0;margin:6px 0;}
+.guided-review-clear {padding:32px 24px;border:1px dashed #c8bedb;border-radius:16px;background:#ece8f2;}
+.guided-review-clear h3 {font-size:20px;margin-bottom:9px;}
+.guided-review-clear p {font-size:13px;line-height:1.75;margin-bottom:18px;color:#77718b;}
+.guided-review-checklist {margin-top:18px;}
+.guided-review-readonly {border-top:1px solid #d3cce3;padding-top:15px;}
+@media(max-width:780px) {
+  .guided-review-layout {grid-template-columns:minmax(0,1fr);}
+  .guided-review-queue {display:flex;max-height:none;overflow-x:auto;}
+  .guided-review-row {flex:0 0 190px;}
+  .guided-review-intro {align-items:flex-start;flex-direction:column;gap:8px;padding:15px;}
+  .guided-review-card {padding:17px;}
+  .guided-review-card>h3 {font-size:18px;}
+  .guided-review-card-head {flex-wrap:wrap;}
+}
 @media(max-width:360px) {
   .top-actions {flex-wrap:wrap;}
   .top-actions .save-status {flex-basis:100%;}
@@ -5112,16 +5167,160 @@ body {
 
 </script>
   <script>
+/* English display translations of the shipped material pack. Originals remain immutable. */
+(function(){
+  'use strict';
+  var copy = {
+  "福岛第一核电厂址共有六台核电机组（Units 1–6）。": "The Fukushima Daiichi site had six nuclear power units (Units 1–6).",
+  "2011-03-11 海啸淹没厂内主、备电源与最终热阱等设备/结构，**六台机组**均受影响。": "On 2011-03-11, the tsunami flooded equipment and structures including main and backup power supplies and ultimate heat sinks; **all six units** were affected.",
+  "地震在 tsunami 之前已造成场外输电系统损坏。": "The earthquake damaged off-site transmission systems before the tsunami.",
+  "1–3 号机组因长时间失去电力与排热，燃料过热并熔化，RPV 最终 breach。": "Prolonged loss of power and heat removal in Units 1–3 led to fuel overheating and melting, and eventual breaches of the reactor pressure vessels (RPVs).",
+  "1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。": "Explosions associated with hydrogen releases occurred in the reactor buildings of Units 1, 3 and 4.",
+  "设计中的地震/海啸 hazard 主要依据日本历史地震记录与近期海啸证据评估。": "Seismic and tsunami design hazards were assessed primarily using historical earthquake records in Japan and evidence of recent tsunamis.",
+  "记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。": "Recorded ground motions and tsunami wave heights significantly exceeded the design-basis assumptions.",
+  "2 号机组 containment venting 未成功，containment 失效并造成放射性释放。": "Containment venting in Unit 2 was unsuccessful; containment failure resulted in radioactive releases.",
+  "原始 EP 设计基准最高潮位对应海啸高度为 OP +3.122 m。": "The original EP design-basis maximum tsunami water level was OP +3.122 m.",
+  "防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。": "The breakwater and seawall were designed for a maximum tsunami height of 5.5 m; the second wave inundated the site with a run-up of 14–15 m.",
+  "2002 年 JSCE 方法重评海啸高度为 OP +5.7 m，并采取抬高泵位等对策。": "A 2002 reassessment using the JSCE method estimated a tsunami level of OP +5.7 m; countermeasures included raising pump elevations.",
+  "1966 年许可基准引用的观测海啸来自 1960 年智利地震海啸。": "The observed tsunami used in the 1966 licensing basis was the tsunami generated by the 1960 Chile earthquake.",
+  "Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。": "Unit 1 lost all AC power at 15:37, and station blackout was declared at 15:42. Core cooling was lost after operators stopped the isolation condensers (ICs) before the tsunami.",
+  "2009 年 bathymetric 重评给出 OP +6.1 m（对策含抬高泵位）。": "A 2009 bathymetric reassessment estimated OP +6.1 m; countermeasures included raising pump elevations.",
+  "TEPCO 档案：福岛第一 JSCE 评估最大海啸高度 5.7 m（后 6.1 m），应急海水泵安装高度 4 m。": "TEPCO records state a JSCE-estimated maximum tsunami height of 5.7 m (later 6.1 m) at Fukushima Daiichi, with emergency seawater pumps installed at an elevation of 4 m.",
+  "TEPCO 时间线：2009 年 4 月安全评价给出福岛第一水位 O.P.+5.4~6.1 m。": "The TEPCO timeline records an April 2009 safety assessment giving water levels of O.P.+5.4–6.1 m for Fukushima Daiichi.",
+  "1966–1972 建设许可基准引用智利地震，潮位 O.P.+3.122 m。": "The 1966–1972 construction licensing basis used the Chile earthquake tsunami and a water level of O.P.+3.122 m.",
+  "TEPCO 地震动评价结论：基岩面地震动与设计基准 Ss **约同量级**。": "TEPCO concluded that bedrock ground motions were **of approximately the same magnitude** as design-basis ground motion Ss.",
+  "NAIIC：福岛第一记录地震动超过新指引假设，且未到位适当抗震加固。": "NAIIC stated that ground motions recorded at Fukushima Daiichi exceeded assumptions in the new guidelines and that appropriate seismic reinforcement had not been completed.",
+  "现场人员需在未按培训场景准备的情况下即兴应对，且常缺合适设备。": "On-site personnel had to improvise responses outside their training scenarios, often without suitable equipment.",
+  "尽管运营商人员努力维持控制，1–3 号机组仍发生堆芯损伤。": "Despite operator personnel attempting to maintain control, core damage occurred in Units 1–3.",
+  "氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。": "Hydrogen explosions damaged structures and equipment and injured personnel.",
+  "地震、海啸后果及辐射水平升高使 on-site response 极其困难。": "Earthquake and tsunami damage, together with elevated radiation levels, made the on-site response extremely difficult.",
+  "疏散因地震/tsunami 破坏及通信交通问题而存在困难。": "Evacuation was difficult because of earthquake and tsunami damage and communication and transport problems.",
+  "事故造成现场工作人员与周边公众受到辐射照射。": "The accident exposed on-site workers and members of the surrounding public to radiation.",
+  "MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。": "Main control room personnel announced a tsunami warning over the site public-address system. The initial forecast was 3–4 m, and personnel at lower elevations evacuated.",
+  "Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。": "At 15:03, Unit 1 operators manually stopped both isolation condenser systems to avoid exceeding the cooling-rate limit of 55°C/h.",
+  "Site Superintendent 于 00:06 下令准备对 Unit 1（及 Unit 2）vent。": "At 00:06, the Site Superintendent ordered preparations to vent Unit 1 (and Unit 2).",
+  "运行人员因各类电源丧失时序不明，无法确知 IC 隔离阀位置。": "Because the timing of losses of different power supplies was unclear, operators could not determine the positions of the IC isolation valves with certainty.",
+  "失去电力后，现场须在缺少有效工具与手册的情况下当场决策。": "After power was lost, personnel had to make on-site decisions without effective tools or manuals.",
+  "首相（Prime Minister）亲赴现场指挥堆芯受损处置人员。": "The Prime Minister went to the site in person to direct personnel responding to core damage.",
+  "10 km 内多数居民直至 2011-03-12 05:44 发布撤离令时才得知事故。": "Most residents within 10 km learned of the accident only when the evacuation order was issued at 05:44 on 2011-03-12.",
+  "NAIIC 时间轴：Unit 1 于 19:04 开始海水注入（图表标注）。": "The NAIIC timeline marks the start of seawater injection into Unit 1 at 19:04.",
+  "vent 决策未确认传达至 METI 高层或官邸（Kantei）。": "Transmission of the venting decision to senior METI officials or the Prime Minister’s Office (Kantei) was not confirmed.",
+  "福岛第一核电厂由 Tokyo Electric Power Company（TEPCO）运营。": "Fukushima Daiichi was operated by Tokyo Electric Power Company (TEPCO).",
+  "东北沿岸五处 NPP 场址：Higashidori、Onagawa、Fukushima Daiichi、Fukushima Daini、Tokai Daini。": "Five nuclear power plant sites were located along the northeastern coast: Higashidori, Onagawa, Fukushima Daiichi, Fukushima Daini and Tokai Daini.",
+  "除福岛第一外，其余受影响场址的运行机组均安全 shut down。": "Except at Fukushima Daiichi, operating units at the other affected sites shut down safely.",
+  "报告编写时（2015 Foreword）逾 10 万人因释放而撤离，许多人仍无法返家。": "At the time of the report’s 2015 foreword, more than 100,000 people had been evacuated because of the releases, and many were still unable to return home.",
+  "运行方安全管理活动受 NISA 审查批准的安全管理 programme 约束；NISA 按 programme 做季度检查。": "The operator’s safety-management activities were governed by a programme reviewed and approved by NISA; NISA conducted quarterly inspections under that programme.",
+  "2006 指南修订后 NISA 要求 licensees 做 seismic/tsunami「backcheck」；TEPCO 启动重评但在事故前**未完成**。": "Following the 2006 guideline revision, NISA required licensees to conduct seismic and tsunami backchecks. TEPCO began reassessment but **had not completed it** before the accident.",
+  "事故前运营商用 2002 共识方法重评海啸，数值高于原设计并采取部分补偿措施，但事故时仍不足。": "Before the accident, the operator reassessed tsunami hazards using the 2002 consensus method. The estimates exceeded the original design, and some compensatory measures were taken, but they remained insufficient at the time of the accident.",
+  "NAIIC 结论：事故系政府、监管与 TEPCO **共谋（collusion）**及治理缺失所致。": "NAIIC concluded that the accident resulted from **collusion** among the government, regulators and TEPCO, and failures of governance.",
+  "NISA 隶属 METI，而 METI 同时推动核电发展。": "NISA was part of METI, which also promoted nuclear power development.",
+  "NISA 曾告知运营商无需考虑 SBO，并要求其撰写“无需考虑”的理由报告。": "NISA told operators that station blackout need not be considered and requested reports explaining why it need not be considered.",
+  "事故时 Unit 1–3 所需结构加固**均未实施**；NISA 对拖延给予 tacit consent。": "At the time of the accident, the required structural reinforcement for Units 1–3 **had not been implemented**; NISA gave tacit consent to the delays.",
+  "TEPCO 通过 FEPC 积极反对新安全法规并拖延与监管谈判。": "Through FEPC, TEPCO actively opposed new safety regulations and delayed negotiations with regulators.",
+  "NISA 未向公众披露海啸评估或对运营商指示，亦未保留记录。": "NISA did not disclose tsunami assessments or instructions to operators to the public and did not retain records.",
+  "TEPCO 2007 档案称已抬高电机等，**当时理解**厂站安全已获保证。": "TEPCO’s 2007 records stated that measures such as raising motors had been taken and that, **in its understanding at the time**, site safety had been assured.",
+  "2006 年起监管方与 TEPCO 已知海啸致全厂断电及堆芯损伤风险，但未出台法规或防护。": "From 2006, regulators and TEPCO knew of tsunami-induced station blackout and core-damage risks, but introduced neither regulations nor protective measures.",
+  "监管方、METI 与 TEPCO 未能建立评估损害概率、 collateral 损害与公众撤离计划等基本安全要求。": "Regulators, METI and TEPCO failed to establish basic safety requirements for assessing damage probabilities, collateral damage and public evacuation plans.",
+  "东日本大震灾（Great East Japan Earthquake）发生。": "The Great East Japan Earthquake occurred.",
+  "地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。": "The earthquake had a magnitude of 9.0. The tsunami produced multiple waves along coastal areas, including the northeastern coast, some exceeding ten metres in height.",
+  "主震发生于 JST 2011-03-11 14:46（星期五）。": "The main shock occurred at 14:46 JST on Friday, 2011-03-11.",
+  "2011-03-11 及之后": "2011-03-11 and afterwards",
+  "1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。": "The cores of Units 1–3 overheated, fuel melted and all three containment vessels were breached.",
+  "1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。": "Hydrogen-related explosions in the reactor buildings of Units 1, 3 and 4 damaged structures and equipment and injured personnel.",
+  "放射性物质释入大气并沉积于陆地与海洋，亦有直接向海释放。": "Radioactive material was released into the atmosphere and deposited on land and in the ocean, with additional direct releases to the ocean.",
+  "厂址半径 20 km 及部分指定区域人员被疏散；20–30 km 先 shelter 后建议自愿撤离。": "People within 20 km of the site and in certain designated areas were evacuated. Those within 20–30 km were first told to shelter and later advised to evacuate voluntarily.",
+  "1–5 号机组经历长时间全厂断电（SBO）；1、2 号超过 9 天，3、4 号超过 14 天。": "Units 1–5 experienced prolonged station blackout (SBO): more than nine days for Units 1 and 2 and more than fourteen days for Units 3 and 4.",
+  "1–3 号机组 RPV 最终 breach，放射性物质经可控 vent 或 confinement 失效释出。": "The RPVs of Units 1–3 were eventually breached; radioactive material was released through controlled venting or failures of confinement.",
+  "为降低照射，20 km 内及周边指定区域疏散，食品与饮用水分销/消费受限。": "To reduce exposure, people within 20 km and in nearby designated areas were evacuated, and the distribution and consumption of food and drinking water were restricted.",
+  "NAIIC 事故时间轴标注海啸（峰值）到达时刻。": "The NAIIC accident timeline marks the arrival time of the tsunami peak.",
+  "Unit 1 reactor building 发生爆炸（服务楼层）。": "An explosion occurred on the service floor of the Unit 1 reactor building.",
+  "NISA 完成对代表电厂抗震 interim report 的 validity 审查。": "NISA completed its review of the validity of the seismic interim report for a representative plant.",
+  "TEPCO 接收 Jogan 海啸研究并进行试算、协调修订海啸评估方法。": "TEPCO received research on the Jogan tsunami, conducted trial calculations and coordinated revisions to tsunami assessment methods.",
+  "下达 3 km 疏散令时，仅约 20% 厂址所在町居民知晓事故。": "When the 3 km evacuation order was issued, only about 20% of residents of the town hosting the site knew of the accident.",
+  "The Fukushima Daiichi Accident（书目页 STI/PUB/1710）": "The Fukushima Daiichi Accident (bibliographic page STI/PUB/1710)",
+  "仅书目元数据，未取正文——不得作为事实依据": "Bibliographic metadata only; the full text was not obtained. Do not use this entry as factual evidence.",
+  "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission（NAIIC 英文摘要版）": "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission (NAIIC English executive summary)",
+  "PI 提供本地 PDF（PI 已存档）": "Local PDF supplied and archived by the project lead.",
+  "TEPCO 事故相关附件（120620e0106：地震动评价与历史安全评估档案等）": "TEPCO accident-related attachments (120620e0106: ground-motion assessments and historical safety-assessment records)",
+  "Summary of Findings — The lack of tsunami countermeasures 前段": "Summary of Findings — paragraph before The lack of tsunami countermeasures",
+  "§1.2.6（人员响应段）": "§1.2.6 (personnel response paragraph)",
+  "§1.3.2 脚注 26": "§1.3.2, footnote 26",
+  "第 14 页事故应对叙述": "Page 14, accident-response account",
+  "事故时间轴（Unit 1 列）": "Accident timeline (Unit 1 column)",
+  "Conclusions（Earthquake damage 段）": "Conclusions (Earthquake damage paragraph)",
+  "Conclusions（TEPCO perspective 段）": "Conclusions (TEPCO perspective paragraph)",
+  "事故时间轴（Conclusions 前时间轴图）": "Accident timeline (figure before Conclusions)",
+  "核验：✅": "Pack review: ✅",
+  "核验：未做（NAIIC/TEPCO 轮）": "Pack review: not performed (NAIIC/TEPCO round).",
+  "核验：✅；并入原 tl-010 信息": "Pack review: ✅; incorporates information previously recorded as tl-010.",
+  "核验：✅；核验⚠️：引文为 Executive Summary **句中片段**（非独立完整句）": "Pack review: ✅; caution: the quotation is a **mid-sentence excerpt** from the Executive Summary, not a complete standalone sentence.",
+  "核验：✅；非 Executive Summary 小节标题": "Pack review: ✅; this is not an Executive Summary subsection heading.",
+  "核验：✅；核验⚠️：引文为定性表述，**未给出**具体 ground motion / 海啸数值": "Pack review: ✅; caution: the quotation is qualitative and **does not give** numerical ground-motion or tsunami values.",
+  "核验：✅；OP = Onahama Port 潮位基准": "Pack review: ✅; OP denotes the Onahama Port water-level datum.",
+  "核验：⚠️ PDF 文本层在 “maximum” 与 “tsunami height of 5.5 m” 之间插入脚注 12，草稿引文作连续句；且 15:36–15:37 为 3/11 第二波海啸，非氢爆": "Pack review: ⚠️; the PDF text inserts footnote 12 between “maximum” and “tsunami height of 5.5 m”, while the draft quotation joins them. The time 15:36–15:37 refers to the second tsunami wave on March 11, not a hydrogen explosion.",
+  "核验：✅；同表另有 Make buildings watertight": "Pack review: ✅; the same table also lists “Make buildings watertight”.",
+  "核验：✅；Table 1.2–3 Remarks 亦有 24 May 1960 表述": "Pack review: ✅; the remarks in Table 1.2–3 also state 24 May 1960.",
+  "核验：⚠️ 草稿引文含 “…” 合并 §1.3.2 与 §1.1.3.3，非单一连续逐字段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）": "Pack review: ⚠️; the draft quotation uses an ellipsis to combine §1.3.2 and §1.1.3.3 and is not one continuous verbatim paragraph. At 15:42, Unit 1 station blackout was declared (§1.3.2).",
+  "核验：✅；与 f-mat-011 遭遇 run-up 14–15 m 对照；未写释放量": "Pack review: ✅; compare with the 14–15 m run-up in f-mat-011. No release quantity is stated.",
+  "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 口径**；与 IAEA run-up 14–15 m 不同指标": "Pack review: not performed (NAIIC/TEPCO round). **TEPCO’s reported measure** differs from the IAEA run-up measure of 14–15 m.",
+  "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 2012 附件口径**": "Pack review: not performed (NAIIC/TEPCO round). **As reported in TEPCO’s 2012 attachments.**",
+  "核验：✅；核验⚠️：句中片段引文；未给出具体人数": "Pack review: ✅; caution: a mid-sentence quotation; no number of people is given.",
+  "核验：✅；核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段": "Pack review: ✅; caution: the PDF text shows `height76`, with a footnote number attached. See the personnel response paragraph in §1.2.6.",
+  "核验：⚠️ 草稿以 “The operators manually…” 开头；PDF 连续文本为 “…that the operators manually…”（无句首 The operators）": "Pack review: ⚠️; the draft begins “The operators manually…”, but the continuous PDF text reads “…that the operators manually…”, without “The operators” at the start of a sentence.",
+  "核验：✅；角色称谓保留英文": "Pack review: ✅; the role title is retained in English.",
+  "核验：✅；信息不足的具体描述": "Pack review: ✅; a specific description of missing information.",
+  "核验：未做（NAIIC/TEPCO 轮）；NAIIC 称此为 unprecedented direct intervention": "Pack review: not performed (NAIIC/TEPCO round). NAIIC calls this “unprecedented direct intervention”.",
+  "核验：未做（NAIIC/TEPCO 轮）；图表短语，非叙事句": "Pack review: not performed (NAIIC/TEPCO round). This is a chart label, not a narrative sentence.",
+  "核验：✅；脚注 3 列出场址名称": "Pack review: ✅; footnote 3 lists the site names.",
+  "核验：✅；事故前监管—运营商关系": "Pack review: ✅; the pre-accident regulator–operator relationship.",
+  "核验：✅；内部评估采纳/完成度事实": "Pack review: ✅; information on adoption and completion of an internal assessment.",
+  "核验：未做（NAIIC/TEPCO 轮）；句中片段；含 enough motivation for 前缀": "Pack review: not performed (NAIIC/TEPCO round). A mid-sentence excerpt including the prefix “enough motivation for”.",
+  "核验：未做（NAIIC/TEPCO 轮）；**运营商自我评估表述**": "Pack review: not performed (NAIIC/TEPCO round). **The operator’s self-assessment wording.**",
+  "核验：✅；核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011）": "Pack review: ✅; caution: wave heights refer to Japan or its northeastern coast, **not** to site-specific run-up measurements (see f-mat-011).",
+  "核验：✅；具体时刻未获取（Executive Summary 未给出分机组时刻链）": "Pack review: ✅; specific times were not obtained. The Executive Summary does not provide a unit-by-unit sequence of times.",
+  "核验：✅；Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取": "Pack review: ✅; see TV1 §1.3.2 for the Unit 1 hydrogen explosion at 15:36 on 2011-03-12. Specific times for Units 3 and 4 were not obtained.",
+  "核验：✅；具体时刻未获取": "Pack review: ✅; specific times were not obtained.",
+  "核验：✅；分阶段扩展见 DG「Emergency preparedness」段（如 2 km→20 km）": "Pack review: ✅; see the DG “Emergency preparedness” paragraph for staged expansion, such as 2 km to 20 km.",
+  "核验：✅；Unit 1：15:37 失 AC、15:42 宣布 SBO（§1.3.2）；结束日未在本表展开": "Pack review: ✅; Unit 1 lost AC power at 15:37 and station blackout was declared at 15:42 (§1.3.2). End dates are not detailed in this table.",
+  "核验：未做（NAIIC/TEPCO 轮）；与 TV1 §1.1.2.5 第二波 15:36–15:37 一致口径": "Pack review: not performed (NAIIC/TEPCO round). Consistent with the second wave at 15:36–15:37 in TV1 §1.1.2.5.",
+  "核验：未做（NAIIC/TEPCO 轮）；补 tl-007 备注中 Unit 1 氢爆时刻": "Pack review: not performed (NAIIC/TEPCO round). Adds the Unit 1 hydrogen-explosion time noted in tl-007.",
+  "核验：未做（NAIIC/TEPCO 轮）；耐震回溯检查时间线": "Pack review: not performed (NAIIC/TEPCO round). Seismic backcheck timeline.",
+  "核验：未做（NAIIC/TEPCO 轮）；同页含 Implement trial calculations on Jogan Tsunami（2008-12）": "Pack review: not performed (NAIIC/TEPCO round). The same page includes “Implement trial calculations on Jogan Tsunami” (2008-12).",
+  "责任": "Responsibility",
+  "安全": "Safety",
+  "合规": "Compliance",
+  "透明": "Transparency",
+  "可指法律责任、道德责任或组织分工，需在本案中界定。": "May refer to legal responsibility, moral responsibility or organizational roles; define the intended meaning for this case.",
+  "可指人身、环境或系统可靠性，标准因语境而异。": "May refer to personal safety, environmental safety or system reliability; standards depend on the context.",
+  "可指满足最低法规或更高行业规范，含义需澄清。": "May refer to meeting minimum regulatory requirements or higher professional standards; clarify the intended meaning.",
+  "可指信息公开程度或决策过程可见性，需具体化。": "May refer to information disclosure or visibility of decision-making; specify the intended meaning."
+};
+  var descriptions = ["Protect the public from serious adverse consequences of developing and implementing technology.", "Ensure that technical work does not adversely affect basic human rights.", "Avoid serious harm to the environment and living organisms that threatens human life.", "Undertake only engineering activities for which you are competent.", "Base decisions on scientific and mathematical analysis rather than irrelevant factors.", "Disclose decisions that may seriously affect the public, truthfully and fully.", "Understand and respect non-moral cultural values encountered in professional duties.", "Reject activities that violate global engineering ethics even when justified by culture.", "Avoid unnecessary harm to people inside and outside the organization.", "Treat organizational stakeholders fairly and justly.", "Ensure compliance with relevant laws and regulations within the organization.", "Protect members from discrimination and harassment within the organization.", "Base hiring, pay, promotion and dismissal on merit.", "Ensure that lawful company contracts are fulfilled.", "Follow lawful, work-related instructions.", "Perform contractual duties at or above professional standards.", "Protect confidential knowledge acquired in current and former employment.", "Avoid harming the organization when acting on its behalf.", "Be honest in business relationships.", "Apply organizational and employee ethical principles when in a position of authority.", "Seriously consider participating in public-policy discussions about future uses of technology.", "Seriously consider helping the public understand technology in its social and global context.", "Seriously consider volunteering to improve the technological prospects of people less fortunate than yourself.", "Be free from unnecessary harm in employment.", "Receive fair and just treatment from the employer.", "Be free from discrimination and harassment in employment.", "Receive treatment based on merit.", "Have contractual commitments fulfilled.", "Be free to refuse unlawful employment instructions.", "Have the right to report threats to public safety identified through professional judgment.", "Receive the resources needed to perform tasks competently.", "Inform the public about decisions that may seriously harm public welfare.", "Receive fair pay and a fair share of intellectual-property benefits."];
+  var records = {};
+  ['facts','timeline','sources','principles','valueWords'].forEach(function(key){(window.CASE_DATA[key]||[]).forEach(function(row){records[row.id]=row;});});
+  window.CASE_DATA.principles.forEach(function(row,i){copy[row.name]=row.nameEn;copy[row.desc]=descriptions[i];});
+  function text(row,field,locale){
+    var value=row && row[field] || '';
+    var original=row && records[row.id];
+    return locale==='en' && original && original[field]===value && Object.prototype.hasOwnProperty.call(copy,value) ? copy[value] : value;
+  }
+  window.FieldnotesMaterials={text:text};
+})();
+
+</script>
+  <script>
 /* An offline reading workspace. Selection and draft reasons are UI-only;
  * only a deliberate save writes a relation to the analysis runtime. */
 (function () {
   'use strict';
   function create(ctx) {
     var modal=ctx.modal, host=ctx.host, tab='facts', query='', category='all', source='', linkedOnly=false;
-    var selected={}, drafts={}, caseId=null, composing=false, page=0, pageSize=12, mobileReading=false, savedListScroll=0;
+    var selected={}, drafts={}, caseId=null, composing=false, page=0, pageSize=12, mobileReading=false, savedListScroll=0, originalReading=false;
     function bi(zh,en){return ctx.locale()==='zh'?zh:en;}
     function e(v){return ctx.escape(v);}
     function t(k){return ctx.t(k);}
+    function mt(row,field){return window.FieldnotesMaterials.text(row,field,ctx.locale());}
+    function read(row,field){return window.FieldnotesMaterials.text(row,field,originalReading?'zh':ctx.locale());}
     function data(){return ctx.data();}
     function state(){return ctx.state();}
     function items(type){return Object.values(state().items).filter(function(x){return x.type===type;});}
@@ -5138,12 +5337,12 @@ body {
     }
     function name(x){
       if(tab==='principles')return ctx.principleName(x.id);
-      if(tab==='sources')return x.title;
-      if(tab==='timeline')return x.event;
+      if(tab==='sources')return mt(x,'title');
+      if(tab==='timeline')return mt(x,'event');
       if(tab==='glossary'){var i=data().valueWords.indexOf(x);return ctx.locale()==='zh'?x.word:(ctx.words[i]||[x.word])[0];}
-      return x.text;
+      return mt(x,'text');
     }
-    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
+    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
     function filtered(){var terms=query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return records().filter(function(x){
       return terms.every(function(term){return searchable(x).includes(term);})&&
         (tab!=='facts'||((category==='all'||x.categories.includes(category))&&(!source||x.sourceId===source)&&(!linkedOnly||relations(x.id).length)))&&
@@ -5152,8 +5351,8 @@ body {
     function metadata(x){
       if(tab==='facts')return x.categories.map(function(c){return t(c);}).join(' · ');
       if(tab==='principles')return t(x.group);
-      if(tab==='sources')return [x.publisher,x.year].filter(Boolean).join(' · ');
-      if(tab==='timeline')return x.date;
+      if(tab==='sources')return [mt(x,'publisher'),x.year].filter(Boolean).join(' · ');
+      if(tab==='timeline')return mt(x,'date');
       return t('team');
     }
     function filters(){
@@ -5162,25 +5361,25 @@ body {
         var cats=tab==='facts'?['all','material','individual','organization']:['all','basic','organization','employee','involvement','rights'];
         html='<div class="library-filter-chips" role="group" aria-label="'+e(t('filterFacts'))+'">'+cats.map(function(c){return '<button type="button" id="library-category-'+c+'" data-lib="category" data-category="'+c+'" aria-pressed="'+(category===c)+'" class="'+(category===c?'selected':'')+'">'+e(c==='all'?bi('全部','All'):t(c))+'</button>';}).join('')+'</div>';
       }
-      if(tab==='facts')html+='<div class="library-filter-row"><label class="sr-only" for="library-source">'+e(t('source'))+'</label><select id="library-source" data-lib-field="source"><option value="">'+e(bi('所有来源','All sources'))+'</option>'+data().sources.filter(function(s){return ctx.facts().some(function(f){return f.sourceId===s.id;});}).map(function(s){return '<option value="'+e(s.id)+'" '+(source===s.id?'selected':'')+'>'+e(s.publisher||s.title)+'</option>';}).join('')+'</select><label class="library-linked-filter"><input type="checkbox" data-lib-field="linked" '+(linkedOnly?'checked':'')+'>'+e(bi('已引用','Linked'))+'</label></div>';
+      if(tab==='facts')html+='<div class="library-filter-row"><label class="sr-only" for="library-source">'+e(t('source'))+'</label><select id="library-source" data-lib-field="source"><option value="">'+e(bi('所有来源','All sources'))+'</option>'+data().sources.filter(function(s){return ctx.facts().some(function(f){return f.sourceId===s.id;});}).map(function(s){return '<option value="'+e(s.id)+'" '+(source===s.id?'selected':'')+'>'+e(mt(s,'publisher')||mt(s,'title'))+'</option>';}).join('')+'</select><label class="library-linked-filter"><input type="checkbox" data-lib-field="linked" '+(linkedOnly?'checked':'')+'>'+e(bi('已引用','Linked'))+'</label></div>';
       return html;
     }
     function badge(x){
-      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(x.note)+'">'+e(bi('需复核','Review'))+'</span>':'';
+      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(mt(x,'note'))+'">'+e(bi('需复核','Review'))+'</span>':'';
       var count=tab==='facts'?relations(x.id).length:tab==='principles'&&chosen(x.id)?1:0;
       return warning+(count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
     }
-    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?s.publisher||s.title:tab==='sources'?x.id:tab==='timeline'?x.date:bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
+    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
       '<div class="library-no-results">'+ctx.icon('book')+'<h3>'+e(bi('没有找到匹配资料','No matching materials'))+'</h3><p>'+e(bi('试试更短的词，或清除筛选。','Try fewer words or clear the filters.'))+'</p>'+button(e(bi('清除筛选','Clear filters')),'clear','small')+'</div>';}
     function urlLink(s){return s&&/^https?:\/\//i.test(s.url||'')?'<a class="library-source-link" href="'+e(s.url)+'" target="_blank" rel="noopener noreferrer">'+e(t('readSource'))+' ↗</a>':'';}
     function sourceContent(x){
-      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=x.note||'';
-      return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?s.title:bi('尚未记录来源','No source recorded'))+'</p>'+
-        (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(x.locator)+'</strong></div>':'')+
-        (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(x.quote)+'</p></blockquote>':'')+
+      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=read(x,'note');
+      return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?read(s,'title'):bi('尚未记录来源','No source recorded'))+'</p>'+
+        (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(read(x,'locator'))+'</strong></div>':'')+
+        (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(read(x,'quote'))+'</p></blockquote>':'')+
         (x.confidence?'<span class="library-confidence">'+e(t('confidence'))+' · '+e(t('confidence'+x.confidence[0].toUpperCase()+x.confidence.slice(1)))+'</span>':'')+
         (note?'<p class="source-review '+(pending?'pending':'')+'">'+ctx.materialText(note)+'</p>':'')+
-        (s&&s.note?'<p class="source-note">'+e(s.note)+'</p>':'')+urlLink(s)+'</section>';
+        (s&&s.note?'<p class="source-note">'+e(read(s,'note'))+'</p>':'')+urlLink(s)+'</section>';
     }
     function draft(x){
       if(!drafts[x.id]){var qs=items('Q'), existing=relations(x.id)[0];drafts[x.id]={target:existing?existing.to:qs.length===1?qs[0].id:'',why:existing?existing.why:'',dirty:false,reasons:{}};}
@@ -5196,12 +5395,12 @@ body {
     }
     function detail(x){
       if(!x)return '<div class="library-welcome">'+ctx.icon('book')+'<h3>'+e(bi('从一条资料开始','Start with one material'))+'</h3><p>'+e(bi('选择左侧资料，查看原文与出处，再判断它是否有助于你的问题。','Select a material, check its source, and decide whether it informs your question.'))+'</p></div>';
-      var html='<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
-      if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(x.text)+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 保留原材料语言','Material summary · original language retained'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
-      if(tab==='principles')html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.desc:x.nameEn)+'</p><blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+e(x.nameEn)+'</p></blockquote><p class="library-reading-note">'+e(t('sourceTranslation'))+'</p>'+sourceContent(x)+(!ctx.readonly()?'<div class="library-principle-action">'+button(ctx.icon(chosen(x.id)?'check':'plus')+e(chosen(x.id)?t('selected'):bi('加入原则比较','Add to comparison')),'principle',chosen(x.id)?'quiet':'primary','data-id="'+e(x.id)+'" '+(chosen(x.id)?'disabled':''))+'<p>'+e(bi('加入后，在第六步写下适用理由与取舍。','Then explain relevance and priorities in step 6.'))+'</p></div>':'');
-      if(tab==='timeline')html+='<time class="library-event-date">'+e(x.date)+'</time><h3 class="library-reading-text">'+ctx.materialText(x.event)+'</h3>'+sourceContent(x);
-      if(tab==='sources'){var count=ctx.facts().filter(function(f){return f.sourceId===x.id;}).length;html+='<h3 class="library-reading-title">'+e(x.title)+'</h3><p class="library-publisher">'+e([x.publisher,x.year].filter(Boolean).join(' · '))+'</p>'+(x.note?'<p class="library-source-caution">'+e(x.note)+'</p>':'')+urlLink(x)+'<div class="library-source-usage"><strong>'+count+'</strong><div><h3>'+e(bi('条资料引用此来源','materials cite this source'))+'</h3><p>'+e(bi('查看摘要、定位和原文，再决定如何使用。','Check summaries, locators and quotations before using them.'))+'</p></div></div>'+(count?button(e(bi('查看相关资料','Browse these materials'))+ctx.icon('arrow'),'source-facts','primary','data-id="'+e(x.id)+'"'):'');}
-      if(tab==='glossary'){var idx=data().valueWords.indexOf(x);html+='<h3 class="library-reading-title">'+e(name(x))+'</h3><p class="library-principle-desc">'+e(ctx.locale()==='zh'?x.whyVague:(ctx.words[idx]||['',x.whyVague])[1])+'</p><div class="library-word-preview"><span>'+e(t('others'))+'</span><span>'+e(t('mine'))+'</span></div><p class="library-reading-note">'+e(bi('这是小组的思考提示，具体定义由你们填写。','This is a team prompt. Write your own definitions.'))+'</p>'+(!ctx.readonly()?button(ctx.icon('plus')+e(bi('去澄清这个词','Clarify this term')),'concept','primary','data-word="'+e(name(x))+'"'):'');}
+      var html=(ctx.locale()==='en'?'<div class="material-language-tools">'+button(e(originalReading?'Show English':'Show original wording'),'original','quiet small','aria-pressed="'+originalReading+'"')+'</div>':'')+'<div class="library-detail-heading"><span class="library-detail-kicker">'+e(metadata(x))+'</span><span class="record-id">'+e(x.id)+'</span></div>';
+      if(tab==='facts')html+='<h3 class="library-reading-text">'+ctx.materialText(read(x,'text'))+'</h3><p class="library-reading-note">'+e(bi('资料摘要 · 可核对原文',originalReading?'Original wording':'English translation · check the source'))+'</p>'+(!ctx.readonly()?button(ctx.icon('link')+e(bi('说明与问题的关系','Explain relevance')),'cite','quiet small'):'')+sourceContent(x)+linkForm(x);
+      if(tab==='principles')html+='<h3 class="library-reading-title">'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'</h3><p class="library-principle-desc">'+e(read(x,'desc'))+'</p><blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+e(x.nameEn)+'</p></blockquote><p class="library-reading-note">'+e(t('sourceTranslation'))+'</p>'+sourceContent(x)+(!ctx.readonly()?'<div class="library-principle-action">'+button(ctx.icon(chosen(x.id)?'check':'plus')+e(chosen(x.id)?t('selected'):bi('加入原则比较','Add to comparison')),'principle',chosen(x.id)?'quiet':'primary','data-id="'+e(x.id)+'" '+(chosen(x.id)?'disabled':''))+'<p>'+e(bi('加入后，在第六步写下适用理由与取舍。','Then explain relevance and priorities in step 6.'))+'</p></div>':'');
+      if(tab==='timeline')html+='<time class="library-event-date">'+e(read(x,'date'))+'</time><h3 class="library-reading-text">'+ctx.materialText(read(x,'event'))+'</h3>'+sourceContent(x);
+      if(tab==='sources'){var count=ctx.facts().filter(function(f){return f.sourceId===x.id;}).length;html+='<h3 class="library-reading-title">'+e(read(x,'title'))+'</h3><p class="library-publisher">'+e([mt(x,'publisher'),x.year].filter(Boolean).join(' · '))+'</p>'+(x.note?'<p class="library-source-caution">'+e(read(x,'note'))+'</p>':'')+urlLink(x)+'<div class="library-source-usage"><strong>'+count+'</strong><div><h3>'+e(bi('条资料引用此来源','materials cite this source'))+'</h3><p>'+e(bi('查看摘要、定位和原文，再决定如何使用。','Check summaries, locators and quotations before using them.'))+'</p></div></div>'+(count?button(e(bi('查看相关资料','Browse these materials'))+ctx.icon('arrow'),'source-facts','primary','data-id="'+e(x.id)+'"'):'');}
+      if(tab==='glossary'){var idx=data().valueWords.indexOf(x);html+='<h3 class="library-reading-title">'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'</h3><p class="library-principle-desc">'+e(read(x,'whyVague'))+'</p><div class="library-word-preview"><span>'+e(t('others'))+'</span><span>'+e(t('mine'))+'</span></div><p class="library-reading-note">'+e(bi('这是小组的思考提示，具体定义由你们填写。','This is a team prompt. Write your own definitions.'))+'</p>'+(!ctx.readonly()?button(ctx.icon('plus')+e(bi('去澄清这个词','Clarify this term')),'concept','primary','data-word="'+e(originalReading?(tab==='glossary'?x.word:tab==='principles'?x.name:name(x)):name(x))+'"'):'');}
       return '<div class="library-detail-inner">'+html+'</div>';
     }
     function refresh(focus) {
@@ -5213,7 +5412,7 @@ body {
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
-    function open(nextTab,id){
+    function open(nextTab,id){originalReading=false;
       if(caseId!==data().meta.id){selected={};drafts={};caseId=data().meta.id;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(nextTab&&nextTab!==tab){tab=nextTab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;}
       if(id){selected[tab]=id;query='';category='all';source='';linkedOnly=false;page=Math.max(0,Math.floor(filtered().findIndex(function(x){return x.id===id;})/pageSize));mobileReading=true;}
@@ -5223,14 +5422,15 @@ body {
       if(a==='close'){modal.close();return;}
       if(a==='return'||a==='navigate'){modal.close();if(a==='navigate'||tab==='principles')ctx.navigate(a==='navigate'?Number(el.dataset.step):6);return;}
       if(a==='cite'){var form=host.querySelector('.library-relevance');form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});var input=form.querySelector('textarea,button');if(input)input.focus({preventScroll:true});return;}
-      if(a==='language'){ctx.language(el.dataset.lang);refresh();return;}
-      if(a==='tab'){tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='select'){selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
+      if(a==='language'){originalReading=false;ctx.language(el.dataset.lang);refresh();return;}
+      if(a==='original'){originalReading=!originalReading;refresh('read');return;}
+      if(a==='tab'){originalReading=false;tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='select'){originalReading=false;selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
       if(a==='back-list'){mobileReading=false;refresh();return;}
-      if(a==='page-prev'||a==='page-next'){page+=a==='page-next'?1:-1;refresh('select');return;}
-      if(a==='category'){category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='clear'){query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
-      if(a==='source-facts'){tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='page-prev'||a==='page-next'){originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
+      if(a==='category'){originalReading=false;category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='clear'){originalReading=false;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
+      if(a==='source-facts'){originalReading=false;tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(ctx.readonly())return;
       if(a==='unlink'){ctx.dispatch('UNLINK',{id:el.dataset.id});var d=drafts[selected.facts];if(d&&!d.dirty){d.why='';}refresh();return;}
       if(a==='principle'&&!chosen(el.dataset.id)){ctx.dispatch('ADD_ITEM',{type:'PA',step:6,fields:{principleId:el.dataset.id,appliesTo:[],order:items('PA').length+1}});refresh();ctx.toast(bi('已加入比较，在第六步解释适用理由。','Added. Explain its relevance in step 6.'));return;}
@@ -5238,7 +5438,7 @@ body {
       if(a==='concept'){modal.close();ctx.dispatch('ADD_ITEM',{type:'C',step:5,fields:{word:el.dataset.word,others:'',mine:''}});ctx.navigate(5);return;}
       if(a==='add-fact'){ctx.addFact();}
     });
-    function searchInput(){query=host.querySelector('#library-search').value;page=0;mobileReading=false;refresh('select');}
+    function searchInput(){originalReading=false;query=host.querySelector('#library-search').value;page=0;mobileReading=false;refresh('select');}
     host.addEventListener('compositionstart',function(event){if(event.target.id==='library-search')composing=true;});
     host.addEventListener('compositionend',function(event){if(event.target.id==='library-search'){composing=false;searchInput();}});
     host.addEventListener('input',function(event){
@@ -6295,6 +6495,79 @@ body {
 
 </script>
   <script>
+/* Guided human review. Reuses review.status/note; no generated analysis or new state fields. */
+(function(){
+  'use strict';
+  function create(ctx){
+    var selected=null, filter='pending', angle=0, drafts={}, caseId=null;
+    function bi(zh,en){return ctx.locale()==='en'?en:zh;}
+    function e(value){return ctx.escape(value);}
+    function records(){return Object.values(ctx.state().items).filter(function(it){return it.step<7;});}
+    function kind(it){var r=it.review||{};return r.status==='checked'&&!it.needsReview?'kept':r.status==='revise'?'revise':r.status==='unseen'&&r.note?'discussion':'pending';}
+    function label(status){return {pending:bi('待复核','To review'),kept:bi('保留','Keep'),revise:bi('需要修改','Revise'),discussion:bi('待讨论','Discuss')}[status];}
+    function type(it){return {Q:bi('伦理问题','Ethical question'),M:bi('信息缺口','Information gap'),A:bi('合理假设','Assumption'),C:bi('概念定义','Definition'),PA:bi('伦理原则','Ethical principle')}[it.type]||bi('分析记录','Analysis record');}
+    function queue(){return records().filter(function(it){return filter==='all'||kind(it)===filter;});}
+    function btn(text,action,attrs,cls){return '<button type="button" class="button '+(cls||'quiet small')+'" data-review-action="'+action+'" '+(attrs||'')+'>'+e(text)+'</button>';}
+    function sync(){var id=ctx.data().meta.id;if(caseId!==id){caseId=id;selected=null;filter='pending';drafts={};angle=0;}var list=queue();if(!list.some(function(it){return it.id===selected;}))selected=list[0]?list[0].id:null;return list;}
+    function draft(it){if(!drafts[it.id])drafts[it.id]={choice:kind(it)==='kept'?'checked':kind(it)==='revise'?'revise':kind(it)==='discussion'?'discussion':'',note:it.review&&it.review.note||''};return drafts[it.id];}
+    function prompt(it){
+      var common=[bi('有没有遗漏受影响的人，或与当前判断相反的证据？','Are any affected people or counter-evidence missing?'),bi('如果这条记录不成立，哪些后续判断需要重新考虑？','If this record is wrong, which later judgments need reconsideration?')];
+      var specific={Q:bi('问题是否指向具体行动与受影响的人？有没有把不同问题混在一起？','Does the question identify an action and affected people? Does it combine separate issues?'),M:bi('补上这项信息会改变什么判断？它是否真的还没有可靠依据？','Which judgment would this information change? Is reliable evidence still missing?'),A:bi('这里哪些是已知事实，哪些是推断？依据足以支持这个假设吗？','Which parts are known facts and which are inferred? Does the evidence support the assumption?'),C:bi('他人的理解和本组用法是否区分清楚？含义不同会改变分析吗？','Are others’ interpretations distinct from your usage? Would a different meaning change the analysis?'),PA:bi('原则为什么适用？有没有与它冲突的原则，或被忽略的立场？','Why does this principle apply? Are conflicting principles or perspectives missing?')};
+      return [specific[it.type]||common[0]].concat(common)[angle%3];
+    }
+    function text(it){return it.type==='PA'?ctx.principleName(it.principleId)||it.text:it.word||it.text||it.id;}
+    function context(it){
+      var html='',fields=it.type==='C'?[[bi('他人的理解','Other interpretations'),it.others||it.othersView],[bi('本组用法','Our usage'),it.mine||it.myUsage]]:it.type==='PA'?[[bi('适用理由','Applicability'),it.text]]:it.type==='Q'?[[bi('聚焦理由','Focus reason'),it.focusReason]]:[];
+      fields.forEach(function(pair){if(pair[1])html+='<div class="guided-review-field"><span>'+e(pair[0])+'</span><p>'+e(pair[1])+'</p></div>';});
+      var refs=(it.basisRefs||[]).slice();ctx.state().relations.forEach(function(r){if(r.to===it.id&&r.kind==='fact-supports-question'&&!refs.includes(r.from))refs.push(r.from);});
+      var sources=refs.map(function(id){return ctx.data().facts.find(function(f){return f.id===id;})||ctx.state().items[id]||ctx.data().sources.find(function(s){return s.id===id;});}).filter(Boolean);
+      if(sources.length)html+='<div class="guided-review-evidence"><span>'+e(bi('回看相关依据','Revisit supporting material'))+'</span>'+sources.map(function(row){var isFact=ctx.data().facts.some(function(f){return f.id===row.id;}),word=window.FieldnotesMaterials.text(row,row.text!==undefined?'text':'title',ctx.locale());var link=ctx.state().relations.find(function(r){return r.from===row.id&&r.to===it.id;});return '<div><p>'+e(word||text(row))+'</p>'+(link&&link.why?'<p class="guided-review-link-reason">'+e(bi('关联理由：','Relevance: ')+link.why)+'</p>':'')+(isFact?'<button class="button quiet small" data-action="materials" data-tab="facts" data-id="'+e(row.id)+'">'+e(bi('核对原文与出处','Check source wording'))+'</button>':'')+'</div>';}).join('')+'</div>';
+      if(it.type==='A'&&!sources.length)html+='<p class="guided-review-missing">'+e(bi('这条假设还没有选择依据，值得回到第 4 步核对。','This assumption has no selected references. Revisit step 4.'))+'</p>';
+      return html;
+    }
+    function render(){
+      var list=sync(),all=records(),counts={pending:0,kept:0,revise:0,discussion:0};all.forEach(function(it){counts[kind(it)]++;});
+      var intro='<section class="guided-review-intro"><div><h3>'+e(bi('一次看清一条记录','One record, a closer look'))+'</h3><p>'+e(bi('核对依据，再决定保留、修改或留给小组讨论。','Check its basis, then keep, revise or discuss it.'))+'</p></div><span>'+counts.kept+' / '+all.length+' '+e(bi('已确认保留','confirmed to keep'))+'</span></section>';
+      if(!all.length)return intro+'<div class="empty-state"><h3>'+e(bi('先有记录，才能回顾','Write before reviewing'))+'</h3><p>'+e(bi('回到前六步，写下问题和分析后再开始。','Start by writing questions and analysis in the first six steps.'))+'</p><button class="button primary" data-action="navigate" data-step="1">'+e(bi('回到第 1 步','Go to step 1'))+'</button></div>';
+      var filters='<div class="guided-review-filters" role="group" aria-label="'+e(bi('筛选复核记录','Filter review records'))+'">'+['pending','revise','discussion','kept','all'].map(function(k){return btn((k==='all'?bi('全部','All'):label(k))+' '+(k==='all'?all.length:counts[k]),'filter','data-filter="'+k+'" aria-pressed="'+(filter===k)+'"',filter===k?'small is-selected':'small quiet');}).join('')+'</div>';
+      var side='<nav class="guided-review-queue" aria-label="'+e(bi('待复核记录','Review queue'))+'">'+list.map(function(it){return '<button type="button" data-review-action="select" data-id="'+e(it.id)+'" aria-current="'+(it.id===selected?'true':'false')+'" class="guided-review-row '+(it.id===selected?'selected':'')+'"><span>'+e(type(it))+' · '+String(it.step).padStart(2,'0')+'</span><strong>'+e(text(it))+'</strong><small>'+e(label(kind(it)))+'</small></button>';}).join('')+'</nav>';
+      var it=list.find(function(row){return row.id===selected;});
+      if(!it)return intro+filters+'<div class="guided-review-clear"><h3>'+e(bi('这一组已经看完','Nothing left in this group'))+'</h3><p>'+e(bi('可以查看其他记录，或回到需要修改的步骤。处理完成不代表判断已被验证。','Open another group or revisit a step that needs revision. Reviewing does not validate a judgment.'))+'</p>'+btn(bi('查看全部记录','View all records'),'filter','data-filter="all"','primary')+'</div>';
+      var d=draft(it),choices=[['checked',bi('保留','Keep')],['revise',bi('需要修改','Revise')],['discussion',bi('待讨论','Discuss')]];
+      var card='<article class="guided-review-card" id="entry-'+e(it.id)+'"><div class="guided-review-card-head"><span>'+e(type(it))+' · '+e(it.id)+'</span><button class="button quiet small" data-action="navigate" data-step="'+it.step+'" data-id="'+e(it.id)+'">'+e(bi('回到原步骤修改','Edit in original step'))+'</button></div><h3>'+e(text(it))+'</h3>'+context(it)+'<div class="guided-review-lens"><p>'+e(prompt(it))+'</p>'+btn(bi('换个检查角度','Another review angle'),'angle')+'</div>';
+      if(ctx.readonly())card+='<div class="guided-review-readonly"><strong>'+e(label(kind(it)))+'</strong><p>'+e(it.review&&it.review.note||bi('还没有复核原因','No review reason recorded.'))+'</p></div>';
+      else card+='<fieldset class="guided-review-decisions"><legend>'+e(bi('你打算如何处理？','How will you handle this?'))+'</legend>'+choices.map(function(choice){return btn(choice[1],'choice','data-choice="'+choice[0]+'" aria-pressed="'+(d.choice===choice[0])+'"','review-choice '+(d.choice===choice[0]?'selected':'')+' choice-'+choice[0]);}).join('')+'</fieldset><label class="field" for="review-reason"><span>'+e(bi('为什么？准备修改或讨论什么？','Why? What should change or be discussed?'))+'</span><textarea id="review-reason" data-review-note="'+e(it.id)+'" rows="2" placeholder="'+e(bi('保留可不填；修改或待讨论时，请留下具体原因。','Optional for Keep; explain what needs revision or discussion.'))+'">'+e(d.note)+'</textarea></label><p id="review-feedback" role="status"></p><div class="guided-review-save">'+btn(bi('保存并看下一条','Save & review next'),'save','data-id="'+e(it.id)+'"','primary')+'<small>'+e(bi('只记录你的决定，不改写原分析。','Records your decision without rewriting the analysis.'))+'</small></div>';
+      card+='</article>';
+      var carrier=all[0],checklist='<details id="review-guidance" class="analysis-extra guided-review-checklist"><summary>'+e(bi('小组偏见检查清单','Team bias checklist'))+'</summary><fieldset>'+ctx.data().biasChecks.map(function(check,i){return '<label class="check"><input type="checkbox" data-checklist="'+e(carrier.id)+'" value="'+e(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(ctx.readonly()?'disabled':'')+'>'+e(ctx.locale()==='en'?window.FieldnotesI18n.biasLabels[i]:check.label)+'</label>';}).join('')+'</fieldset></details>';
+      return intro+filters+'<div class="guided-review-layout">'+side+card+'</div>'+checklist;
+    }
+    function input(event){if(event.target.dataset.reviewNote){var it=ctx.state().items[event.target.dataset.reviewNote];if(it&&!ctx.readonly())draft(it).note=event.target.value;}}
+    function click(event){var el=event.target.closest('[data-review-action]');if(!el)return false;event.preventDefault();var action=el.dataset.reviewAction;
+      if(action==='filter'){filter=el.dataset.filter;selected=null;ctx.render();}
+      if(action==='select'){selected=el.dataset.id;angle=0;ctx.render();}
+      if(action==='angle'){angle++;ctx.render();}
+      if(ctx.readonly())return true;
+      var it=ctx.state().items[selected];if(!it)return true;var d=draft(it);
+      if(action==='choice'){d.choice=el.dataset.choice;ctx.render();}
+      if(action==='save'){
+        var error=!d.choice?bi('先选择一种处理方式。','Choose a review decision first.'):d.choice!=='checked'&&!d.note.trim()?bi('请记录需要修改或讨论的具体原因。','Explain what needs revision or discussion.'):'';
+        if(error){document.getElementById('review-feedback').textContent=error;if(d.choice)document.getElementById('review-reason').focus();return true;}
+        var list=queue(),index=list.findIndex(function(row){return row.id===it.id;});selected=list[index+1]?list[index+1].id:null;
+        var fields={review:{status:d.choice==='discussion'?'unseen':d.choice,note:d.note.trim()}};
+        if(d.choice==='checked'){fields.needsReview=false;fields.staleReason='';}
+        delete drafts[it.id];ctx.dispatch('UPDATE_ITEM',{id:it.id,fields:fields});ctx.dispatch('SET_STATUS',{step:7,status:'draft'});
+        if(d.choice==='revise')ctx.dispatch('SET_STATUS',{step:it.step,status:'stale'});
+        ctx.toast(bi('已保存复核决定','Review decision saved'));
+      }
+      return true;
+    }
+    return {render:render,input:input,click:click};
+  }
+  window.FieldnotesReview={create:create};
+})();
+
+</script>
+  <script>
 (function () {
   'use strict';
   var I=window.FieldnotesI18n, cases=window.FieldnotesCases, data=cases.getData();
@@ -6303,7 +6576,7 @@ body {
   try { locale=localStorage.getItem('fieldnotes.ui.language')==='en'?'en':'zh'; } catch(e) {}
   var composing=false;
   var archiveMenuOpen=false;
-  var library, tipIndexes={}, tipOpen={};
+  var library, reviewWorkspace, tipIndexes={}, tipOpen={};
   var app=document.getElementById('app'), modal=document.getElementById('modal'), modalContent=document.getElementById('modal-content');
   var paths={more:'M5 12h.01M12 12h.01M19 12h.01',plus:'M12 5v14M5 12h14',arrow:'M5 12h14m-6-6 6 6-6 6',back:'M19 12H5m6-6-6 6 6 6',book:'M4 4h6c2 0 2 2 2 2s0-2 2-2h6v15h-6c-2 0-2 1-2 1s0-1-2-1H4zM12 6v14',link:'m9 15 6-6M8 17H6a4 4 0 0 1 0-8h3m7-2h2a4 4 0 0 1 0 8h-3',check:'m5 12 4 4L19 6',close:'m6 6 12 12M18 6 6 18',download:'M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4',screen:'M3 4h18v13H3zM12 17v4m-4 0h8',globe:'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z',note:'M5 3h14v18H5zM8 7h8M8 11h8M8 15h5',map:'M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16',history:'M3 10a9 9 0 1 1 1 7M3 4v6h6m3-3v5l3 2',help:'M9 8a3 3 0 1 1 4 3c-1 1-1 1-1 3m0 3h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',trash:'M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7',up:'m6 15 6-6 6 6',down:'m6 9 6 6 6-6',spark:'m12 3 2 6 7 3-7 3-2 6-2-6-7-3 7-3z',folder:'M3 7V4h7l2 3h9v13H3z',search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z'};
   function icon(name){return '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(paths[name]||paths.note)+'"/></svg>';}
@@ -6318,7 +6591,8 @@ body {
   function current(){return presentation?presentationStep:state().currentStep;}
   function isPending(text){return /TODO|占位|待补|待 PI|待资料/.test(text||'');}
   function facts(){return data.facts.filter(function(f){return !isPending(f.text)&&!isPending(f.sourceId);});}
-  function display(it){if(!it)return '';if(it.type==='PA')return principleName(it.principleId)||it.text;return it.word||it.text||it.why||it.reason||it.priority||it.id;}
+  function caseText(row,key){return window.FieldnotesMaterials.text(row,key,locale);}
+  function display(it){if(!it)return '';if(it.type==='PA')return principleName(it.principleId)||it.text;return it.word||caseText(it,'text')||it.why||it.reason||it.priority||it.id;}
   function principleName(id){var idx=data.principles.findIndex(function(p){return p.id===id;});if(idx<0)return display(state().items[id]);var p=data.principles[idx],original=window.CASE_DATA.principles.findIndex(function(x){return x.id===id&&x.nameEn===p.nameEn;});return locale==='zh'?p.name:original>=0?I.principleNames[original]||p.nameEn:p.nameEn;}
   function tag(key,cls){return '<span class="tag '+(cls||'')+'">'+esc(t(key))+'</span>';}
   function button(key,action,cls,ico,attrs){return '<button type="button" class="button '+(cls||'')+'" data-action="'+action+'" '+(attrs||'')+'>'+(ico?icon(ico):'')+esc(t(key))+'</button>';}
@@ -6352,7 +6626,7 @@ body {
     if(step===2){list=rows('Q');return list.length?list.map(function(it){return '<article class="entry-card '+(it.isCore?'is-core':'')+'"><div class="card-head"><span class="record-id">'+esc(it.id)+'</span>'+tag(it.isCore?'core':'question',it.isCore?'green':'muted')+'</div><h3>'+esc(it.text||t('empty'))+'</h3>'+(presentation?'':'<label class="check"><input type="checkbox" id="core-'+esc(it.id)+'" data-item="'+esc(it.id)+'" data-field="isCore" '+(it.isCore?'checked':'')+'>'+esc(t('selectCore'))+'</label>')+(it.isCore?field(it,'focusReason','focusWhy','focusReasonHint')+field(it,'text','question','questionHint'):'')+'</article>';}).join(''):empty('focusEmpty','focusEmptySub',presentation?'':button('previous','navigate','primary','back','data-step="1"'));}
     if(step===3){var selectedFacts=facts().filter(function(f){return s.relations.some(function(r){return r.from===f.id;});});
       html='<div class="evidence-intro"><span class="evidence-icon">'+icon('book')+'</span><div><h3>'+esc(t('selectedFacts'))+'</h3><p>'+facts().length+' '+esc(t('factsAvailable'))+' · '+esc(t('factSelectionHint'))+'</p></div>'+button('browseFacts','materials','primary small','plus','data-tab="facts"')+'</div>';
-      html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(it.text)+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
+      html+=selectedFacts.length?'<div class="fact-grid '+(selectedFacts.length===1?'single':'')+'">'+selectedFacts.map(function(it){return '<article class="fact-card"><div class="selected-fact-head">'+tag(cases.isCustom()?'userFact':'facts','green')+'<div>'+it.categories.map(function(cat){return tag(cat);}).join(' ')+'</div></div><p>'+materialText(caseText(it,'text'))+'</p>'+sourceDetails(it,'selected')+relationList(it.id)+connectButton(it)+'</article>';}).join('')+'</div>':empty('evidenceEmpty','evidenceEmptySub');
       if(cases.isCustom())html+='<div class="section-heading"><p class="hint">'+esc(t('caseMaterialsHint'))+'</p>'+button('addFact','add-fact','small','plus')+'</div>';
       list=rows('M');html+='<div class="section-heading"><h3>'+esc(t('missing'))+'</h3>'+(presentation?'':button('addGap','add','small','plus','data-type="M" data-step="3"'))+'</div>';
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'missing')+field(it,'text','missing','gapHint')+relationList(it.id)+connectButton(it)+'</article>';}).join(''):'<p class="gap-prompt">'+esc(t('gapHint'))+'</p>');}
@@ -6363,10 +6637,7 @@ body {
       html+=list.length?list.map(function(it,idx){return '<article class="entry-card rank-card" draggable="'+(!presentation)+'" data-drag="'+esc(it.id)+'">'+cardHead(it,it.principleId?'principles':'custom')+'<div class="rank-heading"><span class="rank-number">'+(idx+1)+'</span><h3>'+esc(principleName(it.principleId)||it.text||t('custom'))+'</h3>'+(presentation?'':'<div class="rank-controls">'+button('moveUp','rank','icon-button','up','data-id="'+esc(it.id)+'" data-direction="-1" '+(idx===0?'disabled':''))+button('moveDown','rank','icon-button','down','data-id="'+esc(it.id)+'" data-direction="1" '+(idx===list.length-1?'disabled':''))+'</div>')+'</div>'+field(it,'text',it.principleId?'applyWhy':'custom',it.principleId?'applyWhy':'customHint')+'<details class="entry-details" id="principle-meta-'+esc(it.id)+'"><summary>'+esc(t('principleSettings'))+'</summary>'+(presentation?'<p>'+esc((it.appliesTo||[]).map(function(id){return display(s.items[id]);}).join(' · '))+'</p>':'<fieldset><legend>'+esc(t('questionTarget'))+'</legend>'+rows('Q').map(function(q){return '<label class="check"><input type="checkbox" id="applies-'+esc(it.id)+'-'+esc(q.id)+'" data-applies="'+esc(it.id)+'" value="'+esc(q.id)+'" '+((it.appliesTo||[]).includes(q.id)?'checked':'')+'>'+esc(q.text||q.id)+'</label>';}).join('')+'</fieldset>')+'<label class="field"><span>'+esc(t('priority'))+' · '+esc(t('tie'))+'</span>'+(presentation?'<p>'+esc(it.order||idx+1)+'</p>':'<input type="number" id="rank-order-'+esc(it.id)+'" min="1" max="99" data-item="'+esc(it.id)+'" data-field="order" value="'+esc(it.order||idx+1)+'">')+'</label></details></article>';}).join(''):empty();
       html+='<details class="analysis-extra" id="principle-conflicts"><summary>'+esc(t('conflict'))+'<span>'+state().conflicts.length+'</span></summary><div class="section-heading"><h3>'+esc(t('conflict'))+'</h3>'+(presentation?'':button('addConflict','conflict','small','plus'))+'</div><p class="hint">'+esc(t('noConflict'))+'</p>';
       return html+state().conflicts.map(function(c){return '<article class="entry-card"><div class="card-head"><strong>'+esc(principleName(c.principleA))+' ↔ '+esc(principleName(c.principleB))+'</strong>'+deleteButton(c,true)+'</div><p class="hint">'+esc(display(s.items[c.questionId]))+'</p><div class="two-columns">'+field(c,'supportsA','supportsA',null,false,'conflict')+field(c,'supportsB','supportsB',null,false,'conflict')+'</div>'+field(c,'priority','coordinate',null,false,'conflict')+field(c,'reason','reason',null,false,'conflict')+(presentation?'<p>'+esc(t(c.scope==='general'?'generalScope':'caseScope'))+'</p>':'<label class="field"><span>'+esc(t('scope'))+'</span><select data-conflict="'+esc(c.id)+'" data-field="scope"><option value="case" '+(c.scope==='case'?'selected':'')+'>'+esc(t('caseScope'))+'</option><option value="general" '+(c.scope==='general'?'selected':'')+'>'+esc(t('generalScope'))+'</option></select></label>')+'</article>';}).join('')+'</details>'; }
-    if(step===7){list=rows().filter(function(x){return x.step<7;});html='<details class="analysis-extra" id="review-guidance"><summary>'+esc(t('biasChecklist'))+'</summary><div class="review-prompts">'+data.reviewPrompts.map(function(p,idx){return '<button class="review-prompt" data-action="navigate" data-step="'+p.jumpTo+'">'+icon('spark')+'<span>'+esc(locale==='zh'?p.label:['Any missing facts?','Any unclear terms?','Do assumptions have a basis?','Any contradictions?','Whose perspective is missing?'][idx])+'</span>'+icon('arrow')+'</button>';}).join('')+'</div>';
-      if(list.length){var carrier=list[0];html+='<fieldset class="review-checklist"><legend>'+esc(t('biasChecklist'))+'</legend>'+data.biasChecks.map(function(check,idx){return '<label class="check"><input type="checkbox" id="checklist-'+esc(check.id)+'" data-checklist="'+esc(carrier.id)+'" value="'+esc(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?check.label:I.biasLabels[idx]||check.label)+'</label>';}).join('')+'</fieldset>';}
-      html+='</details>';
-      return html+(list.length?list.map(function(it){var status=it.review?it.review.status:'unseen';return '<article class="review-card" id="entry-'+esc(it.id)+'"><span class="record-id">'+esc(it.id)+'</span><h3>'+esc(display(it)||t('empty'))+'</h3><div class="review-actions">'+button('edit','navigate','small quiet','arrow','data-step="'+it.step+'" data-id="'+esc(it.id)+'"')+(presentation?tag(status==='revise'?'revise':status==='checked'?'unchanged':'notReviewed'):'<select id="review-'+esc(it.id)+'" data-review="'+esc(it.id)+'"><option value="unseen" '+(status==='unseen'?'selected':'')+'>'+esc(t('notReviewed'))+'</option><option value="checked" '+(status==='checked'?'selected':'')+'>'+esc(t('unchanged'))+'</option><option value="revise" '+(status==='revise'?'selected':'')+'>'+esc(t('revise'))+'</option></select>')+'</div></article>';}).join(''):empty('reviewEmpty','reviewEmptySub',presentation?'':button('backToQuestions','navigate','primary','back','data-step="1"')));}
+    if(step===7)return reviewWorkspace.render();
     if(step===8){list=rows('Q').filter(function(q){return q.isCore;});return list.length?list.map(function(q){var rel=s.relations.find(function(r){return r.to===q.id&&r.kind==='resolution-answers-question';}),r=rel?s.items[rel.from]:null;return '<article class="entry-card">'+tag('focus','green')+'<h3>'+esc(q.text||q.id)+'</h3>'+(r?field(r,'text','answer','answer')+field(r,'reason','answerWhy','answerWhy'):(presentation?'<p>'+esc(t('empty'))+'</p>':button('writeAnswer','answer','primary','note','data-id="'+esc(q.id)+'"')))+'</article>';}).join(''):empty('conclusionEmpty','conclusionEmptySub',presentation?'':button('chooseFocus','navigate','primary','back','data-step="2"'));}
     if(step===9){list=rows('RC');html='<div class="notice">'+icon('help')+'<p>'+esc(t('constraintHint'))+'</p></div><div class="word-shelf">'+data.constraints.map(function(c,idx){return '<button class="word-chip" data-action="constraint" data-text="'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+'" '+(presentation?'disabled':'')+'>'+esc(locale==='zh'?c.label:I.constraints[idx]?I.constraints[idx][0]:c.label)+icon('plus')+'</button>';}).join('')+'</div>'+(presentation?'':button('noConstraints','no-constraints','small quiet','check'));
       return html+(list.length?list.map(function(it){return '<article class="entry-card" id="entry-'+esc(it.id)+'">'+cardHead(it,'constraint')+((it.checkedIds||[]).includes('none')?'<p>'+esc(t('noConstraints'))+'</p>':field(it,'text','whatWho','whatWho')+field(it,'alternatives','alternatives','alternatives')+field(it,'mitigationJudgment','mitigation','mitigation'))+'</article>';}).join(''):empty());}
@@ -6386,10 +6657,10 @@ body {
   function hero(step){
     return '<section class="step-hero"><div class="hero-copy"><div class="eyebrow"><span class="hero-badge">STEP '+String(step).padStart(2,'0')+'</span><span>'+esc(t(step<=5?'discover':step<=7?'deliberate':'act'))+'</span></div><h1>'+esc(I.simpleTitles[step-1][locale==='zh'?0:1])+'</h1><p>'+esc(I.simpleIntros[step-1][locale==='zh'?0:1])+'</p></div><div class="hero-object" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-sheet"><span>FIELDNOTES / '+String(step).padStart(2,'0')+'</span>'+icon(['help','spark','book','link','globe','map','history','check','folder','arrow'][step-1])+'<div class="sheet-lines"><i></i><i></i><i></i></div></div><span class="hero-stamp">'+String(step).padStart(2,'0')+'<small>/ 10</small></span></div><div class="hero-progress" aria-hidden="true">'+data.steps.map(function(x){return '<span class="'+(x.id<=step?'filled':'')+'"></span>';}).join('')+'</div></section>';
   }
-  function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?source.title:t('pendingSource');}
+  function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?caseText(source,'title'):t('pendingSource');}
   function sourceDetails(entry,context){
     var source=data.sources.find(function(s){return s.id===entry.sourceId;}),pending=/未做|待核|待复核/.test(entry.note||'');
-    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(source.publisher)+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(entry.locator)+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(entry.note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(entry.note)+'</p>':'')+(source&&source.note?'<p class="source-note">'+esc(source.note)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
+    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(entry.note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(caseText(entry,'note'))+'</p>':'')+(source&&source.note?'<p class="source-note">'+esc(caseText(source,'note'))+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';
@@ -6519,8 +6790,8 @@ body {
   function exportMarkdown(){var s=state(),text='# '+caseName(data.meta)+'\n\n'+(locale==='zh'?MD_TOP:'> These are analysis materials. Group members must write the case analysis and self-reflection themselves; AI must not write them.')+'\n\n'+t('exportDisclaimer')+'\n';for(var step=1;step<=10;step++){text+='\n## '+step+'. '+title(step)+'\n\n';rows(null,s).filter(function(it){return it.step===step;}).forEach(function(it){text+='### '+it.id+'\n\n'+snapshotText(it)+'\n\n';});if(step===2)rows('Q',s).filter(function(q){return q.isCore;}).forEach(function(q){text+='- '+q.text+'\n  '+(q.focusReason||'')+'\n';});if(step===3){var linked=data.facts.filter(function(f){return !isPending(f.text)&&s.relations.some(function(r){return r.from===f.id;});});linked.forEach(function(f){text+='### '+f.id+'\n\n'+f.text+'\n\n'+t('source')+': '+sourceName(f.sourceId)+'\n\n';});}if(step===6)s.conflicts.forEach(function(c){text+='### '+c.id+'\n\n'+snapshotText(c)+'\n';});}text+='\n## '+t('links')+'\n\n'+s.relations.map(function(r){return '- '+r.from+' → '+r.to+'\n  '+r.why;}).join('\n')+'\n\n## '+t('notes')+'\n'+s.authorship.notes.concat(s.authorship.reservations).join('\n\n');return text;}
   function download(text,name,type){var url=URL.createObjectURL(new Blob([text],{type:type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(function(){URL.revokeObjectURL(url);},2000);}
   function exportDialog(){var list=[];for(var step=1;step<=10;step++)list=list.concat(warnings(step));openDialog('export','<p class="hint">'+esc(t('exportReminder'))+'</p><details class="reminders"><summary>'+list.length+' '+esc(t('reminders'))+'</summary>'+list.map(function(w){return '<p>'+esc(t('step'))+' '+w.step+' · '+esc(warningMessage(w))+'</p>';}).join('')+'</details><p class="hint">'+esc(t('exportDisclaimer'))+'</p><div class="export-choices">'+lt('exportArchiveJson','download-json','primary','download')+lt('exportMarkdownNotes','download-md','','note')+'</div>');}
-  function onClick(event){var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
-    if(presentation && ['add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open','archive-menu'].includes(action))return;
+  function onClick(event){if(reviewWorkspace.click(event))return;var el=event.target.closest('[data-action]');if(!el||el.disabled)return;var action=el.dataset.action;event.preventDefault();
+    if(presentation && ['review-step','add','delete','link','basis','concept','constraint','principle','conflict','answer','snapshot','restore','rank','no-constraints','import','reset','mock','revision-note','snapshot-initial','snapshot-reviewed','backup-json','revision-compare-open','archive-menu'].includes(action))return;
     if(action==='step-hint'){var tipStep=current();if(tipOpen[tipStep])tipIndexes[tipStep]=((tipIndexes[tipStep]||0)+1)%window.FieldnotesGuidance[tipStep-1].length;tipOpen[tipStep]=true;render();}
     if(action==='hide-hint'){tipOpen[current()]=false;render();document.getElementById('step-hint-toggle').focus({preventScroll:true});}
     if(action==='tools')toolsDialog();
@@ -6598,6 +6869,8 @@ body {
     navigate:function(step){view='workbook';dispatch('NAVIGATE',{step:step});window.scrollTo(0,0);},addFact:factDialog,
     language:function(lang){locale=lang;try{localStorage.setItem('fieldnotes.ui.language',locale);}catch(e){}render();}
   });
+  reviewWorkspace=window.FieldnotesReview.create({state:state,data:function(){return data;},locale:function(){return locale;},escape:esc,principleName:principleName,readonly:function(){return !!presentation;},dispatch:dispatch,render:render,toast:toast});
+  document.addEventListener('input',reviewWorkspace.input);
   bindEngine();render();
 })();
 

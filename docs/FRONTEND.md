@@ -156,3 +156,14 @@ v4 保留完整中英文十步及弹窗截图；v5 与 v5-dist 各保留原文�
 验证：guidance-check.cjs 检查十步中英轮换、循环、提示不改状态、分页/全库搜索、移动分屏和溢出；browser-check.cjs 在 preview 与正式 dist 完整流程通过，library-check.cjs 在正式 dist 检查引用更新不重复、依据选择等。cases/runtime、logic smoke 8/8、adapter 7/7、export-import 5/5、数据 TEXT_DIFF=0、交付检查 13/13 均通过。原 Python browser-smoke 在本机使用共享 Chrome 配置启动时未取得 DOM；改用 Playwright 的隔离浏览器运行相同 tools/e2e/selftest.js，得到 PASS=20 FAIL=0 SKIP=0（未跳过检查）。
 
 页面 QA 图在 docs/ai-logs/frontend-qa-guided-hints-v3/ 与 frontend-qa-guided-delivery-v3/。这是界面验证图，不是课程要求的 AI 聊天截图。
+
+
+## 2026-10-12：预置资料英文层和引导式复核
+
+`material-translations.js` 提供 FieldnotesMaterials.text(row, field, locale)。译文只应用于已知 ID 且字段与预置原文完全一致的记录；资料、来源、原文引文及分析存档不被改写。新增/修改后的自录字段保持原样。英文资料页覆盖 50 事实、33 原则、15 时间线、6 来源和 4 术语提示的可显示字段；来源状态和警告保留其原有含义，不代表重新核验。English/Chinese 搜索并行，资料页支持主动切换原文。第 3 步已选事实与出处、假设依据显示也使用相同翻译助手。
+
+`review-workspace.js` 提供 FieldnotesReview.create(ctx) 的 render/input/click 接口。选择记录、筛选、检查角度与未提交原因仅存页面会话，切换案例清空；只有 Save 才写 review。Keep=checked，Revise=revise，Discuss=unseen + 必填 note，避免新增状态枚举。已有 unseen 且有 note 的记录显示为待讨论。需要修改时将原步骤标 stale；保留时用户明确确认后清除 needsReview。不会改写 text、word 或依据，也不自动将第 7 步标为完成。复核进度不是伦理评分。
+
+上下文展示相关原始记录、概念两种理解、原则理由、假设依据、关联事实和手写关联理由。提供回原步骤修改、相关事实原文入口、保存并下一条和分类筛选。课堂视图只读；修复原页脚 review-step 在课堂模式仍可写状态的入口。
+
+新检查 material-review-check.cjs：遍历所有资料条目，检查默认英文没有汉字，双语搜索、主动显示原文、资料不变；验证复核选择、必填原因、未提交草稿、自动进入下一条、筛选、回看标记、刷新恢复、快照/分析原文不改、四种屏宽与只读课堂。preview 与 dist 通过；完整写作流程、英文检查、资料交互与十步提示通过，data TEXT_DIFF=0、交付检查 14/14。QA 为 frontend-qa-guided-review-v2/v3 与 frontend-qa-guided-review-flow，全部使用明确标记的虚构测试记录，不是案例发现或 AI 对话截图。

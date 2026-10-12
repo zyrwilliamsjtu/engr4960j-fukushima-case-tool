@@ -70,7 +70,7 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   if(shots){fs.mkdirSync(shots,{recursive:true});await page.screenshot({path:path.join(shots,'library-zh-source-review.jpg'),type:'jpeg',quality:85});}
   // Switch UI language without altering either the question or the reason.
   await page.locator('.library-header [data-lang="en"]').click();assert.equal((await get()).items[qs[0].id].text,qs[0].text);
-  await tab('sources');await row('src-003').click();assert.ok((await page.locator('.library-source-caution').innerText()).includes('不得作为事实依据'));
+  await tab('sources');await row('src-003').click();assert.ok((await page.locator('.library-source-caution').innerText()).includes('Do not use this entry as factual evidence'));
   await row('src-004').click();await lib('source-facts').click();assert.equal(await page.locator('.library-fact').count(),Math.min(12,expected));
   assert.equal(await page.locator('#library-source').inputValue(),'src-004');
   await tab('principles');await lib('principle').click();

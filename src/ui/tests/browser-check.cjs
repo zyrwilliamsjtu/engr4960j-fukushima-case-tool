@@ -73,7 +73,7 @@ let pageForCapture;
  await page.locator('#conflict-form [name="a"]').selectOption(options[0]);await page.locator('#conflict-form [name="b"]').selectOption(options[1]);
  await page.locator('#conflict-form button[type="submit"]').click();
  assert.equal((await get()).conflicts.length,1);
- await step(7);await page.locator('#review-guidance > summary').click();await page.locator('[data-checklist]').first().check();await page.locator('[data-review]').first().selectOption('checked');
+ await step(7);await page.locator('#review-guidance > summary').click();await page.locator('[data-checklist]').first().check();await page.locator('[data-review-action="choice"][data-choice="checked"]').click();await page.locator('[data-review-action="save"]').click();
  await step(8);await click('tools');await click('method');assert.equal(await page.locator('[data-action="reference"]').isDisabled(),true);
  await click('close');await click('answer');assert.equal(await page.locator('[data-field="text"]').inputValue(),'');
  await page.locator('[data-field="text"]').fill('Our written test judgment.');await page.locator('[data-field="reason"]').fill('Our written test justification.');
