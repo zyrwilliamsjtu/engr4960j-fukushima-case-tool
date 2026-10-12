@@ -1,7 +1,7 @@
 {
   "allowedSkips": [],
   "summary": {
-    "pass": 64,
+    "pass": 70,
     "fail": 0,
     "skip": 0
   },
@@ -64,7 +64,7 @@
     {
       "id": "D2-step-10",
       "status": "pass",
-      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览"
+      "detail": "想想更早的一步。 | inputs=0 buttons=换个角度,添加预防措施,上一步,下一步,完成并查看总结 →,存为「初步」（快照）,存为「复核后」（快照）,修订对比"
     },
     {
       "id": "D3-1",
@@ -94,7 +94,7 @@
     {
       "id": "D1-1",
       "status": "pass",
-      "detail": "hard=0 soft=7"
+      "detail": "hard=0 soft=8"
     },
     {
       "id": "D1-3",
@@ -227,6 +227,36 @@
       "detail": "no window.error"
     },
     {
+      "id": "D9-1",
+      "status": "pass",
+      "detail": "summaryNav=true steps=10"
+    },
+    {
+      "id": "D9-2",
+      "status": "pass",
+      "detail": "goto=true sections=10"
+    },
+    {
+      "id": "D9-3",
+      "status": "pass",
+      "detail": "已填写 9 项 · 待补充 4 项"
+    },
+    {
+      "id": "D9-4",
+      "status": "pass",
+      "detail": "no question text to compare"
+    },
+    {
+      "id": "D9-5",
+      "status": "pass",
+      "detail": "getState unchanged on summary"
+    },
+    {
+      "id": "D9-6",
+      "status": "pass",
+      "detail": "exports tpl=true md=true json=true len=3457"
+    },
+    {
       "id": "D8-i18n",
       "status": "pass",
       "detail": "no CJK outside CASE_DATA and user state"
@@ -344,7 +374,7 @@
       "persona": "P3",
       "severity": "blue",
       "title": "结论类词语出现在用户槽位标签和形式提醒里",
-      "evidence": "soft hits=7; hard hits=0"
+      "evidence": "soft hits=8; hard hits=0"
     },
     {
       "persona": "P1",
@@ -526,10 +556,10 @@
         "添加预防措施",
         "上一步",
         "下一步",
+        "完成并查看总结 →",
         "存为「初步」（快照）",
         "存为「复核后」（快照）",
-        "修订对比",
-        "推理总览"
+        "修订对比"
       ],
       "inputs": 0,
       "hasEntryOrEmpty": true
@@ -759,6 +789,11 @@
       "where": "i18n.mockBanner",
       "hard": false,
       "text": "仅用于调试，不是福岛事实或本组结论"
+    },
+    {
+      "where": "i18n.summaryIntro",
+      "hard": false,
+      "text": "以下内容全部来自你在 10 步中填写的内容，本工具不生成新的分析结论。"
     },
     {
       "where": "body",

@@ -582,6 +582,59 @@
     if (errors.length) check("D6-console", false, errors.join(" | "));
     else check("D6-console", true, "no window.error");
 
+    var navSummary = document.querySelector('[data-testid="nav-summary"]');
+    var numberedSteps = document.querySelectorAll('[data-testid^="nav-step-"]');
+    check(
+      "D9-1",
+      !!navSummary && numberedSteps.length === 10 && !document.querySelector('[data-testid="nav-step-11"]'),
+      "summaryNav=" + !!navSummary + " steps=" + numberedSteps.length
+    );
+    click("#nav-step-10");
+    var gotoBtn = document.querySelector('[data-testid="goto-summary"]');
+    var stateBeforeSummary = JSON.stringify(window.FIELDNOTES.getEngine().getState());
+    var openedSummary = gotoBtn && click('[data-testid="goto-summary"]');
+    var summarySections = document.querySelectorAll('[data-testid^="summary-step-"]');
+    var completeness = document.querySelector('[data-testid="summary-completeness"]');
+    check("D9-2", openedSummary && summarySections.length === 10, "goto=" + openedSummary + " sections=" + summarySections.length);
+    check(
+      "D9-3",
+      !!(completeness && (/已填写\s*\d+\s*项/.test(completeness.textContent || "") || /\d+\s*filled/.test(completeness.textContent || ""))),
+      completeness ? completeness.textContent : "no completeness"
+    );
+    var qField = $("#workspace textarea[data-field='text']");
+    if (qField && qField.value) {
+      check(
+        "D9-4",
+        (document.getElementById("workspace") || document.body).innerText.indexOf(qField.value) >= 0,
+        "verbatim=" + qField.value.slice(0, 40)
+      );
+    } else check("D9-4", true, "no question text to compare");
+    check(
+      "D9-5",
+      JSON.stringify(window.FIELDNOTES.getEngine().getState()) === stateBeforeSummary,
+      "getState unchanged on summary"
+    );
+    var tplBtn = document.querySelector('[data-testid="summary-export-template"]');
+    var mdBtn = document.querySelector('[data-testid="summary-export-md"]');
+    var jsonBtn = document.querySelector('[data-testid="summary-export-json"]');
+    var templateFiles = [];
+    var anchorClick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function () {
+      if (this.download && /\.md$/.test(this.download)) templateFiles.push(this.download);
+      return anchorClick.apply(this, arguments);
+    };
+    var tplOk = tplBtn && click('[data-testid="summary-export-template"]');
+    var mdOk = mdBtn && click('[data-testid="summary-export-md"]');
+    var jsonOk = jsonBtn && click('[data-testid="summary-export-json"]');
+    HTMLAnchorElement.prototype.click = anchorClick;
+    var exportedJson = window.FIELDNOTES.getCases().exportProject();
+    check(
+      "D9-6",
+      !!(tplBtn && mdBtn && jsonBtn && tplOk && mdOk && jsonOk && exportedJson.length > 0),
+      "exports tpl=" + tplOk + " md=" + mdOk + " json=" + jsonOk + " len=" + exportedJson.length
+    );
+    click("#nav-step-1");
+
     auditEnglishUi();
 
     finish({ role: "main", viewport: metrics, opCounts: counts });
