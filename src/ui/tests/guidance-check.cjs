@@ -6,7 +6,7 @@ const {pathToFileURL}=require('node:url');
  try{
   const root=path.resolve(__dirname,'../../..'),context=await browser.newContext({offline:true,viewport:{width:1440,height:900}}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'preview.html')).href);
+  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'preview.html')).href+'#workbench');
   const state=()=>page.evaluate(()=>window.FIELDNOTES.getEngine().getState());
   for(const lang of ['zh','en']){
    await page.locator('[data-lang="'+lang+'"]').first().click();

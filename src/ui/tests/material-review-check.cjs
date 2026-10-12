@@ -7,7 +7,7 @@ const {pathToFileURL}=require('node:url');
  try{
   const root=path.resolve(__dirname,'../../..'),page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'dist/index.html')).href);
+  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'dist/index.html')).href+'#workbench');
   await page.locator('[data-lang="en"]').first().click();
   const get=()=>page.evaluate(()=>FIELDNOTES.getEngine().getState());
   const sourceBefore=await page.evaluate(()=>JSON.stringify(CASE_DATA));

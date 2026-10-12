@@ -10,7 +10,7 @@ assert.equal(sandbox.window.FieldnotesTimeline.describe(fixture[5]).precision,'r
  const b=await chromium.launch({headless:true,executablePath:process.env.FIELDNOTES_BROWSER});
  try{
   const p=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
-  await p.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'dist/index.html')).href);
+  await p.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'dist/index.html')).href+'#workbench');
   const before=await p.evaluate(()=>({data:JSON.stringify(CASE_DATA),state:JSON.stringify(FIELDNOTES.getEngine().getState())}));
   await p.locator('.top-actions [data-action="materials"]').click();
   assert.equal(await p.locator('.library-review-badge,.source-review.pending').count(),0);

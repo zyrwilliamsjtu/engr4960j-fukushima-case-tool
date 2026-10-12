@@ -12,7 +12,7 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   const context=await browser.newContext({offline:true,viewport:{width:1440,height:1000}});
   const page=await context.newPage(), errors=[], requests=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());});
-  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'preview.html')).href);
+  await page.goto(pathToFileURL(path.join(root,process.env.FIELDNOTES_HTML||'preview.html')).href+'#workbench');
   const lib=a=>page.locator('[data-lib="'+a+'"]').first();
   const get=()=>page.evaluate(()=>window.FIELDNOTES.getEngine().getState());
   const open=()=>page.locator('.top-actions [data-action="materials"]').click();
