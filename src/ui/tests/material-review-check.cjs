@@ -63,7 +63,7 @@ const {pathToFileURL}=require('node:url');
   await page.evaluate(()=>FIELDNOTES.getEngine().flush());await page.reload();await page.locator('#nav-step-7').click();assert.equal((await get()).items[ids.q].review.status,'revise');assert.equal((await get()).items[ids.m].review.note,after.items[ids.m].review.note);await page.locator('[data-review-action="part"][data-part="C"]').click();
   for(const width of [1440,816,390,320]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Review fits '+width);}
   if(out)await page.locator('.review-progressive').screenshot({path:path.join(out,'review-mobile.png')});
-  const readonlyBefore=JSON.stringify(await get());await page.locator('[data-action="present"]').click();assert.equal(await page.locator('[data-review-action="save"]').count(),0);await page.locator('[data-action="review-step"]').click();assert.equal(JSON.stringify(await get()),readonlyBefore,'Presentation mode cannot save review status.');
+  const readonlyBefore=JSON.stringify(await get());await page.locator('[data-action="present"]').click();assert.equal(await page.locator('[data-review-action="save"]').count(),0);assert.equal(await page.locator('[data-action="review-step"]').count(),0);assert.equal(JSON.stringify(await get()),readonlyBefore,'Presentation mode cannot save review status.');
   assert.deepEqual(errors,[]);
   console.log('PASS: all library records English, bilingual search, original toggle, immutable materials; guided Keep/Revise/Discuss, required reasons, draft preservation, next record, filters, stale marker, reload, snapshots, original text, four widths and read-only presentation.');
  }finally{await browser.close();}

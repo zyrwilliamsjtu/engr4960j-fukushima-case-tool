@@ -81,6 +81,9 @@
     if (nav3) nav3.click();
     await wait(400);
     check("demo-fact-why", countStep3Why() >= 9, "why relations=" + countStep3Why());
+    // In presentation mode, sources are read one record at a time.
+    var memberRecord=Array.from(document.querySelectorAll('[data-step-record]')).find(function(record){return (record.textContent||'').includes(MEMBER_FACT);});
+    if(memberRecord){memberRecord.open=true;await wait(100);}
     check("demo-member-fact", text(document.body).indexOf(MEMBER_FACT) >= 0, "verbatim fact narrative");
     var navSum = document.getElementById("nav-summary");
     if (navSum) navSum.click();

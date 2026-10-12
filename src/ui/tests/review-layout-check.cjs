@@ -7,6 +7,8 @@ const {pathToFileURL}=require('node:url');
  try{
   const page=await browser.newPage({viewport:{width:1440,height:900}});
   await page.goto(pathToFileURL(path.resolve(__dirname,'../../../dist/index.demo.html')).href);
+  await page.addScriptTag({path:path.resolve(__dirname,'../../../tools/e2e/enter-workbench.js')});await page.evaluate(()=>FieldnotesTestEntry.enterWorkbench());
+  if(await page.locator('[data-action="exit-present"]').count())await page.locator('[data-action="exit-present"]').click();
   const out=process.env.FIELDNOTES_QA_DIR&&path.resolve(__dirname,'../../../docs/ai-logs',process.env.FIELDNOTES_QA_DIR);
   if(out)fs.mkdirSync(out,{recursive:true});
   async function layout(stage,width){
