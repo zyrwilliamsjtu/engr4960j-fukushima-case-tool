@@ -39,13 +39,12 @@
 
   function afterImport() {
     showBanner();
-    requestAnimationFrame(function () {
-      var nav = document.getElementById("nav-step-1");
-      if (nav) nav.click();
-    });
+    var lang = document.getElementById("lang-zh");
+    if (lang) lang.click();
   }
 
   function tryLoad(attempts) {
+    window.__FN_DEMO_PACK = true;
     var demo = window.DEMO_USER_STATE;
     if (!demo || demo.demoPackId !== MARKER) return;
     if (!window.FIELDNOTES || !window.FIELDNOTES.importProjectJson) {

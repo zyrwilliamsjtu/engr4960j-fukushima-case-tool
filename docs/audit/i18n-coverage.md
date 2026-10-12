@@ -6,6 +6,7 @@ Auto-generated. Registry: `tools/audit/i18n-views.js`.
 
 | View id | Name | Audit covered | Notes |
 |---|---|---|---|
+| `home` | Landing page | yes |  |
 | `step-1` | Workbook step 1 | yes |  |
 | `step-2` | Workbook step 2 | yes |  |
 | `step-3` | Workbook step 3 | yes |  |
@@ -35,6 +36,7 @@ Auto-generated. Registry: `tools/audit/i18n-views.js`.
 - `src/ui/case-workspaces.js`
 - `src/ui/evidence-library.js`
 - `src/ui/guidance.js`
+- `src/ui/home.js`
 - `src/ui/i18n.js`
 - `src/ui/material-translations.js`
 - `src/ui/preview-runtime.js`

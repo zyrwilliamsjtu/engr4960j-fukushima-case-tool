@@ -1,6 +1,6 @@
 # 产品审查报告
 
-SUMMARY: PASS=90 FAIL=0 SKIP=0
+SUMMARY: PASS=101 FAIL=0 SKIP=0
 
 ALLOWED_SKIPS: (empty)
 
@@ -13,6 +13,12 @@ ALLOWED_SKIPS: (empty)
 ## 检查项
 
 - **PASS** `D3-boot` — engine mounted
+- **PASS** `H-1-home` — home visible
+- **PASS** `H-2-copy` — limits
+- **PASS** `H-3-course` — 课程案例福岛第一核电站事故
+- **PASS** `H-4-type` — title=40 lead=18
+- **PASS** `H-5-inline` — inline svg
+- **PASS** `H-6-enter` — entered step 1
 - **PASS** `D6-1-boot` — workspace after reset
 - **PASS** `D2-step-1` — 从一个问题开始。 | inputs=0 buttons=换个角度,添加问题,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
 - **PASS** `D2-step-2` — 找到讨论的重点。 | inputs=0 buttons=换个角度,上一步,上一步,下一步,存为「初步」（快照）,存为「复核后」（快照）,修订对比,推理总览
@@ -29,7 +35,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D4-1` — found
 - **PASS** `D4-2` — presentation control search
 - **PASS** `D2-variety` — distinct control signatures=10
-- **PASS** `D1-1` — hard=0 soft=8
+- **PASS** `D1-1` — hard=0 soft=11
 - **PASS** `D1-3` — referenceLevel3=null
 - **PASS** `D1-3b` — disabled=true
 - **PASS** `D2-2` — 用问句提出你真正想讨论的问题… | 运营商是否向公众及时说明了风险？
@@ -58,10 +64,15 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D6-console` — no window.error
 - **PASS** `D9-1` — summaryNav=true steps=10
 - **PASS** `D9-2` — goto=true sections=10
-- **PASS** `D9-3` — 已填写 9 项 · 待补充 4 项
+- **PASS** `S-1-replay-closed` — open=false
+- **PASS** `S-2-brief-length` — chars=714
+- **PASS** `D9-3` — 核心问题 1 · 依据事实 1 · 原则取舍 0 · 结论 0 · 待补充 4 · 已填写 9 项 · 待补充 4 项
 - **PASS** `D9-4` — no question text to compare
 - **PASS** `D9-5` — getState unchanged on summary
 - **PASS** `D9-6` — exports tpl=true md=true json=true len=3457
+- **PASS** `H-7-back` — state held
+- **PASS** `H-8-resume` — resumed
+- **PASS** `D8-i18n-home` — ok
 - **PASS** `D8-i18n-step-1` — ok
 - **PASS** `D8-i18n-step-2` — ok
 - **PASS** `D8-i18n-step-3` — ok
@@ -82,7 +93,7 @@ ALLOWED_SKIPS: (empty)
 - **PASS** `D8-i18n-revision-compare` — ok
 - **PASS** `D8-i18n-import-fail-toast` — ok
 - **PASS** `D8-i18n-chrome` — ok
-- **PASS** `D8-i18n` — I18N_COVERAGE covered=20 uncovered=1
+- **PASS** `D8-i18n` — I18N_COVERAGE covered=21 uncovered=1
 - **PASS** `D7-1@1410` — scrollWidth=1395 inner=1410
 - **PASS** `D7-2-hero@1410` — hero=35.955
 - **PASS** `D7-2-field@1410` — field=14
@@ -155,6 +166,7 @@ ALLOWED_SKIPS: (empty)
 - 步骤 5: type-others
 - 步骤 5: type-mine
 - 步骤 0: language-en
+- 步骤 0: i18n-view-home
 - 步骤 0: i18n-view-step-1
 - 步骤 0: i18n-view-step-2
 - 步骤 0: i18n-view-step-3
@@ -183,12 +195,15 @@ ALLOWED_SKIPS: (empty)
 
 - yellow P1 填写示例默认收起 — step-hint-panel hidden on steps 1,2,3,4,5,6,7,8,9,10
 - yellow P2 下一步在首屏之下 — next.top > innerHeight 805
-- blue P3 结论类词语出现在用户槽位标签和形式提醒里 — soft hits=8; hard hits=0
+- blue P3 结论类词语出现在用户槽位标签和形式提醒里 — soft hits=11; hard hits=0
 - blue P1 首屏主行动是添加问题，但品牌名 fieldnotes 先于课程任务 — hero=从一个问题开始。
 
 ## 关键词命中（软命中需人工判语境）
 
 - [soft] i18n.overviewConclusion: 结论
+- [soft] i18n.homeCant1: 不生成结论
+- [soft] i18n.summaryCounts: 结论 {r}
+- [soft] i18n.summaryYourConclusion: 你的结论
 - [soft] i18n.suggestion: 建议
 - [soft] i18n.resolution: 结论
 - [soft] i18n.restoreConfirm: 恢复会替换当前工作记录，建议先导出备份。继续吗？

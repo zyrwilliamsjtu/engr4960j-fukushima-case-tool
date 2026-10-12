@@ -328,6 +328,8 @@ def main() -> int:
             sys.executable,
             str(BUILD),
             "--extra-js",
+            "tools/e2e/enter-workbench.js",
+            "--extra-js",
             "tools/audit/i18n-views.js",
             "--extra-js",
             "tools/audit/audit.js",

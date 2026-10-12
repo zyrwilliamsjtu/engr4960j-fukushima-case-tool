@@ -171,6 +171,100 @@
     });
     if (!itemsOf(state, "AV").length) needGap(10, t("summaryNeedPrevention"));
 
+    var questions = itemsOf(state, "Q").filter(function (q) {
+      return q.isCore;
+    });
+    if (!questions.length) questions = itemsOf(state, "Q");
+    var resolutions = itemsOf(state, "R");
+    var assumptions = itemsOf(state, "A");
+    var principles = itemsOf(state, "PA");
+    var factRels = (state.relations || []).filter(function (r) {
+      return r.kind === "fact-supports-question";
+    });
+    var cards = questions
+      .map(function (q) {
+        var facts = factRels.filter(function (r) {
+          return r.to === q.id;
+        });
+        var shown = facts.slice(0, 2);
+        var rest = facts.slice(2);
+        function factLine(rel) {
+          var fact = (data.facts || []).find(function (f) {
+            return f.id === rel.from;
+          });
+          var wording = fact ? (ctx.factText ? ctx.factText(fact) : fact.text) : rel.from;
+          var src = fact && ctx.sourceName ? ctx.sourceName(fact.sourceId) : "";
+          return (
+            "<li><p>" +
+            esc(wording) +
+            "</p><p>" +
+            esc(t("overviewWhy")) +
+            esc(rel.why || "") +
+            (src ? " · " + esc(src) : "") +
+            "</p></li>"
+          );
+        }
+        var factHtml = shown.map(factLine).join("");
+        if (!facts.length) factHtml = "<li>" + esc(t("summaryNoFact")) + "</li>";
+        var more = rest.length
+          ? "<details><summary>" +
+            esc(t("summaryMoreFacts")) +
+            "</summary><ul>" +
+            rest.map(factLine).join("") +
+            "</ul></details>"
+          : "";
+        var assumptionHtml = assumptions.length
+          ? assumptions
+              .slice(0, 2)
+              .map(function (a) {
+                return "<li>" + esc(a.text || "") + (a.basisRefs && a.basisRefs.length ? " · " + esc(a.basisRefs.join(", ")) : "") + "</li>";
+              })
+              .join("")
+          : "<li>" + esc(gapLine(4, title(4), t("summaryNeedAssumptions"))) + "</li>";
+        var principleHtml = principles.length
+          ? principles
+              .slice(0, 2)
+              .map(function (p) {
+                var found = (data.principles || []).find(function (row) {
+                  return row.id === p.principleId;
+                });
+                return "<li>" + esc((found && (ctx.principleName ? ctx.principleName(found) : found.name)) || p.text || p.id) + "</li>";
+              })
+              .join("")
+          : "<li>" + esc(gapLine(6, title(6), t("summaryNeedPrinciples"))) + "</li>";
+        var conclusion = resolutions.length
+          ? "<p>" + esc(resolutions[0].text || "") + (resolutions[0].reason ? " · " + esc(resolutions[0].reason) : "") + "</p>"
+          : "<p>" + esc(gapLine(8, title(8), t("summaryNeedResolution"))) + "</p>";
+        return (
+          '<article class="summary-arg" data-testid="summary-argument">' +
+          "<h3>" +
+          esc(q.text || "") +
+          "</h3><h4>" +
+          esc(t("summaryFacts")) +
+          "</h4><ul>" +
+          factHtml +
+          "</ul>" +
+          more +
+          "<h4>" +
+          esc(t("summaryAssumptions")) +
+          "</h4><ul>" +
+          assumptionHtml +
+          "</ul><h4>" +
+          esc(t("summaryPrinciples")) +
+          "</h4><ul>" +
+          principleHtml +
+          "</ul><h4>" +
+          esc(t("summaryYourConclusion")) +
+          "</h4>" +
+          conclusion +
+          "</article>"
+        );
+      })
+      .join("");
+    if (!questions.length) {
+      cards = '<article class="summary-arg" data-testid="summary-argument"><p>' + esc(gapLine(1, title(1), t("summaryNeedQuestions"))) + "</p></article>";
+    }
+
     var htmlSections = "";
     for (var step = 1; step <= 10; step++) {
       var body = byStep[step].join("");
@@ -203,30 +297,42 @@
       })
       .join("");
 
+    var counts = t("summaryCounts")
+      .replace("{q}", String(questions.length))
+      .replace("{f}", String(factRels.length))
+      .replace("{p}", String(principles.length))
+      .replace("{r}", String(resolutions.length))
+      .replace("{g}", String(gaps.length));
+
     return (
-      '<div class="summary-report" data-readonly="true">' +
+      '<div class="summary-report summary-brief" data-readonly="true">' +
+      '<blockquote class="summary-redline">' +
+      esc(t("summaryRedline")) +
+      "</blockquote>" +
       '<header class="summary-header"><h1>' +
       esc(t("summaryReport")) +
       '</h1><p class="hint">' +
       esc(t("summaryIntro")) +
-      "</p></header>" +
-      htmlSections +
-      '<p class="summary-completeness" data-testid="summary-completeness">' +
+      "</p><p class=\"summary-completeness\" data-testid=\"summary-completeness\">" +
+      esc(counts) +
+      " · " +
       esc(t("summaryFilled").replace("{n}", String(filled)).replace("{m}", String(gaps.length))) +
-      "</p>" +
+      "</p></header>" +
+      cards +
       (gaps.length ? '<ul class="summary-gap-list">' + gapList + "</ul>" : "") +
-      '<div class="summary-overview">' +
-      overviewHtml +
-      "</div>" +
-      '<p class="summary-export-hint hint">' +
-      esc(t("summaryExportHint")) +
+      '<p class="hint">' +
+      esc(t("summaryReplayNote")) +
       "</p>" +
       '<div class="summary-export-row">' +
       ctx.exportButtons +
       "</div>" +
-      '<blockquote class="summary-redline">' +
-      esc(t("summaryRedline")) +
-      "</blockquote></div>"
+      '<details class="summary-full-replay"><summary>' +
+      esc(t("summaryReplay")) +
+      "</summary>" +
+      htmlSections +
+      '<div class="summary-overview">' +
+      overviewHtml +
+      "</div></details></div>"
     );
   }
 

@@ -2554,3 +2554,33 @@ body {
 .summary-redline {margin-top:20px;color:#444;border-left:3px solid #c9a227;padding-left:12px;}
 .summary-overview {margin:24px 0;}
 .demo-banner {position:sticky;top:0;z-index:9999;padding:10px 16px;background:#fff3cd;color:#664d03;border-bottom:2px solid #ffc107;font-weight:600;text-align:center;}
+.home-shell {min-height:100vh;background:var(--paper);}
+.home-main {max-width:920px;margin:0 auto;padding:48px 28px 64px;}
+.home-hero h1 {font-size:40px;line-height:1.15;margin:8px 0 12px;color:var(--ink);}
+.home-tagline,.home-lead,.home-card,.home-enter,.home-cases,.home-foot {font-size:18px;line-height:1.5;}
+.home-lead {max-width:40em;}
+.home-mark-wrap {color:#355cf4;margin-bottom:8px;}
+.home-kicker {letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:14px;margin:0;}
+.home-grid {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+.home-card {background:#fff;border-radius:16px;padding:18px 20px;border:1px solid #d5deee;}
+.home-card h2 {font-size:20px;margin:0 0 8px;}
+.home-card-limit {border-color:#e7d7a8;}
+.home-enter,.home-cases {margin:20px 0;}
+.home-primary {min-height:48px;font-size:18px;}
+.home-case-list {display:flex;flex-direction:column;gap:10px;}
+.home-case {text-align:left;border:1px solid #d5deee;background:#fff;border-radius:14px;padding:14px 16px;cursor:pointer;}
+.home-case.is-course.is-selected {border:2px solid #355cf4;box-shadow:0 0 0 3px rgba(53,92,244,.15);}
+.home-case.is-custom {opacity:.85;}
+.home-case-badge {display:block;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#355cf4;margin-bottom:4px;}
+.home-foot {color:var(--muted);font-size:16px;}
+.home-demo-note {background:#fff3cd;padding:8px 12px;border-radius:8px;}
+.home-case:focus-visible,.home-primary:focus-visible,.button:focus-visible {outline:3px solid #355cf4;outline-offset:2px;}
+@media(max-width:800px){.home-grid{grid-template-columns:1fr;}.home-hero h1{font-size:32px;}}
+@media print {
+  .sidebar,.topbar,.workbench-toolbar,.home-foot .language-switch {display:none !important;}
+  .summary-report,.summary-arg {display:block !important;}
+  .summary-full-replay > :not(summary) {display:none;}
+}
+.summary-arg {border:1px solid #cfddd8;border-radius:14px;padding:16px;margin:12px 0;background:#fff;}
+.summary-arg h3 {font-size:20px;margin:0 0 8px;}
+.summary-brief {font-size:18px;}

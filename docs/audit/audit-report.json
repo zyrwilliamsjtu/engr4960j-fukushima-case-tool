@@ -1,7 +1,7 @@
 {
   "allowedSkips": [],
   "summary": {
-    "pass": 90,
+    "pass": 101,
     "fail": 0,
     "skip": 0
   },
@@ -10,6 +10,36 @@
       "id": "D3-boot",
       "status": "pass",
       "detail": "engine mounted"
+    },
+    {
+      "id": "H-1-home",
+      "status": "pass",
+      "detail": "home visible"
+    },
+    {
+      "id": "H-2-copy",
+      "status": "pass",
+      "detail": "limits"
+    },
+    {
+      "id": "H-3-course",
+      "status": "pass",
+      "detail": "课程案例福岛第一核电站事故"
+    },
+    {
+      "id": "H-4-type",
+      "status": "pass",
+      "detail": "title=40 lead=18"
+    },
+    {
+      "id": "H-5-inline",
+      "status": "pass",
+      "detail": "inline svg"
+    },
+    {
+      "id": "H-6-enter",
+      "status": "pass",
+      "detail": "entered step 1"
     },
     {
       "id": "D6-1-boot",
@@ -94,7 +124,7 @@
     {
       "id": "D1-1",
       "status": "pass",
-      "detail": "hard=0 soft=8"
+      "detail": "hard=0 soft=11"
     },
     {
       "id": "D1-3",
@@ -237,9 +267,19 @@
       "detail": "goto=true sections=10"
     },
     {
+      "id": "S-1-replay-closed",
+      "status": "pass",
+      "detail": "open=false"
+    },
+    {
+      "id": "S-2-brief-length",
+      "status": "pass",
+      "detail": "chars=714"
+    },
+    {
       "id": "D9-3",
       "status": "pass",
-      "detail": "已填写 9 项 · 待补充 4 项"
+      "detail": "核心问题 1 · 依据事实 1 · 原则取舍 0 · 结论 0 · 待补充 4 · 已填写 9 项 · 待补充 4 项"
     },
     {
       "id": "D9-4",
@@ -255,6 +295,21 @@
       "id": "D9-6",
       "status": "pass",
       "detail": "exports tpl=true md=true json=true len=3457"
+    },
+    {
+      "id": "H-7-back",
+      "status": "pass",
+      "detail": "state held"
+    },
+    {
+      "id": "H-8-resume",
+      "status": "pass",
+      "detail": "resumed"
+    },
+    {
+      "id": "D8-i18n-home",
+      "status": "pass",
+      "detail": "ok"
     },
     {
       "id": "D8-i18n-step-1",
@@ -359,7 +414,7 @@
     {
       "id": "D8-i18n",
       "status": "pass",
-      "detail": "I18N_COVERAGE covered=20 uncovered=1"
+      "detail": "I18N_COVERAGE covered=21 uncovered=1"
     },
     {
       "id": "D7-1@1410",
@@ -474,7 +529,7 @@
       "persona": "P3",
       "severity": "blue",
       "title": "结论类词语出现在用户槽位标签和形式提醒里",
-      "evidence": "soft hits=8; hard hits=0"
+      "evidence": "soft hits=11; hard hits=0"
     },
     {
       "persona": "P1",
@@ -816,6 +871,10 @@
     },
     {
       "step": 0,
+      "action": "i18n-view-home"
+    },
+    {
+      "step": 0,
       "action": "i18n-view-step-1"
     },
     {
@@ -904,6 +963,21 @@
       "where": "i18n.overviewConclusion",
       "hard": false,
       "text": "结论"
+    },
+    {
+      "where": "i18n.homeCant1",
+      "hard": false,
+      "text": "不生成结论"
+    },
+    {
+      "where": "i18n.summaryCounts",
+      "hard": false,
+      "text": "结论 {r}"
+    },
+    {
+      "where": "i18n.summaryYourConclusion",
+      "hard": false,
+      "text": "你的结论"
     },
     {
       "where": "i18n.suggestion",
