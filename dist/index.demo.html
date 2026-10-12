@@ -2400,6 +2400,8 @@ body {
   margin-bottom:20px;
 }
 .workbench-toolbar .button {font-size:12px;min-height:34px;background:rgba(255,255,255,.65)}
+.workbench-toolbar .button.primary {background:var(--stage);border-color:var(--stage);color:#fff;box-shadow:0 3px 8px #25345318;}
+.workbench-toolbar .button.primary:hover:not(:disabled) {background:var(--stage);color:#fff;filter:brightness(1.08);}
 .material-language-tools {display:flex;justify-content:flex-end;margin-bottom:10px;}
 .material-language-tools .button {font-size:12px;border:1px solid #cad6c8;background:#edf2e7;}
 .guided-review-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;border:1px solid #c9c5e1;border-radius:16px;background:linear-gradient(110deg,#e7e3f5,#eef0f8);}
@@ -2452,10 +2454,10 @@ body {
 .review-parts>button:disabled {opacity:.45;}
 .review-parts strong {font-size:16px;}
 .review-parts span {font-size:12px;}
-.review-part-header {display:flex;align-items:center;gap:14px;margin-bottom:15px;flex-wrap:wrap;}
+.review-part-header {display:flex;align-items:center;gap:14px;margin-bottom:0;flex-wrap:wrap;}
 .review-part-header strong {font-size:18px;color:#63507e;}
 .review-part-header>span {margin-left:auto;font-size:12px;color:#8b809b;}
-.review-progressive {max-width:860px;margin:0 auto;}
+.review-progressive {width:100%;min-width:0;margin:0;}
 .review-stage-track {display:flex;gap:10px;margin:5px 0 20px;flex-wrap:wrap;}
 .review-stage-track span {font-size:11px;color:#9a91a6;padding:5px 10px;border-radius:7px;background:#e7e5ec;}
 .review-stage-track span.active {background:#d9cfe8;color:#654b83;font-weight:600;}
@@ -2464,11 +2466,35 @@ body {
 .review-record-picker {margin-top:15px;}
 .review-record-picker .guided-review-queue {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));max-height:280px;}
 .review-chosen {display:flex;align-items:center;gap:15px;margin-bottom:17px;color:#655078;font-weight:600;}
+:root[data-step="7"] .step-hero {min-height:142px;padding:20px 26px 26px;}
+:root[data-step="7"] .step-hero h1 {font-size:30px;margin:10px 0 5px;}
+:root[data-step="7"] .hero-object {width:165px;height:100px;transform:scale(.65);transform-origin:right center;}
+:root[data-step="7"] .workspace-heading {margin:19px 0 12px;}
+:root[data-step="7"] .reminders {margin-top:0;}
+:root[data-step="7"] .entries {gap:12px;}
+.guided-review-card {padding:20px 24px;box-shadow:0 5px 18px #32234308;}
+.guided-review-card>h3 {font-size:18px;line-height:1.6;margin-bottom:12px;}
+.guided-review-card-head {margin-bottom:9px;flex-wrap:wrap;}
+.review-stage-track {margin-bottom:14px;}
+.guided-review-decisions {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-width:0;width:100%;margin:14px 0;}
+.guided-review-decisions .review-choice {min-width:0;width:100%;white-space:normal;overflow-wrap:anywhere;}
+.review-chosen {gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.guided-review-card .field {margin:12px 0;}
+.guided-review-card textarea {box-sizing:border-box;max-width:100%;min-height:102px;line-height:1.7;}
+.guided-review-save {display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;}
+.guided-review-save small {line-height:1.6;}
+.guided-review-checklist {margin-top:0;}
+.review-record-picker {margin-top:0;}
 @media(max-width:600px) {
   .review-parts {grid-template-columns:minmax(0,1fr);}
   .review-parts>button {padding:16px;}
   .review-record-picker .guided-review-queue {grid-template-columns:minmax(0,1fr);}
   .review-part-header>span {display:none;}
+  :root[data-step="7"] .step-hero {min-height:136px;padding:18px 20px 24px;}
+  :root[data-step="7"] .step-hero h1 {font-size:26px;}
+  .guided-review-decisions {grid-template-columns:minmax(0,1fr);}
+  .guided-review-save {grid-template-columns:minmax(0,1fr);gap:8px;}
+  .guided-review-save .button {justify-self:start;}
 }
 @media(max-width:780px) {
   .guided-review-layout {grid-template-columns:minmax(0,1fr);}
@@ -8417,18 +8443,28 @@ body {
       return partHeader+'<div class="review-progressive">'+card+'</div><details id="review-record-picker" class="review-record-picker"><summary>'+e(bi('切换记录或查看已处理记录','Switch record or view processed records'))+'</summary>'+filters+side+'</details>'+checklist;
     }
     function input(event){if(event.target.dataset.reviewNote){var it=ctx.state().items[event.target.dataset.reviewNote];if(it&&!ctx.readonly())draft(it).note=event.target.value;}}
+    function focusCurrent(){
+      requestAnimationFrame(function(){
+        var card=document.querySelector('.guided-review-card,.guided-review-clear,.guided-review-intro');
+        if(!card)return;
+        var banner=document.querySelector('[data-demo-banner]'),offset=banner?banner.getBoundingClientRect().height:0;
+        card.tabIndex=-1;card.focus({preventScroll:true});
+        window.scrollTo({top:Math.max(0,window.scrollY+card.getBoundingClientRect().top-offset-16),behavior:'auto'});
+      });
+    }
+    function redraw(){ctx.render();focusCurrent();}
     function click(event){var el=event.target.closest('[data-review-action]');if(!el)return false;event.preventDefault();var action=el.dataset.reviewAction;
-      if(action==='parts'){part=null;selected=null;phase='read';ctx.render();return true;}
-      if(action==='part'){part=el.dataset.part;filter='pending';selected=null;phase='read';ctx.render();return true;}
-      if(action==='next'){phase='decide';ctx.render();return true;}
-      if(action==='back-read'){phase='read';ctx.render();return true;}
-      if(action==='back-decide'){phase='decide';ctx.render();return true;}
-      if(action==='filter'){filter=el.dataset.filter;selected=null;phase='read';ctx.render();}
-      if(action==='select'){selected=el.dataset.id;angle=0;phase='read';ctx.render();}
-      if(action==='angle'){angle++;ctx.render();}
+      if(action==='parts'){part=null;selected=null;phase='read';redraw();return true;}
+      if(action==='part'){part=el.dataset.part;filter='pending';selected=null;phase='read';redraw();return true;}
+      if(action==='next'){phase='decide';redraw();return true;}
+      if(action==='back-read'){phase='read';redraw();return true;}
+      if(action==='back-decide'){phase='decide';redraw();return true;}
+      if(action==='filter'){filter=el.dataset.filter;selected=null;phase='read';redraw();}
+      if(action==='select'){selected=el.dataset.id;angle=0;phase='read';redraw();}
+      if(action==='angle'){angle++;redraw();}
       if(ctx.readonly())return true;
       var it=ctx.state().items[selected];if(!it)return true;var d=draft(it);
-      if(action==='choice'){d.choice=el.dataset.choice;phase='reason';ctx.render();}
+      if(action==='choice'){d.choice=el.dataset.choice;phase='reason';redraw();}
       if(action==='save'){
         var error=!d.choice?bi('先选择一种处理方式。','Choose a review decision first.'):d.choice!=='checked'&&!d.note.trim()?bi('请记录需要修改或讨论的具体原因。','Explain what needs revision or discussion.'):'';
         if(error){document.getElementById('review-feedback').textContent=error;if(d.choice)document.getElementById('review-reason').focus();return true;}
@@ -8437,7 +8473,7 @@ body {
         if(d.choice==='checked'){fields.needsReview=false;fields.staleReason='';}
         delete drafts[it.id];phase='read';ctx.dispatch('UPDATE_ITEM',{id:it.id,fields:fields});ctx.dispatch('SET_STATUS',{step:7,status:'draft'});
         if(d.choice==='revise')ctx.dispatch('SET_STATUS',{step:it.step,status:'stale'});
-        ctx.toast(bi('已保存复核决定','Review decision saved'));
+        ctx.toast(bi('已保存复核决定','Review decision saved'));focusCurrent();
       }
       return true;
     }

@@ -51,18 +51,28 @@
       return partHeader+'<div class="review-progressive">'+card+'</div><details id="review-record-picker" class="review-record-picker"><summary>'+e(bi('切换记录或查看已处理记录','Switch record or view processed records'))+'</summary>'+filters+side+'</details>'+checklist;
     }
     function input(event){if(event.target.dataset.reviewNote){var it=ctx.state().items[event.target.dataset.reviewNote];if(it&&!ctx.readonly())draft(it).note=event.target.value;}}
+    function focusCurrent(){
+      requestAnimationFrame(function(){
+        var card=document.querySelector('.guided-review-card,.guided-review-clear,.guided-review-intro');
+        if(!card)return;
+        var banner=document.querySelector('[data-demo-banner]'),offset=banner?banner.getBoundingClientRect().height:0;
+        card.tabIndex=-1;card.focus({preventScroll:true});
+        window.scrollTo({top:Math.max(0,window.scrollY+card.getBoundingClientRect().top-offset-16),behavior:'auto'});
+      });
+    }
+    function redraw(){ctx.render();focusCurrent();}
     function click(event){var el=event.target.closest('[data-review-action]');if(!el)return false;event.preventDefault();var action=el.dataset.reviewAction;
-      if(action==='parts'){part=null;selected=null;phase='read';ctx.render();return true;}
-      if(action==='part'){part=el.dataset.part;filter='pending';selected=null;phase='read';ctx.render();return true;}
-      if(action==='next'){phase='decide';ctx.render();return true;}
-      if(action==='back-read'){phase='read';ctx.render();return true;}
-      if(action==='back-decide'){phase='decide';ctx.render();return true;}
-      if(action==='filter'){filter=el.dataset.filter;selected=null;phase='read';ctx.render();}
-      if(action==='select'){selected=el.dataset.id;angle=0;phase='read';ctx.render();}
-      if(action==='angle'){angle++;ctx.render();}
+      if(action==='parts'){part=null;selected=null;phase='read';redraw();return true;}
+      if(action==='part'){part=el.dataset.part;filter='pending';selected=null;phase='read';redraw();return true;}
+      if(action==='next'){phase='decide';redraw();return true;}
+      if(action==='back-read'){phase='read';redraw();return true;}
+      if(action==='back-decide'){phase='decide';redraw();return true;}
+      if(action==='filter'){filter=el.dataset.filter;selected=null;phase='read';redraw();}
+      if(action==='select'){selected=el.dataset.id;angle=0;phase='read';redraw();}
+      if(action==='angle'){angle++;redraw();}
       if(ctx.readonly())return true;
       var it=ctx.state().items[selected];if(!it)return true;var d=draft(it);
-      if(action==='choice'){d.choice=el.dataset.choice;phase='reason';ctx.render();}
+      if(action==='choice'){d.choice=el.dataset.choice;phase='reason';redraw();}
       if(action==='save'){
         var error=!d.choice?bi('先选择一种处理方式。','Choose a review decision first.'):d.choice!=='checked'&&!d.note.trim()?bi('请记录需要修改或讨论的具体原因。','Explain what needs revision or discussion.'):'';
         if(error){document.getElementById('review-feedback').textContent=error;if(d.choice)document.getElementById('review-reason').focus();return true;}
@@ -71,7 +81,7 @@
         if(d.choice==='checked'){fields.needsReview=false;fields.staleReason='';}
         delete drafts[it.id];phase='read';ctx.dispatch('UPDATE_ITEM',{id:it.id,fields:fields});ctx.dispatch('SET_STATUS',{step:7,status:'draft'});
         if(d.choice==='revise')ctx.dispatch('SET_STATUS',{step:it.step,status:'stale'});
-        ctx.toast(bi('已保存复核决定','Review decision saved'));
+        ctx.toast(bi('已保存复核决定','Review decision saved'));focusCurrent();
       }
       return true;
     }
