@@ -81,6 +81,8 @@ def main() -> int:
             "--extra-js",
             "tools/demo-boot.js",
             "--extra-js",
+            "tools/e2e/enter-workbench.js",
+            "--extra-js",
             "tools/audit/demo-verify.js",
             "--out",
             "dist/_demo-check.html",

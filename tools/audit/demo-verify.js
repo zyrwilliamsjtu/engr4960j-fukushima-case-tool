@@ -34,7 +34,22 @@
   }
   async function run() {
     for (var i = 0; i < 120; i++) {
-      if (window.FIELDNOTES && countStep1Questions() >= 5) break;
+      if (document.querySelector('[data-testid="home-demo-hint"]') && document.querySelector('[data-testid="home-continue"]')) break;
+      await wait(100);
+    }
+    check("demo-home", !!document.querySelector('[data-testid="home-screen"]'), "home");
+    check(
+      "demo-home-hint",
+      !!document.querySelector('[data-testid="home-demo-hint"]'),
+      "hint"
+    );
+    var cont = document.querySelector('[data-testid="home-continue"]');
+    if (cont) cont.click();
+    else if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
+    var nav1 = document.getElementById("nav-step-1");
+    if (nav1) nav1.click();
+    for (var j = 0; j < 40; j++) {
+      if (countStep1Questions() >= 5) break;
       await wait(100);
     }
     check("demo-q-count", countStep1Questions() >= 5, "step1 cards=" + countStep1Questions());
@@ -51,6 +66,9 @@
     var n = m ? parseInt(m[1], 10) : 0;
     if (!n && /filled|已填写|items/i.test(compText)) n = 1;
     check("demo-summary-n", n > 0, "completeness=" + compText.slice(0, 80));
+    var replay = document.querySelector(".summary-full-replay");
+    var briefLen = (document.querySelector(".summary-report") || document.body).innerText.length;
+    check("demo-summary-brief", !!(replay && !replay.open) && briefLen < 8000, "chars=" + briefLen + " replayOpen=" + (replay && replay.open));
     var nav8 = document.getElementById("nav-step-8");
     if (nav8) nav8.click();
     await wait(300);

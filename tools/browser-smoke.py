@@ -150,7 +150,7 @@ def main() -> int:
 
     print(f"Browser: {browser}")
 
-    build_cmd = [sys.executable, str(BUILD), "--extra-js", "tools/e2e/selftest.js", "--out", "dist/_selftest.html"]
+    build_cmd = [sys.executable, str(BUILD), "--extra-js", "tools/e2e/enter-workbench.js", "--extra-js", "tools/e2e/selftest.js", "--out", "dist/_selftest.html"]
     print("Build:", " ".join(build_cmd))
     proc = subprocess.run(
         build_cmd, cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace"

@@ -106,6 +106,7 @@
 
   later(function run() {
     try {
+      if (window.FieldnotesTestEntry) window.FieldnotesTestEntry.enterWorkbench();
       assertUniqueTestIds();
 
       if (document.querySelector('[data-testid="revision-compare-open"]')) pass("revision-entry-visible");
