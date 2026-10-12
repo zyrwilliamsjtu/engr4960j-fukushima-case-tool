@@ -30,6 +30,13 @@
 
 单文件预览：双击 `preview.html`；更新：`python src/ui/build-preview.py`。正式构建：`python tools/build.py` → `dist/index.html`；检查：`python tools/check-dist.py`。正式交付页的内置案例通过 AppLogic 适配器运行；逻辑层暂时只接受内置案例 ID，自建案例继续使用可保存、可导出导入的兼容运行时，避免串入预置案例。
 
+### 交付物 vs 演示版
+
+| 文件 | 用途 |
+|------|------|
+| `dist/index.html` | **正式交付物**：空白开始，不含任何示例输入或演示提示。 |
+| `dist/index.demo.html` | **课堂演示版**：预填 `src/data/demo-state.js` 中的本组示例分析（非标准答案）；构建命令：`python tools/build.py --extra-js src/data/demo-state.js --extra-js tools/demo-boot.js --out dist/index.demo.html`。 |
+
 十步标题旁的「填写提示」首次点击展开，再次点击轮换，也可使用「换个角度」。共 31 条中英文思考提示与表达示例，由小组编写，标明非教材原句；不会替用户填入分析。资料列表每页 12 条，搜索覆盖全部记录；桌面加宽列表，手机使用列表与详情两个独立视图。
 
 运行时接口、验证方式与交付边界见 [前端交接说明](docs/FRONTEND.md)。

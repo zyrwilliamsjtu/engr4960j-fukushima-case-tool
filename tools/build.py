@@ -94,7 +94,7 @@ def inline_style_tag(content: str) -> str:
     return f"<style>\n{content}\n</style>"
 
 
-def build(out_path: Path, extra_js: Path | None) -> int:
+def build(out_path: Path, extra_js_list: list[Path]) -> int:
     warnings: list[str] = []
     inlined: list[tuple[str, int]] = []
 
@@ -142,12 +142,13 @@ def build(out_path: Path, extra_js: Path | None) -> int:
             logic_blocks.append(inline_script_tag(adapter_content))
         html = html.replace(RUNTIME_COMMENT, "\n".join(logic_blocks))
 
-    if extra_js is not None:
+    for extra_js in extra_js_list:
         extra_path = extra_js.resolve()
         if not extra_path.is_file():
             raise FileNotFoundError(extra_js)
         extra_content = read_text(extra_path)
-        inlined.append((str(extra_js).replace("\\", "/"), len(extra_content.encode("utf-8"))))
+        rel = str(extra_js).replace("\\", "/")
+        inlined.append((rel, len(extra_content.encode("utf-8"))))
         inject = inline_script_tag(extra_content)
         if "</body>" in html:
             html = html.replace("</body>", inject + "\n</body>", 1)
@@ -191,8 +192,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--extra-js",
         dest="extra_js",
+        action="append",
         default=None,
-        help="Extra script inlined immediately before </body>",
+        help="Extra script inlined immediately before </body> (repeatable)",
     )
     return parser.parse_args()
 
@@ -200,5 +202,7 @@ def parse_args() -> argparse.Namespace:
 if __name__ == "__main__":
     args = parse_args()
     out = (ROOT / args.out).resolve()
-    extra = (ROOT / args.extra_js).resolve() if args.extra_js else None
-    raise SystemExit(build(out, extra))
+    extra_list: list[Path] = []
+    if args.extra_js:
+        extra_list = [(ROOT / rel).resolve() for rel in args.extra_js]
+    raise SystemExit(build(out, extra_list))
