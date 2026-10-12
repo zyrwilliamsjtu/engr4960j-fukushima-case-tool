@@ -15,7 +15,7 @@
   function t(key){return I.pairs[key]?I.pairs[key][locale==='zh'?0:1]:key;}
   function bi(zh,en){return locale==='zh'?zh:en;}
   function CT(){return window.FieldnotesCaseText;}
-  function caseName(meta){return CT()?CT().metaTitle(meta,locale):(meta&&meta.title)||'';}
+  function caseName(meta){var full=meta&&meta.id===window.CASE_DATA.meta.id&&meta.title===window.CASE_DATA.meta.title?Object.assign({},window.CASE_DATA.meta,meta):meta;return CT()?CT().metaTitle(full,locale):(full&&full.title)||'';}
   function packFactText(f){return CT()?CT().fact(f,locale):f.text;}
   function title(step){return I.titles[step-1][locale==='zh'?0:1];}
   function state(){return presentation||engine.getState();}

@@ -8405,9 +8405,10 @@ body {
       var it=list.find(function(row){return row.id===selected;});
       if(!it)return partHeader+'<div class="guided-review-clear"><h3>'+e(bi('这一组已经看完','Nothing left in this group'))+'</h3><p>'+e(bi('可以查看其他记录，或回到需要修改的步骤。处理完成不代表判断已被验证。','Open another group or revisit a step that needs revision. Reviewing does not validate a judgment.'))+'</p>'+btn(bi('返回部分选择','Back to sections'),'parts','','primary')+btn(bi('查看本部分全部记录','View this section'),'filter','data-filter="all"')+'</div>';
       var d=draft(it),choices=[['checked',bi('保留','Keep')],['revise',bi('需要修改','Revise')],['discussion',bi('待讨论','Discuss')]];
+      var contextHtml=context(it);
       var card='<article class="guided-review-card" id="entry-'+e(it.id)+'"><div class="guided-review-card-head"><span>'+e(type(it))+' · '+e(it.id)+'</span><button class="button quiet small" data-action="navigate" data-step="'+it.step+'" data-id="'+e(it.id)+'">'+e(bi('回到原步骤修改','Edit in original step'))+'</button></div><h3>'+e(text(it))+'</h3>';
       card+='<div class="review-stage-track">'+['read','decide','reason'].map(function(stage,i){return '<span class="'+(phase===stage?'active':'')+'">'+(i+1)+' · '+e([bi('回看记录','Read'),bi('选择处理','Decide'),bi('记录原因','Explain')][i])+'</span>';}).join('')+'</div>';
-      if(phase==='read')card+='<details class="review-context-details"><summary>'+e(bi('展开上下文与依据','Show context & evidence'))+'</summary>'+context(it)+'</details><div class="guided-review-lens"><p>'+e(prompt(it))+'</p>'+btn(bi('换个检查角度','Another review angle'),'angle')+'</div>'+(!ctx.readonly()?btn(bi('下一步：选择处理方式','Next: decide'),'next','','primary'):'');
+      if(phase==='read')card+=(contextHtml?'<details class="review-context-details"><summary>'+e(bi('展开上下文与依据','Show context & evidence'))+'</summary>'+contextHtml+'</details>':'')+'<div class="guided-review-lens"><p>'+e(prompt(it))+'</p>'+btn(bi('换个检查角度','Another review angle'),'angle')+'</div>'+(!ctx.readonly()?btn(bi('下一步：选择处理方式','Next: decide'),'next','','primary'):'');
       if(ctx.readonly())card+='<div class="guided-review-readonly"><strong>'+e(label(kind(it)))+'</strong><p>'+e(it.review&&it.review.note||bi('还没有复核原因','No review reason recorded.'))+'</p></div>';
       else if(phase==='decide')card+='<fieldset class="guided-review-decisions"><legend>'+e(bi('你打算如何处理？','How will you handle this?'))+'</legend>'+choices.map(function(choice){return btn(choice[1],'choice','data-choice="'+choice[0]+'" aria-pressed="'+(d.choice===choice[0])+'"','review-choice '+(d.choice===choice[0]?'selected':'')+' choice-'+choice[0]);}).join('')+'</fieldset>'+btn(bi('返回查看记录','Back to record'),'back-read');
       else if(phase==='reason')card+='<div class="review-chosen">'+e(label(d.choice==='checked'?'kept':d.choice==='discussion'?'discussion':'revise'))+' '+btn(bi('更换决定','Change decision'),'back-decide')+'</div><label class="field" for="review-reason"><span>'+e(bi('为什么？准备修改或讨论什么？','Why? What should change or be discussed?'))+'</span><textarea id="review-reason" data-review-note="'+e(it.id)+'" rows="2" placeholder="'+e(bi('保留可不填；修改或待讨论时，请留下具体原因。','Optional for Keep; explain what needs revision or discussion.'))+'">'+e(d.note)+'</textarea></label><p id="review-feedback" role="status"></p><div class="guided-review-save">'+btn(bi('保存并看下一条','Save & review next'),'save','data-id="'+e(it.id)+'"','primary')+'<small>'+e(bi('只记录你的决定，不改写原分析。','Records your decision without rewriting the analysis.'))+'</small></div>';
@@ -8464,7 +8465,7 @@ body {
   function t(key){return I.pairs[key]?I.pairs[key][locale==='zh'?0:1]:key;}
   function bi(zh,en){return locale==='zh'?zh:en;}
   function CT(){return window.FieldnotesCaseText;}
-  function caseName(meta){return CT()?CT().metaTitle(meta,locale):(meta&&meta.title)||'';}
+  function caseName(meta){var full=meta&&meta.id===window.CASE_DATA.meta.id&&meta.title===window.CASE_DATA.meta.title?Object.assign({},window.CASE_DATA.meta,meta):meta;return CT()?CT().metaTitle(full,locale):(full&&full.title)||'';}
   function packFactText(f){return CT()?CT().fact(f,locale):f.text;}
   function title(step){return I.titles[step-1][locale==='zh'?0:1];}
   function state(){return presentation||engine.getState();}
@@ -9099,7 +9100,7 @@ body {
     banner.setAttribute("data-demo-build", "1");
     function updateBanner() {
       var en = document.documentElement.lang === "en" || document.documentElement.lang === "en-US";
-      banner.textContent = (en ? BANNER_EN : BANNER_ZH) + " " + (en ? BANNER_ZH : BANNER_EN);
+      banner.textContent = (en ? BANNER_EN : "⚠️ DEMO BUILD — " + BANNER_ZH);
     }
     updateBanner();
     new MutationObserver(updateBanner).observe(document.documentElement, {

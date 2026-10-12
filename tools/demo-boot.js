@@ -19,7 +19,7 @@
     banner.setAttribute("data-demo-build", "1");
     function updateBanner() {
       var en = document.documentElement.lang === "en" || document.documentElement.lang === "en-US";
-      banner.textContent = (en ? BANNER_EN : BANNER_ZH) + " " + (en ? BANNER_ZH : BANNER_EN);
+      banner.textContent = (en ? BANNER_EN : "⚠️ DEMO BUILD — " + BANNER_ZH);
     }
     updateBanner();
     new MutationObserver(updateBanner).observe(document.documentElement, {
