@@ -126,7 +126,7 @@ let pageForCapture;
  await page.locator('[data-lang="zh"]').click();await step(3);await page.locator('.top-actions [data-action="materials"]').click();
  for(const tab of ['facts','principles','timeline','sources','glossary']){
   await page.locator('[data-lib="tab"][data-tab="'+tab+'"]').click();
-  if(tab==='facts'){await page.locator('#library-search').fill('f-mat-016');await page.locator('.library-row[data-id="f-mat-016"]').click();assert.ok(await page.locator('.source-review.pending').count()>0,'Unreviewed sources remain visibly distinguished.');}
+  if(tab==='facts'){await page.locator('#library-search').fill('f-mat-016');await page.locator('.library-row[data-id="f-mat-016"]').click();assert.equal(await page.locator('.library-review-badge,.source-review.pending').count(),0,'No review-status badges.');assert.ok(await page.locator('.library-material-notes').count()>0,'Provenance notes retained.');}
   if(tab==='sources'){await page.locator('.library-row[data-id="src-003"]').click();assert.ok((await page.locator('.library-reading').innerText()).includes('不得作为事实依据'));}
   await page.evaluate(()=>document.getElementById('modal').scrollTop=0);
   await capture({path:path.join(screenshots,'drawer-'+tab+'.png')});

@@ -2402,6 +2402,45 @@ body {
 .workbench-toolbar .button {font-size:12px;min-height:34px;background:rgba(255,255,255,.65)}
 .workbench-toolbar .button.primary {background:var(--stage);border-color:var(--stage);color:#fff;box-shadow:0 3px 8px #25345318;}
 .workbench-toolbar .button.primary:hover:not(:disabled) {background:var(--stage);color:#fff;filter:brightness(1.08);}
+.library-tabs button {font-size:14px;}
+.library-tabs button span {font-size:11px;}
+.library-search input {font-size:14px;}
+.library-filter-chips button,.library-filter-row select,.library-linked-filter {font-size:12px;}
+.library-row-title {font-size:14px;line-height:1.65;}
+.library-row-top {font-size:11px;}
+.library-reading {background:linear-gradient(145deg,#f4f5ec,#eef3eb);}
+.library-reading-text {font-size:20px;line-height:1.8;color:#263e38;}
+.library-reading-note {font-size:12px;}
+.library-section-title h3 {font-size:15px;}
+.library-source-title {font-size:14px;line-height:1.8;}
+.library-original p {font-size:14px;line-height:1.85;color:#495c45;}
+.library-original>span {font-size:12px;}
+.library-provenance {padding:18px 20px;border:1px solid #d7dfce;border-radius:13px;background:#ffffff65;margin-top:20px;}
+.library-material-notes {margin:14px 0 0;font-size:13px;color:#67735d;}
+.library-material-notes summary {cursor:pointer;padding:7px 0;font-weight:600;}
+.library-material-notes p {padding:10px 12px;background:#e9eee1;border-radius:9px;line-height:1.85;white-space:pre-wrap;}
+.library-source-link {font-size:13px;}
+.library-pagination[hidden] {display:none;}
+.library-timeline-results {padding:12px 18px 20px 29px;}
+.timeline-date-group {padding:14px 0 10px;font-size:15px;font-weight:700;color:#3c6657;line-height:1.65;}
+.timeline-date-group small {display:block;font-size:11px;font-weight:400;color:#7c8a70;margin-top:2px;}
+.library-row.timeline-row {position:relative;overflow:visible;border-radius:0;background:transparent;border:0;border-left:2px solid #bfd0c2;margin:0 0 0 6px;padding:10px 10px 15px 20px;box-shadow:none;}
+.library-row.timeline-row.active {background:#deeadb;border-radius:0 10px 10px 0;border-left-color:#42866c;}
+.timeline-dot {position:absolute;left:-6px;top:16px;width:10px;height:10px;border-radius:50%;background:#a3bda9;border:2px solid #eef3eb;}
+.timeline-row.active .timeline-dot {background:#39765e;}
+.timeline-clock {display:block;font-size:13px;font-weight:650;color:#4c7a65;line-height:1.5;margin-bottom:6px;font-variant-numeric:tabular-nums;}
+.timeline-row .library-row-title {font-size:14px;line-height:1.7;-webkit-line-clamp:3;color:#334d43;}
+.is-timeline .library-event-date {padding:12px 15px;background:#dfeade;border-left:3px solid #5f9878;border-radius:0 10px 10px 0;font-size:23px;}
+@media(max-width:620px) {
+  .library-tabs button {font-size:12px;}
+  .library-row-title {font-size:14px;}
+  .library-row-top {font-size:11px;}
+  .library-reading-text {font-size:17px;line-height:1.8;}
+  .library-detail-inner {padding:18px;}
+  .library-source-title,.library-original p {font-size:13px;}
+  .library-provenance {padding:15px;}
+  .library-timeline-results {padding:8px 16px 18px 24px;}
+}
 .material-language-tools {display:flex;justify-content:flex-end;margin-bottom:10px;}
 .material-language-tools .button {font-size:12px;border:1px solid #cad6c8;background:#edf2e7;}
 .guided-review-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;border:1px solid #c9c5e1;border-radius:16px;background:linear-gradient(110deg,#e7e3f5,#eef0f8);}
@@ -7136,6 +7175,24 @@ body {
 
 </script>
   <script>
+/* Order source dates without inventing missing timestamps or changing the material pack. */
+(function(){
+  'use strict';
+  function describe(row){
+    var raw=String(row.date||''),match=raw.match(/(\d{4})-(\d{2})(?:-(\d{2}))?(?:[T ](\d{2}):(\d{2}))?/);
+    var ongoing=/及之后|afterwards|onwards|and after/i.test(raw),range=/~|～|至/.test(raw);
+    if(!match)return {section:2,key:Infinity,group:'undated',date:raw,precision:'unknown'};
+    var day=match[3]||'01',hasTime=match[4]!==undefined;
+    var key=Number(match[1]+match[2]+day)*1441+(hasTime?Number(match[4])*60+Number(match[5]):1440);
+    var date=match[1]+'-'+match[2]+(match[3]?'-'+match[3]:'');
+    return {section:ongoing?1:0,key:key,date:date,group:ongoing?'ongoing':range?'range:'+raw:date+(hasTime?'':':untimed'),precision:ongoing?'ongoing':range?'range':hasTime?'time':'day',time:hasTime?match[4]+':'+match[5]+(/JST/.test(raw)?' JST':''):''};
+  }
+  function sort(rows){return rows.map(function(row,index){return {row:row,index:index,info:describe(row)};}).sort(function(a,b){return a.info.section-b.info.section||a.info.key-b.info.key||a.index-b.index;}).map(function(entry){return entry.row;});}
+  window.FieldnotesTimeline={describe:describe,sort:sort};
+})();
+
+</script>
+  <script>
 /* An offline reading workspace. Selection and draft reasons are UI-only;
  * only a deliberate save writes a relation to the analysis runtime. */
 (function () {
@@ -7159,7 +7216,7 @@ body {
       if(tab==='facts')return ctx.facts();
       if(tab==='principles')return data().principles;
       if(tab==='sources')return data().sources;
-      if(tab==='timeline')return data().timeline.filter(function(x){return !/TODO|占位|待补/.test(x.event);}).slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date));});
+      if(tab==='timeline')return window.FieldnotesTimeline.sort(data().timeline.filter(function(x){return !/TODO|占位|待补/.test(x.event);}));
       return data().valueWords;
     }
     function name(x){
@@ -7170,7 +7227,7 @@ body {
       if(tab==='glossary'){var i=data().valueWords.indexOf(x);return ctx.locale()==='zh'?x.word:(ctx.words[i]||[x.word])[0];}
       return mt(x,'text');
     }
-    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
+    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher,mt(x,'date')].join(' ').toLocaleLowerCase();}
     function filtered(){var terms=query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return records().filter(function(x){
       return terms.every(function(term){return searchable(x).includes(term);})&&
         (tab!=='facts'||((category==='all'||x.categories.includes(category))&&(!source||x.sourceId===source)&&(!linkedOnly||relations(x.id).length)))&&
@@ -7193,20 +7250,33 @@ body {
       return html;
     }
     function badge(x){
-      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(mt(x,'note'))+'">'+e(bi('需复核','Review'))+'</span>':'';
       var count=tab==='facts'?relations(x.id).length:tab==='principles'&&chosen(x.id)?1:0;
-      return warning+(count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
+      return (count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
     }
-    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
+    function list(list){if(tab==='timeline')return timelineList(list);return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
       '<div class="library-no-results">'+ctx.icon('book')+'<h3>'+e(bi('没有找到匹配资料','No matching materials'))+'</h3><p>'+e(bi('试试更短的词，或清除筛选。','Try fewer words or clear the filters.'))+'</p>'+button(e(bi('清除筛选','Clear filters')),'clear','small')+'</div>';}
+    function timelineList(rows){
+      if(!rows.length)return '<div class="library-no-results"><h3>'+e(bi('没有匹配事件','No matching events'))+'</h3></div>';
+      var previous=null;
+      return rows.map(function(x){
+        var info=window.FieldnotesTimeline.describe(x),heading='';
+        if(info.group!==previous){
+          var title=info.precision==='ongoing'?bi('持续与阶段事件','Ongoing & period events'):info.precision==='unknown'?bi('日期未明确','Date unspecified'):info.precision==='range'?mt(x,'date'):info.date+(info.precision==='day'?' · '+bi('时刻未注明','Time unspecified'):'');
+          heading='<div class="timeline-date-group">'+e(title)+(info.precision==='ongoing'?'<small>'+e(bi('具体时刻未记录，单独列出','Exact times are not recorded; shown separately'))+'</small>':'')+'</div>';
+          previous=info.group;
+        }
+        var clock=info.precision==='time'?info.time:info.precision==='ongoing'?mt(x,'date'):info.precision==='range'?bi('时间范围','Date range'):bi('仅注明日期','Date only');
+        return heading+'<button type="button" class="library-row timeline-row '+(selected[tab]===x.id?'active':'')+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-clock">'+e(clock)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span></button>';
+      }).join('');
+    }
     function urlLink(s){return s&&/^https?:\/\//i.test(s.url||'')?'<a class="library-source-link" href="'+e(s.url)+'" target="_blank" rel="noopener noreferrer">'+e(t('readSource'))+' ↗</a>':'';}
     function sourceContent(x){
-      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=read(x,'note');
+      var s=sourceOf(x), note=read(x,'note');
       return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?read(s,'title'):bi('尚未记录来源','No source recorded'))+'</p>'+
         (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(read(x,'locator'))+'</strong></div>':'')+
         (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(read(x,'quote'))+'</p></blockquote>':'')+
         (x.confidence?'<span class="library-confidence">'+e(t('confidence'))+' · '+e(t('confidence'+x.confidence[0].toUpperCase()+x.confidence.slice(1)))+'</span>':'')+
-        (note?'<p class="source-review '+(pending?'pending':'')+'">'+ctx.materialText(note)+'</p>':'')+
+        (note?'<details class="library-material-notes"><summary>'+e(t('verificationNote'))+'</summary><p>'+ctx.materialText(note)+'</p></details>':'')+
         (s&&s.note?'<p class="source-note">'+e(read(s,'note'))+'</p>':'')+urlLink(s)+'</section>';
     }
     function draft(x){
@@ -7234,9 +7304,9 @@ body {
     function refresh(focus) {
       var active=document.activeElement, id=active&&active.id, caret=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;
       var listEl=host.querySelector('.library-results'), oldList=listEl&&listEl.clientHeight?listEl.scrollTop:savedListScroll, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
-      var allData=filtered(), total=allData.length, pages=Math.max(1,Math.ceil(total/pageSize));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*pageSize,(page+1)*pageSize);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
+      var allData=filtered(), total=allData.length, size=tab==='timeline'?Math.max(1,total):pageSize, pages=Math.max(1,Math.ceil(total/size));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*size,(page+1)*size);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
       var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
-      host.innerHTML='<div class="library-shell '+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div><div class="library-pagination">'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*pageSize+1:0)+'–'+Math.min((page+1)*pageSize,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      host.innerHTML='<div class="library-shell '+(tab==='timeline'?'is-timeline ':'')+''+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results '+(tab==='timeline'?'library-timeline-results':'')+'">'+list(listData)+'</div><div class="library-pagination" '+(tab==='timeline'?'hidden':'')+'>'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*size+1:0)+'–'+Math.min((page+1)*size,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
@@ -7255,7 +7325,7 @@ body {
       if(a==='tab'){originalReading=false;tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(a==='select'){originalReading=false;selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
       if(a==='back-list'){mobileReading=false;refresh();return;}
-      if(a==='page-prev'||a==='page-next'){originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
+      if(a==='page-prev'||a==='page-next'){if(tab==='timeline')return;originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
       if(a==='category'){originalReading=false;category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
       if(a==='clear'){originalReading=false;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(a==='source-facts'){originalReading=false;tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
@@ -8379,7 +8449,7 @@ body {
       else if(phase==='decide')card+='<fieldset class="guided-review-decisions"><legend>'+e(bi('你打算如何处理？','How will you handle this?'))+'</legend>'+choices.map(function(choice){return btn(choice[1],'choice','data-choice="'+choice[0]+'" aria-pressed="'+(d.choice===choice[0])+'"','review-choice '+(d.choice===choice[0]?'selected':'')+' choice-'+choice[0]);}).join('')+'</fieldset>'+btn(bi('返回查看记录','Back to record'),'back-read');
       else if(phase==='reason')card+='<div class="review-chosen">'+e(label(d.choice==='checked'?'kept':d.choice==='discussion'?'discussion':'revise'))+' '+btn(bi('更换决定','Change decision'),'back-decide')+'</div><label class="field" for="review-reason"><span>'+e(bi('为什么？准备修改或讨论什么？','Why? What should change or be discussed?'))+'</span><textarea id="review-reason" data-review-note="'+e(it.id)+'" rows="2" placeholder="'+e(bi('保留可不填；修改或待讨论时，请留下具体原因。','Optional for Keep; explain what needs revision or discussion.'))+'">'+e(d.note)+'</textarea></label><p id="review-feedback" role="status"></p><div class="guided-review-save">'+btn(bi('保存并看下一条','Save & review next'),'save','data-id="'+e(it.id)+'"','primary')+'<small>'+e(bi('只记录你的决定，不改写原分析。','Records your decision without rewriting the analysis.'))+'</small></div>';
       card+='</article>';
-      var carrier=all[0],CT=window.FieldnotesCaseText,checklist='<details id="review-guidance" class="analysis-extra guided-review-checklist"><summary>'+e(bi('小组偏见检查清单','Team bias checklist'))+'</summary><fieldset>'+ctx.data().biasChecks.map(function(check,i){var lab=CT?CT().biasLabel(check,ctx.locale()):(ctx.locale()==='en'?window.FieldnotesI18n.biasLabels[i]:check.label);return '<label class="check"><input type="checkbox" data-checklist="'+e(carrier.id)+'" value="'+e(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(ctx.readonly()?'disabled':'')+'>'+e(lab)+'</label>';}).join('')+'</fieldset></details>';
+      var carrier=all[0],CT=window.FieldnotesCaseText,checklist='<details id="review-guidance" class="analysis-extra guided-review-checklist"><summary>'+e(bi('小组偏见检查清单','Team bias checklist'))+'</summary><fieldset>'+ctx.data().biasChecks.map(function(check,i){var lab=CT?CT.biasLabel(check,ctx.locale()):(ctx.locale()==='en'?window.FieldnotesI18n.biasLabels[i]:check.label);return '<label class="check"><input type="checkbox" data-checklist="'+e(carrier.id)+'" value="'+e(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(ctx.readonly()?'disabled':'')+'>'+e(lab)+'</label>';}).join('')+'</fieldset></details>';
       return partHeader+'<div class="review-progressive">'+card+'</div><details id="review-record-picker" class="review-record-picker"><summary>'+e(bi('切换记录或查看已处理记录','Switch record or view processed records'))+'</summary>'+filters+side+'</details>'+checklist;
     }
     function input(event){if(event.target.dataset.reviewNote){var it=ctx.state().items[event.target.dataset.reviewNote];if(it&&!ctx.readonly())draft(it).note=event.target.value;}}
@@ -8517,10 +8587,10 @@ body {
   }
   function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?caseText(source,'title'):t('pendingSource');}
   function sourceDetails(entry,context){
-    var source=data.sources.find(function(s){return s.id===entry.sourceId;}),pending=locale==='zh'&&/未做|待核|待复核/.test(entry.note||'');
+    var source=data.sources.find(function(s){return s.id===entry.sourceId;});
     var note=locale==='en'&&CT()?CT().factNote(entry,locale):caseText(entry,'note');
     var srcNote=source?(locale==='en'&&CT()?CT().sourceNote(source,locale):caseText(source,'note')):'';
-    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(note)+'</p>':'')+(srcNote?'<p class="source-note">'+esc(srcNote)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
+    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(note)+'</p>':'')+(srcNote?'<p class="source-note">'+esc(srcNote)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';

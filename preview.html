@@ -2402,6 +2402,45 @@ body {
 .workbench-toolbar .button {font-size:12px;min-height:34px;background:rgba(255,255,255,.65)}
 .workbench-toolbar .button.primary {background:var(--stage);border-color:var(--stage);color:#fff;box-shadow:0 3px 8px #25345318;}
 .workbench-toolbar .button.primary:hover:not(:disabled) {background:var(--stage);color:#fff;filter:brightness(1.08);}
+.library-tabs button {font-size:14px;}
+.library-tabs button span {font-size:11px;}
+.library-search input {font-size:14px;}
+.library-filter-chips button,.library-filter-row select,.library-linked-filter {font-size:12px;}
+.library-row-title {font-size:14px;line-height:1.65;}
+.library-row-top {font-size:11px;}
+.library-reading {background:linear-gradient(145deg,#f4f5ec,#eef3eb);}
+.library-reading-text {font-size:20px;line-height:1.8;color:#263e38;}
+.library-reading-note {font-size:12px;}
+.library-section-title h3 {font-size:15px;}
+.library-source-title {font-size:14px;line-height:1.8;}
+.library-original p {font-size:14px;line-height:1.85;color:#495c45;}
+.library-original>span {font-size:12px;}
+.library-provenance {padding:18px 20px;border:1px solid #d7dfce;border-radius:13px;background:#ffffff65;margin-top:20px;}
+.library-material-notes {margin:14px 0 0;font-size:13px;color:#67735d;}
+.library-material-notes summary {cursor:pointer;padding:7px 0;font-weight:600;}
+.library-material-notes p {padding:10px 12px;background:#e9eee1;border-radius:9px;line-height:1.85;white-space:pre-wrap;}
+.library-source-link {font-size:13px;}
+.library-pagination[hidden] {display:none;}
+.library-timeline-results {padding:12px 18px 20px 29px;}
+.timeline-date-group {padding:14px 0 10px;font-size:15px;font-weight:700;color:#3c6657;line-height:1.65;}
+.timeline-date-group small {display:block;font-size:11px;font-weight:400;color:#7c8a70;margin-top:2px;}
+.library-row.timeline-row {position:relative;overflow:visible;border-radius:0;background:transparent;border:0;border-left:2px solid #bfd0c2;margin:0 0 0 6px;padding:10px 10px 15px 20px;box-shadow:none;}
+.library-row.timeline-row.active {background:#deeadb;border-radius:0 10px 10px 0;border-left-color:#42866c;}
+.timeline-dot {position:absolute;left:-6px;top:16px;width:10px;height:10px;border-radius:50%;background:#a3bda9;border:2px solid #eef3eb;}
+.timeline-row.active .timeline-dot {background:#39765e;}
+.timeline-clock {display:block;font-size:13px;font-weight:650;color:#4c7a65;line-height:1.5;margin-bottom:6px;font-variant-numeric:tabular-nums;}
+.timeline-row .library-row-title {font-size:14px;line-height:1.7;-webkit-line-clamp:3;color:#334d43;}
+.is-timeline .library-event-date {padding:12px 15px;background:#dfeade;border-left:3px solid #5f9878;border-radius:0 10px 10px 0;font-size:23px;}
+@media(max-width:620px) {
+  .library-tabs button {font-size:12px;}
+  .library-row-title {font-size:14px;}
+  .library-row-top {font-size:11px;}
+  .library-reading-text {font-size:17px;line-height:1.8;}
+  .library-detail-inner {padding:18px;}
+  .library-source-title,.library-original p {font-size:13px;}
+  .library-provenance {padding:15px;}
+  .library-timeline-results {padding:8px 16px 18px 24px;}
+}
 .material-language-tools {display:flex;justify-content:flex-end;margin-bottom:10px;}
 .material-language-tools .button {font-size:12px;border:1px solid #cad6c8;background:#edf2e7;}
 .guided-review-intro {display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 22px;border:1px solid #c9c5e1;border-radius:16px;background:linear-gradient(110deg,#e7e3f5,#eef0f8);}
@@ -3576,6 +3615,7 @@ body {
         "quote": "The Great East Japan Earthquake occurred on 11 March 2011.",
         "confidence": "high",
         "note": "核验：✅",
+        "noteEn": "Pack review: ✅",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "The Great East Japan Earthquake occurred on 11 March 2011."
@@ -3589,6 +3629,7 @@ body {
         "quote": "causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres.",
         "confidence": "medium",
         "note": "核验：✅；核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011）",
+        "noteEn": "Pack review: ✅; caution: wave heights refer to Japan or its northeastern coast, **not** to site-specific run-up measurements (see f-mat-011).",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "causing a massive earthquake with a magnitude of 9.0 and a tsunami which struck a wide area of coastal Japan, including the north-eastern coast, where several waves reached heights of more than ten metres."
@@ -3602,6 +3643,7 @@ body {
         "quote": "The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan.",
         "confidence": "high",
         "note": "核验：✅",
+        "noteEn": "Pack review: ✅",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "The Great East Japan Earthquake occurred at 14:46 Japan Standard Time (JST)3 on Friday 11 March 2011, off the eastern coast of Japan."
@@ -3609,12 +3651,14 @@ body {
       {
         "id": "tl-006",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。",
         "sourceId": "src-001",
         "locator": "Executive Summary",
         "quote": "the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached.",
         "confidence": "medium",
         "note": "核验：✅；具体时刻未获取（Executive Summary 未给出分机组时刻链）",
+        "noteEn": "Pack review: ✅; specific times were not obtained. The Executive Summary does not provide a unit-by-unit sequence of times.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "the reactor cores in Units 1–3 overheated, the nuclear fuel melted and the three containment vessels were breached."
@@ -3622,12 +3666,14 @@ body {
       {
         "id": "tl-007",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。",
         "sourceId": "src-001",
         "locator": "Executive Summary",
         "quote": "Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel.",
         "confidence": "medium",
         "note": "核验：✅；Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取",
+        "noteEn": "Pack review: ✅; see TV1 §1.3.2 for the Unit 1 hydrogen explosion at 15:36 on 2011-03-12. Specific times for Units 3 and 4 were not obtained.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "Hydrogen was released from the reactor pressure vessels, leading to explosions inside the reactor buildings in Units 1, 3 and 4 that damaged structures and equipment and injured personnel."
@@ -3635,12 +3681,14 @@ body {
       {
         "id": "tl-008",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "放射性物质释入大气并沉积于陆地与海洋，亦有直接向海释放。",
         "sourceId": "src-001",
         "locator": "Executive Summary",
         "quote": "Radionuclides were released from the plant to the atmosphere and were deposited on land and on the ocean. There were also direct releases into the sea.",
         "confidence": "medium",
         "note": "核验：✅；具体时刻未获取",
+        "noteEn": "Pack review: ✅; specific times were not obtained.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "Radionuclides were released from the plant to the atmosphere and were deposited on land and on the ocean. There were also direct releases into the sea."
@@ -3648,12 +3696,14 @@ body {
       {
         "id": "tl-009",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "厂址半径 20 km 及部分指定区域人员被疏散；20–30 km 先 shelter 后建议自愿撤离。",
         "sourceId": "src-001",
         "locator": "Executive Summary",
         "quote": "People within a radius of 20 km of the site and in other designated areas were evacuated, and those within a radius of 20–30 km were instructed to shelter before later being advised to voluntarily evacuate.",
         "confidence": "high",
         "note": "核验：✅；分阶段扩展见 DG「Emergency preparedness」段（如 2 km→20 km）",
+        "noteEn": "Pack review: ✅; see the DG “Emergency preparedness” paragraph for staged expansion, such as 2 km to 20 km.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "People within a radius of 20 km of the site and in other designated areas were evacuated, and those within a radius of 20–30 km were instructed to shelter before later being advised to voluntarily evacuate."
@@ -3661,12 +3711,14 @@ body {
       {
         "id": "tl-011",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "1–5 号机组经历长时间全厂断电（SBO）；1、2 号超过 9 天，3、4 号超过 14 天。",
         "sourceId": "src-002",
         "locator": "§1.1 Summary of the accident",
         "quote": "Units 1–5 of the Fukushima Daiichi NPP experienced extended station blackout (SBO) events, which exceeded nine days in Units 1 and 2, and 14 days in Units 3 and 4.",
         "confidence": "high",
         "note": "核验：✅；Unit 1：15:37 失 AC、15:42 宣布 SBO（§1.3.2）；结束日未在本表展开",
+        "noteEn": "Pack review: ✅; Unit 1 lost AC power at 15:37 and station blackout was declared at 15:42 (§1.3.2). End dates are not detailed in this table.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "Units 1–5 of the Fukushima Daiichi NPP experienced extended station blackout (SBO) events, which exceeded nine days in Units 1 and 2, and 14 days in Units 3 and 4."
@@ -3674,12 +3726,14 @@ body {
       {
         "id": "tl-012",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "1–3 号机组 RPV 最终 breach，放射性物质经可控 vent 或 confinement 失效释出。",
         "sourceId": "src-002",
         "locator": "§1.1 Summary of the accident",
         "quote": "The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units, and radioactive material escaped from the reactors. The radioactive material confined in the primary containment vessels (PCVs) was further released directly to the environment either in a controlled manner, i.e. by venting of the reactors’ PCVs, or in an uncontrolled manner upon damage and failure of the confinement structures.",
         "confidence": "medium",
         "note": "核验：✅；具体时刻未获取",
+        "noteEn": "Pack review: ✅; specific times were not obtained.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "The reactor pressure vessels (RPVs) that enclose the reactor cores were eventually breached in those units, and radioactive material escaped from the reactors. The radioactive material confined in the primary containment vessels (PCVs) was further released directly to the environment either in a controlled manner, i.e. by venting of the reactors’ PCVs, or in an uncontrolled manner upon damage and failure of the confinement structures."
@@ -3687,12 +3741,14 @@ body {
       {
         "id": "tl-013",
         "date": "2011-03-11 及之后",
+        "dateEn": "2011-03-11 and afterwards",
         "event": "为降低照射，20 km 内及周边指定区域疏散，食品与饮用水分销/消费受限。",
         "sourceId": "src-002",
         "locator": "§1.1 Summary of the accident",
         "quote": "In order to reduce radiation exposures, people within a radius of 20 km of the site, as well as other specified areas, were evacuated, and restrictions were placed on the distribution and consumption of food and drinking water.",
         "confidence": "medium",
         "note": "核验：✅；具体时刻未获取",
+        "noteEn": "Pack review: ✅; specific times were not obtained.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "In order to reduce radiation exposures, people within a radius of 20 km of the site, as well as other specified areas, were evacuated, and restrictions were placed on the distribution and consumption of food and drinking water."
@@ -3703,9 +3759,11 @@ body {
         "event": "NAIIC 事故时间轴标注海啸（峰值）到达时刻。",
         "sourceId": "src-004",
         "locator": "事故时间轴（Conclusions 前时间轴图）",
+        "locatorEn": "Accident timeline (figure before Conclusions)",
         "quote": "15:37 Tsunami (peak of waves)",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）；与 TV1 §1.1.2.5 第二波 15:36–15:37 一致口径",
+        "noteEn": "Pack review: not performed (NAIIC/TEPCO round). Consistent with the second wave at 15:36–15:37 in TV1 §1.1.2.5.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "15:37 Tsunami (peak of waves)"
@@ -3719,6 +3777,7 @@ body {
         "quote": "At 15:36 on 12 March 2011, an explosion occurred on the service floor of the Unit 1 RB",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）；补 tl-007 备注中 Unit 1 氢爆时刻",
+        "noteEn": "Pack review: not performed (NAIIC/TEPCO round). Adds the Unit 1 hydrogen-explosion time noted in tl-007.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "At 15:36 on 12 March 2011, an explosion occurred on the service floor of the Unit 1 RB"
@@ -3732,6 +3791,7 @@ body {
         "quote": "July 15, 2009 Review completed",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）；耐震回溯检查时间线",
+        "noteEn": "Pack review: not performed (NAIIC/TEPCO round). Seismic backcheck timeline.",
         "infoKnownBy": [],
         "infoKnownWhen": "",
         "eventEn": "July 15, 2009 Review completed"
@@ -4024,6 +4084,7 @@ body {
         ],
         "sourceId": "src-004",
         "locator": "Summary of Findings — The lack of tsunami countermeasures 前段",
+        "locatorEn": "Summary of Findings — paragraph before The lack of tsunami countermeasures",
         "quote": "the recorded seismic motion at Fukushima Daiichi exceeded the assumption of the new guideline. It is clear that appropriate anti-seismic reinforcements were not in place at the time of the March 11 earthquake.",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）",
@@ -4122,6 +4183,7 @@ body {
         ],
         "sourceId": "src-002",
         "locator": "§1.2.6（人员响应段）",
+        "locatorEn": "§1.2.6 (personnel response paragraph)",
         "quote": "Following the earthquake, a tsunami warning was communicated by the MCR staff via the plant internal announcement system. The initial prediction for the tsunami was 3–4 m in height76, thus evacuation and reassembly instructions were provided mainly for personnel who were working at lower elevations.",
         "confidence": "medium",
         "note": "核验：✅；核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段",
@@ -4164,6 +4226,7 @@ body {
         ],
         "sourceId": "src-002",
         "locator": "§1.3.2 脚注 26",
+        "locatorEn": "§1.3.2, footnote 26",
         "quote": "The valve positions were not clear to the operators owing to the uncertain timing and sequence of each type of power loss that would determine the operation of isolation condenser status of isolation valves.",
         "confidence": "high",
         "note": "核验：✅；信息不足的具体描述",
@@ -4178,6 +4241,7 @@ body {
         ],
         "sourceId": "src-004",
         "locator": "第 14 页事故应对叙述",
+        "locatorEn": "Page 14, accident-response account",
         "quote": "The decisions and responses to the accident had to be made on the spot by operational staff at the site, absent valid tools and manuals.",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）",
@@ -4220,6 +4284,7 @@ body {
         ],
         "sourceId": "src-004",
         "locator": "事故时间轴（Unit 1 列）",
+        "locatorEn": "Accident timeline (Unit 1 column)",
         "quote": "19:04 Start of seawater injection",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）；图表短语，非叙事句",
@@ -4360,6 +4425,7 @@ body {
         ],
         "sourceId": "src-004",
         "locator": "Conclusions（Earthquake damage 段）",
+        "locatorEn": "Conclusions (Earthquake damage paragraph)",
         "quote": "NISA was created as part of the Ministry of Economy, Trade & Industry (METI), an organization that has been actively promoting nuclear power.",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）",
@@ -4402,6 +4468,7 @@ body {
         ],
         "sourceId": "src-004",
         "locator": "Conclusions（TEPCO perspective 段）",
+        "locatorEn": "Conclusions (TEPCO perspective paragraph)",
         "quote": "enough motivation for TEPCO to aggressively oppose new safety regulations and draw out negotiations with regulators via the Federation of Electric Power Companies (FEPC).",
         "confidence": "medium",
         "note": "核验：未做（NAIIC/TEPCO 轮）；句中片段；含 enough motivation for 前缀",
@@ -5648,144 +5715,178 @@ body {
 
 </script>
   <script>
-/* English display translations of the shipped material pack. Originals remain immutable. */
+/**
+ * CASE_DATA 双语字段选择（只读展示层）。
+ */
+(function (root) {
+  "use strict";
+  var warned = Object.create(null);
+
+  function warnOnce(key, detail) {
+    if (warned[key]) return;
+    warned[key] = true;
+    console.warn("[FieldnotesCaseText] missing English field:", detail);
+  }
+
+  function pick(obj, zhKey, enKey, locale, idHint) {
+    if (!obj) return "";
+    if (locale === "en") {
+      var en = obj[enKey];
+      if (en != null && String(en).trim()) return en;
+      warnOnce(idHint + "." + enKey, idHint + "." + enKey);
+    }
+    return obj[zhKey] != null ? obj[zhKey] : "";
+  }
+
+  function stripVerificationNote(note, locale) {
+    if (!note) return "";
+    if (locale === "en" && /核验|待核|待复核|⚠/.test(note) && !/[A-Za-z]{8,}/.test(note)) {
+      return "";
+    }
+    return note;
+  }
+
+  root.FieldnotesCaseText = {
+    fact: function (fact, locale) {
+      return pick(fact, "text", "textEn", locale, fact && fact.id);
+    },
+    factNote: function (fact, locale) {
+      var n = pick(fact, "note", "noteEn", locale, fact && fact.id);
+      return stripVerificationNote(n, locale) || (locale === "en" ? "" : fact.note || "");
+    },
+    timelineEvent: function (row, locale) {
+      return pick(row, "event", "eventEn", locale, row && row.id);
+    },
+    assessmentText: function (row, locale) {
+      return pick(row, "text", "textEn", locale, row && row.id);
+    },
+    principleDesc: function (p, locale) {
+      return pick(p, "desc", "descEn", locale, p && p.id);
+    },
+    valueWord: function (w, locale) {
+      return pick(w, "word", "wordEn", locale, w && w.id);
+    },
+    valueWhy: function (w, locale) {
+      return pick(w, "whyVague", "whyVagueEn", locale, w && w.id);
+    },
+    constraintLabel: function (c, locale) {
+      return pick(c, "label", "labelEn", locale, c && c.id);
+    },
+    constraintDesc: function (c, locale) {
+      return pick(c, "desc", "descEn", locale, c && c.id);
+    },
+    biasLabel: function (b, locale) {
+      return pick(b, "label", "labelEn", locale, b && b.id);
+    },
+    reviewLabel: function (r, locale) {
+      return pick(r, "label", "labelEn", locale, r && r.id);
+    },
+    stepName: function (step, locale) {
+      return pick(step, "name", "nameEn", locale, "step" + (step && step.id));
+    },
+    stepIntro: function (step, locale) {
+      return pick(step, "intro", "introEn", locale, "step" + (step && step.id));
+    },
+    promptText: function (prompt, locale, stepId, index) {
+      return pick(prompt, "text", "textEn", locale, "step" + stepId + ".prompt" + index);
+    },
+    fieldLabel: function (field, locale, stepId, index) {
+      return pick(field, "label", "labelEn", locale, "step" + stepId + ".field" + index);
+    },
+    fieldHint: function (field, locale, stepId, index) {
+      return pick(field, "hint", "hintEn", locale, "step" + stepId + ".field" + index);
+    },
+    sourceTitle: function (source, locale) {
+      return pick(source, "title", "titleEn", locale, source && source.id);
+    },
+    sourceNote: function (source, locale) {
+      if (locale === "en") {
+        var en = source && source.noteEn;
+        if (en != null && String(en).trim()) return en;
+        if (source && source.note && /[\u4e00-\u9fff]/.test(source.note)) return "";
+      }
+      return (source && source.note) || "";
+    },
+    metaTitle: function (meta, locale) {
+      return pick(meta, "title", "titleEn", locale, "meta.title");
+    },
+    referenceBody: function (ref, locale, stepId) {
+      if (!ref) return "";
+      return pick(ref, "body", "bodyEn", locale, "step" + stepId + ".referenceLevel3");
+    },
+    principleName: function (p, locale) {
+      return pick(p, "name", "nameEn", locale, p && p.id);
+    },
+    timelineDate: function (row, locale) {
+      return pick(row, "date", "dateEn", locale, row && row.id);
+    },
+    locator: function (row, locale) {
+      return pick(row, "locator", "locatorEn", locale, row && row.id);
+    },
+    packNote: function (row, locale) {
+      var n = pick(row, "note", "noteEn", locale, row && row.id);
+      return stripVerificationNote(n, locale) || (locale === "en" ? "" : (row && row.note) || "");
+    },
+    materialField: function (row, field, locale) {
+      if (!row || locale !== "en") return row && row[field] != null ? row[field] : "";
+      if (field === "text") return this.fact(row, locale);
+      if (field === "event") return this.timelineEvent(row, locale);
+      if (field === "title") return this.sourceTitle(row, locale);
+      if (field === "note") return this.packNote(row, locale);
+      if (field === "locator") return this.locator(row, locale);
+      if (field === "name") return this.principleName(row, locale);
+      if (field === "desc") return this.principleDesc(row, locale);
+      if (field === "word") return this.valueWord(row, locale);
+      if (field === "whyVague") return this.valueWhy(row, locale);
+      if (field === "date") return this.timelineDate(row, locale);
+      return pick(row, field, field + "En", locale, row && row.id);
+    }
+  };
+})(typeof globalThis !== "undefined" ? globalThis : window);
+
+</script>
+  <script>
+// DEPRECATED: 本文件不再持有英文内容，仅为兼容旧调用点保留。
+// 英文唯一来源：src/data/fukushima.js 的 ...En 字段 + src/ui/case-text.js
+// 下一次界面改动时请移除所有调用点并删除本文件。
+(function () {
+  "use strict";
+  var records = Object.create(null);
+  ["facts", "timeline", "sources", "principles", "valueWords"].forEach(function (key) {
+    (window.CASE_DATA[key] || []).forEach(function (row) {
+      records[row.id] = row;
+    });
+  });
+
+  function text(row, field, locale) {
+    var value = (row && row[field]) || "";
+    if (locale !== "en") return value;
+    var original = records[row && row.id];
+    if (!original || original[field] !== value) return value;
+    var CT = window.FieldnotesCaseText;
+    if (!CT) return value;
+    return CT.materialField(row, field, locale) || value;
+  }
+
+  window.FieldnotesMaterials = { text: text };
+})();
+
+</script>
+  <script>
+/* Order source dates without inventing missing timestamps or changing the material pack. */
 (function(){
   'use strict';
-  var copy = {
-  "福岛第一核电厂址共有六台核电机组（Units 1–6）。": "The Fukushima Daiichi site had six nuclear power units (Units 1–6).",
-  "2011-03-11 海啸淹没厂内主、备电源与最终热阱等设备/结构，**六台机组**均受影响。": "On 2011-03-11, the tsunami flooded equipment and structures including main and backup power supplies and ultimate heat sinks; **all six units** were affected.",
-  "地震在 tsunami 之前已造成场外输电系统损坏。": "The earthquake damaged off-site transmission systems before the tsunami.",
-  "1–3 号机组因长时间失去电力与排热，燃料过热并熔化，RPV 最终 breach。": "Prolonged loss of power and heat removal in Units 1–3 led to fuel overheating and melting, and eventual breaches of the reactor pressure vessels (RPVs).",
-  "1、3、4 号机组 reactor buildings 内发生与氢气释放相关的爆炸。": "Explosions associated with hydrogen releases occurred in the reactor buildings of Units 1, 3 and 4.",
-  "设计中的地震/海啸 hazard 主要依据日本历史地震记录与近期海啸证据评估。": "Seismic and tsunami design hazards were assessed primarily using historical earthquake records in Japan and evidence of recent tsunamis.",
-  "记录到的 ground motions 与 tsunami 波高均显著超过设计基准假设。": "Recorded ground motions and tsunami wave heights significantly exceeded the design-basis assumptions.",
-  "2 号机组 containment venting 未成功，containment 失效并造成放射性释放。": "Containment venting in Unit 2 was unsuccessful; containment failure resulted in radioactive releases.",
-  "原始 EP 设计基准最高潮位对应海啸高度为 OP +3.122 m。": "The original EP design-basis maximum tsunami water level was OP +3.122 m.",
-  "防波堤/海堤按最大海啸 5.5 m 设计；第二波 run-up 14–15 m 淹没厂址。": "The breakwater and seawall were designed for a maximum tsunami height of 5.5 m; the second wave inundated the site with a run-up of 14–15 m.",
-  "2002 年 JSCE 方法重评海啸高度为 OP +5.7 m，并采取抬高泵位等对策。": "A 2002 reassessment using the JSCE method estimated a tsunami level of OP +5.7 m; countermeasures included raising pump elevations.",
-  "1966 年许可基准引用的观测海啸来自 1960 年智利地震海啸。": "The observed tsunami used in the 1966 licensing basis was the tsunami generated by the 1960 Chile earthquake.",
-  "Unit 1：15:37 失全部 AC，15:42 宣布 station blackout；IC 在 tsunami 前被运行人员停止后堆芯冷却丧失。": "Unit 1 lost all AC power at 15:37, and station blackout was declared at 15:42. Core cooling was lost after operators stopped the isolation condensers (ICs) before the tsunami.",
-  "2009 年 bathymetric 重评给出 OP +6.1 m（对策含抬高泵位）。": "A 2009 bathymetric reassessment estimated OP +6.1 m; countermeasures included raising pump elevations.",
-  "TEPCO 档案：福岛第一 JSCE 评估最大海啸高度 5.7 m（后 6.1 m），应急海水泵安装高度 4 m。": "TEPCO records state a JSCE-estimated maximum tsunami height of 5.7 m (later 6.1 m) at Fukushima Daiichi, with emergency seawater pumps installed at an elevation of 4 m.",
-  "TEPCO 时间线：2009 年 4 月安全评价给出福岛第一水位 O.P.+5.4~6.1 m。": "The TEPCO timeline records an April 2009 safety assessment giving water levels of O.P.+5.4–6.1 m for Fukushima Daiichi.",
-  "1966–1972 建设许可基准引用智利地震，潮位 O.P.+3.122 m。": "The 1966–1972 construction licensing basis used the Chile earthquake tsunami and a water level of O.P.+3.122 m.",
-  "TEPCO 地震动评价结论：基岩面地震动与设计基准 Ss **约同量级**。": "TEPCO concluded that bedrock ground motions were **of approximately the same magnitude** as design-basis ground motion Ss.",
-  "NAIIC：福岛第一记录地震动超过新指引假设，且未到位适当抗震加固。": "NAIIC stated that ground motions recorded at Fukushima Daiichi exceeded assumptions in the new guidelines and that appropriate seismic reinforcement had not been completed.",
-  "现场人员需在未按培训场景准备的情况下即兴应对，且常缺合适设备。": "On-site personnel had to improvise responses outside their training scenarios, often without suitable equipment.",
-  "尽管运营商人员努力维持控制，1–3 号机组仍发生堆芯损伤。": "Despite operator personnel attempting to maintain control, core damage occurred in Units 1–3.",
-  "氢气爆炸造成 structures and equipment 损坏并造成 personnel injured。": "Hydrogen explosions damaged structures and equipment and injured personnel.",
-  "地震、海啸后果及辐射水平升高使 on-site response 极其困难。": "Earthquake and tsunami damage, together with elevated radiation levels, made the on-site response extremely difficult.",
-  "疏散因地震/tsunami 破坏及通信交通问题而存在困难。": "Evacuation was difficult because of earthquake and tsunami damage and communication and transport problems.",
-  "事故造成现场工作人员与周边公众受到辐射照射。": "The accident exposed on-site workers and members of the surrounding public to radiation.",
-  "MCR 人员经厂内广播发布海啸预警；初报 3–4 m，低标高人员撤离。": "Main control room personnel announced a tsunami warning over the site public-address system. The initial forecast was 3–4 m, and personnel at lower elevations evacuated.",
-  "Unit 1 运行人员在 15:03 手动停止两套 IC，以避免超过 55°C/h 冷却限制。": "At 15:03, Unit 1 operators manually stopped both isolation condenser systems to avoid exceeding the cooling-rate limit of 55°C/h.",
-  "Site Superintendent 于 00:06 下令准备对 Unit 1（及 Unit 2）vent。": "At 00:06, the Site Superintendent ordered preparations to vent Unit 1 (and Unit 2).",
-  "运行人员因各类电源丧失时序不明，无法确知 IC 隔离阀位置。": "Because the timing of losses of different power supplies was unclear, operators could not determine the positions of the IC isolation valves with certainty.",
-  "失去电力后，现场须在缺少有效工具与手册的情况下当场决策。": "After power was lost, personnel had to make on-site decisions without effective tools or manuals.",
-  "首相（Prime Minister）亲赴现场指挥堆芯受损处置人员。": "The Prime Minister went to the site in person to direct personnel responding to core damage.",
-  "10 km 内多数居民直至 2011-03-12 05:44 发布撤离令时才得知事故。": "Most residents within 10 km learned of the accident only when the evacuation order was issued at 05:44 on 2011-03-12.",
-  "NAIIC 时间轴：Unit 1 于 19:04 开始海水注入（图表标注）。": "The NAIIC timeline marks the start of seawater injection into Unit 1 at 19:04.",
-  "vent 决策未确认传达至 METI 高层或官邸（Kantei）。": "Transmission of the venting decision to senior METI officials or the Prime Minister’s Office (Kantei) was not confirmed.",
-  "福岛第一核电厂由 Tokyo Electric Power Company（TEPCO）运营。": "Fukushima Daiichi was operated by Tokyo Electric Power Company (TEPCO).",
-  "东北沿岸五处 NPP 场址：Higashidori、Onagawa、Fukushima Daiichi、Fukushima Daini、Tokai Daini。": "Five nuclear power plant sites were located along the northeastern coast: Higashidori, Onagawa, Fukushima Daiichi, Fukushima Daini and Tokai Daini.",
-  "除福岛第一外，其余受影响场址的运行机组均安全 shut down。": "Except at Fukushima Daiichi, operating units at the other affected sites shut down safely.",
-  "报告编写时（2015 Foreword）逾 10 万人因释放而撤离，许多人仍无法返家。": "At the time of the report’s 2015 foreword, more than 100,000 people had been evacuated because of the releases, and many were still unable to return home.",
-  "运行方安全管理活动受 NISA 审查批准的安全管理 programme 约束；NISA 按 programme 做季度检查。": "The operator’s safety-management activities were governed by a programme reviewed and approved by NISA; NISA conducted quarterly inspections under that programme.",
-  "2006 指南修订后 NISA 要求 licensees 做 seismic/tsunami「backcheck」；TEPCO 启动重评但在事故前**未完成**。": "Following the 2006 guideline revision, NISA required licensees to conduct seismic and tsunami backchecks. TEPCO began reassessment but **had not completed it** before the accident.",
-  "事故前运营商用 2002 共识方法重评海啸，数值高于原设计并采取部分补偿措施，但事故时仍不足。": "Before the accident, the operator reassessed tsunami hazards using the 2002 consensus method. The estimates exceeded the original design, and some compensatory measures were taken, but they remained insufficient at the time of the accident.",
-  "NAIIC 结论：事故系政府、监管与 TEPCO **共谋（collusion）**及治理缺失所致。": "NAIIC concluded that the accident resulted from **collusion** among the government, regulators and TEPCO, and failures of governance.",
-  "NISA 隶属 METI，而 METI 同时推动核电发展。": "NISA was part of METI, which also promoted nuclear power development.",
-  "NISA 曾告知运营商无需考虑 SBO，并要求其撰写“无需考虑”的理由报告。": "NISA told operators that station blackout need not be considered and requested reports explaining why it need not be considered.",
-  "事故时 Unit 1–3 所需结构加固**均未实施**；NISA 对拖延给予 tacit consent。": "At the time of the accident, the required structural reinforcement for Units 1–3 **had not been implemented**; NISA gave tacit consent to the delays.",
-  "TEPCO 通过 FEPC 积极反对新安全法规并拖延与监管谈判。": "Through FEPC, TEPCO actively opposed new safety regulations and delayed negotiations with regulators.",
-  "NISA 未向公众披露海啸评估或对运营商指示，亦未保留记录。": "NISA did not disclose tsunami assessments or instructions to operators to the public and did not retain records.",
-  "TEPCO 2007 档案称已抬高电机等，**当时理解**厂站安全已获保证。": "TEPCO’s 2007 records stated that measures such as raising motors had been taken and that, **in its understanding at the time**, site safety had been assured.",
-  "2006 年起监管方与 TEPCO 已知海啸致全厂断电及堆芯损伤风险，但未出台法规或防护。": "From 2006, regulators and TEPCO knew of tsunami-induced station blackout and core-damage risks, but introduced neither regulations nor protective measures.",
-  "监管方、METI 与 TEPCO 未能建立评估损害概率、 collateral 损害与公众撤离计划等基本安全要求。": "Regulators, METI and TEPCO failed to establish basic safety requirements for assessing damage probabilities, collateral damage and public evacuation plans.",
-  "东日本大震灾（Great East Japan Earthquake）发生。": "The Great East Japan Earthquake occurred.",
-  "地震震级 9.0；海啸在包括东北海岸在内的沿岸造成多道浪，部分浪高超过十米。": "The earthquake had a magnitude of 9.0. The tsunami produced multiple waves along coastal areas, including the northeastern coast, some exceeding ten metres in height.",
-  "主震发生于 JST 2011-03-11 14:46（星期五）。": "The main shock occurred at 14:46 JST on Friday, 2011-03-11.",
-  "2011-03-11 及之后": "2011-03-11 and afterwards",
-  "1–3 号机组堆芯过热、燃料熔化，三个 containment vessels 被 breach。": "The cores of Units 1–3 overheated, fuel melted and all three containment vessels were breached.",
-  "1、3、4 号机组 reactor buildings 内发生氢气相关爆炸并造成结构/设备损坏与人员受伤。": "Hydrogen-related explosions in the reactor buildings of Units 1, 3 and 4 damaged structures and equipment and injured personnel.",
-  "放射性物质释入大气并沉积于陆地与海洋，亦有直接向海释放。": "Radioactive material was released into the atmosphere and deposited on land and in the ocean, with additional direct releases to the ocean.",
-  "厂址半径 20 km 及部分指定区域人员被疏散；20–30 km 先 shelter 后建议自愿撤离。": "People within 20 km of the site and in certain designated areas were evacuated. Those within 20–30 km were first told to shelter and later advised to evacuate voluntarily.",
-  "1–5 号机组经历长时间全厂断电（SBO）；1、2 号超过 9 天，3、4 号超过 14 天。": "Units 1–5 experienced prolonged station blackout (SBO): more than nine days for Units 1 and 2 and more than fourteen days for Units 3 and 4.",
-  "1–3 号机组 RPV 最终 breach，放射性物质经可控 vent 或 confinement 失效释出。": "The RPVs of Units 1–3 were eventually breached; radioactive material was released through controlled venting or failures of confinement.",
-  "为降低照射，20 km 内及周边指定区域疏散，食品与饮用水分销/消费受限。": "To reduce exposure, people within 20 km and in nearby designated areas were evacuated, and the distribution and consumption of food and drinking water were restricted.",
-  "NAIIC 事故时间轴标注海啸（峰值）到达时刻。": "The NAIIC accident timeline marks the arrival time of the tsunami peak.",
-  "Unit 1 reactor building 发生爆炸（服务楼层）。": "An explosion occurred on the service floor of the Unit 1 reactor building.",
-  "NISA 完成对代表电厂抗震 interim report 的 validity 审查。": "NISA completed its review of the validity of the seismic interim report for a representative plant.",
-  "TEPCO 接收 Jogan 海啸研究并进行试算、协调修订海啸评估方法。": "TEPCO received research on the Jogan tsunami, conducted trial calculations and coordinated revisions to tsunami assessment methods.",
-  "下达 3 km 疏散令时，仅约 20% 厂址所在町居民知晓事故。": "When the 3 km evacuation order was issued, only about 20% of residents of the town hosting the site knew of the accident.",
-  "The Fukushima Daiichi Accident（书目页 STI/PUB/1710）": "The Fukushima Daiichi Accident (bibliographic page STI/PUB/1710)",
-  "仅书目元数据，未取正文——不得作为事实依据": "Bibliographic metadata only; the full text was not obtained. Do not use this entry as factual evidence.",
-  "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission（NAIIC 英文摘要版）": "The Official Report of the Fukushima Nuclear Accident Independent Investigation Commission (NAIIC English executive summary)",
-  "PI 提供本地 PDF（PI 已存档）": "Local PDF supplied and archived by the project lead.",
-  "TEPCO 事故相关附件（120620e0106：地震动评价与历史安全评估档案等）": "TEPCO accident-related attachments (120620e0106: ground-motion assessments and historical safety-assessment records)",
-  "Summary of Findings — The lack of tsunami countermeasures 前段": "Summary of Findings — paragraph before The lack of tsunami countermeasures",
-  "§1.2.6（人员响应段）": "§1.2.6 (personnel response paragraph)",
-  "§1.3.2 脚注 26": "§1.3.2, footnote 26",
-  "第 14 页事故应对叙述": "Page 14, accident-response account",
-  "事故时间轴（Unit 1 列）": "Accident timeline (Unit 1 column)",
-  "Conclusions（Earthquake damage 段）": "Conclusions (Earthquake damage paragraph)",
-  "Conclusions（TEPCO perspective 段）": "Conclusions (TEPCO perspective paragraph)",
-  "事故时间轴（Conclusions 前时间轴图）": "Accident timeline (figure before Conclusions)",
-  "核验：✅": "Pack review: ✅",
-  "核验：未做（NAIIC/TEPCO 轮）": "Pack review: not performed (NAIIC/TEPCO round).",
-  "核验：✅；并入原 tl-010 信息": "Pack review: ✅; incorporates information previously recorded as tl-010.",
-  "核验：✅；核验⚠️：引文为 Executive Summary **句中片段**（非独立完整句）": "Pack review: ✅; caution: the quotation is a **mid-sentence excerpt** from the Executive Summary, not a complete standalone sentence.",
-  "核验：✅；非 Executive Summary 小节标题": "Pack review: ✅; this is not an Executive Summary subsection heading.",
-  "核验：✅；核验⚠️：引文为定性表述，**未给出**具体 ground motion / 海啸数值": "Pack review: ✅; caution: the quotation is qualitative and **does not give** numerical ground-motion or tsunami values.",
-  "核验：✅；OP = Onahama Port 潮位基准": "Pack review: ✅; OP denotes the Onahama Port water-level datum.",
-  "核验：⚠️ PDF 文本层在 “maximum” 与 “tsunami height of 5.5 m” 之间插入脚注 12，草稿引文作连续句；且 15:36–15:37 为 3/11 第二波海啸，非氢爆": "Pack review: ⚠️; the PDF text inserts footnote 12 between “maximum” and “tsunami height of 5.5 m”, while the draft quotation joins them. The time 15:36–15:37 refers to the second tsunami wave on March 11, not a hydrogen explosion.",
-  "核验：✅；同表另有 Make buildings watertight": "Pack review: ✅; the same table also lists “Make buildings watertight”.",
-  "核验：✅；Table 1.2–3 Remarks 亦有 24 May 1960 表述": "Pack review: ✅; the remarks in Table 1.2–3 also state 24 May 1960.",
-  "核验：⚠️ 草稿引文含 “…” 合并 §1.3.2 与 §1.1.3.3，非单一连续逐字段落；15:42 为 Unit 1 SBO 宣布（§1.3.2）": "Pack review: ⚠️; the draft quotation uses an ellipsis to combine §1.3.2 and §1.1.3.3 and is not one continuous verbatim paragraph. At 15:42, Unit 1 station blackout was declared (§1.3.2).",
-  "核验：✅；与 f-mat-011 遭遇 run-up 14–15 m 对照；未写释放量": "Pack review: ✅; compare with the 14–15 m run-up in f-mat-011. No release quantity is stated.",
-  "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 口径**；与 IAEA run-up 14–15 m 不同指标": "Pack review: not performed (NAIIC/TEPCO round). **TEPCO’s reported measure** differs from the IAEA run-up measure of 14–15 m.",
-  "核验：未做（NAIIC/TEPCO 轮）；**TEPCO 2012 附件口径**": "Pack review: not performed (NAIIC/TEPCO round). **As reported in TEPCO’s 2012 attachments.**",
-  "核验：✅；核验⚠️：句中片段引文；未给出具体人数": "Pack review: ✅; caution: a mid-sentence quotation; no number of people is given.",
-  "核验：✅；核验⚠️：PDF 文本层为 `height76`（脚注号粘连）；§1.2.6 人员响应段": "Pack review: ✅; caution: the PDF text shows `height76`, with a footnote number attached. See the personnel response paragraph in §1.2.6.",
-  "核验：⚠️ 草稿以 “The operators manually…” 开头；PDF 连续文本为 “…that the operators manually…”（无句首 The operators）": "Pack review: ⚠️; the draft begins “The operators manually…”, but the continuous PDF text reads “…that the operators manually…”, without “The operators” at the start of a sentence.",
-  "核验：✅；角色称谓保留英文": "Pack review: ✅; the role title is retained in English.",
-  "核验：✅；信息不足的具体描述": "Pack review: ✅; a specific description of missing information.",
-  "核验：未做（NAIIC/TEPCO 轮）；NAIIC 称此为 unprecedented direct intervention": "Pack review: not performed (NAIIC/TEPCO round). NAIIC calls this “unprecedented direct intervention”.",
-  "核验：未做（NAIIC/TEPCO 轮）；图表短语，非叙事句": "Pack review: not performed (NAIIC/TEPCO round). This is a chart label, not a narrative sentence.",
-  "核验：✅；脚注 3 列出场址名称": "Pack review: ✅; footnote 3 lists the site names.",
-  "核验：✅；事故前监管—运营商关系": "Pack review: ✅; the pre-accident regulator–operator relationship.",
-  "核验：✅；内部评估采纳/完成度事实": "Pack review: ✅; information on adoption and completion of an internal assessment.",
-  "核验：未做（NAIIC/TEPCO 轮）；句中片段；含 enough motivation for 前缀": "Pack review: not performed (NAIIC/TEPCO round). A mid-sentence excerpt including the prefix “enough motivation for”.",
-  "核验：未做（NAIIC/TEPCO 轮）；**运营商自我评估表述**": "Pack review: not performed (NAIIC/TEPCO round). **The operator’s self-assessment wording.**",
-  "核验：✅；核验⚠️：为全国/东北沿岸浪高表述，**非**厂址 run-up 测点（见 f-mat-011）": "Pack review: ✅; caution: wave heights refer to Japan or its northeastern coast, **not** to site-specific run-up measurements (see f-mat-011).",
-  "核验：✅；具体时刻未获取（Executive Summary 未给出分机组时刻链）": "Pack review: ✅; specific times were not obtained. The Executive Summary does not provide a unit-by-unit sequence of times.",
-  "核验：✅；Unit 1 氢爆时刻见 TV1 §1.3.2（2011-03-12 15:36）；3、4 号具体时刻未获取": "Pack review: ✅; see TV1 §1.3.2 for the Unit 1 hydrogen explosion at 15:36 on 2011-03-12. Specific times for Units 3 and 4 were not obtained.",
-  "核验：✅；具体时刻未获取": "Pack review: ✅; specific times were not obtained.",
-  "核验：✅；分阶段扩展见 DG「Emergency preparedness」段（如 2 km→20 km）": "Pack review: ✅; see the DG “Emergency preparedness” paragraph for staged expansion, such as 2 km to 20 km.",
-  "核验：✅；Unit 1：15:37 失 AC、15:42 宣布 SBO（§1.3.2）；结束日未在本表展开": "Pack review: ✅; Unit 1 lost AC power at 15:37 and station blackout was declared at 15:42 (§1.3.2). End dates are not detailed in this table.",
-  "核验：未做（NAIIC/TEPCO 轮）；与 TV1 §1.1.2.5 第二波 15:36–15:37 一致口径": "Pack review: not performed (NAIIC/TEPCO round). Consistent with the second wave at 15:36–15:37 in TV1 §1.1.2.5.",
-  "核验：未做（NAIIC/TEPCO 轮）；补 tl-007 备注中 Unit 1 氢爆时刻": "Pack review: not performed (NAIIC/TEPCO round). Adds the Unit 1 hydrogen-explosion time noted in tl-007.",
-  "核验：未做（NAIIC/TEPCO 轮）；耐震回溯检查时间线": "Pack review: not performed (NAIIC/TEPCO round). Seismic backcheck timeline.",
-  "核验：未做（NAIIC/TEPCO 轮）；同页含 Implement trial calculations on Jogan Tsunami（2008-12）": "Pack review: not performed (NAIIC/TEPCO round). The same page includes “Implement trial calculations on Jogan Tsunami” (2008-12).",
-  "责任": "Responsibility",
-  "安全": "Safety",
-  "合规": "Compliance",
-  "透明": "Transparency",
-  "可指法律责任、道德责任或组织分工，需在本案中界定。": "May refer to legal responsibility, moral responsibility or organizational roles; define the intended meaning for this case.",
-  "可指人身、环境或系统可靠性，标准因语境而异。": "May refer to personal safety, environmental safety or system reliability; standards depend on the context.",
-  "可指满足最低法规或更高行业规范，含义需澄清。": "May refer to meeting minimum regulatory requirements or higher professional standards; clarify the intended meaning.",
-  "可指信息公开程度或决策过程可见性，需具体化。": "May refer to information disclosure or visibility of decision-making; specify the intended meaning."
-};
-  var descriptions = ["Protect the public from serious adverse consequences of developing and implementing technology.", "Ensure that technical work does not adversely affect basic human rights.", "Avoid serious harm to the environment and living organisms that threatens human life.", "Undertake only engineering activities for which you are competent.", "Base decisions on scientific and mathematical analysis rather than irrelevant factors.", "Disclose decisions that may seriously affect the public, truthfully and fully.", "Understand and respect non-moral cultural values encountered in professional duties.", "Reject activities that violate global engineering ethics even when justified by culture.", "Avoid unnecessary harm to people inside and outside the organization.", "Treat organizational stakeholders fairly and justly.", "Ensure compliance with relevant laws and regulations within the organization.", "Protect members from discrimination and harassment within the organization.", "Base hiring, pay, promotion and dismissal on merit.", "Ensure that lawful company contracts are fulfilled.", "Follow lawful, work-related instructions.", "Perform contractual duties at or above professional standards.", "Protect confidential knowledge acquired in current and former employment.", "Avoid harming the organization when acting on its behalf.", "Be honest in business relationships.", "Apply organizational and employee ethical principles when in a position of authority.", "Seriously consider participating in public-policy discussions about future uses of technology.", "Seriously consider helping the public understand technology in its social and global context.", "Seriously consider volunteering to improve the technological prospects of people less fortunate than yourself.", "Be free from unnecessary harm in employment.", "Receive fair and just treatment from the employer.", "Be free from discrimination and harassment in employment.", "Receive treatment based on merit.", "Have contractual commitments fulfilled.", "Be free to refuse unlawful employment instructions.", "Have the right to report threats to public safety identified through professional judgment.", "Receive the resources needed to perform tasks competently.", "Inform the public about decisions that may seriously harm public welfare.", "Receive fair pay and a fair share of intellectual-property benefits."];
-  var records = {};
-  ['facts','timeline','sources','principles','valueWords'].forEach(function(key){(window.CASE_DATA[key]||[]).forEach(function(row){records[row.id]=row;});});
-  window.CASE_DATA.principles.forEach(function(row,i){copy[row.name]=row.nameEn;copy[row.desc]=descriptions[i];});
-  function text(row,field,locale){
-    var value=row && row[field] || '';
-    var original=row && records[row.id];
-    return locale==='en' && original && original[field]===value && Object.prototype.hasOwnProperty.call(copy,value) ? copy[value] : value;
+  function describe(row){
+    var raw=String(row.date||''),match=raw.match(/(\d{4})-(\d{2})(?:-(\d{2}))?(?:[T ](\d{2}):(\d{2}))?/);
+    var ongoing=/及之后|afterwards|onwards|and after/i.test(raw),range=/~|～|至/.test(raw);
+    if(!match)return {section:2,key:Infinity,group:'undated',date:raw,precision:'unknown'};
+    var day=match[3]||'01',hasTime=match[4]!==undefined;
+    var key=Number(match[1]+match[2]+day)*1441+(hasTime?Number(match[4])*60+Number(match[5]):1440);
+    var date=match[1]+'-'+match[2]+(match[3]?'-'+match[3]:'');
+    return {section:ongoing?1:0,key:key,date:date,group:ongoing?'ongoing':range?'range:'+raw:date+(hasTime?'':':untimed'),precision:ongoing?'ongoing':range?'range':hasTime?'time':'day',time:hasTime?match[4]+':'+match[5]+(/JST/.test(raw)?' JST':''):''};
   }
-  window.FieldnotesMaterials={text:text};
+  function sort(rows){return rows.map(function(row,index){return {row:row,index:index,info:describe(row)};}).sort(function(a,b){return a.info.section-b.info.section||a.info.key-b.info.key||a.index-b.index;}).map(function(entry){return entry.row;});}
+  window.FieldnotesTimeline={describe:describe,sort:sort};
 })();
 
 </script>
@@ -5813,7 +5914,7 @@ body {
       if(tab==='facts')return ctx.facts();
       if(tab==='principles')return data().principles;
       if(tab==='sources')return data().sources;
-      if(tab==='timeline')return data().timeline.filter(function(x){return !/TODO|占位|待补/.test(x.event);}).slice().sort(function(a,b){return String(a.date).localeCompare(String(b.date));});
+      if(tab==='timeline')return window.FieldnotesTimeline.sort(data().timeline.filter(function(x){return !/TODO|占位|待补/.test(x.event);}));
       return data().valueWords;
     }
     function name(x){
@@ -5824,7 +5925,7 @@ body {
       if(tab==='glossary'){var i=data().valueWords.indexOf(x);return ctx.locale()==='zh'?x.word:(ctx.words[i]||[x.word])[0];}
       return mt(x,'text');
     }
-    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher].join(' ').toLocaleLowerCase();}
+    function searchable(x){var s=sourceOf(x);return [name(x),x.text,x.name,x.nameEn,x.desc,x.event,x.date,x.quote,x.locator,x.note,x.id,x.publisher,x.year,mt(x,'note'),mt(x,'locator'),mt(x,'quote'),mt(x,'desc'),s&&mt(s,'title'),s&&mt(s,'publisher'),s&&s.title,s&&s.publisher,mt(x,'date')].join(' ').toLocaleLowerCase();}
     function filtered(){var terms=query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);return records().filter(function(x){
       return terms.every(function(term){return searchable(x).includes(term);})&&
         (tab!=='facts'||((category==='all'||x.categories.includes(category))&&(!source||x.sourceId===source)&&(!linkedOnly||relations(x.id).length)))&&
@@ -5847,20 +5948,33 @@ body {
       return html;
     }
     function badge(x){
-      var warning=tab==='facts'&&/未做|待核|待复核|⚠/.test(x.note||'')?'<span class="library-review-badge" title="'+e(mt(x,'note'))+'">'+e(bi('需复核','Review'))+'</span>':'';
       var count=tab==='facts'?relations(x.id).length:tab==='principles'&&chosen(x.id)?1:0;
-      return warning+(count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
+      return (count?'<span class="library-use-badge">'+ctx.icon('check')+e(tab==='facts'?bi('已引用','Linked'):t('selected'))+'</span>':'');
     }
-    function list(list){return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
+    function list(list){if(tab==='timeline')return timelineList(list);return list.length?list.map(function(x,i){var s=sourceOf(x);return '<button type="button" class="library-row '+(tab==='facts'?'library-fact ':'')+(selected[tab]===x.id?'active':'')+'" id="library-record-'+e(x.id)+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="library-row-top"><span class="library-row-kind">'+e(metadata(x))+'</span>'+badge(x)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span><span class="library-row-bottom"><span>'+e(s?mt(s,'publisher')||mt(s,'title'):tab==='sources'?x.id:tab==='timeline'?mt(x,'date'):bi('阅读与比较','Read & compare'))+'</span><span aria-hidden="true">↗</span></span></button>';}).join(''):
       '<div class="library-no-results">'+ctx.icon('book')+'<h3>'+e(bi('没有找到匹配资料','No matching materials'))+'</h3><p>'+e(bi('试试更短的词，或清除筛选。','Try fewer words or clear the filters.'))+'</p>'+button(e(bi('清除筛选','Clear filters')),'clear','small')+'</div>';}
+    function timelineList(rows){
+      if(!rows.length)return '<div class="library-no-results"><h3>'+e(bi('没有匹配事件','No matching events'))+'</h3></div>';
+      var previous=null;
+      return rows.map(function(x){
+        var info=window.FieldnotesTimeline.describe(x),heading='';
+        if(info.group!==previous){
+          var title=info.precision==='ongoing'?bi('持续与阶段事件','Ongoing & period events'):info.precision==='unknown'?bi('日期未明确','Date unspecified'):info.precision==='range'?mt(x,'date'):info.date+(info.precision==='day'?' · '+bi('时刻未注明','Time unspecified'):'');
+          heading='<div class="timeline-date-group">'+e(title)+(info.precision==='ongoing'?'<small>'+e(bi('具体时刻未记录，单独列出','Exact times are not recorded; shown separately'))+'</small>':'')+'</div>';
+          previous=info.group;
+        }
+        var clock=info.precision==='time'?info.time:info.precision==='ongoing'?mt(x,'date'):info.precision==='range'?bi('时间范围','Date range'):bi('仅注明日期','Date only');
+        return heading+'<button type="button" class="library-row timeline-row '+(selected[tab]===x.id?'active':'')+'" data-lib="select" data-id="'+e(x.id)+'" aria-pressed="'+(selected[tab]===x.id)+'"><span class="timeline-dot" aria-hidden="true"></span><span class="timeline-clock">'+e(clock)+'</span><span class="library-row-title">'+e(name(x).replace(/\*\*/g,''))+'</span></button>';
+      }).join('');
+    }
     function urlLink(s){return s&&/^https?:\/\//i.test(s.url||'')?'<a class="library-source-link" href="'+e(s.url)+'" target="_blank" rel="noopener noreferrer">'+e(t('readSource'))+' ↗</a>':'';}
     function sourceContent(x){
-      var s=sourceOf(x), pending=/未做|待核|待复核|⚠/.test(x.note||''), note=read(x,'note');
+      var s=sourceOf(x), note=read(x,'note');
       return '<section class="library-provenance"><div class="library-section-title">'+ctx.icon('book')+'<h3>'+e(bi('回到出处','Trace the source'))+'</h3></div><p class="library-source-title">'+e(s?read(s,'title'):bi('尚未记录来源','No source recorded'))+'</p>'+
         (x.locator?'<div class="library-locator"><span>'+e(t('sourceLocation'))+'</span><strong>'+e(read(x,'locator'))+'</strong></div>':'')+
         (x.quote?'<blockquote class="library-original"><span>'+e(t('sourceOriginal'))+'</span><p>'+ctx.materialText(read(x,'quote'))+'</p></blockquote>':'')+
         (x.confidence?'<span class="library-confidence">'+e(t('confidence'))+' · '+e(t('confidence'+x.confidence[0].toUpperCase()+x.confidence.slice(1)))+'</span>':'')+
-        (note?'<p class="source-review '+(pending?'pending':'')+'">'+ctx.materialText(note)+'</p>':'')+
+        (note?'<details class="library-material-notes"><summary>'+e(t('verificationNote'))+'</summary><p>'+ctx.materialText(note)+'</p></details>':'')+
         (s&&s.note?'<p class="source-note">'+e(read(s,'note'))+'</p>':'')+urlLink(s)+'</section>';
     }
     function draft(x){
@@ -5888,9 +6002,9 @@ body {
     function refresh(focus) {
       var active=document.activeElement, id=active&&active.id, caret=active&&typeof active.selectionStart==='number'?[active.selectionStart,active.selectionEnd]:null;
       var listEl=host.querySelector('.library-results'), oldList=listEl&&listEl.clientHeight?listEl.scrollTop:savedListScroll, reading=host.querySelector('.library-reading'), oldRead=reading?reading.scrollTop:0;
-      var allData=filtered(), total=allData.length, pages=Math.max(1,Math.ceil(total/pageSize));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*pageSize,(page+1)*pageSize);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
+      var allData=filtered(), total=allData.length, size=tab==='timeline'?Math.max(1,total):pageSize, pages=Math.max(1,Math.ceil(total/size));page=Math.max(0,Math.min(page,pages-1));var listData=allData.slice(page*size,(page+1)*size);if(!listData.some(function(x){return x.id===selected[tab];}))selected[tab]=listData.length?listData[0].id:null;
       var x=listData.find(function(x){return x.id===selected[tab];}), tabs=['facts','principles','timeline','sources','glossary'];
-      host.innerHTML='<div class="library-shell '+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results">'+list(listData)+'</div><div class="library-pagination">'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*pageSize+1:0)+'–'+Math.min((page+1)*pageSize,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
+      host.innerHTML='<div class="library-shell '+(tab==='timeline'?'is-timeline ':'')+''+(mobileReading?'is-reading':'')+'"><header class="library-header"><div class="library-brand">'+ctx.icon('book')+'<div><h2 id="modal-title">'+e(t('materials'))+'</h2><p>'+e(bi('先查依据，再形成自己的判断。','Check the evidence. Make your own judgment.'))+'</p></div></div><div class="library-header-actions"><div class="language-switch" role="group" aria-label="'+e(t('language'))+'"><button data-lib="language" data-lang="zh" aria-pressed="'+(ctx.locale()==='zh')+'" class="'+(ctx.locale()==='zh'?'selected':'')+'">'+e(t('langZh'))+'</button><button data-lib="language" data-lang="en" aria-pressed="'+(ctx.locale()==='en')+'" class="'+(ctx.locale()==='en'?'selected':'')+'">'+e(t('langEn'))+'</button></div>'+button(ctx.icon('close'),'close','icon-button quiet','aria-label="'+e(t('close'))+'"')+'</div></header><nav class="library-tabs" aria-label="'+e(t('materials'))+'">'+tabs.map(function(k){var count=k==='facts'?ctx.facts().length:k==='principles'?data().principles.length:k==='timeline'?data().timeline.length:k==='sources'?data().sources.length:data().valueWords.length;return '<button type="button" id="library-tab-'+k+'" data-lib="tab" data-tab="'+k+'" class="'+(tab===k?'selected':'')+'" aria-pressed="'+(tab===k)+'">'+e(t(k))+'<span>'+count+'</span></button>';}).join('')+'</nav><div class="library-mobile-bar">'+button(ctx.icon('back')+e(bi('返回资料列表','Back to list')),'back-list','quiet small')+'</div><div class="library-body"><aside class="library-browser"><div class="library-controls"><label class="library-search" for="library-search">'+ctx.icon('search')+'<input id="library-search" type="search" aria-label="'+e(bi('搜索资料内容、原文与出处','Search material, quotes and sources'))+'" value="'+e(query)+'" placeholder="'+e(bi('搜索内容、原文、出处…','Search text, quotes, sources…'))+'" autocomplete="off"></label>'+filters()+'<div class="library-result-summary"><span role="status">'+total+' '+e(bi('条资料','results'))+'</span>'+(query||category!=='all'||source||linkedOnly?button(e(bi('清除','Clear')),'clear','library-text-button'):'')+(tab==='facts'&&ctx.custom()?button(ctx.icon('plus')+e(t('addFact')),'add-fact','library-text-button'):'')+'</div></div><div class="library-results '+(tab==='timeline'?'library-timeline-results':'')+'">'+list(listData)+'</div><div class="library-pagination" '+(tab==='timeline'?'hidden':'')+'>'+button(ctx.icon('back'),'page-prev','icon-button quiet','id="library-page-prev" aria-label="'+e(bi('上一页资料','Previous page'))+'" '+(page===0?'disabled':''))+'<span role="status">'+(total?page*size+1:0)+'–'+Math.min((page+1)*size,total)+' / '+total+'</span>'+button(ctx.icon('arrow'),'page-next','icon-button quiet','id="library-page-next" aria-label="'+e(bi('下一页资料','Next page'))+'" '+(page===pages-1?'disabled':''))+'</div>'+(tab==='principles'&&!ctx.readonly()?'<div class="library-browser-bottom">'+button(ctx.icon('plus')+e(t('addCustom')),'custom-principle','quiet small')+'</div>':'')+'</aside><section class="library-reading" aria-label="'+e(bi('资料阅读与引用','Read and link material'))+'">'+detail(x)+'</section></div><footer class="library-footer"><p>'+ctx.icon('link')+e(tab==='principles'?items('PA').length+' '+bi('项原则已选，适用理由由你填写','principles selected; explain relevance yourself'):state().relations.filter(function(r){return r.kind==='fact-supports-question'&&ctx.facts().some(function(f){return f.id===r.from;});}).length+' '+bi('处资料引用，理由由你填写','material links, with your own reasons'))+'</p>'+button(e(bi(tab==='principles'?'回到原则分析':'回到分析',tab==='principles'?'Return to principles':'Return to analysis'))+ctx.icon('arrow'),'return','primary small')+'</footer></div>';
       var newList=host.querySelector('.library-results'), newRead=host.querySelector('.library-reading');savedListScroll=focus==='select'?0:oldList;newList.scrollTop=savedListScroll;newRead.scrollTop=focus==='select'||focus==='read'?0:oldRead;
       var target=document.getElementById(id);if(target&&modal.open){target.focus({preventScroll:true});if(caret&&target.setSelectionRange)try{target.setSelectionRange(caret[0],caret[1]);}catch(err){}}
     }
@@ -5909,7 +6023,7 @@ body {
       if(a==='tab'){originalReading=false;tab=el.dataset.tab;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(a==='select'){originalReading=false;selected[tab]=el.dataset.id;mobileReading=true;refresh('read');return;}
       if(a==='back-list'){mobileReading=false;refresh();return;}
-      if(a==='page-prev'||a==='page-next'){originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
+      if(a==='page-prev'||a==='page-next'){if(tab==='timeline')return;originalReading=false;page+=a==='page-next'?1:-1;refresh('select');return;}
       if(a==='category'){originalReading=false;category=el.dataset.category;page=0;mobileReading=false;refresh('select');return;}
       if(a==='clear'){originalReading=false;query='';category='all';source='';linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
       if(a==='source-facts'){originalReading=false;tab='facts';query='';category='all';source=el.dataset.id;linkedOnly=false;page=0;mobileReading=false;refresh('select');return;}
@@ -6984,110 +7098,6 @@ body {
 
 </script>
   <script>
-/**
- * CASE_DATA 双语字段选择（只读展示层）。
- */
-(function (root) {
-  "use strict";
-  var warned = Object.create(null);
-
-  function warnOnce(key, detail) {
-    if (warned[key]) return;
-    warned[key] = true;
-    console.warn("[FieldnotesCaseText] missing English field:", detail);
-  }
-
-  function pick(obj, zhKey, enKey, locale, idHint) {
-    if (!obj) return "";
-    if (locale === "en") {
-      var en = obj[enKey];
-      if (en != null && String(en).trim()) return en;
-      warnOnce(idHint + "." + enKey, idHint + "." + enKey);
-    }
-    return obj[zhKey] != null ? obj[zhKey] : "";
-  }
-
-  function stripVerificationNote(note, locale) {
-    if (!note) return "";
-    if (locale === "en" && /核验|待核|待复核|⚠/.test(note) && !/[A-Za-z]{8,}/.test(note)) {
-      return "";
-    }
-    return note;
-  }
-
-  root.FieldnotesCaseText = {
-    fact: function (fact, locale) {
-      return pick(fact, "text", "textEn", locale, fact && fact.id);
-    },
-    factNote: function (fact, locale) {
-      var n = pick(fact, "note", "noteEn", locale, fact && fact.id);
-      return stripVerificationNote(n, locale) || (locale === "en" ? "" : fact.note || "");
-    },
-    timelineEvent: function (row, locale) {
-      return pick(row, "event", "eventEn", locale, row && row.id);
-    },
-    assessmentText: function (row, locale) {
-      return pick(row, "text", "textEn", locale, row && row.id);
-    },
-    principleDesc: function (p, locale) {
-      return pick(p, "desc", "descEn", locale, p && p.id);
-    },
-    valueWord: function (w, locale) {
-      return pick(w, "word", "wordEn", locale, w && w.id);
-    },
-    valueWhy: function (w, locale) {
-      return pick(w, "whyVague", "whyVagueEn", locale, w && w.id);
-    },
-    constraintLabel: function (c, locale) {
-      return pick(c, "label", "labelEn", locale, c && c.id);
-    },
-    constraintDesc: function (c, locale) {
-      return pick(c, "desc", "descEn", locale, c && c.id);
-    },
-    biasLabel: function (b, locale) {
-      return pick(b, "label", "labelEn", locale, b && b.id);
-    },
-    reviewLabel: function (r, locale) {
-      return pick(r, "label", "labelEn", locale, r && r.id);
-    },
-    stepName: function (step, locale) {
-      return pick(step, "name", "nameEn", locale, "step" + (step && step.id));
-    },
-    stepIntro: function (step, locale) {
-      return pick(step, "intro", "introEn", locale, "step" + (step && step.id));
-    },
-    promptText: function (prompt, locale, stepId, index) {
-      return pick(prompt, "text", "textEn", locale, "step" + stepId + ".prompt" + index);
-    },
-    fieldLabel: function (field, locale, stepId, index) {
-      return pick(field, "label", "labelEn", locale, "step" + stepId + ".field" + index);
-    },
-    fieldHint: function (field, locale, stepId, index) {
-      return pick(field, "hint", "hintEn", locale, "step" + stepId + ".field" + index);
-    },
-    sourceTitle: function (source, locale) {
-      return pick(source, "title", "titleEn", locale, source && source.id);
-    },
-    sourceNote: function (source, locale) {
-      if (locale === "en") {
-        var en = source && source.noteEn;
-        if (en != null && String(en).trim()) return en;
-        if (source && source.note && /[\u4e00-\u9fff]/.test(source.note)) return "";
-      }
-      return (source && source.note) || "";
-    },
-    metaTitle: function (meta, locale) {
-      return pick(meta, "title", "titleEn", locale, "meta.title");
-    },
-    referenceBody: function (ref, locale, stepId) {
-      if (!ref) return "";
-      return pick(ref, "body", "bodyEn", locale, "step" + stepId + ".referenceLevel3");
-    }
-  };
-})(typeof globalThis !== "undefined" ? globalThis : window);
-
-</script>
-  <script>
 /* Guided human review. Reuses review.status/note; no generated analysis or new state fields. */
 (function(){
   'use strict';
@@ -7137,7 +7147,7 @@ body {
       else if(phase==='decide')card+='<fieldset class="guided-review-decisions"><legend>'+e(bi('你打算如何处理？','How will you handle this?'))+'</legend>'+choices.map(function(choice){return btn(choice[1],'choice','data-choice="'+choice[0]+'" aria-pressed="'+(d.choice===choice[0])+'"','review-choice '+(d.choice===choice[0]?'selected':'')+' choice-'+choice[0]);}).join('')+'</fieldset>'+btn(bi('返回查看记录','Back to record'),'back-read');
       else if(phase==='reason')card+='<div class="review-chosen">'+e(label(d.choice==='checked'?'kept':d.choice==='discussion'?'discussion':'revise'))+' '+btn(bi('更换决定','Change decision'),'back-decide')+'</div><label class="field" for="review-reason"><span>'+e(bi('为什么？准备修改或讨论什么？','Why? What should change or be discussed?'))+'</span><textarea id="review-reason" data-review-note="'+e(it.id)+'" rows="2" placeholder="'+e(bi('保留可不填；修改或待讨论时，请留下具体原因。','Optional for Keep; explain what needs revision or discussion.'))+'">'+e(d.note)+'</textarea></label><p id="review-feedback" role="status"></p><div class="guided-review-save">'+btn(bi('保存并看下一条','Save & review next'),'save','data-id="'+e(it.id)+'"','primary')+'<small>'+e(bi('只记录你的决定，不改写原分析。','Records your decision without rewriting the analysis.'))+'</small></div>';
       card+='</article>';
-      var carrier=all[0],checklist='<details id="review-guidance" class="analysis-extra guided-review-checklist"><summary>'+e(bi('小组偏见检查清单','Team bias checklist'))+'</summary><fieldset>'+ctx.data().biasChecks.map(function(check,i){return '<label class="check"><input type="checkbox" data-checklist="'+e(carrier.id)+'" value="'+e(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(ctx.readonly()?'disabled':'')+'>'+e(ctx.locale()==='en'?window.FieldnotesI18n.biasLabels[i]:check.label)+'</label>';}).join('')+'</fieldset></details>';
+      var carrier=all[0],CT=window.FieldnotesCaseText,checklist='<details id="review-guidance" class="analysis-extra guided-review-checklist"><summary>'+e(bi('小组偏见检查清单','Team bias checklist'))+'</summary><fieldset>'+ctx.data().biasChecks.map(function(check,i){var lab=CT?CT.biasLabel(check,ctx.locale()):(ctx.locale()==='en'?window.FieldnotesI18n.biasLabels[i]:check.label);return '<label class="check"><input type="checkbox" data-checklist="'+e(carrier.id)+'" value="'+e(check.id)+'" '+((carrier.checkedIds||[]).includes(check.id)?'checked':'')+' '+(ctx.readonly()?'disabled':'')+'>'+e(lab)+'</label>';}).join('')+'</fieldset></details>';
       return partHeader+'<div class="review-progressive">'+card+'</div><details id="review-record-picker" class="review-record-picker"><summary>'+e(bi('切换记录或查看已处理记录','Switch record or view processed records'))+'</summary>'+filters+side+'</details>'+checklist;
     }
     function input(event){if(event.target.dataset.reviewNote){var it=ctx.state().items[event.target.dataset.reviewNote];if(it&&!ctx.readonly())draft(it).note=event.target.value;}}
@@ -7275,10 +7285,10 @@ body {
   }
   function sourceName(id){var source=data.sources.find(function(x){return x.id===id;});return source?caseText(source,'title'):t('pendingSource');}
   function sourceDetails(entry,context){
-    var source=data.sources.find(function(s){return s.id===entry.sourceId;}),pending=locale==='zh'&&/未做|待核|待复核/.test(entry.note||'');
+    var source=data.sources.find(function(s){return s.id===entry.sourceId;});
     var note=locale==='en'&&CT()?CT().factNote(entry,locale):caseText(entry,'note');
     var srcNote=source?(locale==='en'&&CT()?CT().sourceNote(source,locale):caseText(source,'note')):'';
-    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+(pending?'<span class="source-review pending">'+esc(t('verificationPending'))+'</span>':'')+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(note)+'</p>':'')+(srcNote?'<p class="source-note">'+esc(srcNote)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
+    return '<details class="source-details" id="source-'+esc((context||'library')+'-'+entry.id)+'"><summary>'+icon('book')+esc(t('sourceDetails'))+'</summary><div class="source-details-body"><strong>'+esc(sourceName(entry.sourceId))+'</strong>'+(source?'<p class="source-byline">'+esc(caseText(source,'publisher'))+' · '+esc(source.year)+'</p>':'')+(entry.locator?'<p><span>'+esc(t('sourceLocation'))+'</span> '+esc(caseText(entry,'locator'))+'</p>':'')+(entry.quote?'<blockquote lang="en">'+esc(entry.quote)+'</blockquote>':'')+(entry.confidence?'<p class="source-byline">'+esc(t('confidence'))+' · '+esc(t('confidence'+entry.confidence[0].toUpperCase()+entry.confidence.slice(1)))+'</p>':'')+(note?'<p class="source-note">'+esc(t('verificationNote'))+' · '+materialText(note)+'</p>':'')+(srcNote?'<p class="source-note">'+esc(srcNote)+'</p>':'')+(source&&/^https?:\/\//i.test(source.url||'')?'<a href="'+esc(source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(t('readSource'))+' ↗</a>':'')+'</div></details>';
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';

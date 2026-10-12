@@ -65,12 +65,12 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   await page.locator('#library-source').selectOption('src-004');
   const expected=await page.evaluate(()=>window.FieldnotesCases.getData().facts.filter(f=>f.sourceId==='src-004').length);
   assert.equal(await page.locator('.library-fact').count(),Math.min(12,expected));
-  assert.ok(await page.locator('.source-review.pending').isVisible());
+  assert.equal(await page.locator('.library-review-badge,.source-review.pending').count(),0);assert.ok(await page.locator('.library-material-notes').isVisible());
   assert.ok((await page.locator('.library-original').innerText()).length>25,'Unreviewed original is available without inventing verification.');
   if(shots){fs.mkdirSync(shots,{recursive:true});await page.screenshot({path:path.join(shots,'library-zh-source-review.jpg'),type:'jpeg',quality:85});}
   // Switch UI language without altering either the question or the reason.
   await page.locator('.library-header [data-lang="en"]').click();assert.equal((await get()).items[qs[0].id].text,qs[0].text);
-  await tab('sources');await row('src-003').click();assert.ok((await page.locator('.library-source-caution').innerText()).includes('Do not use this entry as factual evidence'));
+  await tab('sources');await row('src-003').click();assert.ok((await page.locator('.library-source-caution').innerText()).includes('not used as factual evidence'));
   await row('src-004').click();await lib('source-facts').click();assert.equal(await page.locator('.library-fact').count(),Math.min(12,expected));
   assert.equal(await page.locator('#library-source').inputValue(),'src-004');
   await tab('principles');await lib('principle').click();
@@ -80,7 +80,7 @@ const shots=process.env.FIELDNOTES_QA_DIR&&path.join(root,'docs/ai-logs',process
   assert.ok(await page.locator('.library-dialog').isVisible(),'Select multiple principles without reopening.');
   if(shots)await page.screenshot({path:path.join(shots,'library-en-principles.jpg'),type:'jpeg',quality:85});
   await lib('return').click();assert.equal((await get()).currentStep,6);
-  await open();await tab('timeline');assert.ok((await page.locator('.library-row').first().innerText()).includes('2008'),'Timeline reads chronologically.');
+  await open();await tab('timeline');assert.equal(await page.locator('.timeline-row').first().getAttribute('data-id'),'tl-019');assert.ok((await page.locator('.timeline-date-group').first().innerText()).includes('2008'),'Timeline starts with the earliest recorded range.');
   await tab('glossary');await lib('concept').click();assert.equal((await get()).currentStep,5);
   const concept=Object.values((await get()).items).find(x=>x.type==='C');assert.equal(concept.others,'');assert.equal(concept.mine,'');
   // Searchable assumption references retain checked entries even when filtered out.
