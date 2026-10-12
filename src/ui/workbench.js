@@ -118,7 +118,7 @@
     openDialog('more','<div class="tools-list">'+button('newCase','cases','','folder')+lt('exportArchiveJson','download-json','','download')+lt('importArchiveJson','import','','folder')+lt('exportMarkdownNotes','download-md','','note')+button('method','method','','help')+button('reset','reset','danger','trash')+'</div>');
   }
   function applyDemoPresentationIfNeeded(){
-    if(window.__FN_DEMO_PACK&&window.__FN_DEMO_AUTO_PRESENT&&!presentation){
+    if(window.__FN_DEMO_PACK&&window.__FN_DEMO_AUTO_PRESENT&&data.meta.id===window.CASE_DATA.meta.id&&!presentation){
       presentation=JSON.parse(JSON.stringify(engine.getState()));
       presentationStep=presentation.currentStep||engine.getState().currentStep;
     }
