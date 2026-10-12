@@ -248,9 +248,10 @@ input:focus,textarea:focus,select:focus {
 }
 
 .nav-heading {
-  color:#92aacd;
-  font-size:11px;
-  letter-spacing:1.5px;
+  color:#b7c8e2;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:.6px;
   margin:38px 15px 14px
 }
 .sidebar nav {
@@ -7966,7 +7967,7 @@ body {
   }
   function sidebar(step,activeView){
     activeView=activeView||'workbook';
-    var stepsNav=data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';var isActive=activeView==='workbook'&&step===x.id;return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(isActive?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(isActive?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(x.presentInClass?'<span class="step-class">'+esc(t('classBadge'))+'</span>':'')+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('');
+    var stepsNav=data.steps.map(function(x){var status=state().stepStatus[x.id]||'todo';var isActive=activeView==='workbook'&&step===x.id;return (x.id===6?'<div class="nav-divider">'+esc(t('deliberate'))+'</div>':x.id===8?'<div class="nav-divider">'+esc(t('act'))+'</div>':'')+'<button id="nav-step-'+x.id+'" data-testid="nav-step-'+x.id+'" class="step-nav '+(isActive?'active':'')+'" data-action="navigate" data-step="'+x.id+'" '+(isActive?'aria-current="step"':'')+'><span class="step-index">'+String(x.id).padStart(2,'0')+'</span><span class="step-name">'+esc(title(x.id))+'</span>'+(status==='checked'?icon('check'):status==='stale'?'<span class="revisit-dot" title="'+esc(t('stale'))+'"></span>':'')+'</button>';}).join('');
     var summaryNav='<div class="nav-divider summary-divider"></div><button id="nav-summary" data-testid="nav-summary" class="step-nav summary-nav '+(activeView==='summary'?'active':'')+'" data-action="goto-summary" type="button" '+(activeView==='summary'?'aria-current="page"':'')+'><span class="step-name">'+esc(t('summaryReport'))+'</span></button>';
     return '<aside class="sidebar"><a class="brand" href="#" data-action="navigate" data-step="1"><span class="brand-mark">'+icon('book')+'</span><span>fieldnotes<span class="brand-sub">'+esc(t('caseWorkshop'))+'</span></span></a><div class="nav-heading">'+esc(t('allSteps'))+'</div><nav aria-label="'+esc(t('allSteps'))+'">'+stepsNav+summaryNav+'</nav><div class="sidebar-foot"><div class="case-symbol">'+icon('folder')+'</div><div><span>ENGR4960J</span><h2>'+esc(t('tenSteps'))+'</h2><p>'+esc(t('offline'))+'</p></div></div></aside>';
   }
