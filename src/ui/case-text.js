@@ -96,6 +96,33 @@
     referenceBody: function (ref, locale, stepId) {
       if (!ref) return "";
       return pick(ref, "body", "bodyEn", locale, "step" + stepId + ".referenceLevel3");
+    },
+    principleName: function (p, locale) {
+      return pick(p, "name", "nameEn", locale, p && p.id);
+    },
+    timelineDate: function (row, locale) {
+      return pick(row, "date", "dateEn", locale, row && row.id);
+    },
+    locator: function (row, locale) {
+      return pick(row, "locator", "locatorEn", locale, row && row.id);
+    },
+    packNote: function (row, locale) {
+      var n = pick(row, "note", "noteEn", locale, row && row.id);
+      return stripVerificationNote(n, locale) || (locale === "en" ? "" : (row && row.note) || "");
+    },
+    materialField: function (row, field, locale) {
+      if (!row || locale !== "en") return row && row[field] != null ? row[field] : "";
+      if (field === "text") return this.fact(row, locale);
+      if (field === "event") return this.timelineEvent(row, locale);
+      if (field === "title") return this.sourceTitle(row, locale);
+      if (field === "note") return this.packNote(row, locale);
+      if (field === "locator") return this.locator(row, locale);
+      if (field === "name") return this.principleName(row, locale);
+      if (field === "desc") return this.principleDesc(row, locale);
+      if (field === "word") return this.valueWord(row, locale);
+      if (field === "whyVague") return this.valueWhy(row, locale);
+      if (field === "date") return this.timelineDate(row, locale);
+      return pick(row, field, field + "En", locale, row && row.id);
     }
   };
 })(typeof globalThis !== "undefined" ? globalThis : window);

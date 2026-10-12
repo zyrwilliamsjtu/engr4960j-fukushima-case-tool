@@ -310,6 +310,19 @@ def main() -> int:
         print(case_en.stderr, end="")
     if case_en.returncode != 0:
         return case_en.returncode
+    cross = subprocess.run(
+        ["node", str(ROOT / "tools" / "audit" / "case-en-cross-path.js")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    print(cross.stdout, end="")
+    if cross.stderr:
+        print(cross.stderr, end="")
+    if cross.returncode != 0:
+        return cross.returncode
     build = subprocess.run(
         [
             sys.executable,

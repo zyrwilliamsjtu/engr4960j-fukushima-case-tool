@@ -264,5 +264,13 @@
 用户反馈仍同时呈现太多。入口改为问题/信息缺口/假设/概念/原则五个部分；选定后只显示当前记录的一个阶段：回看、决定、原因。依据按需展开，记录切换/过滤和偏见清单默认折叠；保存后只继续本部分，看完后由用户选择下一部分。保留三种决定、必填原因、暂存草稿和只读保护，不新增持久化字段。
 同期同步同学的 2.2 英文资料和演示加载修复，保留原数据；修复案例列表丢失 titleEn 导致的英文标题回退，以及演示横幅英文模式混入中文。英文/逐条复核检查与中文原文哈希检查通过，演示检查在真实浏览器运行通过 5 项。页面 QA 为 frontend-qa-progressive-review-v1/flow，记录为虚构测试内容。
 
+### 2026-10-12 — 全视图英文 i18n 审计与 Materials 英文单一来源
+
+PI 任务：D8-i18n 从十步抽查扩展为视图注册表（总结、资料库、第 7 步复核、推理总览、修订/存档/对话框等），覆盖率守护 `I18N_COVERAGE: covered=20 uncovered=1`（空工作簿需独立 storage profile）；修复 D8 聚合误判（未覆盖项须带 reason 而非要求 uncovered=0）。Materials 侧 `material-translations.js` 降级为委托 `FieldnotesCaseText` 的薄适配层，补 `locatorEn`/`noteEn`/`dateEn` 共 28 处；新增 `case-en-cross-path.js` 抽样核对 workbook 与资料库英文一致。
+
+产出：`tools/audit/i18n-views.js`、`i18n-render-entry-scan.js`、`case-en-cross-path.js`；`docs/audit/i18n-*`、`translation-unification.md`；`src/ui/case-text.js`、`material-translations.js`、`fukushima.js`（仅 En 字段）；`index.html` 脚本顺序。
+
+截图：待 PI 补入。
+
 ### 2026-10-12 — 复核布局与修订按钮可读性
 用户反馈第 7 步留白大、文本框重叠，以及修订对比默认白框。复现发现工具栏背景覆盖主按钮色且保留白字；修复 primary 优先级并验证十步中英默认对比度至少 4.5。第 7 步缩小顶部、移除重复间距，主卡片占可用宽度，决定区域改为网格且手机单列，输入框与保存区明确布局；阶段切换对齐当前卡片并留出演示横幅高度。review-layout-check 检查中英 × 四屏宽 × 三阶段的控件/标题边界、无溢出、宽度利用和横幅避让。复核功能与交付检查同时通过。页面 QA 为 frontend-qa-review-layout-before/fixed-v1，演示内容仅用于界面验证。
